@@ -1,0 +1,41 @@
+{% extends 'common/layout.html' %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper " id="main-content" role="main">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-xl">{{serviceName}}</h1>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive">Warning</span>
+            Example warning text
+          </strong>
+        </div>
+
+        <p class="govuk-body">To do something you need to:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>item 1</li>
+          <li>item 2</li>
+        </uL>
+
+        <a href="start" role="button" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8">
+          Start now
+        </a>
+
+        <p class="govuk-body">You may also wish to visit the <a href="about">About</a> page.</p>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+
+{% endblock %}

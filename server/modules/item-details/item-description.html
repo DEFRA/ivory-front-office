@@ -1,0 +1,32 @@
+{% extends 'common/layout.html' %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post" autocomplete="off" {{ novalidateVal }}>
+
+            <div class="govuk-form-group">
+
+                <h1 class="govuk-label-wrapper">
+                    <label class="govuk-label govuk-label--l" for="description">
+                        Describe the item
+                    </label>
+                </h1>
+
+                <span id="title-hint" class="govuk-hint">
+              Include any distinguishing features
+            </span>
+
+                <textarea class="govuk-textarea" id="description" name="itemDescription" rows="5" aria-describedby="declarationText-hint" required>{{ session.itemDescription }}</textarea>
+            </div>
+
+            <button type="submit" class="govuk-button">Continue</button>
+
+        </form>
+
+
+
+    </div>
+</div>
+{% endblock %}
