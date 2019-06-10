@@ -1,20 +1,16 @@
 # Ivory
 Digital service to support the Ivory Act. 
 
-# Environment variables
-
-| name     | description      | required | default      |            valid            | notes |
-|----------|------------------|:--------:|---------     |:---------------------------:|-------|
-| NODE_ENV | Node environment |    no    | development  | development,test,production |       |
-| PORT     | Port number      |    no    | 3000         |                             |       |
-
 # Prerequisites
 
 Node v10+
 
-
 # TODO 
 - [ ] Add the build status badges to this file
+- [ ] Logging
+- [ ] Error handling
+- [ ] Model setup
+- [ ] Lots more no doubt...
 
 # Running the application
 
@@ -54,6 +50,19 @@ Here's the default structure for your project files.
 
 The configuration file for the server is found at `server/config.js`.
 This is where to put any config.  All environment-specific config should be read from the environment (or a `.env` file)
+
+# Environment variables
+
+| name                      | description      | required | default      |            valid            | notes |
+|---------------------------|------------------|:--------:|---------     |:---------------------------:|-------|
+| NODE_ENV                  | Node environment |    no    | development  | development,test,production |       |
+| PORT                      | Port number      |    no    | 3000         |                             |       |
+
+TODO: Add the address lookup variables; ADDRESS_LOOKUP_URI 
+ADDRESS_LOOKUP_USERNAME, 
+ADDRESS_LOOKUP_PASSWORD, 
+ADDRESS_LOOKUP_KEY, 
+ADDRESS_LOOKUP_STUB
 
 ## Plugins
 

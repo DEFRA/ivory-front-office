@@ -43,7 +43,7 @@ async function addressLookup (postcode) {
 
   let responseBody = {}
 
-  if (stubRequest === 'true') {
+  if (stubRequest === 'true' || stubRequest === '') {
     // Test response rather than calling API
     console.log('Getting stubbed addresses') // TODO: remove this. What is the proper way to debug/info log?
     responseBody = require('./addressLookupResponseExample.json')
