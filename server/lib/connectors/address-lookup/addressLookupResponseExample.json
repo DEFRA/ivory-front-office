@@ -1,0 +1,50 @@
+{
+  "header": {
+    "uri": "...removed...",
+    "query": "postcode=BS15AH",
+    "offset": "0",
+    "totalresults": "2",
+    "format": "JSON",
+    "dataset": "DPA",
+    "lr": "EN",
+    "maxresults": "20",
+    "matching_totalresults": "2"
+  },
+  "results": [
+    {
+      "Address": {
+        "AddressLine": "ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH",
+        "SubBuildingName": "ENVIRONMENT AGENCY",
+        "BuildingName": "HORIZON HOUSE",
+        "Street": "DEANERY ROAD",
+        "Town": "BRISTOL",
+        "County": "BRISTOL CITY",
+        "Postcode": "BS1 5AH",
+        "Country": "ENGLAND",
+        "XCoordinate": 358205,
+        "YCoordinate": 172708,
+        "UPRN": "340116",
+        "Match": "1",
+        "MatchDescription": "EXACT",
+        "Language": "EN"
+      }
+    },
+    {
+      "Address": {
+        "AddressLine": "THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH",
+        "SubBuildingName": "THRIVE RENEWABLES PLC",
+        "Street": "DEANERY ROAD",
+        "Town": "BRISTOL",
+        "County": "BRISTOL CITY",
+        "Postcode": "BS1 5AH",
+        "Country": "ENGLAND",
+        "XCoordinate": 358130,
+        "YCoordinate": 172688,
+        "UPRN": "340117",
+        "Match": "1",
+        "MatchDescription": "EXACT",
+        "Language": "EN"
+      }
+    }
+  ]
+}

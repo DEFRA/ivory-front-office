@@ -1,0 +1,38 @@
+{% extends 'common/layout.html' %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <h1 class="govuk-heading-l">Your address</h1>
+
+        <form method="post" autocomplete="off" novalidate>
+
+            <div class="govuk-form-group">
+                <label class="govuk-label" for="address">
+                    Select an address
+                </label>
+                <select class="govuk-select" id="address" name="address">
+                    <option value="ChooseAddress">{{ addressesFound }} addresses found</option>
+
+                    <!-- TODO: This seems a fudge to get two values out of the select.  I can't seem to pass the address.Address object from this io the POST route -->
+                    {% for address in addresses %}
+                    <option value='{"AddressLine": "{{ address.Address.AddressLine }}", "UPRN": "{{ address.Address.UPRN }}"}'>{{ address.Address.AddressLine }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+            <p class="govuk-body"><a href="#">I can't find my address in the list</a></p>
+
+            <button class="govuk-button">Continue</button>
+
+        </form>
+
+
+
+    </div>
+</div>
+
+{% endblock %}

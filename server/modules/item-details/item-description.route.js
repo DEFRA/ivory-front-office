@@ -6,7 +6,7 @@ module.exports = [{
   handler: function (request, h) {
     console.log(`${request.method} ${request.route.path}`)
 
-    return h.view('item-details/item-description', {
+    return h.view(`item-details${path}`, {
       session: request.state.session
     })
   }
