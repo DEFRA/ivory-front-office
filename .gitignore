@@ -6,6 +6,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
+/lcov.info
 /tmp
 *~
 .DS_Store

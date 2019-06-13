@@ -5,7 +5,7 @@ const pkg = require('../../package.json')
 const analyticsAccount = config.analyticsAccount
 
 module.exports = {
-  plugin: require('vision'),
+  plugin: require('@hapi/vision'),
   options: {
     engines: {
       // TODO: I swapped the nunjucks engine for the html engine.  I couldn't figure out how to have both .njk and .html views.  If you uncomment this and have both, it works, but you need to explicitly state the view extension, e.g. test.html, rather than just test (not sure why)

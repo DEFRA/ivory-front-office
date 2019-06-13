@@ -22,7 +22,7 @@ module.exports = [{
     h.state('session', request.state.session)
 
     let postcode = request.payload.ownerAddressPostcode
-    postcode = postcode.toUpperCase().replace(/\s/g, "") // Capitalise and remove spaces
+    postcode = postcode.toUpperCase().replace(/\s/g, '') // Capitalise and remove spaces
 
     return h.redirect(`/owner-address-select?postcode=${postcode}`)
   }
