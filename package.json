@@ -2,6 +2,19 @@
   "name": "ivory",
   "version": "0.0.1",
   "description": "Digital service to support the Ivory Act",
+  "author": "Department for Environment, Food & Rural Affairs",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/DEFRA/ivory/issues"
+  },
+  "homepage": "https://github.com/DEFRA/ivory#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DEFRA/ivory.git"
+  },
+  "engines": {
+    "node": "10.x"
+  },
   "main": "index.js",
   "scripts": {
     "build": "bin/build",
@@ -11,8 +24,6 @@
     "test": "npm run lint && npm run unit-test",
     "postinstall": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "18.3.1",
     "@hapi/wreck": "^15.0.1",
