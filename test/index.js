@@ -22,14 +22,14 @@ lab.experiment('Web test', () => {
     Code.expect(response.headers['content-type']).to.include('text/html')
   })
 
-  lab.test('GET /about route works', async () => {
+  lab.test('GET /start route works', async () => {
     const options = {
       method: 'GET',
-      url: '/about'
+      url: '/start'
     }
 
     const response = await server.inject(options)
-    Code.expect(response.statusCode).to.equal(200)
-    Code.expect(response.headers['content-type']).to.include('text/html')
+    Code.expect(response.statusCode).to.equal(302)
+    Code.expect(response.headers['location']).to.equal('/owner-name')
   })
 })

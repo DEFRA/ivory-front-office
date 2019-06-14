@@ -1,12 +1,17 @@
 # Ivory
 Digital service to support the Ivory Act. 
 
+[![Build Status](https://travis-ci.org/DEFRA/ivory.svg?branch=master)](https://travis-ci.org/DEFRA/ivory)
+[![Known Vulnerabilities](https://snyk.io/test/github/defra/ivory/badge.svg)](https://snyk.io/test/github/defra/ivory)
+[![Code Climate](https://codeclimate.com/github/DEFRA/ivory/badges/gpa.svg)](https://codeclimate.com/github/DEFRA/ivory)
+[![Test Coverage](https://codeclimate.com/github/DEFRA/ivory/badges/coverage.svg)](https://codeclimate.com/github/DEFRA/ivory/coverage)
+[![Dependency Status](https://dependencyci.com/github/DEFRA/ivory/badge)](https://dependencyci.com/github/DEFRA/ivory)
+
 # Prerequisites
 
 Node v10+
 
 # TODO 
-- [ ] Add the build status badges to this file
 - [ ] Logging
 - [ ] Error handling
 - [ ] Model setup
