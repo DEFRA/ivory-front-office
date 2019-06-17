@@ -6,8 +6,6 @@ module.exports = [{
   path: path,
   // TODO: Set as 'async' to ensure the addressLookup function completed.  Is this good practice in a route handler?
   handler: async function (request, h) {
-    console.log(`${request.method} ${request.route.path}`)
-
     // TODO: Handle no results returned etc.
     const addressLookupResults = await addressLookup(request.query.postcode)
 
@@ -21,8 +19,6 @@ module.exports = [{
   method: 'POST',
   path: path,
   handler: function (request, h) {
-    console.log(`${request.method} ${request.route.path}`)
-
     // Set input in session cookie
     const chosenAddress = JSON.parse(request.payload.address)
     request.state.session.ownerAddressLine = chosenAddress.AddressLine

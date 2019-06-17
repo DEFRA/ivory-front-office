@@ -1,6 +1,7 @@
 /*
 * Add an `onPreResponse` listener to return error pages
 */
+const { logger } = require('defra-logging-facade')
 
 // TODO: Handle finding no cookie is present
 
@@ -27,6 +28,9 @@ module.exports = {
             data: response.data,
             message: response.message
           })
+
+          // log an error to airbrake/errbit - the response object is actually an instanceof Error
+          logger.serverError(response, request)
 
           // Then return the `500` view (HTTP 500 Internal Server Error )
           return h.view('error-handling/500').code(statusCode)

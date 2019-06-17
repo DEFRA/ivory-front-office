@@ -4,8 +4,6 @@ module.exports = [{
   method: 'GET',
   path: path,
   handler: function (request, h) {
-    console.log(`${request.method} ${request.route.path}`)
-
     return h.view(`core${path}`, {
       session: request.state.session
     })
@@ -15,8 +13,6 @@ module.exports = [{
   method: 'POST',
   path: path,
   handler: function (request, h) {
-    console.log(`${request.method} ${request.route.path}`)
-
     return h.redirect('#')
   }
 }]
