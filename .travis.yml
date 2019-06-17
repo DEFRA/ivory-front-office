@@ -1,9 +1,17 @@
 language: node_js
 node_js:
-  - "8"
+  - "10"
+cache:
+  directories:
+    - node_modules
+
+script:
+  - npm test
+
+after_script:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < lcov.info
+
 addons:
   code_climate:
-    repo_token:
-before_script:
-after_script:
-  - codeclimate-test-reporter < lcov.info
+    repo_token: 728a91a29934415088ec150c49469e258416aebd57c818bbd18f8b77f313928f
