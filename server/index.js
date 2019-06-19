@@ -31,14 +31,14 @@ async function createServer () {
     require('@hapi/inert'),
     require('./plugins/views'),
     require('./plugins/router'),
-    require('./plugins/error-pages')
+    require('./plugins/error-pages'),
+    require('./plugins/logging')
   ])
 
   // Register the dev-only plugins
   if (config.isDev) {
     await server.register([
       require('blipp')
-      // require('./plugins/logging')
     ])
   }
 

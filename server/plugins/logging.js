@@ -2,26 +2,32 @@ module.exports = {
   plugin: require('@hapi/good'),
   options: {
     ops: {
-      interval: 1000
+      interval: 10000
     },
     reporters: {
       console: [
         {
           module: '@hapi/good-squeeze',
           name: 'Squeeze',
-          args: [
-            {
-              log: '*',
-              error: '*',
-              response: '*',
-              request: '*'
+          args: [{
+            log: '*',
+            error: '*',
+            response: '*',
+            request: '*',
+            ops: '*'
+          }]
+        }, {
+          module: 'defra-logging-facade',
+          args: [{
+            goodEventLevels: {
+              log: 'info',
+              error: 'error',
+              ops: 'debug',
+              request: 'info',
+              response: 'info'
             }
-          ]
-        },
-        {
-          module: '@hapi/good-console'
-        },
-        'stdout'
+          }]
+        }
       ]
     }
   }

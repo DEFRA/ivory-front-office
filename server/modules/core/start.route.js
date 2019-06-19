@@ -1,11 +1,10 @@
+const { logger } = require('defra-logging-facade')
 const path = '/start'
 
 module.exports = {
   method: 'GET',
   path: path,
   handler: function (request, h) {
-    console.log(`${request.method} ${request.route.path}`)
-
     // TODO: Should we remove the session cookie on the 'start' button?
     // Remove cookie when users 'Start now'.
     // h.unstate('session') // This didn't work
@@ -14,9 +13,9 @@ module.exports = {
     let cookie = request.state.session
     if (!cookie) {
       cookie = { created: Date.now() }
-      console.log(`New cookie created on ${cookie.created}`)
+      logger.debug(`New cookie created on ${cookie.created}`)
     } else {
-      console.log(`Found existing cookie created on ${cookie.created}`)
+      logger.debug(`Found existing cookie created on ${cookie.created}`)
     }
     h.state('session', cookie)
 
