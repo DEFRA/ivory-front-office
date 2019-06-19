@@ -1,4 +1,4 @@
-{% extends 'common/layout.html' %}
+{% extends 'common/layout.njk' %}
 
 {% block content %}
 
@@ -8,6 +8,8 @@
     <h1 class="govuk-heading-l">Your address</h1>
 
     <form method="post" autocomplete="off" novalidate>
+
+      <input type="hidden" name="crumb" value="{{crumb}}"/>
 
       <!--<div class="govuk-form-group">-->
         <!--<label class="govuk-label" for="address-name-number">House number or name</label>-->

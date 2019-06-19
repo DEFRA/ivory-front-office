@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  {{ pageTitle }}
+  {% if errors %}Error: {% endif %}{{ pageTitle }}
 {% endblock %}
 
 {% block content %}
