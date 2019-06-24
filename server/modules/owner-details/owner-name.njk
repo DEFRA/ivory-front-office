@@ -1,0 +1,49 @@
+{% extends 'common/layout.njk' %}
+
+{% from "input/macro.njk" import govukInput %}
+{% from "button/macro.njk" import govukButton %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 class="govuk-heading-l">Your name</h1>
+
+    {% if errors %}
+      {% from "error-summary/macro.njk" import govukErrorSummary %}
+
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+
+
+    <form method="post" autocomplete="off" {{ novalidateVal }}>
+
+      <input type="hidden" name="crumb" value="{{crumb}}"/>
+
+      {{ govukInput({
+        label: {
+          text: "Full name"
+        },
+        id: "full-name",
+        name: "full-name",
+        value: view.fullName,
+        errorMessage: errors['full-name'],
+        autocomplete: "name",
+        attributes: {
+          spellcheck: "false"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

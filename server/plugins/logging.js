@@ -2,7 +2,7 @@ module.exports = {
   plugin: require('@hapi/good'),
   options: {
     ops: {
-      interval: 10000
+      interval: 60000
     },
     reporters: {
       console: [
@@ -12,7 +12,7 @@ module.exports = {
           args: [{
             log: '*',
             error: '*',
-            response: '*',
+            response: { exclude: 'asset' },
             request: '*',
             ops: '*'
           }]
