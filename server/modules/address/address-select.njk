@@ -1,0 +1,22 @@
+{% extends 'common/two-thirds-layout.njk' %}
+
+{% block formContent %}
+
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="address">
+            Select an address
+        </label>
+        <select class="govuk-select" id="address" name="address">
+            <option value="{{viewData.chooseAddressHint}}">{{ viewData.addresses.length }} addresses found</option>
+            {% for address in viewData.addresses %}
+                <option value='{"addressLine": "{{ address.addressLine }}", "uPRN": "{{ address.uPRN }}"}'>{{ address.addressLine }}</option>
+            {% endfor %}
+
+        </select>
+    </div>
+
+{% endblock %}
+
+{% block formFooter %}
+    <p class="govuk-body"><a href="#">I can't find my address in the list</a></p>
+{% endblock %}

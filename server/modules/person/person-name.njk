@@ -1,0 +1,19 @@
+{% extends 'common/two-thirds-layout.njk' %}
+
+{% block formContent %}
+
+  {{ govukInput({
+      label: {
+          text: "Full name"
+      },
+      id: "full-name",
+      name: "full-name",
+      value: viewData.fullName,
+      errorMessage: errors['full-name'],
+      autocomplete: "name",
+      attributes: {
+          spellcheck: "false"
+      }
+  }) }}
+
+{% endblock %}

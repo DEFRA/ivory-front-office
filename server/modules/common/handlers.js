@@ -1,32 +1,46 @@
-const Boom = require('@hapi/boom')
 
 module.exports = class Handlers {
-  constructor () {
-    // validate getters.  Note the following will throw if any of the getters have not been set declared in the inherited routes
-    (() => [this.path, this.nextPath, this.view, this.schema])()
+  // Override any of these methods in a child handlers class if required
+  async getPageHeading (request) {
+    return request.route.settings.app.pageHeading
   }
 
-  get path () { throw Boom.badImplementation(`path getter not implemented in ${this.constructor.name}`) }
-  get nextPath () { throw Boom.badImplementation(`nextPath getter not implemented in ${this.constructor.name}`) }
-  get view () { throw Boom.badImplementation(`view getter not implemented in ${this.constructor.name}`) }
-  get schema () { throw Boom.badImplementation(`schema getter not implemented in ${this.constructor.name}`) }
+  async getNextPath (request) {
+    return request.route.settings.app.nextPath
+  }
 
-  getHandler (request, h, errors) {
+  async getViewName (request) {
+    return request.route.settings.app.view
+  }
+
+  async getViewData (request) {
+    return this.viewData
+  }
+
+  async getHandler (request, h, errors) {
     // The default getHandler
-    return h.view(this.view, {
-      view: request.payload ? request.payload : this.viewData,
+
+    const pageHeading = await this.getPageHeading(request)
+    const viewName = await this.getViewName(request)
+    const viewData = await this.getViewData(request)
+
+    return h.view(viewName, {
+      pageHeading,
+      viewData: request.payload ? request.payload : viewData,
       errors,
       errorList: errors && Object.values(errors)
     })
   }
 
-  postHandler (request, h) {
+  async postHandler (request, h) {
     // The default postHandler
-    h.state('session', request.state.session)
-    return h.redirect(this.nextPath)
+
+    const nextPath = await this.getNextPath(request)
+
+    return h.redirect(nextPath)
   }
 
-  failAction (request, h, errors) {
+  async failAction (request, h, errors) {
     const errorMessages = {}
 
     // Format the error messages for the view
@@ -38,7 +52,9 @@ module.exports = class Handlers {
       }
     })
 
-    return this.getHandler(request, h, errorMessages)
+    const result = await this.getHandler(request, h, errorMessages)
+
+    return result
       .code(400)
       .takeover()
   }
