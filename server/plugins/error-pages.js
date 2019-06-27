@@ -17,23 +17,23 @@ module.exports = {
           // processing the request
           const statusCode = response.output.statusCode
 
-          // In the event of 404 (HTTP 404 Not Found)
-          // return the `404` view
-          if (statusCode === 404) {
-            return h.view('error-handling/404').code(statusCode)
+          switch (statusCode) {
+            case 403:
+            case 404:
+              return h.view(`error-handling/${statusCode}`).code(statusCode)
+            default:
+              request.log('error', {
+                statusCode: statusCode,
+                data: response.data,
+                message: response.message
+              })
+
+              // log an error to airbrake/errbit - the response object is actually an instanceof Error
+              logger.serverError(response, request)
+
+              // Then return the `500` view (HTTP 500 Internal Server Error )
+              return h.view('error-handling/500').code(statusCode)
           }
-
-          request.log('error', {
-            statusCode: statusCode,
-            data: response.data,
-            message: response.message
-          })
-
-          // log an error to airbrake/errbit - the response object is actually an instanceof Error
-          logger.serverError(response, request)
-
-          // Then return the `500` view (HTTP 500 Internal Server Error )
-          return h.view('error-handling/500').code(statusCode)
         }
         return h.continue
       })

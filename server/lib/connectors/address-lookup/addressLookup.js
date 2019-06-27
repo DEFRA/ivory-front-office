@@ -9,7 +9,7 @@ const {
 } = require('../../../config')
 
 const method = 'POST'
-const maxresults = 40
+const maxresults = 100
 
 const requestHeaders = {
   'Authorization': 'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
@@ -18,12 +18,12 @@ const requestHeaders = {
 
 const requestPayload = (postcode) => {
   return {
-    'postcode': postcode,
-    'key': key,
-    'dataset': 'DPA',
-    'offset': '0',
-    'lr': 'EN',
-    'maxresults': maxresults
+    postcode,
+    key,
+    dataset: 'DPA',
+    offset: '0',
+    lr: 'EN',
+    maxresults
   }
 }
 
@@ -31,11 +31,6 @@ const readOptions = {
   json: true
 }
 
-/**
- * Lookup UK address
- * @param {string} postcode Postcode
- * @return {Promise} Resolves with the address results object
- */
 async function addressLookup (postcode) {
   logger.info('Searching for postcode: ' + postcode)
 
@@ -52,6 +47,9 @@ async function addressLookup (postcode) {
     try {
       const res = await wreck.request(method, uri, requestOptions)
       responseBody = await wreck.read(res, readOptions)
+      if (responseBody.error) {
+        throw new Error(responseBody.error.message)
+      }
     } catch (error) {
       throw error
     }
@@ -61,7 +59,19 @@ async function addressLookup (postcode) {
     responseBody = require('./addressLookupResponseExample.json')
   }
 
-  return responseBody
+  // Format results into an array of addresses with camelcase properties
+  const results = responseBody.results || []
+  const addresses = results.map(({ Address }) => {
+    const address = {}
+    Object.entries(Address).forEach(([prop, val]) => {
+      // Set first character of property to lowercase
+      prop = prop.charAt(0).toLowerCase() + prop.slice(1)
+      address[prop] = val
+    })
+    return address
+  })
+
+  return addresses
 }
 
 module.exports = addressLookup

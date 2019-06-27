@@ -5,7 +5,9 @@ module.exports = [{
   path: path,
   handler: function (request, h) {
     return h.view(`item-details${path}`, {
-      session: request.state.session
+      viewData: {
+        itemDescription: request.yar.get('item-description')
+      }
     })
   }
 
@@ -13,9 +15,7 @@ module.exports = [{
   method: 'POST',
   path: path,
   handler: function (request, h) {
-    // Set input in session cookie
-    request.state.session.itemDescription = request.payload.itemDescription
-    h.state('session', request.state.session)
+    request.yar.set('item-description', request.payload.itemDescription)
 
     return h.redirect('/check-your-answers')
   }

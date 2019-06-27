@@ -1,34 +1,14 @@
-{% extends 'common/layout.njk' %}
+{% extends 'common/two-thirds-layout.njk' %}
 
-{% block content %}
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+{% block formContent %}
+    <div class="govuk-form-group">
 
-        <form method="post" autocomplete="off" {{ novalidateVal }}>
+        <h1 class="govuk-label-wrapper">
+            <label class="govuk-label govuk-label--l" for="description">Describe the item</label>
+        </h1>
 
-            <input type="hidden" name="crumb" value="{{crumb}}"/>
+        <span id="title-hint" class="govuk-hint">Include any distinguishing features</span>
 
-            <div class="govuk-form-group">
-
-                <h1 class="govuk-label-wrapper">
-                    <label class="govuk-label govuk-label--l" for="description">
-                        Describe the item
-                    </label>
-                </h1>
-
-                <span id="title-hint" class="govuk-hint">
-              Include any distinguishing features
-            </span>
-
-                <textarea class="govuk-textarea" id="description" name="itemDescription" rows="5" aria-describedby="declarationText-hint" required>{{ session.itemDescription }}</textarea>
-            </div>
-
-            <button type="submit" class="govuk-button">Continue</button>
-
-        </form>
-
-
-
+        <textarea class="govuk-textarea" id="description" name="itemDescription" rows="5" aria-describedby="declarationText-hint" required>{{ viewData.itemDescription }}</textarea>
     </div>
-</div>
 {% endblock %}

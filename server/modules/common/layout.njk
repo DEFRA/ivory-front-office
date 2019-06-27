@@ -32,6 +32,9 @@
 
 {% block content %}
   <h1 class="govuk-heading-xl">Default page template</h1>
+  {% block errorSummary %}
+    {{ govukHeader({}) }}
+  {% endblock %}
 {% endblock %}
 
 {% block bodyEnd %}

@@ -1,15 +1,14 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
+const TestHelper = require('../../test-helper')
 
 lab.experiment('Web test', () => {
   let server
 
   // Create server before the tests
   lab.before(async () => {
-    process.env.ADDRESS_LOOKUP_ENABLED = false
-    process.env.AIRBRAKE_ENABLED = false
-    server = await require('../../../server')()
+    server = await TestHelper.createServer()
   })
 
   lab.test('GET / route works', async () => {

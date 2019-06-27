@@ -13,15 +13,6 @@ const serverOptions = {
   }
 }
 
-const sessionOptions = {
-  ttl: null, // 'null' will delete the cookie when the browser is closed
-  isSecure: false, // If 'true' the browser will only honor the cookie if there's a secured connection
-  isHttpOnly: true,
-  encoding: 'base64json',
-  clearInvalid: true,
-  strictHeader: true
-}
-
 async function createServer () {
   // Create the hapi server
   const server = hapi.server(serverOptions)
@@ -33,6 +24,7 @@ async function createServer () {
     require('./plugins/router'),
     require('./plugins/robots'),
     require('./plugins/crumb'),
+    require('./plugins/cache'),
     require('./plugins/error-pages'),
     require('./plugins/logging')
   ])
@@ -43,9 +35,6 @@ async function createServer () {
       require('blipp')
     ])
   }
-
-  // Configure the session management cookie
-  server.state('session', sessionOptions)
 
   return server
 }

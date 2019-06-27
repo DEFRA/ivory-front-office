@@ -23,15 +23,19 @@ const schema = {
   logLevel: Joi.string().valid(ERROR, INFO, DEBUG).default(INFO),
   airbrakeEnabled: Joi.bool().default(true),
   airbrakeHost: Joi.when('airbrakeEnabled', { is: true, then: Joi.string().uri().required() }),
-  airbrakeKey: Joi.when('airbrakeEnabled', { is: true, then: Joi.string().required() }),
+  airbrakeKey: Joi.when('airbrakeEnabled', { is: true, then: Joi.string().min(32).required() }),
   airbrakeLogLevel: Joi.string().valid(ERROR, INFO, DEBUG).default(INFO),
+
+  // Caching
+  cookieTimeout: Joi.number().min(60000).default(10800000),
+  cookiePassword: Joi.string().min(32).required(),
 
   // Address lookup
   addressLookUpEnabled: Joi.bool().default(true),
   addressLookUpUri: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().uri().required() }),
   addressLookUpUsername: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().required() }),
   addressLookUpPassword: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().required() }),
-  addressLookUpKey: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().required() })
+  addressLookUpKey: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().min(32).required() })
 }
 
 // Build the config
@@ -39,6 +43,10 @@ const config = {
   port: process.env.PORT,
   env: process.env.NODE_ENV,
   serviceName: process.env.SERVICE_NAME,
+
+  // Caching
+  cookieTimeout: process.env.COOKIE_TIMEOUT,
+  cookiePassword: process.env.COOKIE_PASSWORD,
 
   // Logging
   logLevel: process.env.LOG_LEVEL,
@@ -75,6 +83,16 @@ value.isTest = value.env === TEST
 value.isDebug = value.airbrakeLogLevel === DEBUG
 value.isInfo = value.airbrakeLogLevel === INFO
 value.isError = value.airbrakeLogLevel === ERROR
+
+// Build cookie options
+value.cookieOptions = {
+  ttl: null, // 'null' will delete the cookie when the browser is closed
+  isSecure: value.isProd, // Secure in production
+  password: value.cookiePassword,
+  isHttpOnly: true,
+  clearInvalid: true,
+  strictHeader: true
+}
 
 // Export the validated config
 module.exports = value
