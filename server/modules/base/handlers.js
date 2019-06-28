@@ -1,12 +1,24 @@
 
 module.exports = class Handlers {
   // Override any of these methods in a child handlers class if required
+  async getCache (request, key) {
+    return request.yar.get(key) || {}
+  }
+
+  async setCache (request, key, val) {
+    request.yar.set(key, val)
+  }
+
   async getPageHeading (request) {
     return request.route.settings.app.pageHeading
   }
 
   async getNextPath (request) {
     return request.route.settings.app.nextPath
+  }
+
+  async getErrorPath (request) {
+    return request.route.settings.app.errorPath
   }
 
   async getViewName (request) {
@@ -57,5 +69,32 @@ module.exports = class Handlers {
     return result
       .code(400)
       .takeover()
+  }
+
+  routes ({ path, app }) {
+    return [
+      {
+        method: 'GET',
+        path,
+        handler: this.getHandler,
+        options: {
+          app,
+          bind: this
+        }
+      },
+      {
+        method: 'POST',
+        path,
+        handler: this.postHandler,
+        options: {
+          app,
+          bind: this,
+          validate: {
+            payload: this.schema,
+            failAction: this.failAction.bind(this)
+          }
+        }
+      }
+    ]
   }
 }

@@ -1,46 +1,44 @@
 const Joi = require('@hapi/joi')
-const addressLookup = require('../../lib/connectors/address-lookup/addressLookup')
 const chooseAddressHint = 'Choose an address'
 
-class AddressSelectHandlers extends require('../common/handlers') {
+class AddressSelectHandlers extends require('../handlers') {
   get schema () {
     return {
-      'address': Joi.string().regex(/addressLine/)
+      'address': Joi.string().min(1)
     }
   }
 
   get errorMessages () {
     return {
       'address': {
-        'string.regex.base': 'Select an address'
+        'string.min': 'Select an address'
       }
     }
   }
 
   async getAddress (request) {
-    return request.yar.get(this.addressType) || {}
+    return this.getCache(request, this.addressType) || {}
   }
 
   async setAddress (request, address) {
-    request.yar.set(this.addressType, address)
+    return this.setCache(request, this.addressType, address)
   }
 
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
     const address = await this.getAddress(request)
-    const { postcode, postcodeAddressList } = address
-
-    // Use the cache of postcode addresses (stored as a string) if it exists
-    const addresses = postcodeAddressList || await addressLookup(postcode)
+    const { postcodeAddressList = [] } = address
 
     // Use the payload in this special case to force the addresses to be displayed even when there is an error
     request.payload = {
       chooseAddressHint,
-      addresses
+      addresses: [{ text: `${postcodeAddressList.length} addresses found` }].concat(postcodeAddressList.map(({ addressLine, uprn }) => {
+        return {
+          value: uprn,
+          text: addressLine
+        }
+      }))
     }
-
-    address.postcodeAddressList = addresses
-    await this.setAddress(request, address)
 
     return super.getHandler(request, h, errors)
   }
@@ -49,7 +47,7 @@ class AddressSelectHandlers extends require('../common/handlers') {
   async postHandler (request, h) {
     const address = await this.getAddress(request)
 
-    Object.assign(address, JSON.parse(request.payload.address))
+    Object.assign(address, request.payload.address)
     await this.setAddress(request, address)
 
     return super.postHandler(request, h)

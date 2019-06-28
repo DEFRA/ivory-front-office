@@ -1,0 +1,21 @@
+{% extends 'common/two-thirds-layout.njk' %}
+
+{% from "input/macro.njk" import govukInput %}
+
+{% block formContent %}
+
+    {{ govukInput({
+        name: "full-name",
+        id: "full-name",
+        value: viewData.fullName,
+        errorMessage: errors['full-name'],
+        autocomplete: "name",
+        label: {
+            text: "Full name"
+        },
+        attributes: {
+            spellcheck: "false"
+        }
+    }) }}
+
+{% endblock %}

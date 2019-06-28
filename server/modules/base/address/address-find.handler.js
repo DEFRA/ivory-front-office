@@ -1,6 +1,7 @@
 const Joi = require('@hapi/joi')
+const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
 
-class AddressFindHandlers extends require('../common/handlers') {
+class AddressFindHandlers extends require('../handlers') {
   get schema () {
     return {
       'postcode': Joi.string().required()
@@ -10,17 +11,18 @@ class AddressFindHandlers extends require('../common/handlers') {
   get errorMessages () {
     return {
       'postcode': {
-        'any.empty': 'Enter a valid postcode'
+        'any.empty': 'Enter a valid postcode',
+        'any.required': 'Enter a valid postcode'
       }
     }
   }
 
   async getAddress (request) {
-    return request.yar.get(this.addressType) || {}
+    return this.getCache(request, this.addressType) || {}
   }
 
   async setAddress (request, address) {
-    request.yar.set(this.addressType, address)
+    return this.setCache(request, this.addressType, address)
   }
 
   // Overrides parent class getHandler
@@ -39,8 +41,13 @@ class AddressFindHandlers extends require('../common/handlers') {
 
     if (postcode !== address.postcode) {
       address.postcode = postcode
-      // Remove the cache of addresses (if they exist) related to the previous postcode
-      delete address.postcodeAddressList
+      const addresses = await addressLookup(postcode)
+      if (addresses.errorCode) {
+        // Fake the error "any.required" above
+        const { error } = Joi.object({ postcode: Joi.required() }).validate({})
+        return this.failAction(request, h, error)
+      }
+      address.postcodeAddressList = addresses
     }
 
     await this.setAddress(request, address)
