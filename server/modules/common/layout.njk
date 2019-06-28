@@ -1,5 +1,7 @@
 {% extends "template.njk" %}
 
+{% from "back-link/macro.njk" import govukBackLink %}
+
 {% block head %}
   <!--[if !IE 8]><!-->
     <link href="{{ assetPath }}/stylesheets/application.css" rel="stylesheet" />
@@ -30,6 +32,10 @@
   {% if errors %}Error: {% endif %}{{ pageTitle }}
 {% endblock %}
 
+{{ govukBackLink({
+  text: "Back",
+  href: "#"
+}) }}
 {% block content %}
   <h1 class="govuk-heading-xl">Default page template</h1>
   {% block errorSummary %}

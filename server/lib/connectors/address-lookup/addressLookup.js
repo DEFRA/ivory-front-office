@@ -47,9 +47,6 @@ async function addressLookup (postcode) {
     try {
       const res = await wreck.request(method, uri, requestOptions)
       responseBody = await wreck.read(res, readOptions)
-      if (responseBody.error) {
-        throw new Error(responseBody.error.message)
-      }
     } catch (error) {
       throw error
     }
@@ -60,12 +57,20 @@ async function addressLookup (postcode) {
   }
 
   // Format results into an array of addresses with camelcase properties
-  const results = responseBody.results || []
+  const { error, results = [] } = responseBody
+  if (error) {
+    logger.debug(error.message)
+    return { errorCode: '111', message: error.message.split(':')[1].trim() }
+  }
   const addresses = results.map(({ Address }) => {
     const address = {}
     Object.entries(Address).forEach(([prop, val]) => {
-      // Set first character of property to lowercase
-      prop = prop.charAt(0).toLowerCase() + prop.slice(1)
+      // Set first character of property to lowercase unless uprn
+      if (prop.toLowerCase() === 'uprn') {
+        prop = prop.toLowerCase()
+      } else {
+        prop = prop.charAt(0).toLowerCase() + prop.slice(1)
+      }
       address[prop] = val
     })
     return address

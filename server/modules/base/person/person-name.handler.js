@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-class NameHandlers extends require('../common/handlers') {
+class NameHandlers extends require('../handlers') {
   get schema () {
     return {
       'full-name': Joi.string().required()
@@ -16,11 +16,11 @@ class NameHandlers extends require('../common/handlers') {
   }
 
   async getPerson (request) {
-    return request.yar.get(this.personType) || {}
+    return this.getCache(request, this.personType) || {}
   }
 
   async setPerson (request, person) {
-    request.yar.set(this.personType, person)
+    return this.setCache(request, this.personType, person)
   }
 
   // Overrides parent class getHandler

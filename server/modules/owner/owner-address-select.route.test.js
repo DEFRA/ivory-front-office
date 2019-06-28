@@ -5,7 +5,7 @@ const sinon = require('sinon')
 const Handlers = require('../../modules/base/handlers')
 const TestHelper = require('../../test-helper')
 
-lab.experiment('Test Owner Name', () => {
+lab.experiment('Test Owner Address Select', () => {
   let cache
   let server
   let sandbox
@@ -33,10 +33,10 @@ lab.experiment('Test Owner Name', () => {
     sandbox.restore()
   })
 
-  lab.test('GET /owner-name route works', async () => {
+  lab.test('GET /owner-address-select route works', async () => {
     const options = {
       method: 'GET',
-      url: '/owner-name'
+      url: '/owner-address-select'
     }
 
     const response = await server.inject(options)

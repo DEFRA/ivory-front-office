@@ -1,0 +1,20 @@
+{% extends 'common/two-thirds-layout.njk' %}
+
+{% from "textarea/macro.njk" import govukTextarea %}
+
+{% block formContent %}
+
+    {{ govukTextarea({
+        name: "item-description",
+        id: "item-description",
+        value: viewData.itemDescription,
+        errorMessage: errors['item-description'],
+        label: {
+            text: "Describe the item"
+        },
+        hint: {
+            text: "Include any distinguishing features"
+        }
+    }) }}
+
+{% endblock %}

@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../test-helper')
 
-lab.experiment('Web test', () => {
+lab.experiment('Test Home', () => {
   let server
 
   // Create server before the tests
@@ -18,7 +18,7 @@ lab.experiment('Web test', () => {
     }
 
     const response = await server.inject(options)
-    Code.expect(response.statusCode).to.equal(200)
-    Code.expect(response.headers['content-type']).to.include('text/html')
+    Code.expect(response.statusCode).to.equal(302)
+    Code.expect(response.headers['location']).to.equal('/owner-name')
   })
 })
