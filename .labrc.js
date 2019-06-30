@@ -4,6 +4,6 @@ const files = glob.sync('./server/**/*.test.js')
 module.exports = {
   paths: files,
   coverage: true,
-  threshold: 80,
+  threshold: 85,
   globals: '__core-js_shared__'
 }
