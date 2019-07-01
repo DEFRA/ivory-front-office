@@ -70,4 +70,12 @@ module.exports = class TestHelper {
       })
     )
   }
+
+  errorSummarySelector (field) {
+    return `.govuk-error-summary .govuk-list a[href="#${field}"]`
+  }
+
+  errorMessageSelector (field) {
+    return `#${field}-error`
+  }
 }

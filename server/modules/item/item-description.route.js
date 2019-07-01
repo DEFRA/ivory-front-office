@@ -10,7 +10,7 @@ class ItemDescriptionHandlers extends require('../base/handlers') {
   get errorMessages () {
     return {
       'item-description': {
-        'any.empty': 'Enter a description of your item'
+        'any.empty': 'Enter a description of the item'
       }
     }
   }
