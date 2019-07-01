@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../test-helper')
 const url = '/owner-address-select'
 
-lab.experiment('Test Owner Name', () => {
+lab.experiment('Test Owner Address Select', () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {
