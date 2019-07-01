@@ -37,5 +37,36 @@ lab.experiment('Test Owner Address Find', () => {
 
       Code.expect($('#defra-page-heading').text()).to.equal(`Owner's address`)
     })
+
+    lab.experiment(`POST ${url}`, () => {
+      let request
+
+      lab.beforeEach(() => {
+        request = {
+          method: 'POST',
+          url,
+          payload: {}
+        }
+      })
+
+      lab.test('fails validation when the postcode has not been entered', async () => {
+        request.payload['postcode'] = ''
+        const response = await testHelper.server.inject(request)
+        Code.expect(response.statusCode).to.equal(400)
+
+        const $ = testHelper.getDomParser(response.payload)
+
+        Code.expect($(testHelper.errorSummarySelector('postcode')).text()).to.equal('Enter a valid postcode')
+        Code.expect($(testHelper.errorMessageSelector('postcode')).text()).to.include('Enter a valid postcode')
+      })
+
+      lab.test('redirects correctly when the postcode has been entered', async () => {
+        request.payload['postcode'] = 'SN14 6QX'
+        const response = await testHelper.server.inject(request)
+
+        Code.expect(response.statusCode).to.equal(302)
+        Code.expect(response.headers['location']).to.equal('/owner-address-select')
+      })
+    })
   })
 })

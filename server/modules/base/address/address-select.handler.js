@@ -46,8 +46,10 @@ class AddressSelectHandlers extends require('../handlers') {
   // Overrides parent class postHandler
   async postHandler (request, h) {
     const address = await this.getAddress(request)
+    const selectedUprn = request.payload.address
 
-    Object.assign(address, request.payload.address)
+    // Retrieve the actual address information from the cached address list
+    Object.assign(address, address.postcodeAddressList.find(({ uprn }) => uprn === selectedUprn))
     await this.setAddress(request, address)
 
     return super.postHandler(request, h)

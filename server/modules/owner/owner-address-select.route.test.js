@@ -38,4 +38,42 @@ lab.experiment('Test Owner Address Select', () => {
       Code.expect($('#defra-page-heading').text()).to.equal(`Owner's address`)
     })
   })
+
+  lab.experiment(`POST ${url}`, () => {
+    let request
+    let address = { uprn: '1234' }
+
+    lab.beforeEach(() => {
+      request = {
+        method: 'POST',
+        url,
+        payload: {}
+      }
+
+      testHelper.cache['owner-address'] = {
+        postcodeAddressList: [
+          address
+        ]
+      }
+    })
+
+    lab.test('fails validation when an address has not been selected', async () => {
+      request.payload['address'] = ''
+      const response = await testHelper.server.inject(request)
+      Code.expect(response.statusCode).to.equal(400)
+
+      const $ = testHelper.getDomParser(response.payload)
+
+      Code.expect($(testHelper.errorSummarySelector('address')).text()).to.equal('Select an address')
+      Code.expect($(testHelper.errorMessageSelector('address')).text()).to.include('Select an address')
+    })
+
+    lab.test('redirects correctly when the address has been selected', async () => {
+      request.payload['address'] = address.uprn
+      const response = await testHelper.server.inject(request)
+
+      Code.expect(response.statusCode).to.equal(302)
+      Code.expect(response.headers['location']).to.equal('/item-description')
+    })
+  })
 })

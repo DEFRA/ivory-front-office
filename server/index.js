@@ -23,11 +23,17 @@ async function createServer () {
     require('./plugins/views'),
     require('./plugins/router'),
     require('./plugins/robots'),
-    require('./plugins/crumb'),
     require('./plugins/cache'),
     require('./plugins/error-pages'),
     require('./plugins/logging')
   ])
+
+  // Register the crumb plugin only if not running in test
+  if (!config.isTest) {
+    await server.register([
+      require('./plugins/crumb')
+    ])
+  }
 
   // Register the dev-only plugins
   if (config.isDev) {

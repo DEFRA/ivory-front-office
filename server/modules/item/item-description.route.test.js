@@ -2,9 +2,9 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../test-helper')
-const url = '/owner-name'
+const url = '/item-description'
 
-lab.experiment('Test Owner Name', () => {
+lab.experiment('Test Item Description', () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {
@@ -23,19 +23,11 @@ lab.experiment('Test Owner Name', () => {
       Code.expect(response.headers['content-type']).to.include('text/html')
     })
 
-    lab.test('page heading is correct when no agent', async () => {
+    lab.test('page heading is correct', async () => {
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal(`Your name`)
-    })
-
-    lab.test('page heading is correct when there is an agent', async () => {
-      testHelper.cache.agent = {}
-      const response = await testHelper.server.inject(request)
-      const $ = testHelper.getDomParser(response.payload)
-
-      Code.expect($('#defra-page-heading').text()).to.equal(`Owner's name`)
+      Code.expect($('#defra-page-heading').text()).to.equal('Item description')
     })
   })
 
@@ -50,23 +42,23 @@ lab.experiment('Test Owner Name', () => {
       }
     })
 
-    lab.test('fails validation when the full name has not been entered', async () => {
-      request.payload['full-name'] = ''
+    lab.test('fails validation when the item description has not been entered', async () => {
+      request.payload['item-description'] = ''
       const response = await testHelper.server.inject(request)
       Code.expect(response.statusCode).to.equal(400)
 
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($(testHelper.errorSummarySelector('full-name')).text()).to.equal('Enter your full name')
-      Code.expect($(testHelper.errorMessageSelector('full-name')).text()).to.include('Enter your full name')
+      Code.expect($(testHelper.errorSummarySelector('item-description')).text()).to.equal('Enter a description of the item')
+      Code.expect($(testHelper.errorMessageSelector('item-description')).text()).to.include('Enter a description of the item')
     })
 
-    lab.test('redirects correctly when the full name has been entered', async () => {
-      request.payload['full-name'] = 'James Bond'
+    lab.test('redirects correctly when the item description has been entered', async () => {
+      request.payload['item-description'] = 'Some item details'
       const response = await testHelper.server.inject(request)
 
       Code.expect(response.statusCode).to.equal(302)
-      Code.expect(response.headers['location']).to.equal('/owner-address-find')
+      Code.expect(response.headers['location']).to.equal('/check-your-answers')
     })
   })
 })
