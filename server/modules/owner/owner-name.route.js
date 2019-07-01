@@ -5,7 +5,7 @@ class OwnerNameHandlers extends require('../base/person/person-name.handler') {
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const agent = this.getCache(request, 'agent')
+    const agent = await this.getCache(request, 'agent')
     if (agent) {
       return `Owner's name`
     }

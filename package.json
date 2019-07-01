@@ -21,7 +21,7 @@
     "build": "bin/build",
     "build:css": "bin/build-css",
     "lint": "standard",
-    "unit-test": "lab -c -r console -o stdout -r lcov -o lcov.info -r html -o coverage.html",
+    "unit-test": "lab --coverage --reporter console --output stdout --reporter lcov --output lcov.info --reporter html --output coverage.html --verbose",
     "test": "npm run lint && npm run unit-test",
     "postinstall": "npm run build"
   },
@@ -50,7 +50,9 @@
     "@hapi/good-squeeze": "^5.2.0",
     "@hapi/lab": "^19.1.0",
     "blipp": "^4.0.0",
+    "cheerio": "^1.0.0-rc.3",
     "codeclimate-test-reporter": "0.5.1",
+    "htmlparser2": "^3.10.1",
     "node-sass": "4.12.0",
     "sinon": "^7.3.2",
     "standard": "12.0.1"

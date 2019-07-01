@@ -1,46 +1,41 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
-const sinon = require('sinon')
-const Handlers = require('../../modules/base/handlers')
 const TestHelper = require('../../test-helper')
+const url = '/owner-address-find'
 
-lab.experiment('Test Owner Address Find', () => {
-  let cache
-  let server
-  let sandbox
+lab.experiment('Test Owner Name', () => {
+  const testHelper = new TestHelper(lab)
 
-  // Create server before the tests
-  lab.before(async () => {
-    server = await TestHelper.createServer()
-  })
+  lab.experiment(`GET ${url}`, () => {
+    let getRequest
 
-  lab.beforeEach(() => {
-    cache = {}
-
-    // Create a sinon sandbox to stub methods
-    sandbox = sinon.createSandbox()
-
-    // Stub methods
-    sandbox.stub(Handlers.prototype, 'getCache').value(() => cache)
-    sandbox.stub(Handlers.prototype, 'setCache').value((request, key, val) => {
-      cache[key] = val
+    lab.beforeEach(() => {
+      getRequest = {
+        method: 'GET',
+        url
+      }
     })
-  })
 
-  lab.afterEach(() => {
-    // Restore the sandbox to make sure the stubs are removed correctly
-    sandbox.restore()
-  })
+    lab.test('page loads ok', async () => {
+      const response = await testHelper.server.inject(getRequest)
+      Code.expect(response.statusCode).to.equal(200)
+      Code.expect(response.headers['content-type']).to.include('text/html')
+    })
 
-  lab.test('GET /owner-address-find route works', async () => {
-    const options = {
-      method: 'GET',
-      url: '/owner-address-find'
-    }
+    lab.test('page heading is correct when no agent', async () => {
+      const response = await testHelper.server.inject(getRequest)
+      const $ = testHelper.getDomParser(response.payload)
 
-    const response = await server.inject(options)
-    Code.expect(response.statusCode).to.equal(200)
-    Code.expect(response.headers['content-type']).to.include('text/html')
+      Code.expect($('#defra-page-heading').text()).to.equal(`Your address`)
+    })
+
+    lab.test('page heading is correct when there is an agent', async () => {
+      testHelper.cache.agent = {}
+      const response = await testHelper.server.inject(getRequest)
+      const $ = testHelper.getDomParser(response.payload)
+
+      Code.expect($('#defra-page-heading').text()).to.equal(`Owner's address`)
+    })
   })
 })
