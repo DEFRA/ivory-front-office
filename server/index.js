@@ -1,4 +1,3 @@
-require('dotenv').config() // Load variables from .env before any other code (especially before requiring the config.js)
 const hapi = require('@hapi/hapi')
 const config = require('./config')
 

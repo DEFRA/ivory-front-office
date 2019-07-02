@@ -9,6 +9,7 @@ const PRODUCTION = 'production'
 const ERROR = 'error'
 const INFO = 'info'
 const DEBUG = 'debug'
+require('dotenv').config() // Load variables from .env before any other code (especially before requiring the config.js)
 
 const DEFAULT_PORT = 3000
 const DEFAULT_SERVICE_NAME = 'Ivory service name'
