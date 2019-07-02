@@ -9,7 +9,7 @@
                 Name
             </dt>
             <dd class="govuk-summary-list__value">
-                {{ viewData.ownerName }}
+                {{ viewData.owner.fullName }}
             </dd>
             <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="/owner-name">
@@ -22,7 +22,7 @@
                 Address
             </dt>
             <dd class="govuk-summary-list__value">
-                {{ viewData.ownerAddressLine }}
+                {{ viewData.ownerAddress.addressLine }}
             </dd>
             <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="/owner-address-find">
@@ -41,7 +41,7 @@
                 Item description
             </dt>
             <dd class="govuk-summary-list__value">
-                {{ viewData.itemDescription }}
+                {{ viewData.item.description }}
             </dd>
             <dd class="govuk-summary-list__actions">
                 <a class="govuk-link" href="/item-description">

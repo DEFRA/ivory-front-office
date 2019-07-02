@@ -34,14 +34,18 @@ class AddressFindHandlers extends require('../handlers') {
     return super.getHandler(request, h, errors)
   }
 
+  formattedPostcode (postcode) {
+    return postcode.toUpperCase().replace(/\s/g, '') // Capitalise and remove spaces
+  }
+
   // Overrides parent class postHandler
   async postHandler (request, h) {
     const address = await this.getAddress(request)
-    const postcode = request.payload.postcode.toUpperCase().replace(/\s/g, '') // Capitalise and remove spaces
+    const postcode = request.payload.postcode || ''
 
-    if (postcode !== address.postcode) {
-      address.postcode = postcode
-      const addresses = await addressLookup(postcode)
+    if (this.formattedPostcode(postcode) !== this.formattedPostcode(address.postcode || '')) {
+      address.postcode = this.formattedPostcode(postcode)
+      const addresses = await addressLookup(address.postcode)
       if (addresses.errorCode) {
         // Fake the error "any.required" above
         const { error } = Joi.object({ postcode: Joi.required() }).validate({})
