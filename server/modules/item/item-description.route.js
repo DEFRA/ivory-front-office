@@ -27,7 +27,7 @@ class ItemDescriptionHandlers extends require('../base/handlers') {
   async getHandler (request, h, errors) {
     const item = await this.getItem(request)
     this.viewData = {
-      description: item.description
+      itemDescription: item.description
     }
     return super.getHandler(request, h, errors)
   }
