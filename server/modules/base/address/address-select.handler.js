@@ -35,7 +35,8 @@ class AddressSelectHandlers extends require('../handlers') {
       addresses: [{ text: `${postcodeAddressList.length} addresses found` }].concat(postcodeAddressList.map(({ addressLine, uprn }) => {
         return {
           value: uprn,
-          text: addressLine
+          text: addressLine,
+          selected: uprn === address.uprn
         }
       }))
     }

@@ -12,6 +12,7 @@ const DEBUG = 'debug'
 
 const DEFAULT_PORT = 3000
 const DEFAULT_SERVICE_NAME = 'Ivory service name'
+const DEFAULT_REDIS_PORT = 6379
 
 // Define the config schema
 const schema = {
@@ -30,6 +31,11 @@ const schema = {
   cookieTimeout: Joi.number().min(60000).default(10800000),
   cookiePassword: Joi.string().min(32).required(),
 
+  // Redis
+  redisEnabled: Joi.bool().default(true),
+  redisPort: Joi.number().default(DEFAULT_REDIS_PORT),
+  redisHost: Joi.when('redisEnabled', { is: true, then: Joi.string().required() }),
+
   // Address lookup
   addressLookUpEnabled: Joi.bool().default(true),
   addressLookUpUri: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().uri().required() }),
@@ -47,6 +53,11 @@ const config = {
   // Caching
   cookieTimeout: process.env.COOKIE_TIMEOUT,
   cookiePassword: process.env.COOKIE_PASSWORD,
+
+  // Redis
+  redisEnabled: process.env.REDIS_ENABLED,
+  redisPort: process.env.REDIS_PORT,
+  redisHost: process.env.REDIS_HOST,
 
   // Logging
   logLevel: process.env.LOG_LEVEL,

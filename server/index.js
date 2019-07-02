@@ -13,6 +13,19 @@ const serverOptions = {
   }
 }
 
+if (config.redisEnabled) {
+  serverOptions.cache = {
+    provider: {
+      constructor: require('@hapi/catbox-redis'),
+      options: {
+        partition: 'hapi-cache',
+        port: config.redisPort,
+        host: config.redisHost
+      }
+    }
+  }
+}
+
 async function createServer () {
   // Create the hapi server
   const server = hapi.server(serverOptions)
