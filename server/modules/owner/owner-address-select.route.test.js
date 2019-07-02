@@ -1,30 +1,43 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
-const TestHelper = require('../../test-helper')
+const TestHelper = require('../../../test-helper')
 const url = '/owner-address-select'
 
 lab.experiment('Test Owner Address Select', () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {
-    let getRequest
+    let request
+    let postcodeAddressList
 
     lab.beforeEach(() => {
-      getRequest = {
+      request = {
         method: 'GET',
         url
       }
+
+      postcodeAddressList = [
+        {
+          uprn: '340116',
+          addressLine: 'ENVIRONMENT AGENCY, HORIZON HOUSE, DEANERY ROAD, BRISTOL, BS1 5AH'
+        }, {
+          uprn: '340117',
+          addressLine: 'THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH'
+        }
+      ]
+
+      testHelper.cache['owner-address'] = { postcodeAddressList }
     })
 
     lab.test('page loads ok', async () => {
-      const response = await testHelper.server.inject(getRequest)
+      const response = await testHelper.server.inject(request)
       Code.expect(response.statusCode).to.equal(200)
       Code.expect(response.headers['content-type']).to.include('text/html')
     })
 
     lab.test('page heading is correct when no agent', async () => {
-      const response = await testHelper.server.inject(getRequest)
+      const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
       Code.expect($('#defra-page-heading').text()).to.equal(`Your address`)
@@ -32,10 +45,29 @@ lab.experiment('Test Owner Address Select', () => {
 
     lab.test('page heading is correct when there is an agent', async () => {
       testHelper.cache.agent = {}
-      const response = await testHelper.server.inject(getRequest)
+      const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
       Code.expect($('#defra-page-heading').text()).to.equal(`Owner's address`)
+    })
+
+    lab.test('addresses has been pre-filled, none selected', async () => {
+      const response = await testHelper.server.inject(request)
+      const $ = testHelper.getDomParser(response.payload)
+
+      Code.expect($('#address option:first-of-type').text()).to.equal(`${postcodeAddressList.length} addresses found`)
+      Code.expect($('#address').val()).to.equal('')
+    })
+
+    lab.test('addresses has been pre-filled, one selected', async () => {
+      const uprn = postcodeAddressList[0].uprn
+      testHelper.cache['owner-address'].uprn = uprn
+
+      const response = await testHelper.server.inject(request)
+      const $ = testHelper.getDomParser(response.payload)
+
+      Code.expect($('#address option:first-of-type').text()).to.equal(`${postcodeAddressList.length} addresses found`)
+      Code.expect($('#address').val()).to.equal(uprn)
     })
   })
 

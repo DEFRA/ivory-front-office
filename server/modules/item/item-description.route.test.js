@@ -1,7 +1,7 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
-const TestHelper = require('../../test-helper')
+const TestHelper = require('../../../test-helper')
 const url = '/item-description'
 
 lab.experiment('Test Item Description', () => {

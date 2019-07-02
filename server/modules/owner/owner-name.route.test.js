@@ -1,7 +1,7 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
-const TestHelper = require('../../test-helper')
+const TestHelper = require('../../../test-helper')
 const url = '/owner-name'
 
 lab.experiment('Test Owner Name', () => {
@@ -36,6 +36,22 @@ lab.experiment('Test Owner Name', () => {
       const $ = testHelper.getDomParser(response.payload)
 
       Code.expect($('#defra-page-heading').text()).to.equal(`Owner's name`)
+    })
+
+    lab.test('full name has not been pre-filled', async () => {
+      const response = await testHelper.server.inject(request)
+      const $ = testHelper.getDomParser(response.payload)
+
+      Code.expect($('#full-name').val()).to.not.exist()
+    })
+
+    lab.test('full name has been pre-filled', async () => {
+      const fullName = 'James Bond'
+      testHelper.cache.owner = { fullName: 'James Bond' }
+      const response = await testHelper.server.inject(request)
+      const $ = testHelper.getDomParser(response.payload)
+
+      Code.expect($('#full-name').val()).to.equal(fullName)
     })
   })
 
