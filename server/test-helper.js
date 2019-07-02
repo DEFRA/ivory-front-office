@@ -12,6 +12,7 @@ module.exports = class TestHelper {
       // Add env variables
       process.env.ADDRESS_LOOKUP_ENABLED = false
       process.env.AIRBRAKE_ENABLED = false
+      process.env.REDIS_ENABLED = false
       process.env.LOG_LEVEL = 'error'
 
       this._cache = {}
@@ -20,12 +21,8 @@ module.exports = class TestHelper {
       this._sandbox = sinon.createSandbox()
 
       // Stub methods
-      this._sandbox.stub(Handlers.prototype, 'getCache').value((request, key) => {
-        return this._cache[key]
-      })
-      this._sandbox.stub(Handlers.prototype, 'setCache').value((request, key, val) => {
-        this._cache[key] = val
-      })
+      this._sandbox.stub(Handlers.prototype, 'getCache').value((request, key) => this._cache[key])
+      this._sandbox.stub(Handlers.prototype, 'setCache').value((request, key, val) => { this._cache[key] = val })
 
       // Stub any methods specific to the test
       if (stubCallback) {
@@ -45,6 +42,7 @@ module.exports = class TestHelper {
       // Remove env variables
       delete process.env.ADDRESS_LOOKUP_ENABLED
       delete process.env.AIRBRAKE_ENABLED
+      delete process.env.REDIS_ENABLED
       delete process.env.LOG_LEVEL
     })
   }
