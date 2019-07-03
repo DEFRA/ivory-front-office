@@ -78,11 +78,13 @@ lab.experiment('Test Owner Address Find', () => {
     })
 
     lab.test('redirects correctly when the postcode has been entered', async () => {
-      request.payload['postcode'] = 'SN14 6QX'
+      const postcode = 'SN146QG'
+      request.payload['postcode'] = postcode
       const response = await testHelper.server.inject(request)
 
       Code.expect(response.statusCode).to.equal(302)
       Code.expect(response.headers['location']).to.equal('/owner-address-select')
+      Code.expect(testHelper.cache['owner-address'].postcode).to.equal(postcode)
     })
   })
 })
