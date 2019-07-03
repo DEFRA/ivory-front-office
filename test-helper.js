@@ -1,13 +1,15 @@
 const sinon = require('sinon')
 const htmlparser2 = require('htmlparser2')
 const cheerio = require('cheerio')
-const Handlers = require('./modules/base/handlers')
+const Handlers = require('./server/modules/base/handlers')
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity
 
 module.exports = class TestHelper {
-  constructor (lab, stubCallback) {
+  constructor (lab, options) {
+    const { stubCallback, stubCache = true } = options || {}
+
     lab.beforeEach(async () => {
       // Add env variables
       process.env.ADDRESS_LOOKUP_ENABLED = false
@@ -21,15 +23,16 @@ module.exports = class TestHelper {
       this._sandbox = sinon.createSandbox()
 
       // Stub methods
-      this._sandbox.stub(Handlers.prototype, 'getCache').value((request, key) => this._cache[key])
-      this._sandbox.stub(Handlers.prototype, 'setCache').value((request, key, val) => { this._cache[key] = val })
+      if (stubCache) {
+        this._stubCache()
+      }
 
       // Stub any methods specific to the test
       if (stubCallback) {
         stubCallback(this._sandbox)
       }
 
-      this._server = await require('../server')()
+      this._server = await require('./server')()
     })
 
     lab.afterEach(async () => {
@@ -45,6 +48,16 @@ module.exports = class TestHelper {
       delete process.env.REDIS_ENABLED
       delete process.env.LOG_LEVEL
     })
+  }
+
+  _stubCache () {
+    this._sandbox.stub(Handlers.prototype, 'getCache').value((request, key) => {
+      if (typeof key === 'string') {
+        return this._cache[key]
+      }
+      return key.map((key) => this._cache[key])
+    })
+    this._sandbox.stub(Handlers.prototype, 'setCache').value((request, key, val) => { this._cache[key] = val })
   }
 
   get server () {
