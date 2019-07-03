@@ -34,16 +34,16 @@ class AddressFindHandlers extends require('../handlers') {
     return super.getHandler(request, h, errors)
   }
 
-  formattedPostcode (postcode) {
+  formattedPostcode (postcode = '') {
     return postcode.toUpperCase().replace(/\s/g, '') // Capitalise and remove spaces
   }
 
   // Overrides parent class postHandler
   async postHandler (request, h) {
     const address = await this.getAddress(request)
-    const postcode = request.payload.postcode || ''
+    const postcode = this.formattedPostcode(request.payload.postcode)
 
-    if (this.formattedPostcode(postcode) !== this.formattedPostcode(address.postcode || '')) {
+    if (postcode !== this.formattedPostcode(address.postcode)) {
       address.postcode = this.formattedPostcode(postcode)
       const addresses = await addressLookup(address.postcode)
       if (addresses.errorCode) {
