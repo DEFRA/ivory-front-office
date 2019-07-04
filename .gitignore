@@ -29,7 +29,7 @@ coverage.html
 node_modules
 
 # Build folder
-server/public/build
+public
 
 # dotenv environment variables file
 .env
