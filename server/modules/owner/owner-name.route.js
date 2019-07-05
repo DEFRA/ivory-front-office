@@ -5,11 +5,11 @@ class OwnerNameHandlers extends require('../common/person/person-name.handler') 
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const agent = await this.getCache(request, 'agent')
-    if (agent) {
-      return `Owner's name`
+    const { ownerIsAgent } = await this.getCache(request, 'item') || {}
+    if (ownerIsAgent) {
+      return `Your name`
     }
-    return `Your name`
+    return `Owner's name`
   }
 }
 

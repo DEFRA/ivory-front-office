@@ -4,11 +4,11 @@ const fieldName = 'who-owns-item'
 const items = [
   {
     text: 'I own it',
-    value: false
+    value: true
   },
   {
     text: 'Someone else owns it',
-    value: true
+    value: false
   }
 ]
 
@@ -33,6 +33,16 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
 
   async setItem (request, item) {
     return this.setCache(request, 'item', item)
+  }
+
+  // Overrides parent class getNextPath
+  async getNextPath (request) {
+    const { ownerIsAgent } = await this.getCache(request, 'item')
+    if (ownerIsAgent) {
+      return '/owner-name'
+    } else {
+      return '/agent'
+    }
   }
 
   // Overrides parent class getHandler
@@ -68,7 +78,7 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'Who owns the item?',
     fieldName,
-    view: 'common/radio-buttons',
-    nextPath: '/owner-name'
+    view: 'common/radio-buttons'
   }
+  // nextPath is derived in the getNextPath method above
 })

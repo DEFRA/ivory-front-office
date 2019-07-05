@@ -15,6 +15,8 @@ lab.experiment('Test Owner Address Find', () => {
         method: 'GET',
         url
       }
+
+      testHelper.cache.item = {}
     })
 
     lab.test('page loads ok', async () => {
@@ -24,6 +26,7 @@ lab.experiment('Test Owner Address Find', () => {
     })
 
     lab.test('page heading is correct when no agent', async () => {
+      testHelper.cache.item = { ownerIsAgent: true }
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
@@ -31,7 +34,6 @@ lab.experiment('Test Owner Address Find', () => {
     })
 
     lab.test('page heading is correct when there is an agent', async () => {
-      testHelper.cache.agent = {}
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 

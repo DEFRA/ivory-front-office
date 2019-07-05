@@ -52,12 +52,22 @@ lab.experiment('Test Who Owns the Item', () => {
       Code.expect($(testHelper.errorMessageSelector('who-owns-item')).text()).to.include('Select who owns the item')
     })
 
-    lab.test('redirects correctly when who owns the item has been selected', async () => {
-      request.payload['who-owns-item'] = 'true'
+    lab.test('redirects correctly when who owns the item has been selected as someone else', async () => {
+      request.payload['who-owns-item'] = false
+      const response = await testHelper.server.inject(request)
+
+      Code.expect(response.statusCode).to.equal(302)
+      Code.expect(response.headers['location']).to.equal('/agent')
+      Code.expect(testHelper.cache.item.ownerIsAgent).to.equal(false)
+    })
+
+    lab.test('redirects correctly when who owns the item has been selected as themselves', async () => {
+      request.payload['who-owns-item'] = true
       const response = await testHelper.server.inject(request)
 
       Code.expect(response.statusCode).to.equal(302)
       Code.expect(response.headers['location']).to.equal('/owner-name')
+      Code.expect(testHelper.cache.item.ownerIsAgent).to.equal(true)
     })
   })
 })
