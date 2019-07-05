@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const url = '/owner-address-find'
+const url = '/owner-address'
 
 lab.experiment('Test Owner Address Find', () => {
   const testHelper = new TestHelper(lab)

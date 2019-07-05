@@ -1,7 +1,7 @@
 const sinon = require('sinon')
 const htmlparser2 = require('htmlparser2')
 const cheerio = require('cheerio')
-const Handlers = require('./server/modules/base/handlers')
+const Handlers = require('./server/modules/common/handlers')
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity

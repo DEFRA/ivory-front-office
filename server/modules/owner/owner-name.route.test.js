@@ -83,7 +83,7 @@ lab.experiment('Test Owner Name', () => {
       const response = await testHelper.server.inject(request)
 
       Code.expect(response.statusCode).to.equal(302)
-      Code.expect(response.headers['location']).to.equal('/owner-address-find')
+      Code.expect(response.headers['location']).to.equal('/owner-address')
       Code.expect(testHelper.cache.owner.fullName).to.equal(fullName)
     })
   })

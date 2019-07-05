@@ -1,4 +1,4 @@
-class CheckYourAnswersHandlers extends require('../base/handlers') {
+class CheckYourAnswersHandlers extends require('../common/handlers') {
   async getHandler (request, h, errors) {
     const [ owner, ownerAddress, item ] = await this.getCache(request, ['owner', 'owner-address', 'item'])
     this.viewData = { owner, ownerAddress, item }

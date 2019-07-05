@@ -38,7 +38,8 @@ class AddressSelectHandlers extends require('../handlers') {
           text: addressLine,
           selected: uprn === address.uprn
         }
-      }))
+      })),
+      manualAddressLink: this.manualAddressLink
     }
 
     return super.getHandler(request, h, errors)

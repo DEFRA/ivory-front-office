@@ -29,7 +29,8 @@ class AddressFindHandlers extends require('../handlers') {
   async getHandler (request, h, errors) {
     const address = await this.getAddress(request)
     this.viewData = {
-      postcode: address.postcode
+      postcode: address.postcode,
+      manualAddressLink: this.manualAddressLink
     }
     return super.getHandler(request, h, errors)
   }

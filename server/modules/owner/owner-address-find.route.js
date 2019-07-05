@@ -1,25 +1,13 @@
-class OwnerAddressFindHandlers extends require('../base/address/address-find.handler') {
-  get addressType () {
-    return 'owner-address'
-  }
+const mixin = require('../../lib/mixin')
+class OwnerAddressFindHandlers extends require('../common/address/address-find.handler') {}
 
-  // Overrides parent class getPageHeading
-  async getPageHeading (request) {
-    const agent = await this.getCache(request, 'agent')
-    if (agent) {
-      return `Owner's address`
-    }
-    return `Your address`
-  }
-}
-
-const handlers = new OwnerAddressFindHandlers()
+const handlers = mixin(new OwnerAddressFindHandlers(), require('./owner-address-mixin'))
 
 module.exports = handlers.routes({
-  path: '/owner-address-find',
+  path: '/owner-address',
   app: {
     // pageHeading is derived in the getPageHeading method above
-    view: 'base/address/address-find',
+    view: 'common/address/address-find',
     nextPath: '/owner-address-select'
   }
 })

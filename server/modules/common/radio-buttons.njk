@@ -1,0 +1,19 @@
+{% extends 'common/two-thirds-layout.njk' %}
+
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block formContent %}
+
+    {{ govukRadios({
+        idPrefix: fieldName,
+        name: fieldName,
+        fieldset: {
+            legend: {
+                classes: "govuk-fieldset__legend--xl"
+            }
+        },
+        errorMessage: errors[fieldName],
+        items: viewData.items
+    }) }}
+
+{% endblock %}

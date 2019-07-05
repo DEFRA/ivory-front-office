@@ -14,6 +14,6 @@ lab.experiment('Test Home', () => {
 
     const response = await testHelper.server.inject(options)
     Code.expect(response.statusCode).to.equal(302)
-    Code.expect(response.headers['location']).to.equal('/owner-name')
+    Code.expect(response.headers['location']).to.equal('/who-owns-item')
   })
 })
