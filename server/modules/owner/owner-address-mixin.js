@@ -4,10 +4,10 @@ module.exports = {
 
   // Overrides parent class getPageHeading
   getPageHeading: async function (request) {
-    const agent = await this.getCache(request, 'agent')
-    if (agent) {
-      return `Owner's address`
+    const { ownerIsAgent } = await this.getCache(request, 'item') || {}
+    if (ownerIsAgent) {
+      return `Your address`
     }
-    return `Your address`
+    return `Owner's address`
   }
 }
