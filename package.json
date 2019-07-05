@@ -42,6 +42,7 @@
     "govuk-frontend": "2.13.0",
     "hapi-robots": "^3.2.0",
     "hapi-router": "^5.0.0",
+    "mixin-deep": "^2.0.1",
     "nunjucks": "3.2.0",
     "require-all": "^3.0.0"
   },

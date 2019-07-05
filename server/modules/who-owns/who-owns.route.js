@@ -1,16 +1,28 @@
 const Joi = require('@hapi/joi')
 
+const fieldName = 'who-owns-item'
+const items = [
+  {
+    text: 'I own it',
+    value: false
+  },
+  {
+    text: 'Someone else owns it',
+    value: true
+  }
+]
+
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
     return {
-      'item-description': Joi.string().required()
+      [fieldName]: Joi.boolean().required()
     }
   }
 
   get errorMessages () {
     return {
-      'item-description': {
-        'any.empty': 'Enter a description of the item'
+      [fieldName]: {
+        'any.required': 'Select who owns the item'
       }
     }
   }
@@ -26,8 +38,16 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
     const item = await this.getItem(request)
-    this.viewData = {
-      itemDescription: item.description
+
+    // Use the payload in this special case to force the items to be displayed even when there is an error
+    request.payload = {
+      items: items.map(({ value, text }) => {
+        return {
+          value: value.toString(),
+          text,
+          checked: value === item.ownerIsAgent
+        }
+      })
     }
     return super.getHandler(request, h, errors)
   }
@@ -35,7 +55,7 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
   // Overrides parent class postHandler
   async postHandler (request, h) {
     const item = await this.getItem(request)
-    item.description = request.payload['item-description']
+    item.ownerIsAgent = request.payload['who-owns-item']
     await this.setItem(request, item)
     return super.postHandler(request, h)
   }
@@ -44,10 +64,11 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
 const handlers = new ItemDescriptionHandlers()
 
 module.exports = handlers.routes({
-  path: '/item-description',
+  path: '/who-owns-item',
   app: {
-    pageHeading: 'Item description',
-    view: 'item/item-description',
-    nextPath: '/check-your-answers'
+    pageHeading: 'Who owns the item?',
+    fieldName,
+    view: 'common/radio-buttons',
+    nextPath: '/owner-name'
   }
 })

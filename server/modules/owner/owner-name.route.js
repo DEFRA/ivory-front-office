@@ -1,4 +1,4 @@
-class OwnerNameHandlers extends require('../base/person/person-name.handler') {
+class OwnerNameHandlers extends require('../common/person/person-name.handler') {
   get personType () {
     return 'owner'
   }
@@ -19,7 +19,7 @@ module.exports = handlers.routes({
   path: '/owner-name',
   app: {
     // pageHeading is derived in the getPageHeading method above
-    view: 'base/person/person-name',
-    nextPath: '/owner-address-find'
+    view: 'common/person/person-name',
+    nextPath: '/owner-address'
   }
 })
