@@ -25,6 +25,20 @@ class AddressFindHandlers extends require('../handlers') {
     return this.setCache(request, this.addressType, address)
   }
 
+  // Overrides parent class getNextPath
+  async getNextPath (request) {
+    const { postcodeAddressList } = await this.getAddress(request)
+    if (postcodeAddressList.length) {
+      return this.selectAddressLink
+    } else {
+      return this.manualAddressLink
+    }
+  }
+
+  formattedPostcode (postcode = '') {
+    return postcode.toUpperCase().replace(/\s/g, '') // Capitalise and remove spaces
+  }
+
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
     const address = await this.getAddress(request)
@@ -35,22 +49,18 @@ class AddressFindHandlers extends require('../handlers') {
     return super.getHandler(request, h, errors)
   }
 
-  formattedPostcode (postcode = '') {
-    return postcode.toUpperCase().replace(/\s/g, '') // Capitalise and remove spaces
-  }
-
   // Overrides parent class postHandler
   async postHandler (request, h) {
-    const address = await this.getAddress(request)
+    let address = await this.getAddress(request)
     const postcode = this.formattedPostcode(request.payload.postcode)
 
     if (postcode !== this.formattedPostcode(address.postcode)) {
-      address.postcode = this.formattedPostcode(postcode)
-      const addresses = await addressLookup(address.postcode)
-      if (addresses.errorCode) {
-        // Fake the error "any.required" above
-        const { error } = Joi.object({ postcode: Joi.required() }).validate({})
-        return this.failAction(request, h, error)
+      // Clear address leaving only the new postcode
+      address = { postcode: this.formattedPostcode(postcode) }
+      let addresses = await addressLookup.lookUpByPostcode(address.postcode)
+      const { errorCode, message } = addresses
+      if (errorCode) {
+        throw new Error(message)
       }
       address.postcodeAddressList = addresses
     }
