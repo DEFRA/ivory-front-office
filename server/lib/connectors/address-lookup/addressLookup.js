@@ -31,7 +31,7 @@ const readOptions = {
   json: true
 }
 
-async function addressLookup (postcode) {
+async function lookUpByPostcode (postcode) {
   logger.info('Searching for postcode: ' + postcode)
 
   // all attributes are optional
@@ -60,7 +60,13 @@ async function addressLookup (postcode) {
   const { error, results = [] } = responseBody
   if (error) {
     logger.debug(error.message)
-    return { errorCode: '111', message: error.message.split(':')[1].trim() }
+    const errorMessage = error.message.split(':')[1].trim()
+    const [message, errorCode] = errorMessage.split(', Code ')
+    if (errorCode === '204') {
+      // No addresses found
+      return []
+    }
+    return { errorCode, message }
   }
   const addresses = results.map(({ Address }) => {
     const address = {}
@@ -79,4 +85,6 @@ async function addressLookup (postcode) {
   return addresses
 }
 
-module.exports = addressLookup
+module.exports = {
+  lookUpByPostcode
+}

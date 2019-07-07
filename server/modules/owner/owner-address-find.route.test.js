@@ -2,10 +2,21 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
+const addressLookup = require('../../lib/connectors/address-lookup/addressLookup')
 const url = '/owner-address'
 
 lab.experiment('Test Owner Address Find', () => {
-  const testHelper = new TestHelper(lab)
+  const testHelper = new TestHelper(lab, {
+    stubCallback: (sandbox) => {
+      sandbox.stub(addressLookup, 'lookUpByPostcode').value((postcode) => {
+        if (postcode === 'WA41AB') {
+          return [{}]
+        } else {
+          return []
+        }
+      })
+    }
+  })
 
   lab.experiment(`GET ${url}`, () => {
     let request
@@ -79,13 +90,23 @@ lab.experiment('Test Owner Address Find', () => {
       Code.expect($(testHelper.errorMessageSelector('postcode')).text()).to.include('Enter a valid postcode')
     })
 
-    lab.test('redirects correctly when the postcode has been entered', async () => {
-      const postcode = 'SN146QG'
+    lab.test('redirects to select address correctly when a postcode has been entered that has addresses', async () => {
+      const postcode = 'WA41AB'
       request.payload['postcode'] = postcode
       const response = await testHelper.server.inject(request)
 
       Code.expect(response.statusCode).to.equal(302)
       Code.expect(response.headers['location']).to.equal('/owner-address-select')
+      Code.expect(testHelper.cache['owner-address'].postcode).to.equal(postcode)
+    })
+
+    lab.test('redirects to manual address correctly when a postcode has been entered that has no addresses', async () => {
+      const postcode = 'WA41XX'
+      request.payload['postcode'] = postcode
+      const response = await testHelper.server.inject(request)
+
+      Code.expect(response.statusCode).to.equal(302)
+      Code.expect(response.headers['location']).to.equal('/owner-full-address')
       Code.expect(testHelper.cache['owner-address'].postcode).to.equal(postcode)
     })
   })
