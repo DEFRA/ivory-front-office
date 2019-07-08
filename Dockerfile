@@ -8,11 +8,9 @@ RUN set -xe \
     && git --version && bash --version && npm -v && node -v \
     && rm -rf /var/cache/apk/*
 
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-
 WORKDIR /home/node/app
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+RUN mkdir -p ./node_modules && chown -R node:node ./
 
 USER node
 

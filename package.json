@@ -20,7 +20,7 @@
     "start": "node index",
     "build": "bin/build",
     "build:css": "bin/build-css",
-    "docker:build": "docker build -t ivory/front-end .",
+    "docker:build": "docker build --no-cache -t ivory/front-end .",
     "docker:run": "docker run -p \"3000:3000\" --env-file .env ivory/front-end",
     "lint": "standard",
     "unit-test": "lab --coverage --reporter console --output stdout --reporter lcov --output lcov.info --reporter html --output coverage.html --verbose",
