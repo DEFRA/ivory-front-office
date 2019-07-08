@@ -16,14 +16,6 @@ class AddressSelectHandlers extends require('../handlers') {
     }
   }
 
-  async getAddress (request) {
-    return this.getCache(request, this.addressType) || {}
-  }
-
-  async setAddress (request, address) {
-    return this.setCache(request, this.addressType, address)
-  }
-
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
     const address = await this.getAddress(request)

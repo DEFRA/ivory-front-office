@@ -9,17 +9,17 @@ const PRODUCTION = 'production'
 const ERROR = 'error'
 const INFO = 'info'
 const DEBUG = 'debug'
-require('dotenv').config() // Load variables from .env before any other code (especially before requiring the config.js)
+const dotenv = require('dotenv')
+dotenv.config() // Load variables from .env before any other code (especially before requiring the config.js)
 
 const DEFAULT_PORT = 3000
-const DEFAULT_SERVICE_NAME = 'Ivory service name'
 const DEFAULT_REDIS_PORT = 6379
 
 // Define the config schema
 const schema = {
   port: Joi.number().default(DEFAULT_PORT),
   env: Joi.string().valid(DEVELOPMENT, TEST, PRODUCTION).default(DEVELOPMENT),
-  serviceName: Joi.string().default(DEFAULT_SERVICE_NAME),
+  serviceName: Joi.string().required(),
 
   // Logging
   logLevel: Joi.string().valid(ERROR, INFO, DEBUG).default(INFO),

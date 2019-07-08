@@ -17,22 +17,9 @@ class AddressFindHandlers extends require('../handlers') {
     }
   }
 
-  async getAddress (request) {
-    return this.getCache(request, this.addressType) || {}
-  }
-
-  async setAddress (request, address) {
-    return this.setCache(request, this.addressType, address)
-  }
-
   // Overrides parent class getNextPath
   async getNextPath (request) {
-    const { postcodeAddressList } = await this.getAddress(request)
-    if (postcodeAddressList.length) {
-      return this.selectAddressLink
-    } else {
-      return this.manualAddressLink
-    }
+    return this.selectAddressLink
   }
 
   formattedPostcode (postcode = '') {

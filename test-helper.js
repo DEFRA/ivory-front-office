@@ -2,6 +2,7 @@ const sinon = require('sinon')
 const htmlparser2 = require('htmlparser2')
 const cheerio = require('cheerio')
 const Handlers = require('./server/modules/common/handlers')
+const dotenv = require('dotenv')
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity
@@ -12,6 +13,7 @@ module.exports = class TestHelper {
 
     lab.beforeEach(async () => {
       // Add env variables
+      process.env.SERVICE_NAME = 'Service name'
       process.env.ADDRESS_LOOKUP_ENABLED = false
       process.env.AIRBRAKE_ENABLED = false
       process.env.REDIS_ENABLED = false
@@ -23,6 +25,7 @@ module.exports = class TestHelper {
       this._sandbox = sinon.createSandbox()
 
       // Stub methods
+      this._sandbox.stub(dotenv, 'config').value(() => {})
       if (stubCache) {
         this._stubCache()
       }
@@ -43,6 +46,7 @@ module.exports = class TestHelper {
       await this._server.stop()
 
       // Remove env variables
+      delete process.env.SERVICE_NAME
       delete process.env.ADDRESS_LOOKUP_ENABLED
       delete process.env.AIRBRAKE_ENABLED
       delete process.env.REDIS_ENABLED
