@@ -1,5 +1,6 @@
 const Joi = require('@hapi/joi')
 const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
+const config = require('../../../config')
 
 class AddressFindHandlers extends require('../handlers') {
   get schema () {
@@ -26,6 +27,21 @@ class AddressFindHandlers extends require('../handlers') {
     return postcode.toUpperCase().replace(/\s/g, '') // Capitalise and remove spaces
   }
 
+  async lookUpAddress (postcode) {
+    const address = { postcode: this.formattedPostcode(postcode) }
+    if (config.addressLookUpEnabled) {
+      let addresses = await addressLookup.lookUpByPostcode(address.postcode)
+      const { errorCode, message } = addresses
+      if (errorCode) {
+        throw new Error(message)
+      }
+      address.postcodeAddressList = addresses
+    } else {
+      address.postcodeAddressList = []
+    }
+    return address
+  }
+
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
     const address = await this.getAddress(request)
@@ -42,14 +58,7 @@ class AddressFindHandlers extends require('../handlers') {
     const postcode = this.formattedPostcode(request.payload.postcode)
 
     if (postcode !== this.formattedPostcode(address.postcode)) {
-      // Clear address leaving only the new postcode
-      address = { postcode: this.formattedPostcode(postcode) }
-      let addresses = await addressLookup.lookUpByPostcode(address.postcode)
-      const { errorCode, message } = addresses
-      if (errorCode) {
-        throw new Error(message)
-      }
-      address.postcodeAddressList = addresses
+      address = await this.lookUpAddress(postcode)
     }
 
     await this.setAddress(request, address)

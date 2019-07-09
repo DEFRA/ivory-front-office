@@ -1,7 +1,7 @@
 const mixin = require('../../lib/mixin')
-class OwnerAddressSelectHandlers extends require('../common/address/address-select.handler') {}
+class OwnerAddressSelectHandlers extends mixin(require('../common/address/address-select.handler'), require('./owner-address-mixin')) {}
 
-const handlers = mixin(OwnerAddressSelectHandlers, require('./owner-address-mixin'))
+const handlers = new OwnerAddressSelectHandlers()
 
 module.exports = handlers.routes({
   path: handlers.selectAddressLink,
