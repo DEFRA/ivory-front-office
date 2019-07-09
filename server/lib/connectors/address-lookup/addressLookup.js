@@ -1,7 +1,6 @@
 const { logger } = require('defra-logging-facade')
 const wreck = require('@hapi/wreck')
 const {
-  addressLookUpEnabled: enabled,
   addressLookUpUri: uri,
   addressLookUpUsername: username,
   addressLookUpPassword: password,
@@ -42,18 +41,12 @@ async function lookUpByPostcode (postcode) {
 
   let responseBody = {}
 
-  if (enabled) {
-    // Call the address lookup service
-    try {
-      const res = await wreck.request(method, uri, requestOptions)
-      responseBody = await wreck.read(res, readOptions)
-    } catch (error) {
-      throw error
-    }
-  } else {
-    // Test response rather than calling API
-    logger.warn('Getting stubbed addresses')
-    responseBody = require('./addressLookupResponseExample.json')
+  // Call the address lookup service
+  try {
+    const res = await wreck.request(method, uri, requestOptions)
+    responseBody = await wreck.read(res, readOptions)
+  } catch (error) {
+    throw error
   }
 
   // Format results into an array of addresses with camelcase properties
