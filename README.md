@@ -1,7 +1,7 @@
 # Ivory
 Digital service to support the Ivory Act. 
 
-[![Build Status](https://travis-ci.org/DEFRA/ivory.svg?branch=master)](https://travis-ci.org/DEFRA/ivory)
+[![Build Status](https://travis-ci.com/DEFRA/ivory.svg?branch=master)](https://travis-ci.com/DEFRA/ivory)
 [![Known Vulnerabilities](https://snyk.io/test/github/defra/ivory/badge.svg)](https://snyk.io/test/github/defra/ivory)
 [![Code Climate](https://codeclimate.com/github/DEFRA/ivory/badges/gpa.svg)](https://codeclimate.com/github/DEFRA/ivory)
 [![Test Coverage](https://codeclimate.com/github/DEFRA/ivory/badges/coverage.svg)](https://codeclimate.com/github/DEFRA/ivory/coverage)
