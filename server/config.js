@@ -13,7 +13,6 @@ const dotenv = require('dotenv')
 dotenv.config() // Load variables from .env before any other code (especially before requiring the config.js)
 
 const DEFAULT_PORT = 3000
-const DEFAULT_REDIS_PORT = 6379
 
 // Define the config schema
 const schema = {
@@ -34,7 +33,7 @@ const schema = {
 
   // Redis
   redisEnabled: Joi.bool().default(true),
-  redisPort: Joi.number().default(DEFAULT_REDIS_PORT),
+  redisPort: Joi.when('redisEnabled', { is: true, then: Joi.number().required() }),
   redisHost: Joi.when('redisEnabled', { is: true, then: Joi.string().required() }),
 
   // Address lookup
@@ -98,7 +97,7 @@ value.isError = value.airbrakeLogLevel === ERROR
 
 // Build cookie options
 value.cookieOptions = {
-  ttl: null, // 'null' will delete the cookie when the browser is closed
+  // ttl: null, // 'null' will delete the cookie when the browser is closed
   isSecure: value.isProd, // Secure in production
   password: value.cookiePassword,
   isHttpOnly: true,
