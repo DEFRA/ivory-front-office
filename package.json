@@ -1,16 +1,16 @@
 {
-  "name": "ivory",
+  "name": "ivory-front-office",
   "version": "0.0.1",
   "description": "Digital service to support the Ivory Act",
   "author": "Department for Environment, Food & Rural Affairs",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/DEFRA/ivory/issues"
+    "url": "https://github.com/DEFRA/ivory-front-office/issues"
   },
-  "homepage": "https://github.com/DEFRA/ivory#readme",
+  "homepage": "https://github.com/DEFRA/ivory-front-office#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/DEFRA/ivory.git"
+    "url": "https://github.com/DEFRA/ivory-front-office.git"
   },
   "engines": {
     "node": "10.x"
@@ -20,8 +20,8 @@
     "start": "node index",
     "build": "bin/build.sh",
     "build:css": "bin/build-css.sh",
-    "docker:build": "docker build --no-cache -t ivory/front-end .",
-    "docker:run": "docker run -p \"3000:3000\" --env-file .env ivory/front-end",
+    "docker:build": "docker build --no-cache -t ivory/front-office .",
+    "docker:run": "docker run -p \"3000:3000\" --env-file .env ivory/front-office",
     "lint": "standard",
     "unit-test": "lab --coverage --reporter console --output stdout --reporter lcov --output lcov.info --reporter html --output coverage.html --verbose",
     "test": "npm run lint && npm run unit-test",
