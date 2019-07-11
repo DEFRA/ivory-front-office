@@ -1,5 +1,4 @@
-#FROM node:10.16.0-alpine
-FROM keymetrics/pm2:10-alpine
+FROM node:10.16.0-alpine
 
 #Install git as required to install defra-logging-facade
 RUN set -xe \
@@ -32,5 +31,4 @@ COPY --chown=node:node . .
 
 EXPOSE 3000
 
-#ENTRYPOINT [ "node", "index.js" ]
-ENTRYPOINT [ "pm2-runtime", "index.js" ]
+ENTRYPOINT [ "node", "index.js" ]
