@@ -1,9 +1,9 @@
-# Ivory
+# Ivory front office
 Digital service to support the Ivory Act. 
-[![Build Status](https://travis-ci.com/DEFRA/ivory.svg?branch=master)](https://travis-ci.com/DEFRA/ivory)
-[![Known Vulnerabilities](https://snyk.io/test/github/defra/ivory/badge.svg)](https://snyk.io/test/github/defra/ivory)
-[![Code Climate](https://codeclimate.com/github/DEFRA/ivory/badges/gpa.svg)](https://codeclimate.com/github/DEFRA/ivory)
-[![Test Coverage](https://codeclimate.com/github/DEFRA/ivory/badges/coverage.svg)](https://codeclimate.com/github/DEFRA/ivory/coverage)
+[![Build Status](https://travis-ci.com/DEFRA/ivory-front-office.svg?branch=master)](https://travis-ci.com/DEFRA/ivory-front-office)
+[![Known Vulnerabilities](https://snyk.io/test/github/defra/ivory-front-office/badge.svg)](https://snyk.io/test/github/defra/ivory-front-office)
+[![Code Climate](https://codeclimate.com/github/DEFRA/ivory-front-office/badges/gpa.svg)](https://codeclimate.com/github/DEFRA/ivory-front-office)
+[![Test Coverage](https://codeclimate.com/github/DEFRA/ivory-front-office/badges/coverage.svg)](https://codeclimate.com/github/DEFRA/ivory-front-office/coverage)
 
 # Prerequisites
 
