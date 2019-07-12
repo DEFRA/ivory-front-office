@@ -4,13 +4,13 @@ const chooseAddressHint = 'Choose an address'
 class AddressSelectHandlers extends require('../handlers') {
   get schema () {
     return {
-      'address': Joi.string().min(1)
+      address: Joi.string().min(1)
     }
   }
 
   get errorMessages () {
     return {
-      'address': {
+      address: {
         'string.min': 'Select an address'
       }
     }
@@ -44,7 +44,8 @@ class AddressSelectHandlers extends require('../handlers') {
 
     // Retrieve the actual address information from the cached address list
     Object.assign(address, address.postcodeAddressList.find(({ uprn }) => uprn === selectedUprn))
-    await this.setAddress(request, address)
+
+    await this.setAddress(request, address, true)
 
     return super.postHandler(request, h)
   }

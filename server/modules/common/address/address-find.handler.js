@@ -5,13 +5,13 @@ const config = require('../../../config')
 class AddressFindHandlers extends require('../handlers') {
   get schema () {
     return {
-      'postcode': Joi.string().required()
+      postcode: Joi.string().required()
     }
   }
 
   get errorMessages () {
     return {
-      'postcode': {
+      postcode: {
         'any.empty': 'Enter a valid postcode',
         'any.required': 'Enter a valid postcode'
       }
@@ -30,7 +30,7 @@ class AddressFindHandlers extends require('../handlers') {
   async lookUpAddress (postcode) {
     const address = { postcode: this.formattedPostcode(postcode) }
     if (config.addressLookUpEnabled) {
-      let addresses = await addressLookup.lookUpByPostcode(address.postcode)
+      const addresses = await addressLookup.lookUpByPostcode(address.postcode)
       const { errorCode, message } = addresses
       if (errorCode) {
         throw new Error(message)

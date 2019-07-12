@@ -74,7 +74,7 @@ lab.experiment('Test Owner Address Select', () => {
 
   lab.experiment(`POST ${url}`, () => {
     let request
-    let address = { uprn: '1234' }
+    const address = { uprn: '1234' }
 
     lab.beforeEach(() => {
       request = {

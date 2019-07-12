@@ -41,7 +41,12 @@ const schema = {
   addressLookUpUri: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().uri().required() }),
   addressLookUpUsername: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().required() }),
   addressLookUpPassword: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().required() }),
-  addressLookUpKey: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().min(32).required() })
+  addressLookUpKey: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().min(32).required() }),
+
+  // Service API
+  serviceApiEnabled: Joi.bool().default(true),
+  serviceApiPort: Joi.when('serviceApiEnabled', { is: true, then: Joi.number().required() }),
+  serviceApiHost: Joi.when('serviceApiEnabled', { is: true, then: Joi.string().required() })
 }
 
 // Build the config
@@ -71,7 +76,12 @@ const config = {
   addressLookUpUri: process.env.ADDRESS_LOOKUP_URI,
   addressLookUpUsername: process.env.ADDRESS_LOOKUP_USERNAME,
   addressLookUpPassword: process.env.ADDRESS_LOOKUP_PASSWORD,
-  addressLookUpKey: process.env.ADDRESS_LOOKUP_KEY
+  addressLookUpKey: process.env.ADDRESS_LOOKUP_KEY,
+
+  // Service API
+  serviceApiEnabled: process.env.SERVICE_API_ENABLED,
+  serviceApiPort: process.env.SERVICE_API_PORT,
+  serviceApiHost: process.env.SERVICE_API_HOST
 }
 
 // Validate the config
@@ -104,6 +114,9 @@ value.cookieOptions = {
   clearInvalid: true,
   strictHeader: true
 }
+
+// Build serviceApi
+value.serviceApi = `${value.serviceApiHost}:${value.serviceApiPort}`
 
 // Export the validated config
 module.exports = value
