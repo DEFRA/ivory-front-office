@@ -17,6 +17,7 @@ module.exports = class TestHelper {
       process.env.ADDRESS_LOOKUP_ENABLED = false
       process.env.AIRBRAKE_ENABLED = false
       process.env.REDIS_ENABLED = false
+      process.env.SERVICE_API_ENABLED = false
       process.env.LOG_LEVEL = 'error'
 
       this._cache = {}
@@ -50,6 +51,7 @@ module.exports = class TestHelper {
       delete process.env.ADDRESS_LOOKUP_ENABLED
       delete process.env.AIRBRAKE_ENABLED
       delete process.env.REDIS_ENABLED
+      delete process.env.SERVICE_API_ENABLED
       delete process.env.LOG_LEVEL
     })
   }
