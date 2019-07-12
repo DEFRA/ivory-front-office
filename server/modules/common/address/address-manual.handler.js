@@ -34,7 +34,7 @@ class AddressFindHandlers extends require('../handlers') {
 
   // Overrides parent class postHandler
   async postHandler (request, h) {
-    let address = await this.getAddress(request)
+    const address = await this.getAddress(request)
     const {
       'address-line-1': addressLine1,
       'address-line-2': street,
@@ -53,7 +53,7 @@ class AddressFindHandlers extends require('../handlers') {
       address.subBuildingName = addressLine1
     }
 
-    await this.setAddress(request, address)
+    await this.setAddress(request, address, true)
     return super.postHandler(request, h)
   }
 }

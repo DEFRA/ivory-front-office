@@ -11,7 +11,7 @@ const method = 'POST'
 const maxresults = 100
 
 const requestHeaders = {
-  'Authorization': 'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
+  Authorization: 'Basic ' + Buffer.from(username + ':' + password).toString('base64'),
   'Content-Type': 'application/json'
 }
 
@@ -39,15 +39,9 @@ async function lookUpByPostcode (postcode) {
     headers: requestHeaders
   }
 
-  let responseBody = {}
-
   // Call the address lookup service
-  try {
-    const res = await wreck.request(method, uri, requestOptions)
-    responseBody = await wreck.read(res, readOptions)
-  } catch (error) {
-    throw error
-  }
+  const res = await wreck.request(method, uri, requestOptions)
+  const responseBody = await wreck.read(res, readOptions)
 
   // Format results into an array of addresses with camelcase properties
   const { error, results = [] } = responseBody

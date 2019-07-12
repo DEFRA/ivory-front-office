@@ -24,8 +24,7 @@
     "docker:run": "docker run -p \"3000:3000\" --env-file .env ivory/front-office",
     "lint": "standard",
     "unit-test": "lab --coverage --reporter console --output stdout --reporter lcov --output lcov.info --reporter html --output coverage.html --verbose",
-    "test": "npm run lint && npm run unit-test",
-    "postinstall": "npm run build"
+    "test": "npm run lint && npm run unit-test"
   },
   "dependencies": {
     "@hapi/boom": "^7.4.2",
@@ -60,6 +59,6 @@
     "codeclimate-test-reporter": "0.5.1",
     "htmlparser2": "^3.10.1",
     "sinon": "^7.3.2",
-    "standard": "12.0.1"
+    "standard": "13.0.1"
   }
 }

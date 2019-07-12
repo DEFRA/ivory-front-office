@@ -1,3 +1,5 @@
+const Persistence = require('../../common/persistence')
+const persistence = new Persistence({ path: '/people' })
 const Joi = require('@hapi/joi')
 
 class NameHandlers extends require('../handlers') {
@@ -19,7 +21,12 @@ class NameHandlers extends require('../handlers') {
     return this.getCache(request, this.personType) || {}
   }
 
-  async setPerson (request, person) {
+  async setPerson (request, person, persistToDatabase) {
+    if (persistToDatabase) {
+      const { id, fullName } = person
+      const saved = await persistence.save({ id, fullName })
+      person.id = saved.id
+    }
     return this.setCache(request, this.personType, person)
   }
 
@@ -36,7 +43,7 @@ class NameHandlers extends require('../handlers') {
   async postHandler (request, h) {
     const person = await this.getPerson(request)
     person.fullName = request.payload['full-name']
-    await this.setPerson(request, person)
+    await this.setPerson(request, person, true)
     return super.postHandler(request, h)
   }
 }
