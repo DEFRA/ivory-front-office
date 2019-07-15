@@ -1,22 +1,21 @@
 const Joi = require('@hapi/joi')
+const mixin = require('../../../lib/mixin')
 
-class AddressFindHandlers extends require('../handlers') {
+class AddressManualHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
   get schema () {
-    return {
+    return Joi.object({
       'address-line-1': Joi.string().required(),
-      'address-line-2': Joi.string().required(),
+      'address-line-2': Joi.any(),
       'address-town': Joi.string().required(),
-      'address-county': Joi.string().required(),
+      'address-county': Joi.any(),
       'address-postcode': Joi.string().required()
-    }
+    })
   }
 
   get errorMessages () {
     return {
       'address-line-1': { 'any.empty': 'Enter a valid building number or name' },
-      'address-line-2': { 'any.empty': 'Enter a valid street' },
       'address-town': { 'any.empty': 'Enter a valid town' },
-      'address-county': { 'any.empty': 'Enter a valid county' },
       'address-postcode': { 'any.empty': 'Enter a valid postcode' }
     }
   }
@@ -58,4 +57,4 @@ class AddressFindHandlers extends require('../handlers') {
   }
 }
 
-module.exports = AddressFindHandlers
+module.exports = AddressManualHandlers

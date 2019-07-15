@@ -1,11 +1,12 @@
 const Joi = require('@hapi/joi')
 const chooseAddressHint = 'Choose an address'
+const mixin = require('../../../lib/mixin')
 
-class AddressSelectHandlers extends require('../handlers') {
+class AddressSelectHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
   get schema () {
-    return {
-      address: Joi.string().min(1)
-    }
+    return Joi.object({
+      address: Joi.string().min(1).required()
+    })
   }
 
   get errorMessages () {

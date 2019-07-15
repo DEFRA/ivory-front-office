@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const Handlers = require('./handlers')
 
-lab.experiment('Test Base Handlers', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab, { stubCache: false })
 
   testHelper.getDomParser()

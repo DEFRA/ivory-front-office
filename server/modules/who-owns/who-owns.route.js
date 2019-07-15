@@ -14,9 +14,9 @@ const items = [
 
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
-    return {
+    return Joi.object({
       [fieldName]: Joi.boolean().required()
-    }
+    })
   }
 
   get errorMessages () {

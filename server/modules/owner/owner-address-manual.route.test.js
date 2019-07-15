@@ -4,7 +4,19 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/owner-full-address'
 
-lab.experiment('Test Owner Address Manual', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
+  let address
+
+  lab.beforeEach(() => {
+    address = {
+      addressLine1: '38',
+      street: 'Smith Rd',
+      town: 'Jonesville',
+      county: 'Anyshire',
+      postcode: 'WC1A 1AA'
+    }
+  })
+
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {
@@ -40,20 +52,23 @@ lab.experiment('Test Owner Address Manual', () => {
       Code.expect($('#defra-page-heading').text()).to.equal(`Owner's address`)
     })
 
-    lab.test('postcode has not been pre-filled', async () => {
+    lab.test('address has not been pre-filled', async () => {
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
       Code.expect($('#postcode').val()).to.not.exist()
     })
 
-    lab.test('postcode has been pre-filled', async () => {
-      const postcode = 'WC1A 1AA'
-      testHelper.cache['owner-address'] = { postcode }
+    lab.test('address has been pre-filled', async () => {
+      testHelper.cache['owner-address'] = address
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#address-postcode').val()).to.equal(postcode)
+      Code.expect($('#address-line-1').val()).to.equal(address.addressLine1)
+      Code.expect($('#address-line-2').val()).to.equal(address.street)
+      Code.expect($('#address-town').val()).to.equal(address.town)
+      Code.expect($('#address-county').val()).to.equal(address.county)
+      Code.expect($('#address-postcode').val()).to.equal(address.postcode)
     })
   })
 
@@ -68,15 +83,31 @@ lab.experiment('Test Owner Address Manual', () => {
       }
     })
 
-    lab.test('fails validation when the postcode has not been entered', async () => {
-      request.payload['address-postcode'] = ''
-      const response = await testHelper.server.inject(request)
-      Code.expect(response.statusCode).to.equal(400)
+    lab.test('fails validation when the address has not been entered', async () => {
+      Object.assign(request.payload, {
+        'address-line-1': '',
+        'address-line-2': '',
+        'address-town': '',
+        'address-county': '',
+        'address-postcode': ''
+      })
+      return testHelper.expectValidationErrors(request, [
+        { field: 'address-line-1', message: 'Enter a valid building number or name' },
+        { field: 'address-town', message: 'Enter a valid town' },
+        { field: 'address-postcode', message: 'Enter a valid postcode' }
+      ])
+    })
 
-      const $ = testHelper.getDomParser(response.payload)
-
-      Code.expect($(testHelper.errorSummarySelector('address-postcode')).text()).to.equal('Enter a valid postcode')
-      Code.expect($(testHelper.errorMessageSelector('address-postcode')).text()).to.include('Enter a valid postcode')
+    lab.test('redirects correctly when the address has been manually entered correctly', async () => {
+      Object.assign(request.payload, {
+        'address-line-1': address.addressLine1,
+        'address-line-2': address.street,
+        'address-town': address.town,
+        'address-county': address.county,
+        'address-postcode': address.postcode
+      })
+      await testHelper.expectRedirection(request, '/item-description')
+      Code.expect(testHelper.cache['owner-address'].postcode).to.equal(address.postcode)
     })
   })
 })

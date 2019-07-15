@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/item-description'
 
-lab.experiment('Test Item Description', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {
@@ -55,10 +55,7 @@ lab.experiment('Test Item Description', () => {
 
     lab.test('redirects correctly when the item description has been entered', async () => {
       request.payload['item-description'] = 'Some item details'
-      const response = await testHelper.server.inject(request)
-
-      Code.expect(response.statusCode).to.equal(302)
-      Code.expect(response.headers['location']).to.equal('/check-your-answers')
+      await testHelper.expectRedirection(request, '/check-your-answers')
     })
   })
 })

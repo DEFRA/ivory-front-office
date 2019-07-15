@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/owner-address-select'
 
-lab.experiment('Test Owner Address Select', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {
@@ -92,21 +92,14 @@ lab.experiment('Test Owner Address Select', () => {
 
     lab.test('fails validation when an address has not been selected', async () => {
       request.payload['address'] = ''
-      const response = await testHelper.server.inject(request)
-      Code.expect(response.statusCode).to.equal(400)
-
-      const $ = testHelper.getDomParser(response.payload)
-
-      Code.expect($(testHelper.errorSummarySelector('address')).text()).to.equal('Select an address')
-      Code.expect($(testHelper.errorMessageSelector('address')).text()).to.include('Select an address')
+      return testHelper.expectValidationErrors(request, [
+        { field: 'address', message: 'Select an address' }
+      ])
     })
 
     lab.test('redirects correctly when the address has been selected', async () => {
       request.payload['address'] = address.uprn
-      const response = await testHelper.server.inject(request)
-
-      Code.expect(response.statusCode).to.equal(302)
-      Code.expect(response.headers['location']).to.equal('/item-description')
+      await testHelper.expectRedirection(request, '/item-description')
       Code.expect(testHelper.cache['owner-address'].uprn).to.equal(address.uprn)
     })
   })

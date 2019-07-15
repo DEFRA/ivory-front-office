@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/who-owns-item'
 
-lab.experiment('Test Who Owns the Item', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {
@@ -63,10 +63,7 @@ lab.experiment('Test Who Owns the Item', () => {
 
     lab.test('redirects correctly when who owns the item has been selected as themselves', async () => {
       request.payload['who-owns-item'] = true
-      const response = await testHelper.server.inject(request)
-
-      Code.expect(response.statusCode).to.equal(302)
-      Code.expect(response.headers['location']).to.equal('/owner-name')
+      await testHelper.expectRedirection(request, '/owner-name')
       Code.expect(testHelper.cache.item.ownerIsAgent).to.equal(true)
     })
   })

@@ -2,12 +2,13 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
+const TestHelper = require('../../../../test-helper')
 const { logger } = require('defra-logging-facade')
 const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
 const config = require('../../../config')
 const wreck = require('@hapi/wreck')
 
-lab.experiment('Test Base Handlers', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   let lookupResponse
   let sandbox
 
@@ -15,6 +16,7 @@ lab.experiment('Test Base Handlers', () => {
     // Stub methods
     sandbox = sinon.createSandbox()
     sandbox.stub(logger, 'info').value(() => undefined)
+    sandbox.stub(logger, 'debug').value(() => undefined)
     sandbox.stub(config, 'airbrakeEnabled').value(() => false)
     sandbox.stub(config, 'redisEnabled').value(() => false)
     sandbox.stub(wreck, 'request').value(() => undefined)
@@ -41,6 +43,6 @@ lab.experiment('Test Base Handlers', () => {
   lab.test('lookUpByPostcode when addresses matching the postcode are found', async () => {
     lookupResponse = require('./addressLookupResponseExample.json')
     const addresses = await addressLookup.lookUpByPostcode('WA41AB')
-    Code.expect(addresses.length).to.equal(2)
+    Code.expect(addresses.length).to.equal(lookupResponse.results.length)
   })
 })
