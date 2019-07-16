@@ -1,3 +1,5 @@
+const Persistence = require('../common/persistence')
+const persistence = new Persistence({ path: '/items' })
 const Joi = require('@hapi/joi')
 
 class ItemDescriptionHandlers extends require('../common/handlers') {
@@ -19,7 +21,12 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
     return this.getCache(request, 'item') || {}
   }
 
-  async setItem (request, item) {
+  async setItem (request, item, persistToDatabase) {
+    if (persistToDatabase) {
+      const { id, description } = item
+      const saved = await persistence.save({ id, description })
+      item.id = saved.id
+    }
     return this.setCache(request, 'item', item)
   }
 
@@ -36,7 +43,7 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
   async postHandler (request, h) {
     const item = await this.getItem(request)
     item.description = request.payload['item-description']
-    await this.setItem(request, item)
+    await this.setItem(request, item, true)
     return super.postHandler(request, h)
   }
 }
