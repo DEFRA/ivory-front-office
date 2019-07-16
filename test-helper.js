@@ -1,8 +1,11 @@
 const sinon = require('sinon')
+const Code = require('@hapi/code')
 const htmlparser2 = require('htmlparser2')
 const cheerio = require('cheerio')
 const Handlers = require('./server/modules/common/handlers')
 const dotenv = require('dotenv')
+const config = require('./server/config')
+const { logger } = require('defra-logging-facade')
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity
@@ -13,11 +16,6 @@ module.exports = class TestHelper {
 
     lab.beforeEach(async () => {
       // Add env variables
-      process.env.SERVICE_NAME = 'Service name'
-      process.env.ADDRESS_LOOKUP_ENABLED = false
-      process.env.AIRBRAKE_ENABLED = false
-      process.env.REDIS_ENABLED = false
-      process.env.SERVICE_API_ENABLED = false
       process.env.LOG_LEVEL = 'error'
 
       this._cache = {}
@@ -27,6 +25,14 @@ module.exports = class TestHelper {
 
       // Stub methods
       this._sandbox.stub(dotenv, 'config').value(() => {})
+      this._sandbox.stub(config, 'serviceName').value('Service name')
+      this._sandbox.stub(config, 'addressLookUpEnabled').value(false)
+      this._sandbox.stub(config, 'airbrakeEnabled').value(false)
+      this._sandbox.stub(config, 'redisEnabled').value(false)
+      this._sandbox.stub(config, 'serviceApiEnabled').value(false)
+      this._sandbox.stub(logger, 'warn').value(() => undefined)
+      this._sandbox.stub(config, 'logLevel').value('error')
+
       if (stubCache) {
         this._stubCache()
       }
@@ -47,11 +53,6 @@ module.exports = class TestHelper {
       await this._server.stop()
 
       // Remove env variables
-      delete process.env.SERVICE_NAME
-      delete process.env.ADDRESS_LOOKUP_ENABLED
-      delete process.env.AIRBRAKE_ENABLED
-      delete process.env.REDIS_ENABLED
-      delete process.env.SERVICE_API_ENABLED
       delete process.env.LOG_LEVEL
     })
   }
@@ -94,5 +95,27 @@ module.exports = class TestHelper {
 
   errorMessageSelector (field) {
     return `#${field}-error`
+  }
+
+  async expectValidationErrors (request, errors) {
+    const response = await this.server.inject(request)
+    Code.expect(response.statusCode).to.equal(400)
+    const $ = this.getDomParser(response.payload)
+
+    errors.forEach(({ field, message }) => {
+      Code.expect($(this.errorSummarySelector(field)).text()).to.equal(message)
+      Code.expect($(this.errorMessageSelector(field)).text()).to.include(message)
+    })
+  }
+
+  async expectRedirection (request, nextPath) {
+    const response = await this.server.inject(request)
+
+    Code.expect(response.statusCode).to.equal(302)
+    Code.expect(response.headers['location']).to.equal(nextPath)
+  }
+
+  static getFile (filename) {
+    return filename.substring(__dirname.length)
   }
 }

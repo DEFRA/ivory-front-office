@@ -2,9 +2,9 @@ const Joi = require('@hapi/joi')
 
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
-    return {
+    return Joi.object({
       'item-description': Joi.string().required()
-    }
+    })
   }
 
   get errorMessages () {

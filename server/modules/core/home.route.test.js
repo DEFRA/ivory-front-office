@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 
-lab.experiment('Test Home', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
 
   lab.test('GET / route works', async () => {

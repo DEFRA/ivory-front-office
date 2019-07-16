@@ -6,7 +6,7 @@ const url = '/agent'
 
 const validSelections = ['professional-advisor', 'executor', 'trustee', 'friend-or-relative']
 
-lab.experiment('Test How are you acting on behalf of the owner?', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {

@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/check-your-answers'
 
-lab.experiment('Test Check Your Answers', () => {
+lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
 
   lab.experiment(`GET ${url}`, () => {

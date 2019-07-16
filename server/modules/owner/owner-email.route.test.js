@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const url = '/owner-name'
+const url = '/owner-email'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
@@ -29,30 +29,30 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal(`Your name`)
+      Code.expect($('#defra-page-heading').text()).to.equal(`Your email address`)
     })
 
     lab.test('page heading is correct when there is an agent', async () => {
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal(`Owner's name`)
+      Code.expect($('#defra-page-heading').text()).to.equal(`Owner's email address`)
     })
 
-    lab.test('full name has not been pre-filled', async () => {
+    lab.test('email address has not been pre-filled', async () => {
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#full-name').val()).to.not.exist()
+      Code.expect($('#email').val()).to.not.exist()
     })
 
-    lab.test('full name has been pre-filled', async () => {
-      const fullName = 'James Bond'
-      testHelper.cache.owner = { fullName: 'James Bond' }
+    lab.test('email address has been pre-filled', async () => {
+      const email = 'James Bond'
+      testHelper.cache.owner = { email }
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#full-name').val()).to.equal(fullName)
+      Code.expect($('#email').val()).to.equal(email)
     })
   })
 
@@ -67,18 +67,18 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       }
     })
 
-    lab.test('fails validation when the full name has not been entered', async () => {
-      request.payload['full-name'] = ''
+    lab.test('fails validation when the email address has not been entered', async () => {
+      request.payload.email = ''
       return testHelper.expectValidationErrors(request, [
-        { field: 'full-name', message: 'Enter your full name' }
+        { field: 'email', message: 'Enter an email address in the correct format, like name@example.com' }
       ])
     })
 
-    lab.test('redirects correctly when the full name has been entered', async () => {
-      const fullName = 'James Bond'
-      request.payload['full-name'] = fullName
-      await testHelper.expectRedirection(request, '/owner-email')
-      Code.expect(testHelper.cache.owner.fullName).to.equal(fullName)
+    lab.test('redirects correctly when the email address has been entered', async () => {
+      const email = 'james.bond@defra.test.gov.uk'
+      request.payload.email = email
+      await testHelper.expectRedirection(request, '/owner-address')
+      Code.expect(testHelper.cache.owner.email).to.equal(email)
     })
   })
 })
