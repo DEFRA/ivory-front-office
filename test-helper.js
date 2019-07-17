@@ -23,16 +23,10 @@ module.exports = class TestHelper {
       // Create a sinon sandbox to stub methods
       this._sandbox = sinon.createSandbox()
 
-      // Stub methods
-      this._sandbox.stub(dotenv, 'config').value(() => {})
-      this._sandbox.stub(config, 'serviceName').value('Service name')
-      this._sandbox.stub(config, 'addressLookUpEnabled').value(false)
-      this._sandbox.stub(config, 'airbrakeEnabled').value(false)
-      this._sandbox.stub(config, 'redisEnabled').value(false)
-      this._sandbox.stub(config, 'serviceApiEnabled').value(false)
-      this._sandbox.stub(logger, 'warn').value(() => undefined)
-      this._sandbox.stub(config, 'logLevel').value('error')
+      // Stub common methods
+      TestHelper.stubCommon(this._sandbox)
 
+      // Stub methods
       if (stubCache) {
         this._stubCache()
       }
@@ -55,6 +49,19 @@ module.exports = class TestHelper {
       // Remove env variables
       delete process.env.LOG_LEVEL
     })
+  }
+
+  static stubCommon (sandbox) {
+    sandbox.stub(dotenv, 'config').value(() => {})
+    sandbox.stub(config, 'serviceName').value('Service name')
+    sandbox.stub(config, 'addressLookUpEnabled').value(false)
+    sandbox.stub(config, 'airbrakeEnabled').value(false)
+    sandbox.stub(config, 'redisEnabled').value(false)
+    sandbox.stub(config, 'serviceApiEnabled').value(false)
+    sandbox.stub(logger, 'debug').value(() => undefined)
+    sandbox.stub(logger, 'warn').value(() => undefined)
+    sandbox.stub(logger, 'error').value(() => undefined)
+    sandbox.stub(config, 'logLevel').value('error')
   }
 
   _stubCache () {

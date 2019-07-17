@@ -1,5 +1,6 @@
 const hapi = require('@hapi/hapi')
 const config = require('./config')
+const loadReferenceData = require('./lib/load-reference-data')
 
 const serverOptions = {
   port: config.port,
@@ -28,6 +29,12 @@ if (config.redisEnabled) {
 async function createServer () {
   // Create the hapi server
   const server = hapi.server(serverOptions)
+
+  // Add a reference to the server in the config
+  config.server = server
+
+  // Load reference data
+  config.referenceData = config.serviceApiEnabled ? await loadReferenceData() : {}
 
   // Register the plugins
   await server.register([

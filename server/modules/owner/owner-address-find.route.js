@@ -1,5 +1,5 @@
 const mixin = require('../../lib/mixin')
-class OwnerAddressFindHandlers extends mixin(require('../common/address/address-find.handler'), require('./owner-address-mixin')) {}
+class OwnerAddressFindHandlers extends mixin(require('../common/address/address-find.handlers'), require('./owner-address-mixin')) {}
 
 const handlers = new OwnerAddressFindHandlers()
 

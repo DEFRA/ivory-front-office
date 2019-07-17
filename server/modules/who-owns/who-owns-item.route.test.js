@@ -45,26 +45,6 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when who owns the item has not been selected', async () => {
       const response = await testHelper.server.inject(request)
       Code.expect(response.statusCode).to.equal(400)
-
-      const $ = testHelper.getDomParser(response.payload)
-
-      Code.expect($(testHelper.errorSummarySelector('who-owns-item')).text()).to.equal('Select who owns the item')
-      Code.expect($(testHelper.errorMessageSelector('who-owns-item')).text()).to.include('Select who owns the item')
-    })
-
-    lab.test('redirects correctly when who owns the item has been selected as someone else', async () => {
-      request.payload['who-owns-item'] = false
-      const response = await testHelper.server.inject(request)
-
-      Code.expect(response.statusCode).to.equal(302)
-      Code.expect(response.headers['location']).to.equal('/agent')
-      Code.expect(testHelper.cache.item.ownerIsAgent).to.equal(false)
-    })
-
-    lab.test('redirects correctly when who owns the item has been selected as themselves', async () => {
-      request.payload['who-owns-item'] = true
-      await testHelper.expectRedirection(request, '/owner-name')
-      Code.expect(testHelper.cache.item.ownerIsAgent).to.equal(true)
     })
   })
 })
