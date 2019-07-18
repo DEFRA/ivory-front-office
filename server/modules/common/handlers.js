@@ -1,5 +1,3 @@
-const { referenceData = {} } = require('../../config')
-
 module.exports = class Handlers {
   // Override any of these methods in a child handlers class if required
   async getCache (request, key) {
@@ -61,6 +59,10 @@ module.exports = class Handlers {
     return h.redirect(nextPath)
   }
 
+  errorLink (field) {
+    return `#${field}` // Can be overridden where required
+  }
+
   async failAction (request, h, errors) {
     const errorMessages = {}
 
@@ -69,7 +71,7 @@ module.exports = class Handlers {
       const field = path[0]
       errorMessages[field] = {
         text: this.errorMessages[field][type],
-        href: `#${referenceData[field] ? `${field}-1` : field}` // If this is a reference data field, then link to first option
+        href: this.errorLink(field)
       }
     })
 

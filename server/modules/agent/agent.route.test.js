@@ -27,7 +27,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal('How are you acting on behalf of the owner?')
+      Code.expect($('legend h1').text()).to.include('How are you acting on behalf of the owner?')
     })
   })
 
@@ -45,6 +45,9 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when nothing is selected', async () => {
       const response = await testHelper.server.inject(request)
       Code.expect(response.statusCode).to.equal(400)
+      return testHelper.expectValidationErrors(request, [
+        { field: 'agentActingAs', message: 'Select how you acting on behalf of the owner' }
+      ])
     })
   })
 })

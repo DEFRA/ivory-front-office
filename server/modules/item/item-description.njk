@@ -4,17 +4,17 @@
 
 {% block formContent %}
 
-    {{ govukTextarea({
-        name: "item-description",
-        id: "item-description",
-        value: viewData.itemDescription,
-        errorMessage: errors['item-description'],
-        label: {
-            text: "Describe the item"
-        },
-        hint: {
-            text: "Include any distinguishing features"
-        }
-    }) }}
+  {{ govukTextarea({
+    name: "item-description",
+    id: "item-description",
+    value: viewData.itemDescription,
+    errorMessage: errors['item-description'],
+    label: {
+      text: "Describe the item"
+    },
+    hint: {
+      text: "Include any distinguishing features"
+    }
+  }) }}
 
 {% endblock %}
