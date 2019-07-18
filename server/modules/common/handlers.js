@@ -21,10 +21,6 @@ module.exports = class Handlers {
     return request.route.settings.app.pageHeading
   }
 
-  async getFieldName (request) {
-    return request.route.settings.app.fieldName
-  }
-
   async getNextPath (request) {
     return request.route.settings.app.nextPath
   }
@@ -45,13 +41,12 @@ module.exports = class Handlers {
     // The default getHandler
 
     const pageHeading = await this.getPageHeading(request)
-    const fieldName = await this.getFieldName(request)
     const viewName = await this.getViewName(request)
     const viewData = await this.getViewData(request)
 
     return h.view(viewName, {
       pageHeading,
-      fieldName,
+      fieldName: this.fieldName,
       viewData: request.payload ? request.payload : viewData,
       errors,
       errorList: errors && Object.values(errors)

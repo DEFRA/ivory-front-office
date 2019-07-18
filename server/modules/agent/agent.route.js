@@ -16,7 +16,6 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'How are you acting on behalf of the owner?',
     view: 'common/option/select-one-option',
-    fieldName: handlers.fieldName,
     nextPath: '/owner-name'
   }
 })

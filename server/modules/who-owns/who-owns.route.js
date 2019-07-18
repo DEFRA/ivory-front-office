@@ -24,7 +24,6 @@ module.exports = handlers.routes({
   path: '/who-owns-item',
   app: {
     pageHeading: 'Who owns the item?',
-    fieldName: handlers.fieldName,
     view: 'common/option/select-one-option'
   }
   // nextPath is derived in the getNextPath method above
