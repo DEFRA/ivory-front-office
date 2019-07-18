@@ -1,3 +1,4 @@
+const { referenceData = {} } = require('../../config')
 
 module.exports = class Handlers {
   // Override any of these methods in a child handlers class if required
@@ -73,7 +74,7 @@ module.exports = class Handlers {
       const field = path[0]
       errorMessages[field] = {
         text: this.errorMessages[field][type],
-        href: `#${field}`
+        href: `#${referenceData[field] ? `${field}-1` : field}` // If this is a reference data field, then link to first option
       }
     })
 

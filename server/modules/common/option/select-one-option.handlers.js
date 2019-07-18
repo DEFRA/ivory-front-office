@@ -27,7 +27,7 @@ class SelectOneOptionHandlers extends require('../handlers') {
   get errorMessages () {
     return {
       [this.fieldName]: {
-        'any.required': this.selectionError
+        'any.required': this.selectError
       }
     }
   }
@@ -43,13 +43,16 @@ class SelectOneOptionHandlers extends require('../handlers') {
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
     const data = await this.getData(request)
+    const { hint } = this.referenceData
 
     // Use the payload in this special case to force the items to be displayed even when there is an error
     request.payload = {
-      items: this.items.map(({ value, text }) => {
+      hint: hint ? { text: hint } : undefined,
+      items: this.items.map(({ value, text, hint }) => {
         return {
           value: value.toString(),
           text,
+          hint: hint ? { text: hint } : undefined,
           checked: value === data[this.fieldName]
         }
       })
