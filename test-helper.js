@@ -59,6 +59,7 @@ module.exports = class TestHelper {
     sandbox.stub(config, 'redisEnabled').value(false)
     sandbox.stub(config, 'serviceApiEnabled').value(false)
     sandbox.stub(logger, 'debug').value(() => undefined)
+    sandbox.stub(logger, 'info').value(() => undefined)
     sandbox.stub(logger, 'warn').value(() => undefined)
     sandbox.stub(logger, 'error').value(() => undefined)
     sandbox.stub(config, 'logLevel').value('error')
