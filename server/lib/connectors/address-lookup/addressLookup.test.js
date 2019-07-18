@@ -3,9 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
 const TestHelper = require('../../../../test-helper')
-const { logger } = require('defra-logging-facade')
 const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
-const config = require('../../../config')
 const wreck = require('@hapi/wreck')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
@@ -15,10 +13,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   lab.beforeEach(() => {
     // Stub methods
     sandbox = sinon.createSandbox()
-    sandbox.stub(logger, 'info').value(() => undefined)
-    sandbox.stub(logger, 'debug').value(() => undefined)
-    sandbox.stub(config, 'airbrakeEnabled').value(() => false)
-    sandbox.stub(config, 'redisEnabled').value(() => false)
+    TestHelper.stubCommon(sandbox)
     sandbox.stub(wreck, 'request').value(() => undefined)
     sandbox.stub(wreck, 'read').value(() => lookupResponse)
   })

@@ -15,7 +15,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         method: 'GET',
         url
       }
-      testHelper.cache.item = {}
+      testHelper.cache.registration = {}
     })
 
     lab.test('page loads ok', async () => {
@@ -25,7 +25,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
 
     lab.test('page heading is correct when no agent', async () => {
-      testHelper.cache.item = { ownerIsAgent: true }
+      testHelper.cache.registration = { agentIsOwner: 'agent' }
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
