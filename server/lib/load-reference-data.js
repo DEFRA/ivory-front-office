@@ -19,8 +19,8 @@ async function load (path) {
 }
 
 async function loadReferenceData () {
-  // logger.info('Waiting for ivory api to load')
-  // await delay(10000) // Wait 10 seconds to allow ivory-api to load data
+  logger.info('Waiting for ivory api to load')
+  await delay(1000) // Wait 1 second to allow ivory-api to load data
   const groups = await load('/groups')
   const choices = await load('/choices')
   const referenceData = {}
