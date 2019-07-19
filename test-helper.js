@@ -98,7 +98,7 @@ module.exports = class TestHelper {
   }
 
   errorSummarySelector (field) {
-    return `.govuk-error-summary .govuk-list a[href="#${field}"]`
+    return `a[href="#${field}"], a[href="#${field}-1"]`
   }
 
   errorMessageSelector (field) {
@@ -111,7 +111,7 @@ module.exports = class TestHelper {
     const $ = this.getDomParser(response.payload)
 
     errors.forEach(({ field, message }) => {
-      Code.expect($(this.errorSummarySelector(field)).text()).to.equal(message)
+      Code.expect($(this.errorSummarySelector(field)).text()).to.include(message)
       Code.expect($(this.errorMessageSelector(field)).text()).to.include(message)
     })
   }

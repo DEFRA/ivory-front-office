@@ -1,57 +1,57 @@
 {% extends 'common/two-thirds-layout.njk' %}
 
 {% block formContent %}
-    <h2 class="govuk-heading-m">Your details</h2>
+  <h2 class="govuk-heading-m">Your details</h2>
 
-    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-                Name
-            </dt>
-            <dd id='owner-full-name' class="govuk-summary-list__value">
-                {{ viewData.owner.fullName }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/owner-name">
-                    Change
-                </a>
-            </dd>
-        </div>
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-                Address
-            </dt>
-            <dd id="owner-address-line" class="govuk-summary-list__value">
-                {{ viewData.ownerAddress.addressLine }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/owner-address">
-                    Change
-                </a>
-            </dd>
-        </div>
-    </dl>
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Name
+      </dt>
+      <dd id='owner-full-name' class="govuk-summary-list__value">
+        {{ viewData.owner.fullName }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="/owner-name">
+          Change
+        </a>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Address
+      </dt>
+      <dd id="owner-address-line" class="govuk-summary-list__value">
+        {{ viewData.ownerAddress.addressLine }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="/owner-address">
+          Change
+        </a>
+      </dd>
+    </div>
+  </dl>
 
-    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
-        <h2 class="govuk-heading-m">Item details</h2>
+    <h2 class="govuk-heading-m">Item details</h2>
 
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-                Item description
-            </dt>
-            <dd id="item-description" class="govuk-summary-list__value">
-                {{ viewData.item.description }}
-            </dd>
-            <dd class="govuk-summary-list__actions">
-                <a class="govuk-link" href="/item-description">
-                    Change
-                </a>
-            </dd>
-        </div>
-    </dl>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Item description
+      </dt>
+      <dd id="item-description" class="govuk-summary-list__value">
+        {{ viewData.item.description }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="/item-description">
+          Change
+        </a>
+      </dd>
+    </div>
+  </dl>
 {% endblock %}
 
 {% block continueButton %}
-    <button type="submit" class="govuk-button">Confirm and continue</button>
+  <button type="submit" class="govuk-button">Confirm and continue</button>
 {% endblock %}

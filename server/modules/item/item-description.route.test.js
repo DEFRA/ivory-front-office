@@ -44,13 +44,9 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('fails validation when the item description has not been entered', async () => {
       request.payload['item-description'] = ''
-      const response = await testHelper.server.inject(request)
-      Code.expect(response.statusCode).to.equal(400)
-
-      const $ = testHelper.getDomParser(response.payload)
-
-      Code.expect($(testHelper.errorSummarySelector('item-description')).text()).to.equal('Enter a description of the item')
-      Code.expect($(testHelper.errorMessageSelector('item-description')).text()).to.include('Enter a description of the item')
+      return testHelper.expectValidationErrors(request, [
+        { field: 'item-description', message: 'Enter a description of the item' }
+      ])
     })
 
     lab.test('redirects correctly when the item description has been entered', async () => {

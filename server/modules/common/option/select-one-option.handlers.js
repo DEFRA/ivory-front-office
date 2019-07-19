@@ -40,6 +40,10 @@ class SelectOneOptionHandlers extends require('../handlers') {
     return this.setCache(request, 'registration', registration)
   }
 
+  errorLink (field) {
+    return `#${referenceData[field] ? `${field}-1` : field}` // If this is a reference data field, then link to first option
+  }
+
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
     const data = await this.getData(request)
@@ -47,6 +51,7 @@ class SelectOneOptionHandlers extends require('../handlers') {
 
     // Use the payload in this special case to force the items to be displayed even when there is an error
     request.payload = {
+      legend: await this.getPageHeading(request),
       hint: hint ? { text: hint } : undefined,
       items: this.items.map(({ value, text, hint }) => {
         return {

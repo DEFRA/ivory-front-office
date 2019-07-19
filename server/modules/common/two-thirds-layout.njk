@@ -4,39 +4,40 @@
 {% from "button/macro.njk" import govukButton %}
 
 {% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
-    <h1 id="defra-page-heading" class="govuk-heading-l">{{ pageHeading }}</h1>
+      {% if errors %}
+        {% from "error-summary/macro.njk" import govukErrorSummary %}
 
-    {% if errors %}
-      {% from "error-summary/macro.njk" import govukErrorSummary %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
 
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: errorList
-      }) }}
-    {% endif %}
+      {% if not viewData.legend %}
+        <h1 id="defra-page-heading" class="govuk-heading-xl">{{ pageHeading }}</h1>
+      {% endif %}
+
+      <form method="post" autocomplete="off" {{ novalidateVal }}>
+        <input id="defra-csrf-token" type="hidden" name="DefraCsrfToken" value="{{ DefraCsrfToken }}">
+
+        {% block formContent %}{% endblock %}
 
 
-    <form method="post" autocomplete="off" {{ novalidateVal }}>
-      <input id="defra-csrf-token" type="hidden" name="DefraCsrfToken" value="{{DefraCsrfToken}}">
+        {% block continueButton %}
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        {% endblock %}
 
-      {% block formContent %}{% endblock %}
+        {% block formFooter %}{% endblock %}
 
+      </form>
 
-      {% block continueButton %}
-      {{ govukButton({
-        text: "Continue"
-      }) }}
-      {%  endblock %}
+      {% block contentFooter %}{% endblock %}
 
-      {% block formFooter %}{% endblock %}
-
-    </form>
-
-    {% block contentFooter %}{% endblock %}
-
+    </div>
   </div>
-</div>
 {% endblock %}

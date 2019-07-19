@@ -25,13 +25,14 @@ class AddressSelectHandlers extends mixin(require('../handlers'), require('./add
     // Use the payload in this special case to force the addresses to be displayed even when there is an error
     request.payload = {
       chooseAddressHint,
-      addresses: [{ text: `${postcodeAddressList.length} addresses found` }].concat(postcodeAddressList.map(({ addressLine, uprn }) => {
-        return {
-          value: uprn,
-          text: addressLine,
-          selected: uprn === address.uprn
-        }
-      })),
+      addresses: [{ text: `${postcodeAddressList.length} addresses found` }].concat(
+        postcodeAddressList.map(({ addressLine, uprn }) => {
+          return {
+            value: uprn,
+            text: addressLine,
+            selected: uprn === address.uprn
+          }
+        })),
       manualAddressLink: this.manualAddressLink
     }
 

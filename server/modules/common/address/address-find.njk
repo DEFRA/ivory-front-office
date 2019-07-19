@@ -2,49 +2,49 @@
 
 {% block formContent %}
 
-    {{ govukInput({
-        name: "postcode",
-        id: "postcode",
-        value: viewData.postcode,
-        errorMessage: errors['postcode'],
-        autocomplete: "postcode",
-        label: {
-            text: "UK Postcode"
-        },
-        hint: {
-            text: "For example WA4 1AB"
-        },
-        attributes: {
-            spellcheck: "false"
-        },
-        classes: "govuk-input--width-10"
-    }) }}
+  {{ govukInput({
+    name: "postcode",
+    id: "postcode",
+    value: viewData.postcode,
+    errorMessage: errors['postcode'],
+    autocomplete: "postcode",
+    label: {
+      text: "UK Postcode"
+    },
+    hint: {
+      text: "For example WA4 1AB"
+    },
+    attributes: {
+      spellcheck: "false"
+    },
+    classes: "govuk-input--width-10"
+  }) }}
 
 {% endblock %}
 
 {% block continueButton %}
 
-    {{ govukButton({
-        text: "Find address"
-    }) }}
+  {{ govukButton({
+    text: "Find address"
+  }) }}
 
 {% endblock %}
 
 {% block contentFooter %}
 
-    {% from "details/macro.njk" import govukDetails %}
+  {% from "details/macro.njk" import govukDetails %}
 
-    {% set detailsHtml %}
-        <p>Help and guidance...</p>
-        <ul class="list list-bullet">
-            <li>First thing to try</li>
-        </ul>
-        <p><a href="{{viewData.manualAddressLink}}">Enter your address manually</a></p>
-    {% endset %}
+  {% set detailsHtml %}
+    <p>Help and guidance...</p>
+    <ul class="list list-bullet">
+      <li>First thing to try</li>
+    </ul>
+    <p><a href="{{ viewData.manualAddressLink }}">Enter your address manually</a></p>
+  {% endset %}
 
-    {{ govukDetails({
-        summaryText: "Enter an address outside the UK",
-        html: detailsHtml
-    }) }}
+  {{ govukDetails({
+    summaryText: "Enter an address outside the UK",
+    html: detailsHtml
+  }) }}
 
 {% endblock %}

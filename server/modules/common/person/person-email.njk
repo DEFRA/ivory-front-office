@@ -4,18 +4,18 @@
 
 {% block formContent %}
 
-    {{ govukInput({
-        name: "email",
-        id: "email",
-        value: viewData.email,
-        errorMessage: errors['email'],
-        autocomplete: "email",
-        label: {
-            text: "Email address"
-        },
-        attributes: {
-            spellcheck: "false"
-        }
-    }) }}
+  {{ govukInput({
+    name: "email",
+    id: "email",
+    value: viewData.email,
+    errorMessage: errors['email'],
+    autocomplete: "email",
+    label: {
+      text: "Email address"
+    },
+    attributes: {
+      spellcheck: "false"
+    }
+  }) }}
 
 {% endblock %}

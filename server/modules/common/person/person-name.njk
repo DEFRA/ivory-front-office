@@ -4,18 +4,18 @@
 
 {% block formContent %}
 
-    {{ govukInput({
-        name: "full-name",
-        id: "full-name",
-        value: viewData.fullName,
-        errorMessage: errors['full-name'],
-        autocomplete: "name",
-        label: {
-            text: "Full name"
-        },
-        attributes: {
-            spellcheck: "false"
-        }
-    }) }}
+  {{ govukInput({
+    name: "full-name",
+    id: "full-name",
+    value: viewData.fullName,
+    errorMessage: errors['full-name'],
+    autocomplete: "name",
+    label: {
+      text: "Full name"
+    },
+    attributes: {
+      spellcheck: "false"
+    }
+  }) }}
 
 {% endblock %}

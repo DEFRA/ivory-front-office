@@ -27,7 +27,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await testHelper.server.inject(request)
       const $ = testHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal('Who owns the item?')
+      Code.expect($('legend h1').text()).to.include('Who owns the item?')
     })
   })
 
@@ -45,6 +45,9 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when who owns the item has not been selected', async () => {
       const response = await testHelper.server.inject(request)
       Code.expect(response.statusCode).to.equal(400)
+      return testHelper.expectValidationErrors(request, [
+        { field: 'agentIsOwner', message: 'Select who owns the item' }
+      ])
     })
   })
 })
