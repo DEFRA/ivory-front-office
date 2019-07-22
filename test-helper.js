@@ -51,6 +51,50 @@ module.exports = class TestHelper {
     })
   }
 
+  getRequestTests ({ lab, pageHeading, url }, requestTestsCallback) {
+    lab.experiment(`GET ${url}`, () => {
+      lab.beforeEach(({ context }) => {
+        context.request = {
+          method: 'GET',
+          url
+        }
+      })
+
+      lab.test('page loads ok', async ({ context }) => {
+        const response = await this.server.inject(context.request)
+        Code.expect(response.statusCode).to.equal(200)
+        Code.expect(response.headers['content-type']).to.include('text/html')
+      })
+
+      lab.test('page heading is correct', async ({ context }) => {
+        const response = await this.server.inject(context.request)
+        const $ = this.getDomParser(response.payload)
+
+        Code.expect($('#defra-page-heading, legend h1').text()).to.include(pageHeading)
+      })
+
+      if (requestTestsCallback) {
+        requestTestsCallback()
+      }
+    })
+  }
+
+  postRequestTests ({ lab, pageHeading, url }, requestTestsCallback) {
+    lab.experiment(`POST ${url}`, () => {
+      lab.beforeEach(({ context }) => {
+        context.request = {
+          method: 'POST',
+          url,
+          payload: {}
+        }
+      })
+
+      if (requestTestsCallback) {
+        requestTestsCallback()
+      }
+    })
+  }
+
   static stubCommon (sandbox) {
     sandbox.stub(dotenv, 'config').value(() => {})
     sandbox.stub(config, 'serviceName').value('Service name')
