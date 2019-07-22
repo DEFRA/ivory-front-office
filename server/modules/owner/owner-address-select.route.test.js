@@ -3,20 +3,15 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/owner-address-select'
+const pageHeading = `Owner's address`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab)
 
-  lab.experiment(`GET ${url}`, () => {
-    let request
+  testHelper.getRequestTests({ lab, pageHeading, url }, () => {
     let postcodeAddressList
 
     lab.beforeEach(() => {
-      request = {
-        method: 'GET',
-        url
-      }
-
       postcodeAddressList = [
         {
           uprn: '340116',
@@ -28,43 +23,29 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       ]
 
       testHelper.cache['owner-address'] = { postcodeAddressList }
-      testHelper.cache.registration = {}
     })
 
-    lab.test('page loads ok', async () => {
-      const response = await testHelper.server.inject(request)
-      Code.expect(response.statusCode).to.equal(200)
-      Code.expect(response.headers['content-type']).to.include('text/html')
-    })
-
-    lab.test('page heading is correct when no agent', async () => {
+    lab.test('page heading is correct when no agent', async ({ context }) => {
       testHelper.cache.registration = { agentIsOwner: 'agent' }
-      const response = await testHelper.server.inject(request)
+      const response = await testHelper.server.inject(context.request)
       const $ = testHelper.getDomParser(response.payload)
 
       Code.expect($('#defra-page-heading').text()).to.equal(`Your address`)
     })
 
-    lab.test('page heading is correct when there is an agent', async () => {
-      const response = await testHelper.server.inject(request)
-      const $ = testHelper.getDomParser(response.payload)
-
-      Code.expect($('#defra-page-heading').text()).to.equal(`Owner's address`)
-    })
-
-    lab.test('addresses has been pre-filled, none selected', async () => {
-      const response = await testHelper.server.inject(request)
+    lab.test('addresses has been pre-filled, none selected', async ({ context }) => {
+      const response = await testHelper.server.inject(context.request)
       const $ = testHelper.getDomParser(response.payload)
 
       Code.expect($('#address option:first-of-type').text()).to.equal(`${postcodeAddressList.length} addresses found`)
       Code.expect($('#address').val()).to.equal('')
     })
 
-    lab.test('addresses has been pre-filled, one selected', async () => {
+    lab.test('addresses has been pre-filled, one selected', async ({ context }) => {
       const uprn = postcodeAddressList[0].uprn
       testHelper.cache['owner-address'].uprn = uprn
 
-      const response = await testHelper.server.inject(request)
+      const response = await testHelper.server.inject(context.request)
       const $ = testHelper.getDomParser(response.payload)
 
       Code.expect($('#address option:first-of-type').text()).to.equal(`${postcodeAddressList.length} addresses found`)
@@ -72,17 +53,9 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
   })
 
-  lab.experiment(`POST ${url}`, () => {
-    let request
+  testHelper.postRequestTests({ lab, pageHeading, url }, () => {
     const address = { uprn: '1234' }
-
     lab.beforeEach(() => {
-      request = {
-        method: 'POST',
-        url,
-        payload: {}
-      }
-
       testHelper.cache['owner-address'] = {
         postcodeAddressList: [
           address
@@ -90,14 +63,16 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       }
     })
 
-    lab.test('fails validation when an address has not been selected', async () => {
+    lab.test('fails validation when an address has not been selected', async ({ context }) => {
+      const { request } = context
       request.payload['address'] = ''
       return testHelper.expectValidationErrors(request, [
         { field: 'address', message: 'Select an address' }
       ])
     })
 
-    lab.test('redirects correctly when the address has been selected', async () => {
+    lab.test('redirects correctly when the address has been selected', async ({ context }) => {
+      const { request } = context
       request.payload['address'] = address.uprn
       await testHelper.expectRedirection(request, '/item-description')
       Code.expect(testHelper.cache['owner-address'].uprn).to.equal(address.uprn)
