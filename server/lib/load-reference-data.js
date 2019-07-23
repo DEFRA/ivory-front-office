@@ -26,7 +26,9 @@ async function loadReferenceData () {
   const choices = await load('/choices')
   const referenceData = {}
   groups.forEach((group) => {
-    group.choices = choices.filter(({ groupId }) => groupId === group.id)
+    group.choices = choices
+      .sort(({ rank: firstRank }, { rank: secondRank }) => firstRank > secondRank)
+      .filter(({ groupId }) => groupId === group.id)
     referenceData[group.type] = group
   })
   return referenceData
