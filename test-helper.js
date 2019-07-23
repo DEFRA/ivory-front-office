@@ -76,6 +76,16 @@ module.exports = class TestHelper {
       if (requestTestsCallback) {
         requestTestsCallback()
       }
+
+      lab.test('get throws an error', async ({ context }) => {
+        this._sandbox.stub(Handlers.prototype, 'getHandler').value(() => {
+          throw new Error('Failed to load heading')
+        })
+        const response = await this.server.inject(context.request)
+        const $ = this.getDomParser(response.payload)
+
+        Code.expect($('h1').text()).to.include('Sorry, there is a problem with the service')
+      })
     })
   }
 
@@ -92,6 +102,16 @@ module.exports = class TestHelper {
       if (requestTestsCallback) {
         requestTestsCallback()
       }
+
+      lab.test('post throws an error', async ({ context }) => {
+        this._sandbox.stub(Handlers.prototype, 'getHandler').value(() => {
+          throw new Error('Failed to load heading')
+        })
+        const response = await this.server.inject(context.request)
+        const $ = this.getDomParser(response.payload)
+
+        Code.expect($('h1').text()).to.include('Sorry, there is a problem with the service')
+      })
     })
   }
 
@@ -106,6 +126,7 @@ module.exports = class TestHelper {
     sandbox.stub(logger, 'info').value(() => undefined)
     sandbox.stub(logger, 'warn').value(() => undefined)
     sandbox.stub(logger, 'error').value(() => undefined)
+    sandbox.stub(logger, 'serverError').value(() => undefined)
     sandbox.stub(config, 'logLevel').value('error')
   }
 
