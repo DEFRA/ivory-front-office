@@ -26,17 +26,7 @@ if (config.redisEnabled) {
   }
 }
 
-async function createServer () {
-  // Create the hapi server
-  const server = hapi.server(serverOptions)
-
-  // Add a reference to the server in the config
-  config.server = server
-
-  // Load reference data
-  config.referenceData = config.serviceApiEnabled ? await loadReferenceData() : {}
-
-  // Register the plugins
+async function registerPlugins (server) {
   await server.register([
     require('@hapi/inert'),
     require('./plugins/views'),
@@ -60,6 +50,28 @@ async function createServer () {
       require('blipp')
     ])
   }
+}
+
+async function createServer () {
+  // Create the hapi server
+  const server = hapi.server(serverOptions)
+
+  // Add a reference to the server in the config
+  config.server = server
+
+  // Load reference data
+  if (config.serviceApiEnabled) {
+    // Add protocol to service api url if it doesn't exist already
+    if (!config.serviceApi.includes('://')) {
+      config.serviceApi = `${server.info.protocol}://${config.serviceApi}`
+    }
+    config.referenceData = await loadReferenceData()
+  } else {
+    config.referenceData = {}
+  }
+
+  // Register the plugins
+  await registerPlugins(server)
 
   return server
 }

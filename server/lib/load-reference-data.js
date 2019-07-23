@@ -1,10 +1,11 @@
 const Wreck = require('@hapi/wreck')
 const { logger } = require('defra-logging-facade')
-const { serviceApi } = require('../config')
+const config = require('../config')
 // const { getNestedVal, delay } = require('../lib/utils')
 const { getNestedVal } = require('../lib/utils')
 
 async function load (path) {
+  const { serviceApi } = config
   const headers = {
     'Content-Type': 'application/json'
   }
