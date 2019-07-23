@@ -1,5 +1,8 @@
-const mixin = require('../../lib/mixin')
-class OwnerNameHandlers extends mixin(require('../common/person/person-email.handlers'), require('./owner-person-mixin')) {
+class OwnerNameHandlers extends require('../common/person/person-email.handlers') {
+  get personType () {
+    return 'owner'
+  }
+
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
     const { agentIsOwner } = await this.getCache(request, 'registration') || {}
