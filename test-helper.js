@@ -118,7 +118,7 @@ module.exports = class TestHelper {
   static stubCommon (sandbox) {
     sandbox.stub(dotenv, 'config').value(() => {})
     sandbox.stub(config, 'serviceName').value('Service name')
-    sandbox.stub(config, 'addressLookUpEnabled').value(false)
+    sandbox.stub(config, 'addressLookUpEnabled').value(true)
     sandbox.stub(config, 'airbrakeEnabled').value(false)
     sandbox.stub(config, 'redisEnabled').value(false)
     sandbox.stub(config, 'serviceApiEnabled').value(false)
