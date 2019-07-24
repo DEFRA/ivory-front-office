@@ -1,9 +1,9 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
-const TestHelper = require('../../../test-helper')
-const addressLookup = require('../../lib/connectors/address-lookup/addressLookup')
-const config = require('../../config')
+const TestHelper = require('../../../../test-helper')
+const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
+const config = require('../../../config')
 const url = '/owner-address'
 const pageHeading = `Owner's address`
 
