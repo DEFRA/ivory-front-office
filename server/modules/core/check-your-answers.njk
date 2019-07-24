@@ -3,6 +3,41 @@
 {% block formContent %}
   <h2 class="govuk-heading-m">Your details</h2>
 
+  {% if viewData.agentIsOwner == 'someone-else' %}
+
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Name
+      </dt>
+      <dd id='agent-full-name' class="govuk-summary-list__value">
+        {{ viewData.agent.fullName }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="/agent-name">
+          Change
+        </a>
+      </dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Address
+      </dt>
+      <dd id="agent-address-line" class="govuk-summary-list__value">
+        {{ viewData.agentAddress.addressLine }}
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a class="govuk-link" href="/agent-address">
+          Change
+        </a>
+      </dd>
+    </div>
+  </dl>
+
+  <h2 class="govuk-heading-m">Owner details</h2>
+
+  {% endif %}
+
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
@@ -32,9 +67,9 @@
     </div>
   </dl>
 
-  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+  <h2 class="govuk-heading-m">Item details</h2>
 
-    <h2 class="govuk-heading-m">Item details</h2>
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
 
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
