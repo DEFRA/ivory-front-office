@@ -30,21 +30,20 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
 
   async lookUpAddress (postcode) {
     const address = { postcode: this.formattedPostcode(postcode) }
-    if (config.addressLookUpEnabled) {
-      const addresses = await addressLookup.lookUpByPostcode(address.postcode)
-      const { errorCode, message } = addresses
-      if (errorCode) {
-        throw new Error(message)
-      }
-      address.postcodeAddressList = addresses
-    } else {
-      address.postcodeAddressList = []
+    const addresses = await addressLookup.lookUpByPostcode(address.postcode)
+    const { errorCode, message } = addresses
+    if (errorCode) {
+      throw new Error(message)
     }
+    address.postcodeAddressList = addresses
     return address
   }
 
   // Overrides parent class getHandler
   async getHandler (request, h, errors) {
+    if (!config.addressLookUpEnabled) {
+      return h.redirect(this.manualAddressLink)
+    }
     const address = await this.getAddress(request)
     this.viewData = {
       postcode: address.postcode,
