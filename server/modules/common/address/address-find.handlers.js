@@ -20,7 +20,7 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
   }
 
   // Overrides parent class getNextPath
-  async getNextPath (request) {
+  async getNextPath () {
     return this.selectAddressLink
   }
 
@@ -60,6 +60,11 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
 
     if (postcode !== this.formattedPostcode(address.postcode)) {
       address = await this.lookUpAddress(postcode)
+      if (address.postcodeAddressList.message) {
+        // Force an invalid postcode error
+        const { error } = Joi.object({ postcode: Joi.required() }).validate({})
+        return this.failAction(request, h, error)
+      }
     }
 
     await this.setAddress(request, address)
