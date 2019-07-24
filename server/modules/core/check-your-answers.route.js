@@ -1,7 +1,8 @@
 class CheckYourAnswersHandlers extends require('../common/handlers') {
   async getHandler (request, h, errors) {
-    const [owner, ownerAddress, item] = await this.getCache(request, ['owner', 'owner-address', 'item'])
-    this.viewData = { owner, ownerAddress, item }
+    const { agentIsOwner } = await this.getCache(request, 'registration') || {}
+    const [owner, ownerAddress, agent, agentAddress, item] = await this.getCache(request, ['owner', 'owner-address', 'agent', 'agent-address', 'item'])
+    this.viewData = { agentIsOwner, owner, ownerAddress, agent, agentAddress, item }
     return super.getHandler(request, h, errors)
   }
 }
