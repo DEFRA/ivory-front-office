@@ -2,9 +2,9 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
-const TestHelper = require('../../../test-helper')
+const TestHelper = require('../../test-helper')
 const Persistence = require('./persistence')
-const config = require('../../config')
+const config = require('../config')
 const wreck = require('@hapi/wreck')
 
 const path = '/path'

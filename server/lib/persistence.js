@@ -1,11 +1,12 @@
 const Wreck = require('@hapi/wreck')
+const merge = require('lodash.merge')
 const { logger } = require('defra-logging-facade')
-const config = require('../../config')
-const { getNestedVal } = require('../../lib/utils')
+const config = require('../config')
+const { getNestedVal, cloneAndMerge } = require('../lib/utils')
 
 module.exports = class Persistence {
   constructor (options = {}) {
-    Object.assign(this, options)
+    merge(this, options)
   }
 
   async save (data) {
@@ -20,7 +21,7 @@ module.exports = class Persistence {
     const method = id ? 'PATCH' : 'POST'
     const path = id ? `${this.path}/${id}` : this.path
     const uri = serviceApi + path
-    const payloadData = Object.assign({}, data, { id: undefined })
+    const payloadData = cloneAndMerge(data, { id: undefined })
 
     const headers = { 'Content-Type': 'application/json' }
     const payload = JSON.stringify(payloadData)
