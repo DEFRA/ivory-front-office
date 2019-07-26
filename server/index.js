@@ -1,5 +1,6 @@
 const hapi = require('@hapi/hapi')
 const config = require('./config')
+const { logger } = require('defra-logging-facade')
 const loadReferenceData = require('./lib/load-reference-data')
 
 const serverOptions = {
@@ -52,6 +53,22 @@ async function registerPlugins (server) {
   }
 }
 
+function startHandler (server) {
+  logger.info(`Ivory front office is starting...`)
+  logger.info(`Log level: ${config.logLevel}`)
+
+  // listen on SIGTERM signal and gracefully stop the server
+  process.on('SIGTERM', function () {
+    logger.info('Received SIGTERM scheduling shutdown...')
+    logger.info(`Ivory front office is stopping...`)
+
+    server.stop({ timeout: 10000 }).then(function (err) {
+      logger.info('Shutdown complete')
+      process.exit((err) ? 1 : 0)
+    })
+  })
+}
+
 async function createServer () {
   // Create the hapi server
   const server = hapi.server(serverOptions)
@@ -72,6 +89,8 @@ async function createServer () {
 
   // Register the plugins
   await registerPlugins(server)
+
+  server.events.on('start', () => startHandler(server))
 
   return server
 }
