@@ -5,7 +5,7 @@ const url = '/item-description'
 const pageHeading = 'Item description'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab)
+  const testHelper = new TestHelper(lab, __filename)
 
   testHelper.getRequestTests({ lab, pageHeading, url })
 

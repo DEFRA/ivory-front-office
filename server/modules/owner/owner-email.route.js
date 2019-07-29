@@ -1,3 +1,5 @@
+const utils = require('../../lib/utils')
+
 class OwnerNameHandlers extends require('../common/person/person-email.handlers') {
   get personType () {
     return 'owner'
@@ -5,8 +7,8 @@ class OwnerNameHandlers extends require('../common/person/person-email.handlers'
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const { agentIsOwner } = await this.getCache(request, 'registration') || {}
-    if (agentIsOwner === 'agent') {
+    const { agentIsOwner } = await utils.getCache(request, 'registration') || {}
+    if (agentIsOwner) {
       return `Your email address`
     }
     return `Owner's email address`

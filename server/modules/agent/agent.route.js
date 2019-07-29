@@ -5,7 +5,7 @@ class AgentHandlers extends require('../common/option/select-one-option.handlers
   }
 
   get selectError () {
-    return 'Select how you acting on behalf of the owner'
+    return 'Select how you are acting on behalf of the owner'
   }
 }
 

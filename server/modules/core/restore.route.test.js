@@ -1,7 +1,8 @@
 const Lab = require('@hapi/lab')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const url = '/'
+const id = 'eda64615-c9c4-4047-9190-41ece7d34df3'
+const url = `/restore/${id}`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const testHelper = new TestHelper(lab, __filename)

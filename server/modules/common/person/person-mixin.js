@@ -1,17 +1,15 @@
-const Persistence = require('../../../lib/persistence')
-const persistence = new Persistence({ path: '/people' })
+const syncRegistration = require('../../../lib/sync-registration')
+const utils = require('../../../lib/utils')
 
 module.exports = {
   async getPerson (request) {
-    return this.getCache(request, this.personType) || {}
+    return await utils.getCache(request, this.personType) || {}
   },
 
   async setPerson (request, person, persistToDatabase) {
+    await utils.setCache(request, this.personType, person)
     if (persistToDatabase) {
-      const { id, fullName, email } = person
-      const saved = await persistence.save({ id, fullName, email })
-      person.id = saved.id
+      return syncRegistration.save(request)
     }
-    return this.setCache(request, this.personType, person)
   }
 }

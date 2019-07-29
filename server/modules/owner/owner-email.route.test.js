@@ -6,11 +6,11 @@ const url = '/owner-email'
 const pageHeading = `Owner's email address`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab)
+  const testHelper = new TestHelper(lab, __filename)
 
   testHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      testHelper.cache.registration = { agentIsOwner: 'agent' }
+      testHelper.cache.registration = { agentIsOwner: true }
       const response = await testHelper.server.inject(context.request)
       const $ = testHelper.getDomParser(response.payload)
 

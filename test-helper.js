@@ -6,12 +6,15 @@ const Handlers = require('./server/modules/common/handlers')
 const dotenv = require('dotenv')
 const config = require('./server/config')
 const { logger } = require('defra-logging-facade')
+const syncRegistration = require('./server/lib/sync-registration')
+const utils = require('./server/lib/utils')
+const routesPlugin = require('./server/plugins/router')
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity
 
 module.exports = class TestHelper {
-  constructor (lab, options) {
+  constructor (lab, testFile, options) {
     const { stubCallback, stubCache = true } = options || {}
 
     lab.beforeEach(async () => {
@@ -35,6 +38,10 @@ module.exports = class TestHelper {
       if (stubCallback) {
         stubCallback(this._sandbox)
       }
+
+      // Stub the routes to include only the tested route derived from the test filename
+      const routes = TestHelper.getFile(testFile).replace('.test.js', '.js').substr(1)
+      this._sandbox.stub(routesPlugin, 'options').value({ routes })
 
       this._server = await require('./server')()
     })
@@ -115,7 +122,8 @@ module.exports = class TestHelper {
     })
   }
 
-  static stubCommon (sandbox) {
+  static stubCommon (sandbox, options = {}) {
+    const { skip = {} } = options
     sandbox.stub(dotenv, 'config').value(() => {})
     sandbox.stub(config, 'serviceName').value('Service name')
     sandbox.stub(config, 'addressLookUpEnabled').value(true)
@@ -128,16 +136,20 @@ module.exports = class TestHelper {
     sandbox.stub(logger, 'error').value(() => undefined)
     sandbox.stub(logger, 'serverError').value(() => undefined)
     sandbox.stub(config, 'logLevel').value('error')
+    if (!skip.syncRegistration) {
+      sandbox.stub(syncRegistration, 'save').value((data) => data)
+      sandbox.stub(syncRegistration, 'restore').value((data) => data)
+    }
   }
 
   _stubCache () {
-    this._sandbox.stub(Handlers.prototype, 'getCache').value((request, key) => {
+    this._sandbox.stub(utils, 'getCache').value((request, key) => {
       if (typeof key === 'string') {
         return this._cache[key]
       }
       return key.map((key) => this._cache[key])
     })
-    this._sandbox.stub(Handlers.prototype, 'setCache').value((request, key, val) => { this._cache[key] = val })
+    this._sandbox.stub(utils, 'setCache').value((request, key, val) => { this._cache[key] = val })
   }
 
   get server () {

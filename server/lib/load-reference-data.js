@@ -21,7 +21,7 @@ async function load (path) {
 }
 
 async function loadReferenceData () {
-  logger.info('Waiting for ivory api to load')
+  logger.info('Waiting for ivory services to load')
   // await delay(1000) // Wait 1 second to allow ivory-api to load data
   const groups = await load('/groups')
   const choices = await load('/choices')
@@ -30,6 +30,7 @@ async function loadReferenceData () {
     group.choices = choices
       .sort(({ rank: firstRank }, { rank: secondRank }) => firstRank > secondRank)
       .filter(({ groupId }) => groupId === group.id)
+      .map((choice) => Object.assign(choice, { value: choice.value !== undefined ? choice.value : choice.shortName }))
     referenceData[group.type] = group
   })
   return referenceData

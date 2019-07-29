@@ -19,17 +19,22 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     sandbox.restore()
   })
 
-  // lab.experiment('cloneAndMerge', () => {
-  //   lab.test('when a property is overridden with undefined', async () => {
-  //     const obj1 = { a: 'details', b: { c: { f: 'deep details' } }, d: 'more details' }
-  //     const obj1String = JSON.stringify(obj1)
-  //     const obj2 = { d: undefined, e: 'other details', g: { h: 'even more deep details' } }
-  //     // const obj2String = JSON.stringify(obj2)
-  //     const obj3 = utils.cloneAndMerge(obj1, obj2)
-  //     const obj3String = JSON.stringify(obj3)
-  //     Code.expect(obj1String).to.equal(obj3String)
-  //   })
-  // })
+  lab.experiment('cloneAndMerge', () => {
+    lab.test('properties are deleted when it is overridden with null', async () => {
+      const obj1 = { a: 'details', b: { c: { d: 'deep details' } }, e: 'more details' }
+      const obj1String = JSON.stringify(obj1)
+      const obj2 = { e: null, f: 'other details', g: { h: 'even more deep details' } }
+      const obj2String = JSON.stringify(obj2)
+      const obj3 = utils.cloneAndMerge(obj1, obj2)
+
+      // Make sure neither object has been mutated
+      Code.expect(JSON.stringify(obj1)).to.equal(obj1String)
+      Code.expect(JSON.stringify(obj2)).to.equal(obj2String)
+
+      // Now make sure the merge happened correctly with the e property deleted
+      Code.expect(JSON.stringify(obj3)).to.equal('{"a":"details","b":{"c":{"d":"deep details"}},"f":"other details","g":{"h":"even more deep details"}}')
+    })
+  })
 
   lab.experiment('Cache:', () => {
     const cache = {}
@@ -50,7 +55,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       lab.test(`when key is a string and the data doesn't exist`, async () => {
         delete cache.data
         const data = await utils.getCache(request, 'data')
-        Code.expect(data).to.equal({})
+        Code.expect(data).to.equal(undefined)
       })
 
       lab.test('when key is an array of keys', async () => {

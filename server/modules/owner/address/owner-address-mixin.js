@@ -1,3 +1,5 @@
+const utils = require('../../../lib/utils')
+
 module.exports = {
   get addressType () {
     return 'owner-address'
@@ -17,8 +19,8 @@ module.exports = {
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const { agentIsOwner } = await this.getCache(request, 'registration') || {}
-    if (agentIsOwner === 'agent') {
+    const { agentIsOwner } = await utils.getCache(request, 'registration') || {}
+    if (agentIsOwner) {
       return `Your address`
     }
     return `Owner's address`

@@ -57,7 +57,7 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
     let address = await this.getAddress(request)
     const postcode = this.formattedPostcode(request.payload.postcode)
 
-    if (postcode !== this.formattedPostcode(address.postcode)) {
+    if (!address.postcodeAddressList || postcode !== this.formattedPostcode(address.postcode)) {
       address = await this.lookUpAddress(postcode)
       if (address.postcodeAddressList.message) {
         // Force an invalid postcode error

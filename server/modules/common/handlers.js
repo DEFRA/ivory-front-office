@@ -1,20 +1,4 @@
 module.exports = class Handlers {
-  // Override any of these methods in a child handlers class if required
-  async getCache (request, key) {
-    if (typeof key === 'string') {
-      return request.yar.get(key) || {}
-    }
-    // Retrieve each item specified in the array of keys
-    // usage: const [a, b, c] = await this.getCache(request, ['a', 'b', 'c'])
-    return Promise.all(key.map(async (key) => {
-      return this.getCache(request, key)
-    }))
-  }
-
-  async setCache (request, key, val) {
-    request.yar.set(key, val)
-  }
-
   async getPageHeading (request) {
     return request.route.settings.app.pageHeading
   }

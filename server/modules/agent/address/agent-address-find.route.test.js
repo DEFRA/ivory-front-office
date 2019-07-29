@@ -7,7 +7,7 @@ const url = '/agent-address'
 const pageHeading = `Your address`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab, {
+  const testHelper = new TestHelper(lab, __filename, {
     stubCallback: (sandbox) => {
       sandbox.stub(addressLookup, 'lookUpByPostcode').value((postcode) => {
         if (postcode === 'WA41AB') {
