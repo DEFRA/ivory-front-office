@@ -1,4 +1,4 @@
-const Persistence = require('../common/persistence')
+const Persistence = require('../../lib/persistence')
 const persistence = new Persistence({ path: '/items' })
 const Joi = require('@hapi/joi')
 

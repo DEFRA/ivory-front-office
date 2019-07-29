@@ -1,4 +1,4 @@
-const Persistence = require('../persistence')
+const Persistence = require('../../../lib/persistence')
 const persistence = new Persistence({ path: '/addresses' })
 
 module.exports = {
