@@ -1,6 +1,6 @@
-const Persistence = require('../../lib/persistence')
-const persistence = new Persistence({ path: '/items' })
 const Joi = require('@hapi/joi')
+const syncRegistration = require('../../lib/sync-registration')
+const utils = require('../../lib/utils')
 
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
@@ -18,16 +18,14 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
   }
 
   async getItem (request) {
-    return this.getCache(request, 'item') || {}
+    return await utils.getCache(request, 'item') || {}
   }
 
   async setItem (request, item, persistToDatabase) {
+    await utils.setCache(request, 'item', item)
     if (persistToDatabase) {
-      const { id, description } = item
-      const saved = await persistence.save({ id, description })
-      item.id = saved.id
+      return syncRegistration.save(request)
     }
-    return this.setCache(request, 'item', item)
   }
 
   // Overrides parent class getHandler

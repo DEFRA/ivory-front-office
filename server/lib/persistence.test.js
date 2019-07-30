@@ -10,7 +10,6 @@ const wreck = require('@hapi/wreck')
 const path = '/path'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const saveResponse = { saved: true }
   let sandbox
   let requestArgs
   let requestMethod
@@ -23,7 +22,6 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     TestHelper.stubCommon(sandbox)
     sandbox.stub(config, 'serviceApiEnabled').value(true)
     sandbox.stub(wreck, 'request').value(async (...args) => requestMethod(...args))
-    sandbox.stub(wreck, 'read').value(async () => saveResponse)
   })
 
   lab.afterEach(async () => {
@@ -31,56 +29,111 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     sandbox.restore()
   })
 
-  lab.test('save when api is enabled', async () => {
-    const data = { hasData: true }
-    const persistence = new Persistence({ path })
-    const result = await persistence.save(data)
-    Code.expect(result).to.equal(saveResponse)
+  lab.experiment('save', () => {
+    const saveResponse = { saved: true }
 
-    // Now check request was called with the correct arguments
-    const [method, uri, { payload }] = requestArgs
-    Code.expect(method).to.equal('POST')
-    Code.expect(uri).to.endWith(path)
-    Code.expect(JSON.parse(payload).hasData).to.equal(true)
+    lab.beforeEach(() => {
+      sandbox.stub(wreck, 'read').value(async () => saveResponse)
+    })
+
+    lab.test('when api is enabled', async () => {
+      const data = { hasData: true }
+      const persistence = new Persistence({ path })
+      const result = await persistence.save(data)
+      Code.expect(result).to.equal(saveResponse)
+
+      // Now check request was called with the correct arguments
+      const [method, uri, { payload }] = requestArgs
+      Code.expect(method).to.equal('POST')
+      Code.expect(uri).to.endWith(path)
+      Code.expect(JSON.parse(payload).hasData).to.equal(true)
+    })
+
+    lab.test('when api is enabled and data contains an id', async () => {
+      const data = { id: '59e06f54-e1ea-4cc3-a373-69db89174dfc', hasData: true }
+      const persistence = new Persistence({ path })
+      const result = await persistence.save(data)
+      Code.expect(result).to.equal(saveResponse)
+
+      // Now check request was called with the correct arguments
+      const [method, uri, { payload }] = requestArgs
+      Code.expect(method).to.equal('PATCH')
+      Code.expect(uri).to.endWith(`${path}/${data.id}`)
+      Code.expect(JSON.parse(payload).hasData).to.equal(true)
+    })
+
+    lab.test('when api is disabled', async () => {
+      sandbox.stub(config, 'serviceApiEnabled').value(false)
+      const data = { hasData: true }
+      const persistence = new Persistence({ path })
+      const result = await persistence.save(data)
+      Code.expect(result.hasData).to.equal(true)
+    })
+
+    lab.test('when request throws an error', async () => {
+      const data = { hasSomeData: true }
+
+      // Override stubbed request method
+      const testError = new Error('test error')
+      requestMethod = () => {
+        throw testError
+      }
+
+      const persistence = new Persistence({ path })
+      let error
+      try {
+        await persistence.save(data)
+      } catch (err) {
+        error = err
+      }
+      Code.expect(error).to.equal(testError)
+    })
   })
 
-  lab.test('save when api is enabled and data contains an id', async () => {
-    const data = { id: '59e06f54-e1ea-4cc3-a373-69db89174dfc', hasData: true }
-    const persistence = new Persistence({ path })
-    const result = await persistence.save(data)
-    Code.expect(result).to.equal(saveResponse)
+  lab.experiment('restore', () => {
+    const restoreResponse = { restored: true }
 
-    // Now check request was called with the correct arguments
-    const [method, uri, { payload }] = requestArgs
-    Code.expect(method).to.equal('PATCH')
-    Code.expect(uri).to.endWith(`${path}/${data.id}`)
-    Code.expect(JSON.parse(payload).hasData).to.equal(true)
-  })
+    lab.beforeEach(() => {
+      sandbox.stub(wreck, 'read').value(async () => restoreResponse)
+    })
 
-  lab.test('save when api is disabled', async () => {
-    sandbox.stub(config, 'serviceApiEnabled').value(false)
-    const data = { hasData: true }
-    const persistence = new Persistence({ path })
-    const result = await persistence.save(data)
-    Code.expect(result.hasData).to.equal(true)
-  })
+    lab.test('when api is enabled', async () => {
+      const id = 'ID'
+      const persistence = new Persistence({ path })
+      const result = await persistence.restore(id)
+      Code.expect(result).to.equal(restoreResponse)
 
-  lab.test('save when request throws an error', async () => {
-    const data = { hasSomeData: true }
+      // Now check request was called with the correct arguments
+      const [method, uri] = requestArgs
+      Code.expect(method).to.equal('GET')
+      Code.expect(uri).to.endWith(`${path}/${id}`)
+    })
 
-    // Override stubbed request method
-    const testError = new Error('test error')
-    requestMethod = () => {
-      throw testError
-    }
+    lab.test('when api is disabled', async () => {
+      sandbox.stub(config, 'serviceApiEnabled').value(false)
+      const id = 'ID'
+      const persistence = new Persistence({ path })
+      const result = await persistence.restore(id)
+      Code.expect(result).to.equal({ id })
+    })
 
-    const persistence = new Persistence({ path })
-    let error
-    try {
-      await persistence.save(data)
-    } catch (err) {
-      error = err
-    }
-    Code.expect(error).to.equal(testError)
+    lab.test('when request throws an error', async () => {
+      const id = 'ID'
+
+      // Override stubbed request method
+      const testError = new Error('test error')
+      requestMethod = () => {
+        throw testError
+      }
+
+      const persistence = new Persistence({ path })
+      let error
+      try {
+        await persistence.restore(id)
+      } catch (err) {
+        error = err
+      }
+      Code.expect(error).to.equal(testError)
+    })
   })
 })

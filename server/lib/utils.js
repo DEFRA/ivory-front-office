@@ -1,6 +1,6 @@
 const merge = require('lodash.merge')
 
-module.exports = {
+const utils = {
   // Usage: const val = getNestedVal(myObj, 'a.b.c')
   getNestedVal (nestedObj, path) {
     return path
@@ -18,7 +18,7 @@ module.exports = {
     const obj = {}
     merge(obj, ...args)
     Object.entries(obj).forEach(([prop, val]) => {
-      if (val === undefined) {
+      if (val === null) {
         delete obj[prop]
       }
     })
@@ -27,12 +27,12 @@ module.exports = {
 
   async getCache (request, key) {
     if (typeof key === 'string') {
-      return request.yar.get(key) || {}
+      return request.yar.get(key)
     }
     // Retrieve each item specified in the array of keys
-    // usage: const [a, b, c] = await this.getCache(request, ['a', 'b', 'c'])
+    // usage: const [a, b, c] = await utils.getCache(request, ['a', 'b', 'c'])
     return Promise.all(key.map(async (key) => {
-      return this.getCache(request, key)
+      return utils.getCache(request, key)
     }))
   },
 
@@ -40,3 +40,5 @@ module.exports = {
     request.yar.set(key, val)
   }
 }
+
+module.exports = utils

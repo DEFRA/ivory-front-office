@@ -10,7 +10,7 @@ class WhoOwnsHandlers extends require('../common/option/select-one-option.handle
   // Overrides parent class getNextPath
   async getNextPath (request) {
     const { agentIsOwner } = await this.getData(request)
-    if (agentIsOwner === 'agent') {
+    if (agentIsOwner) {
       return '/owner-name'
     } else {
       return '/agent'

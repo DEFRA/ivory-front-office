@@ -3,7 +3,7 @@
 {% block formContent %}
   <h2 class="govuk-heading-m">Your details</h2>
 
-  {% if viewData.agentIsOwner == 'someone-else' %}
+  {% if not viewData.agentIsOwner %}
 
   <dl class="govuk-summary-list govuk-!-margin-bottom-9">
     <div class="govuk-summary-list__row">

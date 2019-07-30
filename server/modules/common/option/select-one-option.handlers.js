@@ -1,4 +1,5 @@
 const Joi = require('@hapi/joi')
+const utils = require('../../../lib/utils')
 const { referenceData } = require('../../../config')
 
 class SelectOneOptionHandlers extends require('../handlers') {
@@ -12,8 +13,8 @@ class SelectOneOptionHandlers extends require('../handlers') {
 
   get items () {
     return this.choices
-      .map(({ label: text, shortName: value, hint }) => {
-        return { text, value, hint }
+      .map(({ label: text, shortName: value, hint, value: storedValue }) => {
+        return { text, value, hint, storedValue }
       })
   }
 
@@ -33,15 +34,15 @@ class SelectOneOptionHandlers extends require('../handlers') {
   }
 
   async getData (request) {
-    return this.getCache(request, 'registration') || {}
+    return await utils.getCache(request, 'registration') || {}
   }
 
   async setData (request, registration) {
-    return this.setCache(request, 'registration', registration)
+    return utils.setCache(request, 'registration', registration)
   }
 
   errorLink (field) {
-    return `#${referenceData[field] ? `${field}-1` : field}` // If this is a reference data field, then link to first option
+    return `#${this.referenceData ? `${field}-1` : field}` // If this is a reference data field, then link to first option
   }
 
   // Overrides parent class getHandler
@@ -53,12 +54,12 @@ class SelectOneOptionHandlers extends require('../handlers') {
     request.payload = {
       legend: await this.getPageHeading(request),
       hint: hint ? { text: hint } : undefined,
-      items: this.items.map(({ value, text, hint }) => {
+      items: this.items.map(({ value, text, hint, storedValue }) => {
         return {
           value: value.toString(),
           text,
           hint: hint ? { text: hint } : undefined,
-          checked: value === data[this.fieldName]
+          checked: storedValue === data[this.fieldName]
         }
       })
     }
@@ -68,7 +69,8 @@ class SelectOneOptionHandlers extends require('../handlers') {
   // Overrides parent class postHandler
   async postHandler (request, h) {
     const data = await this.getData(request)
-    data[this.fieldName] = request.payload[this.fieldName]
+    const choice = this.choices.find(({ shortName }) => request.payload[this.fieldName] === shortName)
+    data[this.fieldName] = choice.value
     await this.setData(request, data)
     return super.postHandler(request, h)
   }

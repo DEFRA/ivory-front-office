@@ -1,3 +1,5 @@
+const utils = require('../../lib/utils')
+
 class ExampleOneChoiceHandlers extends require('../common/option/select-one-option.handlers') {
   get referenceData () {
     return {
@@ -37,11 +39,11 @@ class ExampleOneChoiceHandlers extends require('../common/option/select-one-opti
   }
 
   async getData (request) {
-    return this.getCache(request, 'examples') || {}
+    return await utils.getCache(request, 'examples') || {}
   }
 
   async setData (request, data) {
-    return this.setCache(request, 'examples', data)
+    return utils.setCache(request, 'examples', data)
   }
 
   errorLink (field) {

@@ -6,7 +6,7 @@ const url = '/agent-email'
 const pageHeading = `Your email address`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab)
+  const testHelper = new TestHelper(lab, __filename)
 
   testHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('email address has not been pre-filled', async ({ context }) => {

@@ -6,7 +6,7 @@ const url = '/agent-name'
 const pageHeading = `Your name`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab)
+  const testHelper = new TestHelper(lab, __filename)
 
   testHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('full name has not been pre-filled', async ({ context }) => {

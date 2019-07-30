@@ -6,15 +6,18 @@ const url = '/check-your-answers'
 const pageHeading = 'Check your answers'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab)
+  const testHelper = new TestHelper(lab, __filename)
 
   testHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page answers are displayed correctly', async ({ context }) => {
+      const agentIsOwner = true
+      const agentActingAs = 'trustee'
       const fullName = 'James Bond'
       const addressLine = 'THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH'
       const description = 'A violin bow with an ivory tip.'
 
       Object.assign(testHelper.cache, {
+        registration: { agentIsOwner, agentActingAs },
         owner: { fullName },
         'owner-address': { addressLine },
         item: { description }

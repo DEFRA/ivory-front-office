@@ -1,9 +1,17 @@
+const syncRegistration = require('../../lib/sync-registration')
+const utils = require('../../lib/utils')
+
 class CheckYourAnswersHandlers extends require('../common/handlers') {
   async getHandler (request, h, errors) {
-    const { agentIsOwner } = await this.getCache(request, 'registration') || {}
-    const [owner, ownerAddress, agent, agentAddress, item] = await this.getCache(request, ['owner', 'owner-address', 'agent', 'agent-address', 'item'])
+    const [registration, owner, ownerAddress, agent, agentAddress, item] = await utils.getCache(request, ['registration', 'owner', 'owner-address', 'agent', 'agent-address', 'item'])
+    const { agentIsOwner } = registration || {}
     this.viewData = { agentIsOwner, owner, ownerAddress, agent, agentAddress, item }
     return super.getHandler(request, h, errors)
+  }
+
+  async postHandler (request, h) {
+    await syncRegistration.save(request)
+    return super.postHandler(request, h)
   }
 }
 
