@@ -20,19 +20,19 @@ class AddressManualHandlers extends mixin(require('../handlers'), require('./add
     }
   }
 
-  // Overrides parent class getHandler
-  async getHandler (request, h, errors) {
+  // Overrides parent class handleGet
+  async handleGet (request, h, errors) {
     const address = request.payload || await this.getAddress(request)
     address.addressLine1 = address.subBuildingName || address.buildingNumber
     this.viewData = {
       address,
       findAddressLink: this.findAddressLink
     }
-    return super.getHandler(request, h, errors)
+    return super.handleGet(request, h, errors)
   }
 
-  // Overrides parent class postHandler
-  async postHandler (request, h) {
+  // Overrides parent class handlePost
+  async handlePost (request, h) {
     const address = await this.getAddress(request)
     const {
       'address-line-1': addressLine1,
@@ -53,7 +53,7 @@ class AddressManualHandlers extends mixin(require('../handlers'), require('./add
     }
 
     await this.setAddress(request, address, true)
-    return super.postHandler(request, h)
+    return super.handlePost(request, h)
   }
 }
 

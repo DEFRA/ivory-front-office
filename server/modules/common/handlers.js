@@ -19,8 +19,8 @@ module.exports = class Handlers {
     return this.viewData
   }
 
-  async getHandler (request, h, errors) {
-    // The default getHandler
+  async handleGet (request, h, errors) {
+    // The default handleGet
 
     const pageHeading = await this.getPageHeading(request)
     const viewName = await this.getViewName(request)
@@ -35,8 +35,8 @@ module.exports = class Handlers {
     })
   }
 
-  async postHandler (request, h) {
-    // The default postHandler
+  async handlePost (request, h) {
+    // The default handlePost
 
     const nextPath = await this.getNextPath(request)
 
@@ -59,7 +59,7 @@ module.exports = class Handlers {
       }
     })
 
-    const result = await this.getHandler(request, h, errorMessages)
+    const result = await this.handleGet(request, h, errorMessages)
 
     return result
       .code(400)
@@ -71,7 +71,7 @@ module.exports = class Handlers {
       {
         method: 'GET',
         path,
-        handler: this.getHandler,
+        handler: this.handleGet,
         options: {
           app,
           bind: this
@@ -80,7 +80,7 @@ module.exports = class Handlers {
       {
         method: 'POST',
         path,
-        handler: this.postHandler,
+        handler: this.handlePost,
         options: {
           app,
           bind: this,

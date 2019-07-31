@@ -45,8 +45,8 @@ class SelectOneOptionHandlers extends require('../handlers') {
     return `#${this.referenceData ? `${field}-1` : field}` // If this is a reference data field, then link to first option
   }
 
-  // Overrides parent class getHandler
-  async getHandler (request, h, errors) {
+  // Overrides parent class handleGet
+  async handleGet (request, h, errors) {
     const data = await this.getData(request)
     const { hint } = this.referenceData
 
@@ -63,16 +63,16 @@ class SelectOneOptionHandlers extends require('../handlers') {
         }
       })
     }
-    return super.getHandler(request, h, errors)
+    return super.handleGet(request, h, errors)
   }
 
-  // Overrides parent class postHandler
-  async postHandler (request, h) {
+  // Overrides parent class handlePost
+  async handlePost (request, h) {
     const data = await this.getData(request)
     const choice = this.choices.find(({ shortName }) => request.payload[this.fieldName] === shortName)
     data[this.fieldName] = choice.value
     await this.setData(request, data)
-    return super.postHandler(request, h)
+    return super.handlePost(request, h)
   }
 }
 

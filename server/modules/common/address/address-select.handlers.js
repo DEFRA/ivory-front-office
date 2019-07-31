@@ -17,8 +17,8 @@ class AddressSelectHandlers extends mixin(require('../handlers'), require('./add
     }
   }
 
-  // Overrides parent class getHandler
-  async getHandler (request, h, errors) {
+  // Overrides parent class handleGet
+  async handleGet (request, h, errors) {
     const address = await this.getAddress(request)
     const { postcodeAddressList = [] } = address
 
@@ -36,11 +36,11 @@ class AddressSelectHandlers extends mixin(require('../handlers'), require('./add
       manualAddressLink: this.manualAddressLink
     }
 
-    return super.getHandler(request, h, errors)
+    return super.handleGet(request, h, errors)
   }
 
-  // Overrides parent class postHandler
-  async postHandler (request, h) {
+  // Overrides parent class handlePost
+  async handlePost (request, h) {
     const address = await this.getAddress(request)
     const selectedUprn = request.payload.address
 
@@ -49,7 +49,7 @@ class AddressSelectHandlers extends mixin(require('../handlers'), require('./add
 
     await this.setAddress(request, address, true)
 
-    return super.postHandler(request, h)
+    return super.handlePost(request, h)
   }
 }
 
