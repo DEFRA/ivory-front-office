@@ -16,21 +16,21 @@ class PersonNameHandlers extends mixin(require('../handlers'), require('./person
     }
   }
 
-  // Overrides parent class getHandler
-  async getHandler (request, h, errors) {
+  // Overrides parent class handleGet
+  async handleGet (request, h, errors) {
     const person = await this.getPerson(request)
     this.viewData = {
       fullName: person.fullName
     }
-    return super.getHandler(request, h, errors)
+    return super.handleGet(request, h, errors)
   }
 
-  // Overrides parent class postHandler
-  async postHandler (request, h) {
+  // Overrides parent class handlePost
+  async handlePost (request, h) {
     const person = await this.getPerson(request)
     person.fullName = request.payload['full-name']
     await this.setPerson(request, person)
-    return super.postHandler(request, h)
+    return super.handlePost(request, h)
   }
 }
 

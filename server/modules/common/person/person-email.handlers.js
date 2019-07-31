@@ -17,21 +17,21 @@ class PersonEmailHandlers extends mixin(require('../handlers'), require('./perso
     }
   }
 
-  // Overrides parent class getHandler
-  async getHandler (request, h, errors) {
+  // Overrides parent class handleGet
+  async handleGet (request, h, errors) {
     const person = await this.getPerson(request)
     this.viewData = {
       email: person.email
     }
-    return super.getHandler(request, h, errors)
+    return super.handleGet(request, h, errors)
   }
 
-  // Overrides parent class postHandler
-  async postHandler (request, h) {
+  // Overrides parent class handlePost
+  async handlePost (request, h) {
     const person = await this.getPerson(request)
     person.email = request.payload['email']
     await this.setPerson(request, person, true)
-    return super.postHandler(request, h)
+    return super.handlePost(request, h)
   }
 }
 

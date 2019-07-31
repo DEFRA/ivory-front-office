@@ -1,7 +1,7 @@
 const syncRegistration = require('../../lib/sync-registration')
 
 class RestoreHandlers extends require('../common/handlers') {
-  async getHandler (request, h, errors) {
+  async handleGet (request, h, errors) {
     const { id } = request.params
     await syncRegistration.restore(request, id)
     return h.redirect('/who-owns-item')

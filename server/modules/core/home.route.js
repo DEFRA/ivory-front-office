@@ -1,5 +1,5 @@
 class RestoreHandlers extends require('../common/handlers') {
-  async getHandler (request, h, errors) {
+  async handleGet (request, h, errors) {
     return h.redirect('/who-owns-item')
   }
 }
