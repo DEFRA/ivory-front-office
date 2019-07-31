@@ -89,7 +89,7 @@ module.exports = class TestHelper {
       }
 
       lab.test('get throws an error', async ({ context }) => {
-        this._sandbox.stub(Handlers.prototype, 'getHandler').value(() => {
+        this._sandbox.stub(Handlers.prototype, 'handleGet').value(() => {
           throw new Error('Failed to load heading')
         })
         const response = await this.server.inject(context.request)
@@ -115,7 +115,7 @@ module.exports = class TestHelper {
       }
 
       lab.test('post throws an error', async ({ context }) => {
-        this._sandbox.stub(Handlers.prototype, 'getHandler').value(() => {
+        this._sandbox.stub(Handlers.prototype, 'handleGet').value(() => {
           throw new Error('Failed to load heading')
         })
         const response = await this.server.inject(context.request)

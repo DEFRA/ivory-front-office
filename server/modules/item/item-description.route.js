@@ -28,21 +28,21 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
     }
   }
 
-  // Overrides parent class getHandler
-  async getHandler (request, h, errors) {
+  // Overrides parent class handleGet
+  async handleGet (request, h, errors) {
     const item = await this.getItem(request)
     this.viewData = {
       itemDescription: item.description
     }
-    return super.getHandler(request, h, errors)
+    return super.handleGet(request, h, errors)
   }
 
-  // Overrides parent class postHandler
-  async postHandler (request, h) {
+  // Overrides parent class handlePost
+  async handlePost (request, h) {
     const item = await this.getItem(request)
     item.description = request.payload['item-description']
     await this.setItem(request, item, true)
-    return super.postHandler(request, h)
+    return super.handlePost(request, h)
   }
 }
 

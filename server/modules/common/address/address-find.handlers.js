@@ -39,8 +39,8 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
     return address
   }
 
-  // Overrides parent class getHandler
-  async getHandler (request, h, errors) {
+  // Overrides parent class handleGet
+  async handleGet (request, h, errors) {
     if (!config.addressLookUpEnabled) {
       return h.redirect(this.manualAddressLink)
     }
@@ -49,11 +49,11 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
       postcode: address.postcode,
       manualAddressLink: this.manualAddressLink
     }
-    return super.getHandler(request, h, errors)
+    return super.handleGet(request, h, errors)
   }
 
-  // Overrides parent class postHandler
-  async postHandler (request, h) {
+  // Overrides parent class handlePost
+  async handlePost (request, h) {
     let address = await this.getAddress(request)
     const postcode = this.formattedPostcode(request.payload.postcode)
 
@@ -67,7 +67,7 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
     }
 
     await this.setAddress(request, address)
-    return super.postHandler(request, h)
+    return super.handlePost(request, h)
   }
 }
 
