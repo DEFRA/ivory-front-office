@@ -58,6 +58,10 @@ module.exports = class TestHelper {
     })
   }
 
+  static createRoutesHelper (...args) {
+    return new TestHelper(...args)
+  }
+
   getRequestTests ({ lab, pageHeading, url }, requestTestsCallback) {
     lab.experiment(`GET ${url}`, () => {
       lab.beforeEach(({ context }) => {

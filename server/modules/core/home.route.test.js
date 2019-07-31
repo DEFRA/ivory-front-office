@@ -4,7 +4,7 @@ const TestHelper = require('../../../test-helper')
 const url = '/'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab, __filename)
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
 
   lab.experiment(`GET ${url}`, () => {
     lab.test('route works', async () => {
@@ -13,7 +13,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         url
       }
 
-      await testHelper.expectRedirection(request, '/who-owns-item')
+      await routesHelper.expectRedirection(request, '/who-owns-item')
     })
   })
 })
