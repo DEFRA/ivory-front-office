@@ -5,7 +5,7 @@ const id = 'eda64615-c9c4-4047-9190-41ece7d34df3'
 const url = `/restore/${id}`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab, __filename)
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
 
   lab.experiment(`GET ${url}`, () => {
     lab.test('route works', async () => {
@@ -14,7 +14,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         url
       }
 
-      await testHelper.expectRedirection(request, '/who-owns-item')
+      await routesHelper.expectRedirection(request, '/who-owns-item')
     })
   })
 })

@@ -18,20 +18,20 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     }
   })
 
-  const testHelper = new TestHelper(lab, __filename)
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
 
-  testHelper.getRequestTests({ lab, pageHeading, url }, () => {
+  routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('address has not been pre-filled', async ({ context }) => {
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#postcode').val()).to.not.exist()
     })
 
     lab.test('address has been pre-filled', async ({ context }) => {
-      testHelper.cache['agent-address'] = address
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      routesHelper.cache['agent-address'] = address
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#address-line-1').val()).to.equal(address.addressLine1)
       Code.expect($('#address-line-2').val()).to.equal(address.street)
@@ -41,7 +41,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
   })
 
-  testHelper.postRequestTests({ lab, pageHeading, url }, () => {
+  routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the address has not been entered', async ({ context }) => {
       const { request } = context
       Object.assign(request.payload, {
@@ -51,7 +51,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-county': '',
         'address-postcode': ''
       })
-      return testHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(request, [
         { field: 'address-line-1', message: 'Enter a valid building number or name' },
         { field: 'address-town', message: 'Enter a valid town' },
         { field: 'address-postcode', message: 'Enter a valid postcode' }
@@ -67,8 +67,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-county': address.county,
         'address-postcode': address.postcode
       })
-      await testHelper.expectRedirection(request, '/owner-name')
-      Code.expect(testHelper.cache['agent-address'].postcode).to.equal(address.postcode)
+      await routesHelper.expectRedirection(request, '/owner-name')
+      Code.expect(routesHelper.cache['agent-address'].postcode).to.equal(address.postcode)
     })
   })
 })

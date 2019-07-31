@@ -8,7 +8,7 @@ const url = '/owner-address'
 const pageHeading = `Owner's address`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab, __filename, {
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
     stubCallback: (sandbox) => {
       sandbox.stub(addressLookup, 'lookUpByPostcode').value((postcode) => {
         switch (postcode) {
@@ -26,27 +26,27 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     }
   })
 
-  testHelper.getRequestTests({ lab, pageHeading, url }, () => {
+  routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      testHelper.cache.registration = { agentIsOwner: true }
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      routesHelper.cache.registration = { agentIsOwner: true }
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#defra-page-heading').text()).to.equal(`Your address`)
     })
 
     lab.test('postcode has not been pre-filled', async ({ context }) => {
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#postcode').val()).to.not.exist()
     })
 
     lab.test('postcode has been pre-filled', async ({ context }) => {
       const postcode = 'WC1A 1AA'
-      testHelper.cache['owner-address'] = { postcode }
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      routesHelper.cache['owner-address'] = { postcode }
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#postcode').val()).to.equal(postcode)
     })
@@ -54,15 +54,15 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects to manual address', async ({ context }) => {
       const { request } = context
       config.addressLookUpEnabled = false
-      await testHelper.expectRedirection(request, '/owner-full-address')
+      await routesHelper.expectRedirection(request, '/owner-full-address')
     })
   })
 
-  testHelper.postRequestTests({ lab, pageHeading, url }, () => {
+  routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the postcode has not been entered', async ({ context }) => {
       const { request } = context
       request.payload['postcode'] = ''
-      return testHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(request, [
         { field: 'postcode', message: 'Enter a valid postcode' }
       ])
     })
@@ -70,7 +70,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the postcode lookup returns a message without an error', async ({ context }) => {
       const { request } = context
       request.payload['postcode'] = 'WA41A'
-      return testHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(request, [
         { field: 'postcode', message: 'Enter a valid postcode' }
       ])
     })
@@ -79,8 +79,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const postcode = 'WA41AB'
       request.payload['postcode'] = postcode
-      await testHelper.expectRedirection(request, '/owner-address-select')
-      Code.expect(testHelper.cache['owner-address'].postcode).to.equal(postcode)
+      await routesHelper.expectRedirection(request, '/owner-address-select')
+      Code.expect(routesHelper.cache['owner-address'].postcode).to.equal(postcode)
     })
   })
 })

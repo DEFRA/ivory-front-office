@@ -6,9 +6,9 @@ const url = '/agent-address-select'
 const pageHeading = `Your address`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab, __filename)
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
 
-  testHelper.getRequestTests({ lab, pageHeading, url }, () => {
+  routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     let postcodeAddressList
 
     lab.beforeEach(() => {
@@ -22,12 +22,12 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         }
       ]
 
-      testHelper.cache['agent-address'] = { postcodeAddressList }
+      routesHelper.cache['agent-address'] = { postcodeAddressList }
     })
 
     lab.test('addresses has been pre-filled, none selected', async ({ context }) => {
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#address option:first-of-type').text()).to.equal(`${postcodeAddressList.length} addresses found`)
       Code.expect($('#address').val()).to.equal('')
@@ -35,20 +35,20 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('addresses has been pre-filled, one selected', async ({ context }) => {
       const uprn = postcodeAddressList[0].uprn
-      testHelper.cache['agent-address'].uprn = uprn
+      routesHelper.cache['agent-address'].uprn = uprn
 
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#address option:first-of-type').text()).to.equal(`${postcodeAddressList.length} addresses found`)
       Code.expect($('#address').val()).to.equal(uprn)
     })
   })
 
-  testHelper.postRequestTests({ lab, pageHeading, url }, () => {
+  routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     const address = { uprn: '1234' }
     lab.beforeEach(() => {
-      testHelper.cache['agent-address'] = {
+      routesHelper.cache['agent-address'] = {
         postcodeAddressList: [
           address
         ]
@@ -58,7 +58,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when an address has not been selected', async ({ context }) => {
       const { request } = context
       request.payload['address'] = ''
-      return testHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(request, [
         { field: 'address', message: 'Select an address' }
       ])
     })
@@ -66,8 +66,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects correctly when the address has been selected', async ({ context }) => {
       const { request } = context
       request.payload['address'] = address.uprn
-      await testHelper.expectRedirection(request, '/owner-name')
-      Code.expect(testHelper.cache['agent-address'].uprn).to.equal(address.uprn)
+      await routesHelper.expectRedirection(request, '/owner-name')
+      Code.expect(routesHelper.cache['agent-address'].uprn).to.equal(address.uprn)
     })
   })
 })

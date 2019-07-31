@@ -6,9 +6,9 @@ const url = '/check-your-answers'
 const pageHeading = 'Check your answers'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const testHelper = new TestHelper(lab, __filename)
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
 
-  testHelper.getRequestTests({ lab, pageHeading, url }, () => {
+  routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page answers are displayed correctly', async ({ context }) => {
       const agentIsOwner = true
       const agentActingAs = 'trustee'
@@ -16,15 +16,15 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const addressLine = 'THRIVE RENEWABLES PLC, DEANERY ROAD, BRISTOL, BS1 5AH'
       const description = 'A violin bow with an ivory tip.'
 
-      Object.assign(testHelper.cache, {
+      Object.assign(routesHelper.cache, {
         registration: { agentIsOwner, agentActingAs },
         owner: { fullName },
         'owner-address': { addressLine },
         item: { description }
       })
 
-      const response = await testHelper.server.inject(context.request)
-      const $ = testHelper.getDomParser(response.payload)
+      const response = await routesHelper.server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#owner-full-name').text()).to.include(fullName)
       Code.expect($('#owner-address-line').text()).to.include(addressLine)
