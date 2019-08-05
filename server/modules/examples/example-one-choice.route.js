@@ -1,4 +1,4 @@
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 
 class ExampleOneChoiceHandlers extends require('../common/option/select-one-option.handlers') {
   get referenceData () {

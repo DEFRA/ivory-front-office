@@ -2,7 +2,7 @@ const Wreck = require('@hapi/wreck')
 const merge = require('lodash.merge')
 const { logger } = require('defra-logging-facade')
 const config = require('../config')
-const { getNestedVal, cloneAndMerge } = require('ivory').utils
+const { getNestedVal, cloneAndMerge } = require('ivory-shared').utils
 
 module.exports = class Persistence {
   constructor (options = {}) {

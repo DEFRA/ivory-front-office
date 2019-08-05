@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
 const TestHelper = require('../../test-helper')
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 const syncRegistration = require('./sync-registration')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
@@ -61,6 +61,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       Code.expect(registration).to.equal(true)
       Code.expect(cache).to.equal({
         registration: {},
+        'prev:registration': {},
         owner: {},
         'owner-address': {},
         agent: {},
@@ -72,17 +73,41 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test(`passes as registration exists with only owner cache entries with sanitised address details`, async () => {
       cache = {
         registration: {},
+        'prev:registration': {},
         owner: {},
         'owner-address': {
           street: 'somewhere street',
           road: 'no where road'
         }
-
       }
       const registration = await syncRegistration.save(request)
       Code.expect(registration).to.equal(true)
       Code.expect(cache).to.equal({
         registration: {},
+        'prev:registration': {},
+        owner: {},
+        'owner-address': {
+          street: 'somewhere street'
+        }
+      })
+    })
+
+    lab.test(`passes as registration exists and only the changes from the previous restore will be saved`, async () => {
+      cache = {
+        registration: {},
+        'prev:registration': { agentIsOwner: true, owner: { address: { street: 'previous street', country: 'little britain' } } },
+        owner: {},
+        'owner-address': {
+          street: 'somewhere street',
+          road: 'no where road',
+          country: 'little britain'
+        }
+      }
+      const registration = await syncRegistration.save(request)
+      Code.expect(registration).to.equal(true)
+      Code.expect(cache).to.equal({
+        registration: {},
+        'prev:registration': {},
         owner: {},
         'owner-address': {
           street: 'somewhere street'

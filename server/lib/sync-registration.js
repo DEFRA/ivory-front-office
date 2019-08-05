@@ -1,7 +1,7 @@
 const Persistence = require('./persistence')
 const persistence = new Persistence({ path: '/full-registrations' })
 const { logger } = require('defra-logging-facade')
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 
 const syncRegistration = {
   async save (request) {
@@ -29,8 +29,14 @@ const syncRegistration = {
       if (item) {
         registration.item = item
       }
-      logger.debug('Saving: ', registration)
-      const result = await persistence.save(registration)
+
+      // Get restored registration and diff to get changes
+      // const prevRegistration = await utils.getCache(request, 'prev:registration') || {}
+
+      const changes = registration // utils.difference(registration, prevRegistration)
+
+      logger.debug('Saving: ', changes)
+      const result = await persistence.save(changes)
       return syncRegistration.reloadCache(request, result)
     }
     return false
@@ -61,6 +67,9 @@ const syncRegistration = {
 
   async reloadCache (request, registration) {
     const { owner, agent, item } = registration
+
+    // Cache restored registration to enable diff when saving
+    await utils.setCache(request, 'prev:registration', registration)
 
     if (owner) {
       await this.setPerson(request, owner, 'owner', 'owner-address')

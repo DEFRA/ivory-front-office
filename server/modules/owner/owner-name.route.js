@@ -1,4 +1,4 @@
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 
 class OwnerNameHandlers extends require('../common/person/person-name.handlers') {
   get personType () {

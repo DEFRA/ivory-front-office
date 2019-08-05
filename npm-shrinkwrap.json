@@ -3561,9 +3561,12 @@
       "resolved": "https://registry.npmjs.org/isstream/-/isstream-0.1.2.tgz",
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
-    "ivory": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#1876f81e7b2e1a0b92c9d2e0d3540c11e63bc179",
+    "ivory-shared": {
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#cb19bec0249b9f00e66f6c898d482225dd656ccc",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
+      "requires": {
+        "lodash": "^4.17.15"
+      },
       "dependencies": {
         "@babel/code-frame": {
           "version": "7.5.5",

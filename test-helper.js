@@ -6,7 +6,7 @@ const Handlers = require('./server/modules/common/handlers')
 const dotenv = require('dotenv')
 const config = require('./server/config')
 const { logger } = require('defra-logging-facade')
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 const syncRegistration = require('./server/lib/sync-registration')
 const routesPlugin = require('./server/plugins/router')
 

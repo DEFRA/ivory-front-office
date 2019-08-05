@@ -1,4 +1,4 @@
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 
 module.exports = {
   get addressType () {

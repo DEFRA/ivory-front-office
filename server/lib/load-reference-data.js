@@ -1,8 +1,8 @@
 const Wreck = require('@hapi/wreck')
 const { logger } = require('defra-logging-facade')
 const config = require('../config')
-// const { getNestedVal, delay } = require('ivory').utils
-const { getNestedVal } = require('ivory').utils
+// const { getNestedVal, delay } = require('ivory-shared').utils
+const { getNestedVal } = require('ivory-shared').utils
 
 async function load (path) {
   const { serviceApi } = config

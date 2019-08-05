@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 const syncRegistration = require('../../lib/sync-registration')
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {

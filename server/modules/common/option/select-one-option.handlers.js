@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { utils } = require('ivory')
+const { utils } = require('ivory-shared')
 const { referenceData } = require('../../../config')
 
 class SelectOneOptionHandlers extends require('../handlers') {
