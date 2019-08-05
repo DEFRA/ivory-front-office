@@ -1,5 +1,6 @@
 const Persistence = require('./persistence')
 const persistence = new Persistence({ path: '/full-registrations' })
+const { logger } = require('defra-logging-facade')
 const { utils } = require('ivory')
 
 const syncRegistration = {
@@ -28,6 +29,7 @@ const syncRegistration = {
       if (item) {
         registration.item = item
       }
+      logger.debug('Saving: ', registration)
       const result = await persistence.save(registration)
       return syncRegistration.reloadCache(request, result)
     }
@@ -36,6 +38,7 @@ const syncRegistration = {
 
   async restore (request, id) {
     const registration = await persistence.restore(id)
+    logger.debug('Retrieved: ', registration)
     return syncRegistration.reloadCache(request, registration)
   },
 
