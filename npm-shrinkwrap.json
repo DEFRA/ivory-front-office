@@ -3506,8 +3506,8 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory": {
-      "version": "git+https://github.com/DEFRA/ivory.git#17e6b786fd3317093ee48484e081ea5dad54817f",
-      "from": "git+https://github.com/DEFRA/ivory.git#Move-utils-to-ivory-project",
+      "version": "git+https://github.com/DEFRA/ivory.git#844a3cdc47c840936e9d74e2c43160934a3cbe27",
+      "from": "git+https://github.com/DEFRA/ivory.git#master",
       "dependencies": {
         "@babel/code-frame": {
           "version": "7.5.5",
