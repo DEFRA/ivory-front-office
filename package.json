@@ -58,8 +58,8 @@
     "@hapi/lab": "^19.1.0",
     "cheerio": "^1.0.0-rc.3",
     "codeclimate-test-reporter": "0.5.1",
-    "htmlparser2": "^3.10.1",
-    "sinon": "^7.3.2",
+    "htmlparser2": "^4.0.0",
+    "sinon": "^7.4.0",
     "standard": "13.1.0"
   }
 }
