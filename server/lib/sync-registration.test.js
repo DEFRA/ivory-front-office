@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
 const TestHelper = require('../../test-helper')
-const utils = require('./utils')
+const { utils } = require('ivory')
 const syncRegistration = require('./sync-registration')
 
 lab.experiment(TestHelper.getFile(__filename), () => {

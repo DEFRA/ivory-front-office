@@ -1,6 +1,6 @@
 const Persistence = require('./persistence')
 const persistence = new Persistence({ path: '/full-registrations' })
-const utils = require('./utils')
+const { utils } = require('ivory')
 
 const syncRegistration = {
   async save (request) {

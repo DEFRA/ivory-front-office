@@ -1,4 +1,4 @@
-const utils = require('../../../lib/utils')
+const { utils } = require('ivory')
 
 module.exports = {
   get addressType () {

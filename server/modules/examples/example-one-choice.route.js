@@ -1,4 +1,4 @@
-const utils = require('../../lib/utils')
+const { utils } = require('ivory')
 
 class ExampleOneChoiceHandlers extends require('../common/option/select-one-option.handlers') {
   get referenceData () {

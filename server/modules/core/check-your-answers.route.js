@@ -1,5 +1,5 @@
 const syncRegistration = require('../../lib/sync-registration')
-const utils = require('../../lib/utils')
+const { utils } = require('ivory')
 
 class CheckYourAnswersHandlers extends require('../common/handlers') {
   async handleGet (request, h, errors) {
