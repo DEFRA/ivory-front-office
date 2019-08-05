@@ -1,5 +1,5 @@
 const syncRegistration = require('../../../lib/sync-registration')
-const utils = require('../../../lib/utils')
+const { utils } = require('ivory')
 
 module.exports = {
   async getPerson (request) {

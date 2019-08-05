@@ -1,4 +1,4 @@
-const utils = require('../../lib/utils')
+const { utils } = require('ivory')
 
 class OwnerNameHandlers extends require('../common/person/person-name.handlers') {
   get personType () {

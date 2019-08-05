@@ -6,8 +6,8 @@ const Handlers = require('./server/modules/common/handlers')
 const dotenv = require('dotenv')
 const config = require('./server/config')
 const { logger } = require('defra-logging-facade')
+const { utils } = require('ivory')
 const syncRegistration = require('./server/lib/sync-registration')
-const utils = require('./server/lib/utils')
 const routesPlugin = require('./server/plugins/router')
 
 // Suppress MaxListenersExceededWarning within tests
