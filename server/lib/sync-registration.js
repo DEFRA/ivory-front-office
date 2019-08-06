@@ -30,13 +30,8 @@ const syncRegistration = {
         registration.item = item
       }
 
-      // Get restored registration and diff to get changes
-      // const prevRegistration = await utils.getCache(request, 'prev:registration') || {}
-
-      const changes = registration // utils.difference(registration, prevRegistration)
-
-      logger.debug('Saving: ', changes)
-      const result = await persistence.save(changes)
+      logger.debug('Saving: ', registration)
+      const result = await persistence.save(registration)
       return syncRegistration.reloadCache(request, result)
     }
     return false
@@ -67,9 +62,6 @@ const syncRegistration = {
 
   async reloadCache (request, registration) {
     const { owner, agent, item } = registration
-
-    // Cache restored registration to enable diff when saving
-    await utils.setCache(request, 'prev:registration', registration)
 
     if (owner) {
       await this.setPerson(request, owner, 'owner', 'owner-address')
