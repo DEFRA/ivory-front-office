@@ -11,7 +11,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   lab.beforeEach(() => {
     address = {
       addressLine1: '38',
-      street: 'Smith Rd',
+      addressLine2: 'Smith Rd',
       town: 'Jonesville',
       county: 'Anyshire',
       postcode: 'WC1A 1AA'
@@ -34,7 +34,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#address-line-1').val()).to.equal(address.addressLine1)
-      Code.expect($('#address-line-2').val()).to.equal(address.street)
+      Code.expect($('#address-line-2').val()).to.equal(address.addressLine2)
       Code.expect($('#address-town').val()).to.equal(address.town)
       Code.expect($('#address-county').val()).to.equal(address.county)
       Code.expect($('#address-postcode').val()).to.equal(address.postcode)
@@ -62,7 +62,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       Object.assign(request.payload, {
         'address-line-1': address.addressLine1,
-        'address-line-2': address.street,
+        'address-line-2': address.addressLine2,
         'address-town': address.town,
         'address-county': address.county,
         'address-postcode': address.postcode

@@ -64,6 +64,15 @@ async function lookUpByPostcode (postcode) {
       } else {
         prop = prop.charAt(0).toLowerCase() + prop.slice(1)
       }
+      switch (prop) {
+        case 'buildingNumber':
+        case 'subBuildingName':
+          prop = 'addressLine1'
+          break
+        case 'street':
+          prop = 'addressLine2'
+          break
+      }
       address[prop] = val
     })
     return address

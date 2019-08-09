@@ -1,7 +1,6 @@
 const Wreck = require('@hapi/wreck')
 const { logger } = require('defra-logging-facade')
 const config = require('../config')
-// const { getNestedVal, delay } = require('ivory-shared').utils
 const { getNestedVal } = require('ivory-shared').utils
 
 async function load (path) {
@@ -22,7 +21,6 @@ async function load (path) {
 
 async function loadReferenceData () {
   logger.info('Waiting for ivory services to load')
-  // await delay(1000) // Wait 1 second to allow ivory-api to load data
   const groups = await load('/groups')
   const choices = await load('/choices')
   const referenceData = {}
