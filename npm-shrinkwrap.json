@@ -97,14 +97,21 @@
       }
     },
     "@hapi/catbox": {
-      "version": "10.2.1",
-      "resolved": "https://registry.npmjs.org/@hapi/catbox/-/catbox-10.2.1.tgz",
-      "integrity": "sha512-u13BXlnmmrNUZssjTriRVTLuk6I/yUy5C1/Pia1+E2cpfd7o2/jmEvYdFgeS0Ft9QTz7WWhpXKlrguARUuohhQ==",
+      "version": "10.2.2",
+      "resolved": "https://registry.npmjs.org/@hapi/catbox/-/catbox-10.2.2.tgz",
+      "integrity": "sha512-a4KejaKqDOMdwo/PIYoAaObVMmkfkG3RS85kPqNTTURjWnIV1+rrZ938f6RCz5EbrroKbuNC0bcvAt7lAD5LNg==",
       "requires": {
         "@hapi/boom": "7.x.x",
-        "@hapi/hoek": "6.x.x",
+        "@hapi/hoek": "8.x.x",
         "@hapi/joi": "15.x.x",
         "@hapi/podium": "3.x.x"
+      },
+      "dependencies": {
+        "@hapi/hoek": {
+          "version": "8.2.1",
+          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.2.1.tgz",
+          "integrity": "sha512-JPiBy+oSmsq3St7XlipfN5pNA6bDJ1kpa73PrK/zR29CVClDVqy04AanM/M/qx5bSF+I61DdCfAvRrujau+zRg=="
+        }
       }
     },
     "@hapi/catbox-memory": {
@@ -3563,7 +3570,7 @@
     },
     "ivory-shared": {
       "version": "git+https://github.com/DEFRA/ivory-shared.git#474cfa94d3e0a56d0077bab1d0bea87aedff447f",
-      "from": "git+https://github.com/DEFRA/ivory-shared.git#474cfa94d3e0a56d0077bab1d0bea87aedff447f",
+      "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "lodash": "^4.17.15"
       },
