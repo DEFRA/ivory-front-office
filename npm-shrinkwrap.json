@@ -518,13 +518,20 @@
       }
     },
     "@hapi/wreck": {
-      "version": "15.0.1",
-      "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-15.0.1.tgz",
-      "integrity": "sha512-ByXQna/W1FZk7dg8NEhL79u4QkhzszRz76VpgyGstSH8bLM01a0C8RsxmUBgi6Tjkag5jA9kaEIhF9dLpMrtBw==",
+      "version": "15.0.2",
+      "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-15.0.2.tgz",
+      "integrity": "sha512-D/7sGmx3XxxkaMWHZDKTMai8rIEfIgE+DnoZeKfmxhKGgvIpMu1f8BBmLADbdniccGer79w74IWWdXleNrT1Rw==",
       "requires": {
         "@hapi/boom": "7.x.x",
         "@hapi/bourne": "1.x.x",
-        "@hapi/hoek": "6.x.x"
+        "@hapi/hoek": "8.x.x"
+      },
+      "dependencies": {
+        "@hapi/hoek": {
+          "version": "8.2.1",
+          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.2.1.tgz",
+          "integrity": "sha512-JPiBy+oSmsq3St7XlipfN5pNA6bDJ1kpa73PrK/zR29CVClDVqy04AanM/M/qx5bSF+I61DdCfAvRrujau+zRg=="
+        }
       }
     },
     "@hapi/yar": {
