@@ -166,14 +166,21 @@
       }
     },
     "@hapi/crumb": {
-      "version": "7.3.0",
-      "resolved": "https://registry.npmjs.org/@hapi/crumb/-/crumb-7.3.0.tgz",
-      "integrity": "sha512-IbuR2wMfTRIt9gbZilHLwJCHeAREjAFi19vZ3Mnfb8fVTY2DR+07fxgerBFNTWS8dNsc+pErrzyTePGXZixeOA==",
+      "version": "7.3.1",
+      "resolved": "https://registry.npmjs.org/@hapi/crumb/-/crumb-7.3.1.tgz",
+      "integrity": "sha512-OXt+MxhCxPjwmxznOxnHs2giVsvcW46So4jAEvQeiVlkqdNJ55CDNrH76Odo+9M8CsGbktipQZoj5eYhiu4ZBg==",
       "requires": {
         "@hapi/boom": "7.x.x",
         "@hapi/cryptiles": "4.x.x",
-        "@hapi/hoek": "6.x.x",
+        "@hapi/hoek": "8.x.x",
         "@hapi/joi": "15.x.x"
+      },
+      "dependencies": {
+        "@hapi/hoek": {
+          "version": "8.2.1",
+          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.2.1.tgz",
+          "integrity": "sha512-JPiBy+oSmsq3St7XlipfN5pNA6bDJ1kpa73PrK/zR29CVClDVqy04AanM/M/qx5bSF+I61DdCfAvRrujau+zRg=="
+        }
       }
     },
     "@hapi/cryptiles": {
