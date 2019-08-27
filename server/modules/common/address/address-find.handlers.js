@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi')
 const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
 const config = require('../../../config')
-const mixin = require('../../../lib/mixin')
+const { mixin } = require('ivory-shared')
 
 class AddressFindHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
   get schema () {

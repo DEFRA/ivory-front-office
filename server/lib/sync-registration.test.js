@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
 const TestHelper = require('../../test-helper')
-const { utils } = require('ivory-shared')
+const { utils, Persistence } = require('ivory-shared')
 const syncRegistration = require('./sync-registration')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
@@ -27,6 +27,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       return key.map((key) => cache[key])
     })
     sandbox.stub(utils, 'setCache').value((request, key, val) => { cache[key] = val })
+    sandbox.stub(Persistence.prototype, 'save').value((data) => data)
+    sandbox.stub(Persistence.prototype, 'restore').value(() => ({}))
   })
 
   lab.afterEach(async () => {

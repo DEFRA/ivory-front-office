@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 const chooseAddressHint = 'Choose an address'
-const mixin = require('../../../lib/mixin')
+const { mixin } = require('ivory-shared')
 
 class AddressSelectHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
   get schema () {

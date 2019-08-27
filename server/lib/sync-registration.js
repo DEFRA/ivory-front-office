@@ -1,7 +1,8 @@
-const Persistence = require('./persistence')
-const persistence = new Persistence({ path: '/full-registrations' })
+
+const { utils, Persistence } = require('ivory-shared')
+const { serviceApi } = require('../config')
+const persistence = new Persistence({ path: '/full-registrations', serviceApi })
 const { logger } = require('defra-logging-facade')
-const { utils } = require('ivory-shared')
 
 const syncRegistration = {
   async save (request) {
@@ -32,6 +33,7 @@ const syncRegistration = {
 
       logger.debug('Saving: ', registration)
       const result = await persistence.save(registration)
+      logger.debug('Saved: ', result)
       return syncRegistration.reloadCache(request, result)
     }
     return false

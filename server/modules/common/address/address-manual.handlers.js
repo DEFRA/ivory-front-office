@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const mixin = require('../../../lib/mixin')
+const { mixin } = require('ivory-shared')
 
 class AddressManualHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
   get schema () {

@@ -1,4 +1,4 @@
-const mixin = require('../../../lib/mixin')
+const { mixin } = require('ivory-shared')
 class AgentAddressSelectHandlers extends mixin(require('../../common/address/address-select.handlers'), require('./agent-address-mixin')) {}
 
 const handlers = new AgentAddressSelectHandlers()

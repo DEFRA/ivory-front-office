@@ -142,7 +142,7 @@ module.exports = class TestHelper {
     sandbox.stub(config, 'logLevel').value('error')
     if (!skip.syncRegistration) {
       sandbox.stub(syncRegistration, 'save').value((data) => data)
-      sandbox.stub(syncRegistration, 'restore').value((data) => data)
+      sandbox.stub(syncRegistration, 'restore').value(() => {})
     }
   }
 

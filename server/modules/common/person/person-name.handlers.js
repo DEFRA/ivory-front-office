@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const mixin = require('../../../lib/mixin')
+const { mixin } = require('ivory-shared')
 
 class PersonNameHandlers extends mixin(require('../handlers'), require('./person-mixin')) {
   get schema () {
