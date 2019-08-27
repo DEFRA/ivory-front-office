@@ -13,7 +13,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         url
       }
 
-      await routesHelper.expectRedirection(request, '/who-owns-item')
+      await routesHelper.expectRedirection(request, '/item-description')
     })
   })
 })

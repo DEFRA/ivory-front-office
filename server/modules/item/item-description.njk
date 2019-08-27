@@ -7,13 +7,10 @@
   {{ govukTextarea({
     name: "item-description",
     id: "item-description",
-    value: viewData.itemDescription,
+    value: viewData['item-description'],
     errorMessage: errors['item-description'],
-    label: {
-      text: "Describe the item"
-    },
     hint: {
-      text: "Include any distinguishing features"
+      text: "Explain what the item is, including any features that make it stand out."
     }
   }) }}
 
