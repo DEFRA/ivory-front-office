@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
 const url = '/agent-address-select'
-const pageHeading = `Your address`
+const pageHeading = 'Your address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
@@ -57,7 +57,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('fails validation when an address has not been selected', async ({ context }) => {
       const { request } = context
-      request.payload['address'] = ''
+      request.payload.address = ''
       return routesHelper.expectValidationErrors(request, [
         { field: 'address', message: 'Select an address' }
       ])
@@ -65,7 +65,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('redirects correctly when the address has been selected', async ({ context }) => {
       const { request } = context
-      request.payload['address'] = address.uprn
+      request.payload.address = address.uprn
       await routesHelper.expectRedirection(request, '/owner-name')
       Code.expect(routesHelper.cache['agent-address'].uprn).to.equal(address.uprn)
     })

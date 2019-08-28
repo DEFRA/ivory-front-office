@@ -21,8 +21,8 @@ module.exports = {
   async getPageHeading (request) {
     const { agentIsOwner } = await utils.getCache(request, 'registration') || {}
     if (agentIsOwner) {
-      return `Your address`
+      return 'Your address'
     }
-    return `Owner's address`
+    return 'Owner\'s address'
   }
 }

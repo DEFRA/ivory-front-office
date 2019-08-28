@@ -37,19 +37,19 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   })
 
   lab.experiment('restore', () => {
-    lab.test(`registration restores ok`, async () => {
+    lab.test('registration restores ok', async () => {
       const result = await syncRegistration.restore(request)
       Code.expect(result).to.equal(true)
     })
   })
 
   lab.experiment('save', () => {
-    lab.test(`fails as registration doesn't exist`, async () => {
+    lab.test('fails as registration doesn\'t exist', async () => {
       const registration = await syncRegistration.save(request)
       Code.expect(registration).to.equal(false)
     })
 
-    lab.test(`passes as registration exists with empty cache entries`, async () => {
+    lab.test('passes as registration exists with empty cache entries', async () => {
       cache = {
         registration: {},
         owner: {},
@@ -71,7 +71,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       })
     })
 
-    lab.test(`passes as registration exists with only owner cache entries with sanitised address details`, async () => {
+    lab.test('passes as registration exists with only owner cache entries with sanitised address details', async () => {
       cache = {
         registration: {},
         owner: {},

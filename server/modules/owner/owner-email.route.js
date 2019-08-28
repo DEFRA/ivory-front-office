@@ -9,9 +9,9 @@ class OwnerNameHandlers extends require('../common/person/person-email.handlers'
   async getPageHeading (request) {
     const { agentIsOwner } = await utils.getCache(request, 'registration') || {}
     if (agentIsOwner) {
-      return `Your email address`
+      return 'Your email address'
     }
-    return `Owner's email address`
+    return 'Owner\'s email address'
   }
 }
 

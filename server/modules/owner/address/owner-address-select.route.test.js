@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
 const url = '/owner-address-select'
-const pageHeading = `Owner's address`
+const pageHeading = 'Owner\'s address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
@@ -30,7 +30,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal(`Your address`)
+      Code.expect($('#defra-page-heading').text()).to.equal('Your address')
     })
 
     lab.test('addresses has been pre-filled, none selected', async ({ context }) => {
@@ -65,7 +65,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('fails validation when an address has not been selected', async ({ context }) => {
       const { request } = context
-      request.payload['address'] = ''
+      request.payload.address = ''
       return routesHelper.expectValidationErrors(request, [
         { field: 'address', message: 'Select an address' }
       ])
@@ -73,7 +73,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('redirects correctly when the address has been selected', async ({ context }) => {
       const { request } = context
-      request.payload['address'] = address.uprn
+      request.payload.address = address.uprn
       await routesHelper.expectRedirection(request, '/item-description')
       Code.expect(routesHelper.cache['owner-address'].uprn).to.equal(address.uprn)
     })

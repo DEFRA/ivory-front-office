@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
 const url = '/owner-full-address'
-const pageHeading = `Owner's address`
+const pageHeading = 'Owner\'s address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   let address
@@ -26,7 +26,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal(`Your address`)
+      Code.expect($('#defra-page-heading').text()).to.equal('Your address')
     })
 
     lab.test('address has not been pre-filled', async ({ context }) => {

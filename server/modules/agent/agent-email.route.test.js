@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/agent-email'
-const pageHeading = `Your email address`
+const pageHeading = 'Your email address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename)

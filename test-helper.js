@@ -200,7 +200,7 @@ module.exports = class TestHelper {
     const response = await this.server.inject(request)
 
     Code.expect(response.statusCode).to.equal(302)
-    Code.expect(response.headers['location']).to.equal(nextPath)
+    Code.expect(response.headers.location).to.equal(nextPath)
   }
 
   static getFile (filename) {

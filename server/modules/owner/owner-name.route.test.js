@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/owner-name'
-const pageHeading = `Owner's name`
+const pageHeading = 'Owner\'s name'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
@@ -14,7 +14,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal(`Your name`)
+      Code.expect($('#defra-page-heading').text()).to.equal('Your name')
     })
 
     lab.test('full name has not been pre-filled', async ({ context }) => {

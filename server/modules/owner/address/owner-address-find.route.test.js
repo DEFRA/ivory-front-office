@@ -5,7 +5,7 @@ const TestHelper = require('../../../../test-helper')
 const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
 const config = require('../../../config')
 const url = '/owner-address'
-const pageHeading = `Owner's address`
+const pageHeading = 'Owner\'s address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
@@ -32,7 +32,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal(`Your address`)
+      Code.expect($('#defra-page-heading').text()).to.equal('Your address')
     })
 
     lab.test('postcode has not been pre-filled', async ({ context }) => {
@@ -61,7 +61,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the postcode has not been entered', async ({ context }) => {
       const { request } = context
-      request.payload['postcode'] = ''
+      request.payload.postcode = ''
       return routesHelper.expectValidationErrors(request, [
         { field: 'postcode', message: 'Enter a valid postcode' }
       ])
@@ -69,7 +69,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('fails validation when the postcode lookup returns a message without an error', async ({ context }) => {
       const { request } = context
-      request.payload['postcode'] = 'WA41A'
+      request.payload.postcode = 'WA41A'
       return routesHelper.expectValidationErrors(request, [
         { field: 'postcode', message: 'Enter a valid postcode' }
       ])
@@ -78,7 +78,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects to select address correctly when a postcode has been entered that has addresses', async ({ context }) => {
       const { request } = context
       const postcode = 'WA41AB'
-      request.payload['postcode'] = postcode
+      request.payload.postcode = postcode
       await routesHelper.expectRedirection(request, '/owner-address-select')
       Code.expect(routesHelper.cache['owner-address'].postcode).to.equal(postcode)
     })

@@ -9,9 +9,9 @@ class OwnerNameHandlers extends require('../common/person/person-name.handlers')
   async getPageHeading (request) {
     const { agentIsOwner } = await utils.getCache(request, 'registration') || {}
     if (agentIsOwner) {
-      return `Your name`
+      return 'Your name'
     }
-    return `Owner's name`
+    return 'Owner\'s name'
   }
 }
 

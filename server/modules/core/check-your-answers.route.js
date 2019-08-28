@@ -20,7 +20,7 @@ const handlers = new CheckYourAnswersHandlers()
 module.exports = handlers.routes({
   path: '/check-your-answers',
   app: {
-    pageHeading: `Check your answers`,
+    pageHeading: 'Check your answers',
     view: 'core/check-your-answers',
     nextPath: '/no-idea'
   }

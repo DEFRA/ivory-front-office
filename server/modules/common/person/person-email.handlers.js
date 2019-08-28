@@ -29,7 +29,7 @@ class PersonEmailHandlers extends mixin(require('../handlers'), require('./perso
   // Overrides parent class handlePost
   async handlePost (request, h) {
     const person = await this.getPerson(request)
-    person.email = request.payload['email']
+    person.email = request.payload.email
     await this.setPerson(request, person, true)
     return super.handlePost(request, h)
   }
