@@ -23,7 +23,6 @@ class AddressManualHandlers extends mixin(require('../handlers'), require('./add
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const address = request.payload || await this.getAddress(request)
-    address.addressLine1 = address.subBuildingName || address.buildingNumber
     this.viewData = {
       address,
       findAddressLink: this.findAddressLink
@@ -36,21 +35,15 @@ class AddressManualHandlers extends mixin(require('../handlers'), require('./add
     const address = await this.getAddress(request)
     const {
       'address-line-1': addressLine1,
-      'address-line-2': street,
+      'address-line-2': addressLine2,
       'address-town': town,
       'address-county': county,
       'address-postcode': postcode
     } = request.payload
 
-    Object.assign(address, { street, town, county, postcode })
+    Object.assign(address, { addressLine1, addressLine2, town, county, postcode })
 
-    address.addressLine = `${addressLine1}, ${street}, ${town}, ${postcode}`
-
-    if (addressLine1.trim().match(/^\d+/)) {
-      address.buildingNumber = addressLine1
-    } else {
-      address.subBuildingName = addressLine1
-    }
+    address.addressLine = `${addressLine1}, ${addressLine2}, ${town}, ${postcode}`
 
     await this.setAddress(request, address, true)
     return super.handlePost(request, h)

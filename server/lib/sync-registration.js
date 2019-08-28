@@ -85,8 +85,8 @@ const syncRegistration = {
   },
 
   _getSavableAddress (address) {
-    const { id, postcode, buildingNumber, street, town, county, country, uprn } = address
-    address = { id, postcode, buildingNumber, street, town, county, country, uprn }
+    const { id, postcode, addressLine1, addressLine2, town, county, country, uprn } = address
+    address = { id, postcode, addressLine1, addressLine2, town, county, country, uprn }
     Object.entries(address).forEach(([prop, val]) => {
       if (val === undefined) {
         delete address[prop]
