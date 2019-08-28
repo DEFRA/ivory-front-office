@@ -4,7 +4,15 @@ const htmlparser2 = require('htmlparser2')
 const cheerio = require('cheerio')
 const Handlers = require('./server/modules/common/handlers')
 const dotenv = require('dotenv')
+
+// SET Environment variables before loading the config
+process.env.ADDRESS_LOOKUP_ENABLED = false
+process.env.AIRBRAKE_ENABLED = false
+process.env.REDIS_ENABLED = false
+process.env.SERVICE_API_ENABLED = false
+process.env.LOG_LEVEL = 'error'
 const config = require('./server/config')
+
 const { logger } = require('defra-logging-facade')
 const { utils } = require('ivory-shared')
 const syncRegistration = require('./server/lib/sync-registration')
@@ -18,9 +26,6 @@ module.exports = class TestHelper {
     const { stubCallback, stubCache = true } = options || {}
 
     lab.beforeEach(async () => {
-      // Add env variables
-      process.env.LOG_LEVEL = 'error'
-
       this._cache = {}
 
       // Create a sinon sandbox to stub methods
@@ -52,9 +57,6 @@ module.exports = class TestHelper {
 
       // Stop the server
       await this._server.stop()
-
-      // Remove env variables
-      delete process.env.LOG_LEVEL
     })
   }
 
@@ -131,9 +133,6 @@ module.exports = class TestHelper {
     sandbox.stub(dotenv, 'config').value(() => {})
     sandbox.stub(config, 'serviceName').value('Service name')
     sandbox.stub(config, 'addressLookUpEnabled').value(true)
-    sandbox.stub(config, 'airbrakeEnabled').value(false)
-    sandbox.stub(config, 'redisEnabled').value(false)
-    sandbox.stub(config, 'serviceApiEnabled').value(false)
     sandbox.stub(logger, 'debug').value(() => undefined)
     sandbox.stub(logger, 'info').value(() => undefined)
     sandbox.stub(logger, 'warn').value(() => undefined)
