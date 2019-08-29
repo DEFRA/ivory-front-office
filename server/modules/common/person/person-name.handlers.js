@@ -4,7 +4,7 @@ const { mixin } = require('ivory-shared')
 class PersonNameHandlers extends mixin(require('../handlers'), require('./person-mixin')) {
   get schema () {
     return Joi.object({
-      'full-name': Joi.string().required()
+      'full-name': Joi.string().trim().required()
     })
   }
 
@@ -20,7 +20,7 @@ class PersonNameHandlers extends mixin(require('../handlers'), require('./person
   async handleGet (request, h, errors) {
     const person = await this.getPerson(request)
     this.viewData = {
-      fullName: person.fullName
+      'full-name': person.fullName
     }
     return super.handleGet(request, h, errors)
   }

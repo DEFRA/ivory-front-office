@@ -22,6 +22,6 @@ module.exports = handlers.routes({
   app: {
     // pageHeading is derived in the getPageHeading method above
     view: 'common/person/person-name',
-    nextPath: '/owner-email'
+    nextPath: '/owner-full-address'
   }
 })

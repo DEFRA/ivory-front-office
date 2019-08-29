@@ -52,8 +52,24 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-postcode': ''
       })
       return routesHelper.expectValidationErrors(request, [
-        { field: 'address-line-1', message: 'Enter a valid building number or name' },
-        { field: 'address-town', message: 'Enter a valid town' },
+        { field: 'address-line-1', message: 'Enter a valid building and street' },
+        { field: 'address-town', message: 'Enter a valid town or city' },
+        { field: 'address-postcode', message: 'Enter a valid postcode' }
+      ])
+    })
+
+    lab.test('fails validation when the address fields only contains spaces', async ({ context }) => {
+      const { request } = context
+      Object.assign(request.payload, {
+        'address-line-1': ' ',
+        'address-line-2': ' ',
+        'address-town': ' ',
+        'address-county': ' ',
+        'address-postcode': ' '
+      })
+      return routesHelper.expectValidationErrors(request, [
+        { field: 'address-line-1', message: 'Enter a valid building and street' },
+        { field: 'address-town', message: 'Enter a valid town or city' },
         { field: 'address-postcode', message: 'Enter a valid postcode' }
       ])
     })
