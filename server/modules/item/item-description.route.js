@@ -5,7 +5,7 @@ const { utils } = require('ivory-shared')
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
     return Joi.object({
-      'item-description': Joi.string().required()
+      'item-description': Joi.string().trim().required()
     })
   }
 
@@ -32,7 +32,7 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
   async handleGet (request, h, errors) {
     const item = await this.getItem(request)
     this.viewData = {
-      itemDescription: item.description
+      'item-description': item.description
     }
     return super.handleGet(request, h, errors)
   }
@@ -51,8 +51,8 @@ const handlers = new ItemDescriptionHandlers()
 module.exports = handlers.routes({
   path: '/item-description',
   app: {
-    pageHeading: 'Item description',
+    pageHeading: 'Describe the item',
     view: 'item/item-description',
-    nextPath: '/check-your-answers'
+    nextPath: '/who-owns-item'
   }
 })
