@@ -1,7 +1,7 @@
 
 const { utils, Persistence } = require('ivory-shared')
 const { serviceApi } = require('../config')
-const persistence = new Persistence({ path: '/full-registrations', serviceApi })
+const persistence = new Persistence({ path: `${serviceApi}/full-registrations` })
 const { logger } = require('defra-logging-facade')
 
 const syncRegistration = {
