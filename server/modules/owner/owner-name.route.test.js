@@ -43,11 +43,19 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       ])
     })
 
+    lab.test('fails validation when the full name only contains spaces', async ({ context }) => {
+      const { request } = context
+      request.payload['full-name'] = ' '
+      return routesHelper.expectValidationErrors(request, [
+        { field: 'full-name', message: 'Enter your full name' }
+      ])
+    })
+
     lab.test('redirects correctly when the full name has been entered', async ({ context }) => {
       const { request } = context
       const fullName = 'James Bond'
       request.payload['full-name'] = fullName
-      await routesHelper.expectRedirection(request, '/owner-email')
+      await routesHelper.expectRedirection(request, '/owner-full-address')
       Code.expect(routesHelper.cache.owner.fullName).to.equal(fullName)
     })
   })

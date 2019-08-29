@@ -10,7 +10,7 @@
     {{ govukInput({
       id: "address-line-1",
       name: "address-line-1",
-      value: viewData.address.addressLine1,
+      value: viewData['address-line-1'],
       errorMessage: errors['address-line-1'],
       label: {
         html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
@@ -20,7 +20,7 @@
     {{ govukInput({
       id: "address-line-2",
       name: "address-line-2",
-      value: viewData.address.addressLine2,
+      value: viewData['address-line-2'],
       errorMessage: errors['address-line-2'],
       label: {
         html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
@@ -30,7 +30,7 @@
     {{ govukInput({
       id: "address-town",
       name: "address-town",
-      value: viewData.address.town,
+      value: viewData['address-town'],
       errorMessage: errors['address-town'],
       label: {
         text: "Town or city"
@@ -41,7 +41,7 @@
     {{ govukInput({
       id: "address-county",
       name: "address-county",
-      value: viewData.address.county,
+      value: viewData['address-county'],
       errorMessage: errors['address-county'],
       label: {
         text: "County"
@@ -52,7 +52,7 @@
     {{ govukInput({
       id: "address-postcode",
       name: "address-postcode",
-      value: viewData.address.postcode,
+      value: viewData['address-postcode'],
       errorMessage: errors['address-postcode'],
       label: {
         text: "Postcode"
