@@ -8,6 +8,6 @@ module.exports = handlers.routes({
   app: {
     // pageHeading is derived in the getPageHeading method above
     view: 'common/address/address-manual',
-    nextPath: '/item-description'
+    nextPath: '/check-your-answers'
   }
 })

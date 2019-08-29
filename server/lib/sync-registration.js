@@ -33,6 +33,10 @@ const syncRegistration = {
 
       logger.debug('Saving: ', registration)
       const result = await persistence.save(registration)
+      if (result.error) {
+        logger.error(result)
+        throw new Error(result)
+      }
       logger.debug('Saved: ', result)
       return syncRegistration.reloadCache(request, result)
     }
