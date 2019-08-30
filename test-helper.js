@@ -153,6 +153,7 @@ module.exports = class TestHelper {
       return key.map((key) => this._cache[key])
     })
     this._sandbox.stub(utils, 'setCache').value((request, key, val) => { this._cache[key] = val })
+    this._sandbox.stub(utils, 'clearCache').value(() => { this._cache = {} })
   }
 
   get server () {

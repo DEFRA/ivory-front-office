@@ -21,7 +21,7 @@ module.exports = handlers.routes({
   path: '/check-your-answers',
   app: {
     pageHeading: 'Check your answers',
-    view: 'core/check-your-answers',
+    view: 'check-your-answers/check-your-answers',
     nextPath: '/no-idea'
   }
 })
