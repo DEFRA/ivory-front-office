@@ -22,7 +22,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         }
       ]
 
-      routesHelper.cache['agent-address'] = { postcodeAddressList }
+      routesHelper.cache.AgentAddress = { postcodeAddressList }
     })
 
     lab.test('addresses has been pre-filled, none selected', async ({ context }) => {
@@ -35,7 +35,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('addresses has been pre-filled, one selected', async ({ context }) => {
       const uprn = postcodeAddressList[0].uprn
-      routesHelper.cache['agent-address'].uprn = uprn
+      routesHelper.cache.AgentAddress.uprn = uprn
 
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
@@ -48,7 +48,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     const address = { uprn: '1234' }
     lab.beforeEach(() => {
-      routesHelper.cache['agent-address'] = {
+      routesHelper.cache.AgentAddress = {
         postcodeAddressList: [
           address
         ]
@@ -67,7 +67,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       request.payload.address = address.uprn
       await routesHelper.expectRedirection(request, '/owner-name')
-      Code.expect(routesHelper.cache['agent-address'].uprn).to.equal(address.uprn)
+      Code.expect(routesHelper.cache.AgentAddress.uprn).to.equal(address.uprn)
     })
   })
 })

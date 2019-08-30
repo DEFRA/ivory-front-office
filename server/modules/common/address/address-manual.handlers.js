@@ -1,7 +1,6 @@
 const Joi = require('@hapi/joi')
-const { mixin } = require('ivory-shared')
 
-class AddressManualHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
+class AddressManualHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
       'address-line-1': Joi.string().trim().required(),
@@ -22,7 +21,8 @@ class AddressManualHandlers extends mixin(require('../handlers'), require('./add
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
-    const address = await this.getAddress(request)
+    const { Address } = this
+    const address = await Address.get(request) || {}
     this.viewData = {
       'address-line-1': address.addressLine1,
       'address-line-2': address.addressLine2,
@@ -36,7 +36,8 @@ class AddressManualHandlers extends mixin(require('../handlers'), require('./add
 
   // Overrides parent class handlePost
   async handlePost (request, h) {
-    const address = await this.getAddress(request)
+    const { Address } = this
+    const address = await Address.get(request) || {}
     const {
       'address-line-1': addressLine1,
       'address-line-2': addressLine2,
@@ -49,7 +50,7 @@ class AddressManualHandlers extends mixin(require('../handlers'), require('./add
 
     address.addressLine = `${addressLine1}, ${addressLine2}, ${town}, ${postcode}`
 
-    await this.setAddress(request, address, true)
+    await Address.set(request, address, true)
     return super.handlePost(request, h)
   }
 }

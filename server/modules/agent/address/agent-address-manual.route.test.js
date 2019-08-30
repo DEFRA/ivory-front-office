@@ -29,7 +29,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
 
     lab.test('address has been pre-filled', async ({ context }) => {
-      routesHelper.cache['agent-address'] = address
+      routesHelper.cache.AgentAddress = address
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -84,7 +84,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-postcode': address.postcode
       })
       await routesHelper.expectRedirection(request, '/owner-name')
-      Code.expect(routesHelper.cache['agent-address'].postcode).to.equal(address.postcode)
+      Code.expect(routesHelper.cache.AgentAddress.postcode).to.equal(address.postcode)
     })
   })
 })

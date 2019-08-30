@@ -1,11 +1,23 @@
 const syncRegistration = require('../../lib/sync-registration')
-const { utils } = require('ivory-shared')
+const {
+  Registration,
+  Owner,
+  OwnerAddress,
+  Agent,
+  AgentAddress,
+  Item
+} = require('../../lib/cache')
 
 class CheckYourAnswersHandlers extends require('../common/handlers') {
   async handleGet (request, h, errors) {
-    const [registration, owner, ownerAddress, agent, agentAddress, item] = await utils.getCache(request, ['registration', 'owner', 'owner-address', 'agent', 'agent-address', 'item'])
-    const { agentIsOwner } = registration || {}
-    this.viewData = { agentIsOwner, owner, ownerAddress, agent, agentAddress, item }
+    this.viewData = {
+      registration: await Registration.get(request) || {},
+      owner: await Owner.get(request) || {},
+      ownerAddress: await OwnerAddress.get(request) || {},
+      agent: await Agent.get(request) || {},
+      agentAddress: await AgentAddress.get(request) || {},
+      item: await Item.get(request) || {}
+    }
     return super.handleGet(request, h, errors)
   }
 

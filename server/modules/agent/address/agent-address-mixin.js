@@ -1,6 +1,8 @@
+const { AgentAddress } = require('../../../lib/cache')
+
 module.exports = {
-  get addressType () {
-    return 'agent-address'
+  get Address () {
+    return AgentAddress
   },
 
   get findAddressLink () {

@@ -14,7 +14,7 @@ process.env.LOG_LEVEL = 'error'
 const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
-const { utils } = require('ivory-shared')
+const { Cache } = require('ivory-shared')
 const syncRegistration = require('./server/lib/sync-registration')
 const routesPlugin = require('./server/plugins/router')
 
@@ -146,14 +146,14 @@ module.exports = class TestHelper {
   }
 
   _stubCache () {
-    this._sandbox.stub(utils, 'getCache').value((request, key) => {
+    this._sandbox.stub(Cache, 'get').value((request, key) => {
       if (typeof key === 'string') {
         return this._cache[key]
       }
       return key.map((key) => this._cache[key])
     })
-    this._sandbox.stub(utils, 'setCache').value((request, key, val) => { this._cache[key] = val })
-    this._sandbox.stub(utils, 'clearCache').value(() => { this._cache = {} })
+    this._sandbox.stub(Cache, 'set').value((request, key, val) => { this._cache[key] = val })
+    this._sandbox.stub(Cache, 'clear').value(() => { this._cache = {} })
   }
 
   get server () {

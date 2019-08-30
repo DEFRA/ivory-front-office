@@ -11,7 +11,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('description has been pre-filled when cache exists', async ({ context }) => {
       const description = 'Test item description'
-      routesHelper.cache.item = { description: description }
+      routesHelper.cache.Item = { description: description }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 

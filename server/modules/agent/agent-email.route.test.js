@@ -18,7 +18,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('email address has been pre-filled', async ({ context }) => {
       const email = 'James Bond'
-      routesHelper.cache.agent = { email }
+      routesHelper.cache.Agent = { email }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -40,7 +40,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const email = 'james.bond@defra.test.gov.uk'
       request.payload.email = email
       await routesHelper.expectRedirection(request, '/agent-address')
-      Code.expect(routesHelper.cache.agent.email).to.equal(email)
+      Code.expect(routesHelper.cache.Agent.email).to.equal(email)
     })
   })
 })

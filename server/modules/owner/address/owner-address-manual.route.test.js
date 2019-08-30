@@ -22,7 +22,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      routesHelper.cache.registration = { agentIsOwner: true }
+      routesHelper.cache.Registration = { agentIsOwner: true }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -37,7 +37,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
 
     lab.test('address has been pre-filled', async ({ context }) => {
-      routesHelper.cache['owner-address'] = address
+      routesHelper.cache.OwnerAddress = address
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -92,7 +92,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-postcode': address.postcode
       })
       await routesHelper.expectRedirection(request, '/check-your-answers')
-      Code.expect(routesHelper.cache['owner-address'].postcode).to.equal(address.postcode)
+      Code.expect(routesHelper.cache.OwnerAddress.postcode).to.equal(address.postcode)
     })
   })
 })

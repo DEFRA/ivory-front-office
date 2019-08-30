@@ -1,7 +1,6 @@
 const Joi = require('@hapi/joi')
-const { mixin } = require('ivory-shared')
 
-class PersonEmailHandlers extends mixin(require('../handlers'), require('./person-mixin')) {
+class PersonEmailHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
       email: Joi.string().email().required()
@@ -19,7 +18,8 @@ class PersonEmailHandlers extends mixin(require('../handlers'), require('./perso
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
-    const person = await this.getPerson(request)
+    const { Person } = this
+    const person = await Person.get(request) || {}
     this.viewData = {
       email: person.email
     }
@@ -28,9 +28,10 @@ class PersonEmailHandlers extends mixin(require('../handlers'), require('./perso
 
   // Overrides parent class handlePost
   async handlePost (request, h) {
-    const person = await this.getPerson(request)
+    const { Person } = this
+    const person = await Person.get(request) || {}
     person.email = request.payload.email
-    await this.setPerson(request, person, true)
+    await Person.set(request, person, true)
     return super.handlePost(request, h)
   }
 }

@@ -10,7 +10,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      routesHelper.cache.registration = { agentIsOwner: true }
+      routesHelper.cache.Registration = { agentIsOwner: true }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -26,7 +26,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('email address has been pre-filled', async ({ context }) => {
       const email = 'James Bond'
-      routesHelper.cache.owner = { email }
+      routesHelper.cache.Owner = { email }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -48,7 +48,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const email = 'james.bond@defra.test.gov.uk'
       request.payload.email = email
       await routesHelper.expectRedirection(request, '/owner-address')
-      Code.expect(routesHelper.cache.owner.email).to.equal(email)
+      Code.expect(routesHelper.cache.Owner.email).to.equal(email)
     })
   })
 })

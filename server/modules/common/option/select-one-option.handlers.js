@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { utils } = require('ivory-shared')
+const { Registration } = require('../../../lib/cache')
 const { referenceData } = require('../../../config')
 
 class SelectOneOptionHandlers extends require('../handlers') {
@@ -34,11 +34,11 @@ class SelectOneOptionHandlers extends require('../handlers') {
   }
 
   async getData (request) {
-    return await utils.getCache(request, 'registration') || {}
+    return await Registration.get(request) || {}
   }
 
   async setData (request, registration) {
-    return utils.setCache(request, 'registration', registration)
+    return Registration.set(request, registration)
   }
 
   errorLink (field) {

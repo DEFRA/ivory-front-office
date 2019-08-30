@@ -1,8 +1,8 @@
-const { utils } = require('ivory-shared')
+const { Registration, OwnerAddress } = require('../../../lib/cache')
 
 module.exports = {
-  get addressType () {
-    return 'owner-address'
+  get Address () {
+    return OwnerAddress
   },
 
   get findAddressLink () {
@@ -19,7 +19,7 @@ module.exports = {
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const { agentIsOwner } = await utils.getCache(request, 'registration') || {}
+    const { agentIsOwner } = await Registration.get(request) || {}
     if (agentIsOwner) {
       return 'Your address'
     }

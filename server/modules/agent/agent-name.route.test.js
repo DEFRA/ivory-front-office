@@ -18,7 +18,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('full name has been pre-filled', async ({ context }) => {
       const fullName = 'James Bond'
-      routesHelper.cache.agent = { fullName: 'James Bond' }
+      routesHelper.cache.Agent = { fullName: 'James Bond' }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -40,7 +40,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const fullName = 'James Bond'
       request.payload['full-name'] = fullName
       await routesHelper.expectRedirection(request, '/agent-email')
-      Code.expect(routesHelper.cache.agent.fullName).to.equal(fullName)
+      Code.expect(routesHelper.cache.Agent.fullName).to.equal(fullName)
     })
   })
 })

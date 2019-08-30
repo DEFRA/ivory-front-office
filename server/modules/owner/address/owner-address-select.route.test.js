@@ -22,11 +22,11 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         }
       ]
 
-      routesHelper.cache['owner-address'] = { postcodeAddressList }
+      routesHelper.cache.OwnerAddress = { postcodeAddressList }
     })
 
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      routesHelper.cache.registration = { agentIsOwner: true }
+      routesHelper.cache.Registration = { agentIsOwner: true }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -43,7 +43,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('addresses has been pre-filled, one selected', async ({ context }) => {
       const uprn = postcodeAddressList[0].uprn
-      routesHelper.cache['owner-address'].uprn = uprn
+      routesHelper.cache.OwnerAddress.uprn = uprn
 
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
@@ -56,7 +56,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     const address = { uprn: '1234' }
     lab.beforeEach(() => {
-      routesHelper.cache['owner-address'] = {
+      routesHelper.cache.OwnerAddress = {
         postcodeAddressList: [
           address
         ]
@@ -75,7 +75,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       request.payload.address = address.uprn
       await routesHelper.expectRedirection(request, '/check-your-answers')
-      Code.expect(routesHelper.cache['owner-address'].uprn).to.equal(address.uprn)
+      Code.expect(routesHelper.cache.OwnerAddress.uprn).to.equal(address.uprn)
     })
   })
 })
