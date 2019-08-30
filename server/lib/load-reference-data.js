@@ -1,7 +1,7 @@
 const Wreck = require('@hapi/wreck')
 const { logger } = require('defra-logging-facade')
 const config = require('../config')
-const { getNestedVal } = require('ivory-shared').utils
+const { utils } = require('ivory-shared')
 
 async function load (path) {
   const { serviceApi } = config
@@ -13,7 +13,7 @@ async function load (path) {
     const res = await Wreck.request('GET', uri, { headers })
     return Wreck.read(res, { json: true })
   } catch (error) {
-    const { statusCode, message } = getNestedVal(error, 'output.payload') || {}
+    const { statusCode, message } = utils.getNestedVal(error, 'output.payload') || {}
     logger.error(`message: ${message}, statusCode: ${statusCode}, method: 'GET', uri: ${uri}`)
     throw error
   }

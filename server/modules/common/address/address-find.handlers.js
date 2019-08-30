@@ -1,9 +1,8 @@
 const Joi = require('@hapi/joi')
 const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
 const config = require('../../../config')
-const { mixin } = require('ivory-shared')
 
-class AddressFindHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
+class AddressFindHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
       postcode: Joi.string().required()
@@ -41,10 +40,11 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
+    const { Address } = this
     if (!config.addressLookUpEnabled) {
       return h.redirect(this.manualAddressLink)
     }
-    const address = await this.getAddress(request)
+    const address = await Address.get(request) || {}
     this.viewData = {
       postcode: address.postcode,
       manualAddressLink: this.manualAddressLink
@@ -54,7 +54,8 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
 
   // Overrides parent class handlePost
   async handlePost (request, h) {
-    let address = await this.getAddress(request)
+    const { Address } = this
+    let address = await Address.get(request) || {}
     const postcode = this.formattedPostcode(request.payload.postcode)
 
     if (!address.postcodeAddressList || postcode !== this.formattedPostcode(address.postcode)) {
@@ -66,7 +67,7 @@ class AddressFindHandlers extends mixin(require('../handlers'), require('./addre
       }
     }
 
-    await this.setAddress(request, address)
+    await Address.set(request, address)
     return super.handlePost(request, h)
   }
 }

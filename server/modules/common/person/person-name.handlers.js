@@ -1,7 +1,6 @@
 const Joi = require('@hapi/joi')
-const { mixin } = require('ivory-shared')
 
-class PersonNameHandlers extends mixin(require('../handlers'), require('./person-mixin')) {
+class PersonNameHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
       'full-name': Joi.string().trim().required()
@@ -18,7 +17,8 @@ class PersonNameHandlers extends mixin(require('../handlers'), require('./person
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
-    const person = await this.getPerson(request)
+    const { Person } = this
+    const person = await Person.get(request) || {}
     this.viewData = {
       'full-name': person.fullName
     }
@@ -27,9 +27,10 @@ class PersonNameHandlers extends mixin(require('../handlers'), require('./person
 
   // Overrides parent class handlePost
   async handlePost (request, h) {
-    const person = await this.getPerson(request)
+    const { Person } = this
+    const person = await Person.get(request) || {}
     person.fullName = request.payload['full-name']
-    await this.setPerson(request, person)
+    await Person.set(request, person)
     return super.handlePost(request, h)
   }
 }

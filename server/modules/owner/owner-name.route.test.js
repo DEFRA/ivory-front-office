@@ -10,7 +10,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      routesHelper.cache.registration = { agentIsOwner: true }
+      routesHelper.cache.Registration = { agentIsOwner: true }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -26,7 +26,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('full name has been pre-filled', async ({ context }) => {
       const fullName = 'James Bond'
-      routesHelper.cache.owner = { fullName: 'James Bond' }
+      routesHelper.cache.Owner = { fullName: 'James Bond' }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -56,7 +56,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const fullName = 'James Bond'
       request.payload['full-name'] = fullName
       await routesHelper.expectRedirection(request, '/owner-full-address')
-      Code.expect(routesHelper.cache.owner.fullName).to.equal(fullName)
+      Code.expect(routesHelper.cache.Owner.fullName).to.equal(fullName)
     })
   })
 })

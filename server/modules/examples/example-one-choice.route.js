@@ -1,4 +1,4 @@
-const { utils } = require('ivory-shared')
+const { Cache } = require('ivory-shared')
 
 class ExampleOneChoiceHandlers extends require('../common/option/select-one-option.handlers') {
   get referenceData () {
@@ -39,11 +39,11 @@ class ExampleOneChoiceHandlers extends require('../common/option/select-one-opti
   }
 
   async getData (request) {
-    return await utils.getCache(request, 'examples') || {}
+    return await Cache.get(request, 'examples') || {}
   }
 
   async setData (request, data) {
-    return utils.setCache(request, 'examples', data)
+    return Cache.set(request, 'examples', data)
   }
 
   errorLink (field) {

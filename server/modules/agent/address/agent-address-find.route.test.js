@@ -31,7 +31,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('postcode has been pre-filled', async ({ context }) => {
       const postcode = 'WC1A 1AA'
-      routesHelper.cache['agent-address'] = { postcode }
+      routesHelper.cache.AgentAddress = { postcode }
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -53,7 +53,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const postcode = 'WA41AB'
       request.payload.postcode = postcode
       await routesHelper.expectRedirection(request, '/agent-address-select')
-      Code.expect(routesHelper.cache['agent-address'].postcode).to.equal(postcode)
+      Code.expect(routesHelper.cache.AgentAddress.postcode).to.equal(postcode)
     })
   })
 })

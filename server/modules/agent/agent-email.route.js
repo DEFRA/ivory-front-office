@@ -1,6 +1,8 @@
+const { Agent } = require('../../lib/cache')
+
 class AgentNameHandlers extends require('../common/person/person-email.handlers') {
-  get personType () {
-    return 'agent'
+  get Person () {
+    return Agent
   }
 }
 

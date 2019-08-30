@@ -1,13 +1,13 @@
-const { utils } = require('ivory-shared')
+const { Registration, Owner } = require('../../lib/cache')
 
 class OwnerNameHandlers extends require('../common/person/person-name.handlers') {
-  get personType () {
-    return 'owner'
+  get Person () {
+    return Owner
   }
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const { agentIsOwner } = await utils.getCache(request, 'registration') || {}
+    const { agentIsOwner } = await Registration.get(request) || {}
     if (agentIsOwner) {
       return 'Your name'
     }

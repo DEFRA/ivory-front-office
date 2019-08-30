@@ -32,14 +32,14 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       request.payload.agentActingAs = 'executor'
       await routesHelper.expectRedirection(request, '/agent-name')
-      Code.expect(routesHelper.cache.registration.agentActingAs).to.equal('executor')
+      Code.expect(routesHelper.cache.Registration.agentActingAs).to.equal('executor')
     })
 
     lab.test('redirects correctly when "Trustee" is selected', async ({ context }) => {
       const { request } = context
       request.payload.agentActingAs = 'trustee'
       await routesHelper.expectRedirection(request, '/agent-name')
-      Code.expect(routesHelper.cache.registration.agentActingAs).to.equal('trustee')
+      Code.expect(routesHelper.cache.Registration.agentActingAs).to.equal('trustee')
     })
   })
 })

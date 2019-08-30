@@ -1,6 +1,5 @@
 const Joi = require('@hapi/joi')
-const syncRegistration = require('../../lib/sync-registration')
-const { utils } = require('ivory-shared')
+const { Item } = require('../../lib/cache')
 
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
@@ -17,31 +16,20 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
     }
   }
 
-  async getItem (request) {
-    return await utils.getCache(request, 'item') || {}
-  }
-
-  async setItem (request, item, persistToDatabase) {
-    await utils.setCache(request, 'item', item)
-    if (persistToDatabase) {
-      return syncRegistration.save(request)
-    }
-  }
-
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
-    const item = await this.getItem(request)
+    const { description } = await Item.get(request) || {}
     this.viewData = {
-      'item-description': item.description
+      'item-description': description
     }
     return super.handleGet(request, h, errors)
   }
 
   // Overrides parent class handlePost
   async handlePost (request, h) {
-    const item = await this.getItem(request)
+    const item = await Item.get(request) || {}
     item.description = request.payload['item-description']
-    await this.setItem(request, item, true)
+    await Item.set(request, item, true)
     return super.handlePost(request, h)
   }
 }

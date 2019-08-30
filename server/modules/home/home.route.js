@@ -1,12 +1,13 @@
-const { utils } = require('ivory-shared')
+const { Cache } = require('ivory-shared')
+const { Registration } = require('../../lib/cache')
 
 class RestoreHandlers extends require('../common/handlers') {
   async handleGet (request, h, errors) {
     // Clear the cookies and create a new registration
-    await utils.clearCache()
+    await Cache.clear(request)
 
     // ToDo: Remove setting the agentIsOwner flag once "Who owns the item" page has been added
-    await utils.setCache(request, 'registration', { agentIsOwner: true }, true)
+    await Registration.set(request, { agentIsOwner: true }, true)
 
     return h.redirect('/item-description')
   }

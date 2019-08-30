@@ -1,19 +1,24 @@
 
-const { utils, Persistence } = require('ivory-shared')
+const { Persistence } = require('ivory-shared')
 const { serviceApi } = require('../config')
 const persistence = new Persistence({ path: `${serviceApi}/full-registrations` })
 const { logger } = require('defra-logging-facade')
 
+function getCache () {
+  // This is to prevent a recursive require loop as the cache requires this file
+  return require('./cache')
+}
+
 const syncRegistration = {
   async save (request) {
-    const [registration, owner, agent, ownerAddress, agentAddress, item] =
-      await utils.getCache(request, [
-        'registration',
-        'owner',
-        'agent',
-        'owner-address',
-        'agent-address',
-        'item'])
+    const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item } = getCache()
+    const registration = await Registration.get(request)
+    const owner = await Owner.get(request)
+    const ownerAddress = await OwnerAddress.get(request)
+    const agent = await Agent.get(request)
+    const agentAddress = await AgentAddress.get(request)
+    const item = await Item.get(request)
+
     if (registration) {
       if (owner) {
         if (ownerAddress) {
@@ -49,42 +54,43 @@ const syncRegistration = {
     return syncRegistration.reloadCache(request, registration)
   },
 
-  async setPerson (request, person, type, addressType) {
+  async setPerson (request, person, Person, Address) {
     const { address } = person
     if (address) {
       // Add addressLine and postcodeAddressList back in to the cache if they exist
-      const { addressLine, postcodeAddressList } = await utils.getCache(request, addressType) || {}
+      const { addressLine, postcodeAddressList } = await Address.get(request) || {}
       if (addressLine) {
         address.addressLine = addressLine
       }
       if (postcodeAddressList) {
         address.postcodeAddressList = postcodeAddressList
       }
-      await utils.setCache(request, addressType, address)
+      await Address.set(request, address)
       delete person.address
     }
-    await utils.setCache(request, type, person)
+    await Person.set(request, person)
   },
 
   async reloadCache (request, registration) {
+    const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item } = getCache()
     const { owner, agent, item } = registration
 
     if (owner) {
-      await this.setPerson(request, owner, 'owner', 'owner-address')
+      await this.setPerson(request, owner, Owner, OwnerAddress)
       delete registration.owner
     }
 
     if (agent) {
-      await this.setPerson(request, agent, 'agent', 'agent-address')
+      await this.setPerson(request, agent, Agent, AgentAddress)
       delete registration.agent
     }
 
     if (item) {
-      await utils.setCache(request, 'item', item)
+      await Item.set(request, item)
       delete registration.item
     }
 
-    await utils.setCache(request, 'registration', registration)
+    await Registration.set(request, registration)
     return true
   },
 

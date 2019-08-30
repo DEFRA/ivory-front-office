@@ -1,8 +1,7 @@
 const Joi = require('@hapi/joi')
 const chooseAddressHint = 'Choose an address'
-const { mixin } = require('ivory-shared')
 
-class AddressSelectHandlers extends mixin(require('../handlers'), require('./address-mixin')) {
+class AddressSelectHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
       address: Joi.string().min(1).required()
@@ -19,7 +18,8 @@ class AddressSelectHandlers extends mixin(require('../handlers'), require('./add
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
-    const address = await this.getAddress(request)
+    const { Address } = this
+    const address = await Address.get(request) || {}
     const { postcodeAddressList = [] } = address
 
     // Use the payload in this special case to force the addresses to be displayed even when there is an error
@@ -41,13 +41,14 @@ class AddressSelectHandlers extends mixin(require('../handlers'), require('./add
 
   // Overrides parent class handlePost
   async handlePost (request, h) {
-    const address = await this.getAddress(request)
+    const { Address } = this
+    const address = await Address.get(request) || {}
     const selectedUprn = request.payload.address
 
     // Retrieve the actual address information from the cached address list
     Object.assign(address, address.postcodeAddressList.find(({ uprn }) => uprn === selectedUprn))
 
-    await this.setAddress(request, address, true)
+    await Address.set(request, address, true)
 
     return super.handlePost(request, h)
   }
