@@ -1,9 +1,10 @@
 const { Cache } = require('ivory-shared')
-const syncRegistration = require('./sync-registration')
 
 class BaseCache {
   static async set (request, data, persistToDatabase) {
     await Cache.set(request, this.name, data)
+    // Only require when required to prevent require dependency loop
+    const syncRegistration = require('./sync-registration')
     if (persistToDatabase) {
       return syncRegistration.save(request)
     }

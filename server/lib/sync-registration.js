@@ -3,15 +3,10 @@ const { Persistence } = require('ivory-shared')
 const { serviceApi } = require('../config')
 const persistence = new Persistence({ path: `${serviceApi}/full-registrations` })
 const { logger } = require('defra-logging-facade')
-
-function getCache () {
-  // This is to prevent a recursive require loop as the cache requires this file
-  return require('./cache')
-}
+const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item } = require('./cache')
 
 const syncRegistration = {
   async save (request) {
-    const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item } = getCache()
     const registration = await Registration.get(request)
     const owner = await Owner.get(request)
     const ownerAddress = await OwnerAddress.get(request)
@@ -72,7 +67,6 @@ const syncRegistration = {
   },
 
   async reloadCache (request, registration) {
-    const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item } = getCache()
     const { owner, agent, item } = registration
 
     if (owner) {
