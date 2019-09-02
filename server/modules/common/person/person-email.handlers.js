@@ -1,4 +1,5 @@
 const Joi = require('@hapi/joi')
+const syncRegistration = require('../../../lib/sync-registration')
 
 class PersonEmailHandlers extends require('../handlers') {
   get schema () {
@@ -31,7 +32,7 @@ class PersonEmailHandlers extends require('../handlers') {
     const { Person } = this
     const person = await Person.get(request) || {}
     person.email = request.payload.email
-    await Person.set(request, person, true)
+    await Person.set(request, person, syncRegistration)
     return super.handlePost(request, h)
   }
 }

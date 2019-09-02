@@ -1,4 +1,5 @@
 const Joi = require('@hapi/joi')
+const syncRegistration = require('../../../lib/sync-registration')
 
 class AddressManualHandlers extends require('../handlers') {
   get schema () {
@@ -50,7 +51,7 @@ class AddressManualHandlers extends require('../handlers') {
 
     address.addressLine = `${addressLine1}, ${addressLine2}, ${town}, ${postcode}`
 
-    await Address.set(request, address, true)
+    await Address.set(request, address, syncRegistration)
     return super.handlePost(request, h)
   }
 }
