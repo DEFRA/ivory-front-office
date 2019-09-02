@@ -83,7 +83,7 @@ module.exports = class TestHelper {
         const response = await this.server.inject(context.request)
         const $ = this.getDomParser(response.payload)
 
-        Code.expect($('#defra-page-heading, legend h1').text()).to.include(pageHeading)
+        Code.expect($('#defra-page-heading, h1').text()).to.include(pageHeading)
       })
 
       if (requestTestsCallback) {

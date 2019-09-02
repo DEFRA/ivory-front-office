@@ -15,8 +15,12 @@ module.exports = class Handlers {
     return request.route.settings.app.view
   }
 
-  async getViewData (request) {
+  async getViewData () {
     return this.viewData
+  }
+
+  async getIsQuestionPage (request) {
+    return request.route.settings.app.isQuestionPage || false
   }
 
   async handleGet (request, h, errors) {
@@ -25,9 +29,11 @@ module.exports = class Handlers {
     const pageHeading = await this.getPageHeading(request)
     const viewName = await this.getViewName(request)
     const viewData = await this.getViewData(request)
+    const isQuestionPage = await this.getIsQuestionPage(request)
 
     return h.view(viewName, {
       pageHeading,
+      isQuestionPage,
       fieldName: this.fieldName,
       viewData: request.payload ? request.payload : viewData,
       errors,

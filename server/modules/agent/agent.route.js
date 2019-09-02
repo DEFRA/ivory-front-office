@@ -16,6 +16,7 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'How are you acting on behalf of the owner?',
     view: 'common/option/select-one-option',
-    nextPath: '/agent-name'
+    nextPath: '/agent-name',
+    isQuestionPage: true
   }
 })

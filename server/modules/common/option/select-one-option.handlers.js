@@ -52,7 +52,6 @@ class SelectOneOptionHandlers extends require('../handlers') {
 
     // Use the payload in this special case to force the items to be displayed even when there is an error
     request.payload = {
-      legend: await this.getPageHeading(request),
       hint: hint ? { text: hint } : undefined,
       items: this.items.map(({ value, text, hint, storedValue }) => {
         return {

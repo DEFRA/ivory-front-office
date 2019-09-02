@@ -41,6 +41,7 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'Describe the item',
     view: 'item/item-description',
-    nextPath: '/owner-name'
+    nextPath: '/owner-name',
+    isQuestionPage: true
   }
 })
