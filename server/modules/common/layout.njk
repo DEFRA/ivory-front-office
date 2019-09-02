@@ -39,7 +39,7 @@
 {% endblock %}
 
 {% block pageTitle %}
-  {% if errors %}Error: {% endif %}{{ pageHeading }}
+  {% if errors %}Error: {% endif %}{{ pageHeading }} - {{ pageTitle }}
 {% endblock %}
 
 {{ govukBackLink({
