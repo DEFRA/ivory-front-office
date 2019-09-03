@@ -48,7 +48,9 @@ class AddressManualHandlers extends require('../handlers') {
 
     Object.assign(address, { addressLine1, addressLine2, town, county, postcode })
 
-    address.addressLine = `${addressLine1}, ${addressLine2}, ${town}, ${postcode}`
+    address.addressLine = [addressLine1, addressLine2, town, postcode]
+      .filter((lineItem) => lineItem)
+      .join(', ')
 
     await Address.set(request, address, true)
     return super.handlePost(request, h)
