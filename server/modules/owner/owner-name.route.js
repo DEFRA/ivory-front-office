@@ -1,14 +1,14 @@
-const { Registration, Owner } = require('../../lib/cache')
+const { Owner } = require('../../lib/cache')
+const { mixin } = require('ivory-shared')
 
-class OwnerNameHandlers extends require('../common/person/person-name.handlers') {
+class OwnerNameHandlers extends mixin(require('../common/person/person-name.handlers'), require('./owner-mixin')) {
   get Person () {
     return Owner
   }
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const { agentIsOwner } = await Registration.get(request) || {}
-    if (agentIsOwner) {
+    if (await this.isOwner(request)) {
       return 'Your name'
     }
     return 'Owner\'s name'
