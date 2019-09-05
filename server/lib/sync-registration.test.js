@@ -74,6 +74,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         Registration: {},
         Owner: {},
         OwnerAddress: {
+          addressLine1: 'the house',
           addressLine2: 'somewhere street',
           road: 'no where road'
         }
@@ -84,7 +85,9 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         Registration: {},
         Owner: {},
         OwnerAddress: {
-          addressLine2: 'somewhere street'
+          addressLine1: 'the house',
+          addressLine2: 'somewhere street',
+          addressLine: 'the house, somewhere street'
         }
       })
     })

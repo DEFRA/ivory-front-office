@@ -53,7 +53,13 @@ const syncRegistration = {
     const { address } = person
     if (address) {
       // Add addressLine and postcodeAddressList back in to the cache if they exist
-      const { addressLine, postcodeAddressList } = await Address.get(request) || {}
+      let { addressLine, postcodeAddressList } = await Address.get(request) || {}
+      if (!addressLine) {
+        const { addressLine1 = '', addressLine2 = '', town = '', postcode = '' } = address
+        addressLine = [addressLine1, addressLine2, town, postcode]
+          .filter((lineItem) => lineItem)
+          .join(', ')
+      }
       if (addressLine) {
         address.addressLine = addressLine
       }
