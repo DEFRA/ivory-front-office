@@ -91,7 +91,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-county': address.county,
         'address-postcode': address.postcode
       })
-      await routesHelper.expectRedirection(request, '/check-your-answers')
+      await routesHelper.expectRedirection(request, '/dealing-intent')
       Code.expect(routesHelper.cache.OwnerAddress.postcode).to.equal(address.postcode)
     })
   })
