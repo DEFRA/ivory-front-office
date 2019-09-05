@@ -1,5 +1,5 @@
 const { mixin } = require('ivory-shared')
-class OwnerAddressManualHandlers extends mixin(require('../../common/address/address-manual.handlers'), require('./owner-address-mixin')) {}
+class OwnerAddressManualHandlers extends mixin(require('../../common/address/address-manual.handlers'), require('../owner-mixin'), require('./owner-address-mixin')) {}
 
 const handlers = new OwnerAddressManualHandlers()
 

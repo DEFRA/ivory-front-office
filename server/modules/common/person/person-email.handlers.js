@@ -3,7 +3,7 @@ const Joi = require('@hapi/joi')
 class PersonEmailHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
-      email: Joi.string().email().required()
+      email: Joi.string().trim().email().required()
     })
   }
 
@@ -19,10 +19,9 @@ class PersonEmailHandlers extends require('../handlers') {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { Person } = this
-    const person = await Person.get(request) || {}
-    this.viewData = {
-      email: person.email
-    }
+    const { email } = await Person.get(request) || {}
+    const emailHint = this.getEmailHint && await this.getEmailHint(request)
+    this.viewData = { email, emailHint }
     return super.handleGet(request, h, errors)
   }
 

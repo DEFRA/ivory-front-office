@@ -1,4 +1,4 @@
-const { Registration, OwnerAddress } = require('../../../lib/cache')
+const { OwnerAddress } = require('../../../lib/cache')
 
 module.exports = {
   get Address () {
@@ -19,8 +19,7 @@ module.exports = {
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const { agentIsOwner } = await Registration.get(request) || {}
-    if (agentIsOwner) {
+    if (await this.isOwner(request)) {
       return 'Your address'
     }
     return 'Owner\'s address'

@@ -14,7 +14,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal('Your email address')
+      Code.expect($('h1').text().trim()).to.equal('Your email address')
     })
 
     lab.test('email address has not been pre-filled', async ({ context }) => {
@@ -47,7 +47,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const email = 'james.bond@defra.test.gov.uk'
       request.payload.email = email
-      await routesHelper.expectRedirection(request, '/owner-address')
+      await routesHelper.expectRedirection(request, '/owner-name')
       Code.expect(routesHelper.cache.Owner.email).to.equal(email)
     })
   })

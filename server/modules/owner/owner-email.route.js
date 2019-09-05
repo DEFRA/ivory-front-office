@@ -1,27 +1,33 @@
-const { Registration, Owner } = require('../../lib/cache')
-
-class OwnerNameHandlers extends require('../common/person/person-email.handlers') {
+const { Owner } = require('../../lib/cache')
+const { mixin } = require('ivory-shared')
+class OwnerEmailHandlers extends mixin(require('../common/person/person-email.handlers'), require('./owner-mixin')) {
   get Person () {
     return Owner
   }
 
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
-    const { agentIsOwner } = await Registration.get(request) || {}
-    if (agentIsOwner) {
+    if (await this.isOwner(request)) {
       return 'Your email address'
     }
     return 'Owner\'s email address'
   }
+
+  async getEmailHint (request) {
+    if (await this.isOwner(request)) {
+      return { text: 'We\'ll use this to send you the payment receipt and confirmation of registration' }
+    }
+  }
 }
 
-const handlers = new OwnerNameHandlers()
+const handlers = new OwnerEmailHandlers()
 
 module.exports = handlers.routes({
   path: '/owner-email',
   app: {
     // pageHeading is derived in the getPageHeading method above
     view: 'common/person/person-email',
-    nextPath: '/owner-address'
+    nextPath: '/owner-name',
+    isQuestionPage: true
   }
 })

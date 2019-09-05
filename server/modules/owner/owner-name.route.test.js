@@ -14,7 +14,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await routesHelper.server.inject(context.request)
       const $ = routesHelper.getDomParser(response.payload)
 
-      Code.expect($('#defra-page-heading').text()).to.equal('Your name')
+      Code.expect($('h1').text().trim()).to.equal('Your name')
     })
 
     lab.test('full name has not been pre-filled', async ({ context }) => {

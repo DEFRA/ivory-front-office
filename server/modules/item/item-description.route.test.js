@@ -39,7 +39,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects correctly when the item description has been entered', async ({ context }) => {
       const { request } = context
       request.payload['item-description'] = 'Some item details'
-      await routesHelper.expectRedirection(request, '/owner-name')
+      await routesHelper.expectRedirection(request, '/owner-email')
     })
   })
 })
