@@ -1,4 +1,5 @@
 const syncRegistration = require('../../lib/sync-registration')
+const config = require('../../config')
 const {
   Registration,
   Owner,
@@ -18,6 +19,12 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
       agentAddress: await AgentAddress.get(request) || {},
       item: await Item.get(request) || {}
     }
+    const { dealingIntent } = this.viewData.registration
+
+    if (dealingIntent) {
+      this.viewData.dealingIntent = config.referenceData.dealingIntent.choices.find(({ shortName }) => shortName === dealingIntent).label
+    }
+
     return super.handleGet(request, h, errors)
   }
 

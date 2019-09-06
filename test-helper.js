@@ -25,11 +25,12 @@ module.exports = class TestHelper {
   constructor (lab, testFile, options) {
     const { stubCallback, stubCache = true } = options || {}
 
-    lab.beforeEach(async () => {
+    lab.beforeEach(async ({ context }) => {
       this._cache = {}
 
       // Create a sinon sandbox to stub methods
       this._sandbox = sinon.createSandbox()
+      context.sandbox = this._sandbox
 
       // Stub common methods
       TestHelper.stubCommon(this._sandbox)

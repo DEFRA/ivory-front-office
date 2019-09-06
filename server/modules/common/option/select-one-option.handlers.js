@@ -38,7 +38,7 @@ class SelectOneOptionHandlers extends require('../handlers') {
   }
 
   async setData (request, registration) {
-    return Registration.set(request, registration)
+    return Registration.set(request, registration, true)
   }
 
   errorLink (field) {
