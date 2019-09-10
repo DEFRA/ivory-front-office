@@ -30,14 +30,19 @@ module.exports = class Handlers {
     const viewName = await this.getViewName(request)
     const viewData = await this.getViewData(request)
     const isQuestionPage = await this.getIsQuestionPage(request)
+    const { fieldName } = this
+    if (errors) {
+      Object.assign(viewData, request.payload)
+    }
+    const errorList = errors && Object.values(errors)
 
     return h.view(viewName, {
       pageHeading,
       isQuestionPage,
-      fieldName: this.fieldName,
-      viewData: request.payload ? request.payload : viewData,
+      fieldName,
+      viewData,
       errors,
-      errorList: errors && Object.values(errors)
+      errorList
     })
   }
 

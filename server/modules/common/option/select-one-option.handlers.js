@@ -51,7 +51,7 @@ class SelectOneOptionHandlers extends require('../handlers') {
     const { hint } = this.referenceData
 
     // Use the payload in this special case to force the items to be displayed even when there is an error
-    request.payload = {
+    this.viewData = {
       hint: hint ? { text: hint } : undefined,
       items: this.items.map(({ value, text, hint, storedValue }) => {
         return {
