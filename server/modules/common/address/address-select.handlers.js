@@ -23,7 +23,7 @@ class AddressSelectHandlers extends require('../handlers') {
     const { postcodeAddressList = [] } = address
 
     // Use the payload in this special case to force the addresses to be displayed even when there is an error
-    request.payload = {
+    this.viewData = {
       chooseAddressHint,
       addresses: [{ text: `${postcodeAddressList.length} addresses found` }].concat(
         postcodeAddressList.map(({ addressLine, uprn }) => {
