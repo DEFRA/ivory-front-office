@@ -1,5 +1,6 @@
 module.exports = {
   async get () {
-    return `IVR${Math.random() * 6 + 1}`
+    const number = `${Math.floor(Math.random() * 999999)}`.padStart(6, '0')
+    return `IVR${number}`
   }
 }
