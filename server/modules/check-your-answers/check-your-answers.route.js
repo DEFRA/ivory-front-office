@@ -1,4 +1,4 @@
-const syncRegistration = require('../../lib/sync-registration')
+const registrationNumberGenerator = require('../../lib/registration-number-generator')
 const config = require('../../config')
 const {
   Registration,
@@ -35,7 +35,11 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
   }
 
   async handlePost (request, h) {
-    await syncRegistration.save(request)
+    const registration = await Registration.get(request) || {}
+    if (!registration.registrationNumber) {
+      registration.registrationNumber = await registrationNumberGenerator.get()
+    }
+    await Registration.set(request, registration, true)
     return super.handlePost(request, h)
   }
 }
