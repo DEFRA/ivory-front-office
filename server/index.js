@@ -1,7 +1,7 @@
 const hapi = require('@hapi/hapi')
+const { Persistence } = require('ivory-shared')
 const config = require('./config')
 const { logger } = require('defra-logging-facade')
-const loadReferenceData = require('./lib/load-reference-data')
 
 const serverOptions = {
   port: config.port,
@@ -82,7 +82,8 @@ async function createServer () {
     if (!config.serviceApi.includes('://')) {
       config.serviceApi = `${server.info.protocol}://${config.serviceApi}`
     }
-    config.referenceData = await loadReferenceData()
+    const persistence = new Persistence({ path: `${config.serviceApi}/reference-data` })
+    config.referenceData = await persistence.restore()
   } else {
     config.referenceData = {}
   }
