@@ -20,7 +20,7 @@
         <h1 id="defra-page-heading" class="govuk-heading-xl">{{ pageHeading }}</h1>
       {% endif %}
 
-      <form method="post" autocomplete="off" {{ novalidateVal }}>
+      <form method="post" {{ novalidateVal }}>
         <input id="defra-csrf-token" type="hidden" name="DefraCsrfToken" value="{{ DefraCsrfToken }}">
 
         {% block formContent %}{% endblock %}
