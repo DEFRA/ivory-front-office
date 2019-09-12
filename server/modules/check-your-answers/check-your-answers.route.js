@@ -39,7 +39,7 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
     if (!registration.registrationNumber) {
       registration.registrationNumber = await registrationNumberGenerator.get()
     }
-    await Registration.set(request, registration, true)
+    await Registration.set(request, registration)
     return super.handlePost(request, h)
   }
 }

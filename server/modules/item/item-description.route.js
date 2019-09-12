@@ -29,7 +29,7 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
   async handlePost (request, h) {
     const item = await Item.get(request) || {}
     item.description = request.payload['item-description']
-    await Item.set(request, item, true)
+    await Item.set(request, item)
     return super.handlePost(request, h)
   }
 }
