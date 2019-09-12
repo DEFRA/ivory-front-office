@@ -67,7 +67,7 @@ class AddressFindHandlers extends require('../handlers') {
       }
     }
 
-    await Address.set(request, address)
+    await Address.set(request, address, false)
     return super.handlePost(request, h)
   }
 }

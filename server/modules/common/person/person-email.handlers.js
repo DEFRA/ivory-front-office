@@ -30,7 +30,7 @@ class PersonEmailHandlers extends require('../handlers') {
     const { Person } = this
     const person = await Person.get(request) || {}
     person.email = request.payload.email
-    await Person.set(request, person, true)
+    await Person.set(request, person)
     return super.handlePost(request, h)
   }
 }
