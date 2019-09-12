@@ -66,10 +66,10 @@ const syncRegistration = {
       if (postcodeAddressList) {
         address.postcodeAddressList = postcodeAddressList
       }
-      await Address.set(request, address)
+      await Address.set(request, address, false)
       delete person.address
     }
-    await Person.set(request, person)
+    await Person.set(request, person, false)
   },
 
   async reloadCache (request, registration) {
@@ -86,11 +86,11 @@ const syncRegistration = {
     }
 
     if (item) {
-      await Item.set(request, item)
+      await Item.set(request, item, false)
       delete registration.item
     }
 
-    await Registration.set(request, registration)
+    await Registration.set(request, registration, false)
     return true
   },
 

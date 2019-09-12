@@ -52,7 +52,7 @@ class AddressManualHandlers extends require('../handlers') {
       .filter((lineItem) => lineItem)
       .join(', ')
 
-    await Address.set(request, address, true)
+    await Address.set(request, address)
     return super.handlePost(request, h)
   }
 }

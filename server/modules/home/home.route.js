@@ -7,7 +7,7 @@ class RestoreHandlers extends require('../common/handlers') {
     await Cache.clear(request)
 
     // ToDo: Remove setting the agentIsOwner flag once "Who owns the item" page has been added
-    await Registration.set(request, { agentIsOwner: true }, true)
+    await Registration.set(request, { agentIsOwner: true })
 
     return h.redirect('/item-type')
   }

@@ -48,7 +48,7 @@ class AddressSelectHandlers extends require('../handlers') {
     // Retrieve the actual address information from the cached address list
     Object.assign(address, address.postcodeAddressList.find(({ uprn }) => uprn === selectedUprn))
 
-    await Address.set(request, address, true)
+    await Address.set(request, address)
 
     return super.handlePost(request, h)
   }
