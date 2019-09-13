@@ -3818,9 +3818,13 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#63985c1c9d58a0f61b46d5d7449372bc25a2a088",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#cddb695fac40b63543cd936fd82f1687e81fe50d",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
+        "@hapi/hoek": "^8.2.4",
+        "@hapi/joi": "^15.1.1",
+        "@hapi/wreck": "^15.0.2",
+        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
         "lodash": "^4.17.15"
       },
       "dependencies": {
@@ -4872,9 +4876,9 @@
           "integrity": "sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc="
         },
         "fast-safe-stringify": {
-          "version": "2.0.6",
-          "resolved": "https://registry.npmjs.org/fast-safe-stringify/-/fast-safe-stringify-2.0.6.tgz",
-          "integrity": "sha512-q8BZ89jjc+mz08rSxROs8VsrBBcn1SIw1kq9NjolL509tkABRk9io01RAjSaEv1Xb2uFLt8VtRiZbGp5H8iDtg=="
+          "version": "2.0.7",
+          "resolved": "https://registry.npmjs.org/fast-safe-stringify/-/fast-safe-stringify-2.0.7.tgz",
+          "integrity": "sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA=="
         },
         "fastq": {
           "version": "1.6.0",

@@ -133,7 +133,6 @@ module.exports = class TestHelper {
     const { skip = {} } = options
     sandbox.stub(dotenv, 'config').value(() => {})
     sandbox.stub(config, 'serviceName').value('Service name')
-    sandbox.stub(config, 'addressLookUpEnabled').value(true)
     sandbox.stub(logger, 'debug').value(() => undefined)
     sandbox.stub(logger, 'info').value(() => undefined)
     sandbox.stub(logger, 'warn').value(() => undefined)
