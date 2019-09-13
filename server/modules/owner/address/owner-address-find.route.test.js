@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
-const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
+const { AddressLookUp } = require('ivory-shared')
 const config = require('../../../config')
 const url = '/owner-address'
 const pageHeading = 'Owner\'s address'
@@ -10,7 +10,12 @@ const pageHeading = 'Owner\'s address'
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
     stubCallback: (sandbox) => {
-      sandbox.stub(addressLookup, 'lookUpByPostcode').value((postcode) => {
+      sandbox.stub(config, 'addressLookUpEnabled').value(true)
+      sandbox.stub(config, 'addressLookUpUri').value('http://fake.com')
+      sandbox.stub(config, 'addressLookUpUsername').value('username')
+      sandbox.stub(config, 'addressLookUpPassword').value('password')
+      sandbox.stub(config, 'addressLookUpKey').value('key')
+      sandbox.stub(AddressLookUp.prototype, 'lookUpByPostcode').value((postcode) => {
         switch (postcode) {
           case 'WA41AB':
             // Contains an address for a valid postcode

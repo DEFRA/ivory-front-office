@@ -2,14 +2,20 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
-const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
+const config = require('../../../config')
+const { AddressLookUp } = require('ivory-shared')
 const url = '/agent-address'
 const pageHeading = 'Your address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
     stubCallback: (sandbox) => {
-      sandbox.stub(addressLookup, 'lookUpByPostcode').value((postcode) => {
+      sandbox.stub(config, 'addressLookUpEnabled').value(true)
+      sandbox.stub(config, 'addressLookUpUri').value('http://fake.com')
+      sandbox.stub(config, 'addressLookUpUsername').value('username')
+      sandbox.stub(config, 'addressLookUpPassword').value('password')
+      sandbox.stub(config, 'addressLookUpKey').value('key')
+      sandbox.stub(AddressLookUp.prototype, 'lookUpByPostcode').value((postcode) => {
         if (postcode === 'WA41AB') {
           // Contains an address
           return [{}]

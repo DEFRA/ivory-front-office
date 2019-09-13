@@ -1,6 +1,15 @@
 const Joi = require('@hapi/joi')
-const addressLookup = require('../../../lib/connectors/address-lookup/addressLookup')
+const { AddressLookUp } = require('ivory-shared')
 const config = require('../../../config')
+
+const {
+  addressLookUpUri: uri,
+  addressLookUpUsername: username,
+  addressLookUpPassword: password,
+  addressLookUpKey: key
+} = config
+
+const lookUpOptions = { uri, username, password, key, maxresults: 100 }
 
 class AddressFindHandlers extends require('../handlers') {
   get schema () {
@@ -29,6 +38,7 @@ class AddressFindHandlers extends require('../handlers') {
 
   async lookUpAddress (postcode) {
     const address = { postcode: this.formattedPostcode(postcode) }
+    const addressLookup = new AddressLookUp(lookUpOptions)
     const addresses = await addressLookup.lookUpByPostcode(address.postcode)
     const { errorCode, message } = addresses
     if (errorCode) {
