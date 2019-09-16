@@ -15,6 +15,7 @@ module.exports = handlers.routes({
   path: '/confirmation',
   app: {
     pageHeading: 'Registration complete',
-    view: 'confirmation/confirmation'
+    view: 'confirmation/confirmation',
+    tags: ['submitted']
   }
 })

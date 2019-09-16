@@ -1,3 +1,5 @@
+const { utils } = require('ivory-shared')
+
 module.exports = class Handlers {
   async getPageHeading (request) {
     return request.route.settings.app.pageHeading
@@ -78,6 +80,7 @@ module.exports = class Handlers {
   }
 
   routes ({ path, app }) {
+    const tags = utils.getNestedVal(app, 'tags') || []
     return [
       {
         method: 'GET',
@@ -85,6 +88,7 @@ module.exports = class Handlers {
         handler: this.handleGet,
         options: {
           app,
+          tags,
           bind: this
         }
       },
@@ -94,6 +98,7 @@ module.exports = class Handlers {
         handler: this.handlePost,
         options: {
           app,
+          tags,
           bind: this,
           validate: {
             payload: this.schema,
