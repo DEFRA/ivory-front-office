@@ -34,6 +34,7 @@ async function registerPlugins (server) {
     require('./plugins/router'),
     require('./plugins/robots'),
     require('./plugins/cache'),
+    require('./plugins/navigation'),
     require('./plugins/error-pages'),
     require('./plugins/logging')
   ])

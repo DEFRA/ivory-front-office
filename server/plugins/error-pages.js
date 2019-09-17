@@ -1,7 +1,7 @@
 /*
 * Add an `onPreResponse` listener to return error pages
 */
-const Boom = require('@hapi/boom')
+
 const { logger } = require('defra-logging-facade')
 const { Registration } = require('../lib/cache')
 
@@ -10,29 +10,7 @@ const { Registration } = require('../lib/cache')
 module.exports = {
   plugin: {
     name: 'error-pages',
-    register: (server, options) => {
-      server.ext('onPostAuth', async (request, h) => {
-        const { tags = [] } = request.route.settings
-        const { registrationNumber } = await Registration.get(request) || {}
-        if (tags.includes('api')) {
-          return h.continue
-        } else if (tags.includes('submitted')) {
-          if (!registrationNumber) {
-            return Boom.notFound()
-          }
-        } else {
-          if (registrationNumber) {
-            if (request.route.path === '/') {
-              return h.continue
-            }
-            if (request.route.path.startsWith('/assets/')) {
-              return h.continue
-            }
-            return Boom.preconditionFailed()
-          }
-        }
-        return h.continue
-      })
+    register: (server) => {
       server.ext('onPreResponse', async (request, h) => {
         const response = request.response
 
