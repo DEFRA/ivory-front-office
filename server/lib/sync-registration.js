@@ -3,7 +3,7 @@ const { Persistence } = require('ivory-shared')
 const { serviceApi } = require('../config')
 const persistence = new Persistence({ path: `${serviceApi}/full-registrations` })
 const { logger } = require('defra-logging-facade')
-const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item } = require('./cache')
+const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item, Payment } = require('./cache')
 
 const syncRegistration = {
   async save (request) {
@@ -13,6 +13,7 @@ const syncRegistration = {
     const agent = await Agent.get(request)
     const agentAddress = await AgentAddress.get(request)
     const item = await Item.get(request)
+    const payment = await Payment.get(request)
 
     if (registration) {
       if (owner) {
@@ -29,6 +30,9 @@ const syncRegistration = {
       }
       if (item) {
         registration.item = item
+      }
+      if (payment) {
+        registration.payment = payment
       }
 
       logger.debug('Saving: ', registration)
@@ -73,7 +77,7 @@ const syncRegistration = {
   },
 
   async reloadCache (request, registration) {
-    const { owner, agent, item } = registration
+    const { owner, agent, item, payment } = registration
 
     if (owner) {
       await this.setPerson(request, owner, Owner, OwnerAddress)
@@ -88,6 +92,11 @@ const syncRegistration = {
     if (item) {
       await Item.set(request, item, false)
       delete registration.item
+    }
+
+    if (payment) {
+      await Payment.set(request, payment, false)
+      delete registration.payment
     }
 
     await Registration.set(request, registration, false)

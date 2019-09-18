@@ -36,6 +36,12 @@ const schema = {
   redisPort: Joi.when('redisEnabled', { is: true, then: Joi.number().required() }),
   redisHost: Joi.when('redisEnabled', { is: true, then: Joi.string().required() }),
 
+  // Payment
+  paymentEnabled: Joi.bool().default(true),
+  paymentUrl: Joi.when('paymentEnabled', { is: true, then: Joi.string().uri().required() }),
+  paymentKey: Joi.when('paymentEnabled', { is: true, then: Joi.string().required() }),
+  paymentAmount: Joi.when('paymentEnabled', { is: true, then: Joi.number().integer().min(1).required() }),
+
   // Address lookup
   addressLookUpEnabled: Joi.bool().default(true),
   addressLookUpUri: Joi.when('addressLookUpEnabled', { is: true, then: Joi.string().uri().required() }),
@@ -63,6 +69,12 @@ const config = {
   redisEnabled: process.env.REDIS_ENABLED,
   redisPort: process.env.REDIS_PORT,
   redisHost: process.env.REDIS_HOST,
+
+  // Payment
+  paymentEnabled: process.env.PAYMENT_ENABLED,
+  paymentUrl: process.env.PAYMENT_URL,
+  paymentKey: process.env.PAYMENT_KEY,
+  paymentAmount: process.env.PAYMENT_AMOUNT,
 
   // Logging
   logLevel: process.env.LOG_LEVEL,
