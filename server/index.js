@@ -35,14 +35,14 @@ async function registerPlugins (server) {
     require('./plugins/robots'),
     require('./plugins/cache'),
     require('./plugins/navigation'),
-    require('./plugins/error-pages'),
-    require('./plugins/logging')
+    require('./plugins/error-pages')
   ])
 
   // Register the crumb plugin only if not running in test
   if (!config.isTest) {
     await server.register([
-      require('./plugins/crumb')
+      require('./plugins/crumb'),
+      require('./plugins/logging')
     ])
   }
 

@@ -61,6 +61,6 @@
     "codeclimate-test-reporter": "0.5.1",
     "htmlparser2": "^4.0.0",
     "sinon": "^7.4.2",
-    "standard": "14.3.0"
+    "standard": "14.3.1"
   }
 }
