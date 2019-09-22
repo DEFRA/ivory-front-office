@@ -55,9 +55,9 @@
       }
     },
     "@hapi/boom": {
-      "version": "7.4.3",
-      "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.3.tgz",
-      "integrity": "sha512-3di+R+BcGS7HKy67Zi6mIga8orf67GdR0ubDEVBG1oqz3y9B70LewsuCMCSvWWLKlI6V1+266zqhYzjMrPGvZw==",
+      "version": "7.4.9",
+      "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.9.tgz",
+      "integrity": "sha512-grHr7kbkvgN8UBht1dFoNYj7XMcozYC/tDJ+W7NVnLha4ZsU9UQvjwm24Qhbdrr3+o+mRfxvHBLFGBAJvkz4XQ==",
       "requires": {
         "@hapi/hoek": "8.x.x"
       }
@@ -235,9 +235,9 @@
       "integrity": "sha512-UFbtbGPjstz0eWHb+ga/GM3Z9EzqKXFWIbSOFURU0A/Gku0Bky4bCk9/h//K2Xr3IrCfjFNhMm4jyZ5dbCewGA=="
     },
     "@hapi/good": {
-      "version": "8.2.2",
-      "resolved": "https://registry.npmjs.org/@hapi/good/-/good-8.2.2.tgz",
-      "integrity": "sha512-Ygj1GDt2ciFwfSP0STR2gZR9VYjq+ypLGDgYHEn7G4ATACNgB6eEdPFHoaddwyO5J67xH7YA6YJkaP7YYsVNWA==",
+      "version": "8.2.3",
+      "resolved": "https://registry.npmjs.org/@hapi/good/-/good-8.2.3.tgz",
+      "integrity": "sha512-cdTeXCzbBQr6OnUss6I0n4S+T7J/5BeX8qtV7hrpzy2oL++xw6uoJAwUMfv4zA6aPUee+J9Ui1FUeYxYQc9x4A==",
       "requires": {
         "@hapi/hoek": "8.x.x",
         "@hapi/joi": "16.x.x",
@@ -245,12 +245,17 @@
         "pumpify": "1.x.x"
       },
       "dependencies": {
+        "@hapi/address": {
+          "version": "2.1.2",
+          "resolved": "https://registry.npmjs.org/@hapi/address/-/address-2.1.2.tgz",
+          "integrity": "sha512-O4QDrx+JoGKZc6aN64L04vqa7e41tIiLU+OvKdcYaEMP97UttL0f9GIi9/0A4WAMx0uBd6SidDIhktZhgOcN8Q=="
+        },
         "@hapi/joi": {
-          "version": "16.1.2",
-          "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.2.tgz",
-          "integrity": "sha512-wkMIEMQQPNmat9P7zws7wO8Gon9W3NgG5Pac1m0LK8bQ1bbszofxzL0CJogAgzitk5rZZw5/txR+wOK/ioLmGw==",
+          "version": "16.1.4",
+          "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.4.tgz",
+          "integrity": "sha512-m7ctezhxjob+dSpXnCNlgAj6rrEpdSsaWu3GWL3g1AybQCU36mlAo9IwGFJwIxD+oHgdO6mYyviYlaejX+qN6g==",
           "requires": {
-            "@hapi/address": "^2.1.1",
+            "@hapi/address": "^2.1.2",
             "@hapi/formula": "^1.2.0",
             "@hapi/hoek": "^8.2.4",
             "@hapi/pinpoint": "^1.0.2",

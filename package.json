@@ -27,11 +27,11 @@
     "test": "npm run lint && npm run unit-test"
   },
   "dependencies": {
-    "@hapi/boom": "^7.4.3",
+    "@hapi/boom": "^7.4.9",
     "@hapi/catbox": "^10.2.3",
     "@hapi/catbox-redis": "^5.0.3",
     "@hapi/crumb": "^7.3.2",
-    "@hapi/good": "^8.2.2",
+    "@hapi/good": "^8.2.3",
     "@hapi/good-console": "^8.1.2",
     "@hapi/good-squeeze": "^5.2.1",
     "@hapi/hapi": "18.4.0",
