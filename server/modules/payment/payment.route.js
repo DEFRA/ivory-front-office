@@ -1,7 +1,7 @@
 const { utils, Payment: PaymentAPI } = require('ivory-shared')
 const { logger } = require('defra-logging-facade')
 const { Registration, Payment } = require('../../lib/cache')
-const { serviceName, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = require('../../config')
+const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = require('../../config')
 
 class PaymentHandlers extends require('../common/handlers') {
   async handleGet (request, h, errors) {
@@ -18,7 +18,7 @@ class PaymentHandlers extends require('../common/handlers') {
       amount: paymentAmount, // in pence
       reference: registration.registrationNumber || 'unknown',
       description: serviceName,
-      returnUrl: request.headers.referer.replace('/check-your-answers', `/check-payment/${registration.id}`)
+      returnUrl: `${serviceUrl}/check-payment/${registration.id}`
     })
 
     const result = await payment.requestPayment()

@@ -11,6 +11,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   let returnUrl
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
     stubCallback: (sandbox) => {
+      sandbox.stub(config, 'serviceUrl').value(testdomain)
       sandbox.stub(config, 'paymentEnabled').value(true)
       sandbox.stub(config, 'paymentUrl').value('http://fake.com')
       sandbox.stub(config, 'paymentAmount').value(10)
@@ -36,10 +37,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('route works', async () => {
       const request = {
         method: 'GET',
-        url,
-        headers: {
-          referer: `${testdomain}/check-your-answers`
-        }
+        url
       }
 
       returnUrl = `${testdomain}/check-payment/${registrationId}`
