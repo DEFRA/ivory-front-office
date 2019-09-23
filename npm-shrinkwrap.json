@@ -73,13 +73,19 @@
         "@hapi/joi": "16.x.x"
       },
       "dependencies": {
+        "@hapi/address": {
+          "version": "2.1.2",
+          "resolved": "https://registry.npmjs.org/@hapi/address/-/address-2.1.2.tgz",
+          "integrity": "sha512-O4QDrx+JoGKZc6aN64L04vqa7e41tIiLU+OvKdcYaEMP97UttL0f9GIi9/0A4WAMx0uBd6SidDIhktZhgOcN8Q==",
+          "dev": true
+        },
         "@hapi/joi": {
-          "version": "16.1.2",
-          "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.2.tgz",
-          "integrity": "sha512-wkMIEMQQPNmat9P7zws7wO8Gon9W3NgG5Pac1m0LK8bQ1bbszofxzL0CJogAgzitk5rZZw5/txR+wOK/ioLmGw==",
+          "version": "16.1.4",
+          "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.4.tgz",
+          "integrity": "sha512-m7ctezhxjob+dSpXnCNlgAj6rrEpdSsaWu3GWL3g1AybQCU36mlAo9IwGFJwIxD+oHgdO6mYyviYlaejX+qN6g==",
           "dev": true,
           "requires": {
-            "@hapi/address": "^2.1.1",
+            "@hapi/address": "^2.1.2",
             "@hapi/formula": "^1.2.0",
             "@hapi/hoek": "^8.2.4",
             "@hapi/pinpoint": "^1.0.2",
@@ -402,14 +408,15 @@
       }
     },
     "@hapi/lab": {
-      "version": "20.2.2",
-      "resolved": "https://registry.npmjs.org/@hapi/lab/-/lab-20.2.2.tgz",
-      "integrity": "sha512-oiRVnD8yBp/gbxPFq0YRFmVa04ep/8h61swZz/Ce3NTyqmm7SnS57jI+n0X0tUFZNgoVpw4T2GQuLofT5F3rSw==",
+      "version": "20.3.0",
+      "resolved": "https://registry.npmjs.org/@hapi/lab/-/lab-20.3.0.tgz",
+      "integrity": "sha512-fFh3w4o1emngNEapFbThCL805iY99eNp9CmmGMyxwSYYVLNjn9owfzBpCzMQUWYFLnFRBOM9xZ4/iMdTRZgg3Q==",
       "dev": true,
       "requires": {
         "@hapi/bossy": "4.x.x",
         "@hapi/eslint-config-hapi": "12.x.x",
         "@hapi/eslint-plugin-hapi": "4.x.x",
+        "@hapi/file": "1.x.x",
         "@hapi/hoek": "8.x.x",
         "diff": "4.x.x",
         "eslint": "6.x.x",
@@ -422,7 +429,7 @@
         "source-map": "0.7.x",
         "source-map-support": "0.5.x",
         "supports-color": "7.x.x",
-        "typescript": "3.x.x",
+        "typescript": "3.6.x",
         "will-call": "1.x.x"
       },
       "dependencies": {
@@ -2475,9 +2482,9 @@
           }
         },
         "glob-parent": {
-          "version": "5.0.0",
-          "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.0.0.tgz",
-          "integrity": "sha512-Z2RwiujPRGluePM6j699ktJYxmPpJKCfpGA13jz2hmFZC7gKetzrWvg5KN3+OsIFmydGyZ1AVwERCq1w/ZZwRg==",
+          "version": "5.1.0",
+          "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.0.tgz",
+          "integrity": "sha512-qjtRgnIVmOfnKUE3NJAQEdk+lKrxfw8t5ke7SXtfMTHcjsBfOfWXCQfdb30zfDoZQ2IRSIiidmjtbHZPZ++Ihw==",
           "dev": true,
           "requires": {
             "is-glob": "^4.0.1"
@@ -3312,9 +3319,9 @@
       "dev": true
     },
     "handlebars": {
-      "version": "4.2.0",
-      "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.2.0.tgz",
-      "integrity": "sha512-Kb4xn5Qh1cxAKvQnzNWZ512DhABzyFNmsaJf3OAkWNa4NkaqWcNI8Tao8Tasi0/F4JD9oyG0YxuFyvyR57d+Gw==",
+      "version": "4.2.1",
+      "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.2.1.tgz",
+      "integrity": "sha512-bqPIlDk06UWbVEIFoYj+LVo42WhK96J+b25l7hbFDpxrOXMphFM3fNIm+cluwg4Pk2jiLjWU5nHQY7igGE75NQ==",
       "dev": true,
       "requires": {
         "neo-async": "^2.6.0",
