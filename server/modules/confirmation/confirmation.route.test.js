@@ -7,11 +7,11 @@ const pageHeading = 'Registration complete'
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
 
-  routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
-    lab.beforeEach(() => {
-      Object.assign(routesHelper.cache, {
-        Registration: { registrationNumber: 'abc' }
-      })
+  lab.beforeEach(() => {
+    Object.assign(routesHelper.cache, {
+      Registration: { registrationNumber: 'abc' }
     })
   })
+
+  routesHelper.getRequestTests({ lab, pageHeading, url })
 })

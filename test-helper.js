@@ -10,6 +10,7 @@ process.env.ADDRESS_LOOKUP_ENABLED = false
 process.env.AIRBRAKE_ENABLED = false
 process.env.REDIS_ENABLED = false
 process.env.SERVICE_API_ENABLED = false
+process.env.PAYMENT_ENABLED = false
 process.env.LOG_LEVEL = 'error'
 const config = require('./server/config')
 
@@ -42,7 +43,7 @@ module.exports = class TestHelper {
 
       // Stub any methods specific to the test
       if (stubCallback) {
-        stubCallback(this._sandbox)
+        stubCallback(this._sandbox, context)
       }
 
       // Stub the routes to include only the tested route derived from the test filename

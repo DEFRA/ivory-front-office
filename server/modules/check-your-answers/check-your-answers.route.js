@@ -51,6 +51,6 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'Check your answers',
     view: 'check-your-answers/check-your-answers',
-    nextPath: '/confirmation'
+    nextPath: '/payment'
   }
 })

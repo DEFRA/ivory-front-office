@@ -11,7 +11,7 @@ module.exports = {
         const { registrationNumber } = await Registration.get(request) || {}
 
         // Always allow the following
-        if (tags.includes('api') || path === '/' || path.startsWith('/assets/')) {
+        if (tags.includes('api') || path === '/' || path.startsWith('/assets/') || request.params.id) {
           return h.continue
         }
 
