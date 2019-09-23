@@ -3887,8 +3887,8 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#8d08da177724aabbb663aec654713d1e896e69ec",
-      "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#cd83bf9654a1b2555f6a5c6a6a8b463debccb034",
+      "from": "git+https://github.com/DEFRA/ivory-shared.git#cd83bf9654a1b2555f6a5c6a6a8b463debccb034",
       "requires": {
         "@hapi/hoek": "^8.2.4",
         "@hapi/joi": "^15.1.1",
@@ -3916,14 +3916,14 @@
           }
         },
         "@hapi/address": {
-          "version": "2.1.1",
-          "resolved": "https://registry.npmjs.org/@hapi/address/-/address-2.1.1.tgz",
-          "integrity": "sha512-DYuHzu978pP1XW1GD3HGvLnAFjbQTIgc2+V153FGkbS2pgo9haigCdwBnUDrbhaOkgiJlbZvoEqDrcxSLHpiWA=="
+          "version": "2.1.2",
+          "resolved": "https://registry.npmjs.org/@hapi/address/-/address-2.1.2.tgz",
+          "integrity": "sha512-O4QDrx+JoGKZc6aN64L04vqa7e41tIiLU+OvKdcYaEMP97UttL0f9GIi9/0A4WAMx0uBd6SidDIhktZhgOcN8Q=="
         },
         "@hapi/boom": {
-          "version": "7.4.3",
-          "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.3.tgz",
-          "integrity": "sha512-3di+R+BcGS7HKy67Zi6mIga8orf67GdR0ubDEVBG1oqz3y9B70LewsuCMCSvWWLKlI6V1+266zqhYzjMrPGvZw==",
+          "version": "7.4.9",
+          "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.9.tgz",
+          "integrity": "sha512-grHr7kbkvgN8UBht1dFoNYj7XMcozYC/tDJ+W7NVnLha4ZsU9UQvjwm24Qhbdrr3+o+mRfxvHBLFGBAJvkz4XQ==",
           "requires": {
             "@hapi/hoek": "8.x.x"
           }
@@ -3939,11 +3939,11 @@
           },
           "dependencies": {
             "@hapi/joi": {
-              "version": "16.1.2",
-              "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.2.tgz",
-              "integrity": "sha512-wkMIEMQQPNmat9P7zws7wO8Gon9W3NgG5Pac1m0LK8bQ1bbszofxzL0CJogAgzitk5rZZw5/txR+wOK/ioLmGw==",
+              "version": "16.1.4",
+              "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.4.tgz",
+              "integrity": "sha512-m7ctezhxjob+dSpXnCNlgAj6rrEpdSsaWu3GWL3g1AybQCU36mlAo9IwGFJwIxD+oHgdO6mYyviYlaejX+qN6g==",
               "requires": {
-                "@hapi/address": "^2.1.1",
+                "@hapi/address": "^2.1.2",
                 "@hapi/formula": "^1.2.0",
                 "@hapi/hoek": "^8.2.4",
                 "@hapi/pinpoint": "^1.0.2",
@@ -4058,9 +4058,9 @@
           "integrity": "sha512-n0adld0osaYNXlus/64dCN0GlkMvmwuJfkpM0OtrA2U7x2Iu1XoHV6Lmne3C+9gM8X/xLUviYLoTCOC7IW8RYg=="
         },
         "@hapi/topo": {
-          "version": "3.1.3",
-          "resolved": "https://registry.npmjs.org/@hapi/topo/-/topo-3.1.3.tgz",
-          "integrity": "sha512-JmS9/vQK6dcUYn7wc2YZTqzIKubAQcJKu2KCKAru6es482U5RT5fP1EXCPtlXpiK7PR0On/kpQKI4fRKkzpZBQ==",
+          "version": "3.1.4",
+          "resolved": "https://registry.npmjs.org/@hapi/topo/-/topo-3.1.4.tgz",
+          "integrity": "sha512-aVWQTOI9wBD6zawmOr6f+tdEIxQC8JXfQVLTjgGe8YEStAWGn/GNNVTobKJhbWKveQj2RyYF3oYbO9SC8/eOCA==",
           "requires": {
             "@hapi/hoek": "8.x.x"
           }
@@ -5108,9 +5108,9 @@
           }
         },
         "glob-parent": {
-          "version": "5.0.0",
-          "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.0.0.tgz",
-          "integrity": "sha512-Z2RwiujPRGluePM6j699ktJYxmPpJKCfpGA13jz2hmFZC7gKetzrWvg5KN3+OsIFmydGyZ1AVwERCq1w/ZZwRg==",
+          "version": "5.1.0",
+          "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.0.tgz",
+          "integrity": "sha512-qjtRgnIVmOfnKUE3NJAQEdk+lKrxfw8t5ke7SXtfMTHcjsBfOfWXCQfdb30zfDoZQ2IRSIiidmjtbHZPZ++Ihw==",
           "requires": {
             "is-glob": "^4.0.1"
           }
@@ -5153,9 +5153,9 @@
           "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
         },
         "handlebars": {
-          "version": "4.2.0",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.2.0.tgz",
-          "integrity": "sha512-Kb4xn5Qh1cxAKvQnzNWZ512DhABzyFNmsaJf3OAkWNa4NkaqWcNI8Tao8Tasi0/F4JD9oyG0YxuFyvyR57d+Gw==",
+          "version": "4.2.1",
+          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.2.1.tgz",
+          "integrity": "sha512-bqPIlDk06UWbVEIFoYj+LVo42WhK96J+b25l7hbFDpxrOXMphFM3fNIm+cluwg4Pk2jiLjWU5nHQY7igGE75NQ==",
           "requires": {
             "neo-async": "^2.6.0",
             "optimist": "^0.6.1",
