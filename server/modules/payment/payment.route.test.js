@@ -5,6 +5,7 @@ const { Payment } = require('ivory-shared')
 const config = require('../../config')
 const { uuid } = require('ivory-shared').utils
 const url = '/payment'
+const testdomain = 'http://fake-ivory.com'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   let returnUrl
@@ -35,10 +36,13 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('route works', async () => {
       const request = {
         method: 'GET',
-        url
+        url,
+        headers: {
+          referer: `${testdomain}/check-your-answers`
+        }
       }
 
-      returnUrl = routesHelper.server.info.uri + '/check-payment/' + registrationId
+      returnUrl = `${testdomain}/check-payment/${registrationId}`
 
       routesHelper.cache.Registration = { id: registrationId, registrationNumber: 'abc' }
 

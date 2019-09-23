@@ -18,7 +18,7 @@ class PaymentHandlers extends require('../common/handlers') {
       amount: paymentAmount, // in pence
       reference: registration.registrationNumber || 'unknown',
       description: serviceName,
-      returnUrl: request.server.info.uri + '/check-payment/' + registration.id
+      returnUrl: request.headers.referer.replace('/check-your-answers', `/check-payment/${registration.id}`)
     })
 
     const result = await payment.requestPayment()
