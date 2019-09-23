@@ -19,7 +19,7 @@ const schema = {
   port: Joi.number().default(DEFAULT_PORT),
   env: Joi.string().valid(DEVELOPMENT, TEST, PRODUCTION).default(DEVELOPMENT),
   serviceName: Joi.string().required(),
-  serviceUrl: Joi.string().uri().default(`http://localhost:${DEFAULT_PORT}`),
+  serviceUrl: Joi.string().uri().required(),
 
   // Logging
   logLevel: Joi.string().valid(ERROR, INFO, DEBUG).default(INFO),
@@ -61,7 +61,7 @@ const config = {
   port: process.env.PORT,
   env: process.env.NODE_ENV,
   serviceName: process.env.SERVICE_NAME,
-  serviceUrl: process.env.SERVICE_URL,
+  serviceUrl: process.env.SERVICE_URL || `http://localhost:${process.env.PORT || DEFAULT_PORT}`,
 
   // Caching
   cookieTimeout: process.env.COOKIE_TIMEOUT,
