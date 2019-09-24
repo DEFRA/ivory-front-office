@@ -6,8 +6,12 @@ class HomeHandlers extends require('../common/handlers') {
     // Clear the cookies and create a new registration
     await Cache.clear(request)
 
-    // ToDo: Remove setting the agentIsOwner flag once "Who owns the item" page has been added
-    await Registration.set(request, { agentIsOwner: true })
+    const registration = {
+      // ToDo: Remove setting the agentIsOwner flag once "Who owns the item" page has been added
+      agentIsOwner: true,
+      status: 'draft'
+    }
+    await Registration.set(request, registration)
 
     return h.redirect('/item-type')
   }
