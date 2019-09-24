@@ -14,5 +14,8 @@ class RestoreHandlers extends require('../common/handlers') {
 const handlers = new RestoreHandlers()
 
 module.exports = handlers.routes({
-  path: '/restore/{id}'
+  path: '/restore/{id}',
+  app: {
+    tags: ['always']
+  }
 })

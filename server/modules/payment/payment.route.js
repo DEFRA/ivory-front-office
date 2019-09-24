@@ -37,6 +37,6 @@ const handlers = new PaymentHandlers()
 module.exports = handlers.routes({
   path: '/payment',
   app: {
-    tags: ['submitted']
+    tags: ['always']
   }
 })

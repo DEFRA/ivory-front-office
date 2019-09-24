@@ -5,7 +5,7 @@ module.exports = [{
     file: 'node_modules/govuk-frontend/all.js'
   },
   options: {
-    tags: ['asset']
+    tags: ['asset', 'always']
   }
 }, {
   method: 'GET',
@@ -20,6 +20,6 @@ module.exports = [{
     }
   },
   options: {
-    tags: ['asset']
+    tags: ['asset', 'always']
   }
 }]

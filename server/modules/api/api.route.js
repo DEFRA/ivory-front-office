@@ -15,7 +15,7 @@ if (!isProd) {
       return persistence.restore()
     },
     options: {
-      tags: ['api'],
+      tags: ['api', 'always'],
       security: true
     }
   })

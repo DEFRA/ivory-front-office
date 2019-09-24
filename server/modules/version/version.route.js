@@ -30,6 +30,7 @@ module.exports = handlers.routes({
   path: '/version',
   app: {
     pageHeading: 'Version',
-    view: 'version/version'
+    view: 'version/version',
+    tags: ['always']
   }
 })

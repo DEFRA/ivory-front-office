@@ -35,6 +35,6 @@ const handlers = new RestoreHandlers()
 module.exports = handlers.routes({
   path: '/check-payment/{id}',
   app: {
-    tags: ['submitted']
+    tags: ['always']
   }
 })

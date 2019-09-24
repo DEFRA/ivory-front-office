@@ -6,12 +6,12 @@ module.exports = {
     name: 'navigation',
     register: (server) => {
       server.ext('onPostAuth', async (request, h) => {
-        const { path, settings } = request.route
+        const { settings } = request.route
         const { tags = [] } = settings
         const { registrationNumber } = await Registration.get(request) || {}
 
-        // Always allow the following
-        if (tags.includes('api') || path === '/' || path.startsWith('/assets/') || request.params.id) {
+        // Always allow the following to continue
+        if (tags.includes('always')) {
           return h.continue
         }
 
