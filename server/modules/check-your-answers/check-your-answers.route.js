@@ -19,7 +19,8 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
       agentAddress: await AgentAddress.get(request) || {},
       item: await Item.get(request) || {}
     }
-    const { dealingIntent, itemType } = this.viewData.registration
+    const { dealingIntent } = this.viewData.registration
+    const { itemType } = this.viewData.item
 
     if (dealingIntent) {
       this.viewData.dealingIntent = config.referenceData.dealingIntent.choices

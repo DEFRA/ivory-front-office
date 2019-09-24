@@ -37,10 +37,10 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const description = 'A violin bow with an ivory tip.'
 
       Object.assign(routesHelper.cache, {
-        Registration: { agentIsOwner, agentActingAs, dealingIntent, itemType },
+        Registration: { agentIsOwner, agentActingAs, dealingIntent },
         Owner: { fullName },
         OwnerAddress: { addressLine },
-        Item: { description }
+        Item: { description, itemType }
       })
 
       const response = await routesHelper.server.inject(context.request)

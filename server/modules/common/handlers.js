@@ -64,13 +64,13 @@ module.exports = class Handlers {
     const errorMessages = {}
 
     // Format the error messages for the view
-    errors.details.forEach(({ path, type }) => {
+    await Promise.all(errors.details.map(async ({ path, type }) => {
       const field = path[0]
       errorMessages[field] = {
-        text: this.errorMessages[field][type],
+        text: typeof this.errorMessages === 'function' ? (await this.errorMessages(request))[field][type] : this.errorMessages[field][type],
         href: this.errorLink(field)
       }
-    })
+    }))
 
     const result = await this.handleGet(request, h, errorMessages)
 
