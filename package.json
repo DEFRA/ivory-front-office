@@ -27,7 +27,7 @@
     "test": "npm run lint && npm run unit-test"
   },
   "dependencies": {
-    "@hapi/boom": "^7.4.9",
+    "@hapi/boom": "^7.4.10",
     "@hapi/catbox": "^10.2.3",
     "@hapi/catbox-redis": "^5.0.3",
     "@hapi/crumb": "^7.3.2",
@@ -57,11 +57,11 @@
   },
   "devDependencies": {
     "@hapi/code": "^6.0.0",
-    "@hapi/lab": "^20.3.1",
+    "@hapi/lab": "^20.3.2",
     "cheerio": "^1.0.0-rc.3",
     "codeclimate-test-reporter": "0.5.1",
     "htmlparser2": "^4.0.0",
-    "sinon": "^7.4.2",
+    "sinon": "^7.5.0",
     "standard": "14.3.1"
   }
 }
