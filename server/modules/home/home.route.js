@@ -16,5 +16,8 @@ class HomeHandlers extends require('../common/handlers') {
 const handlers = new HomeHandlers()
 
 module.exports = handlers.routes({
-  path: '/'
+  path: '/',
+  app: {
+    tags: ['always']
+  }
 })

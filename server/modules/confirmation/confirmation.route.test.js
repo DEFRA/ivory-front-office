@@ -9,7 +9,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   lab.beforeEach(() => {
     Object.assign(routesHelper.cache, {
-      Registration: { registrationNumber: 'abc' }
+      Registration: { registrationNumber: 'abc', status: 'submitted' }
     })
   })
 

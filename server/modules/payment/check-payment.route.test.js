@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const { Payment: PaymentAPI } = require('ivory-shared')
-const { Payment } = require('../../lib/cache')
+const { Payment, Registration } = require('../../lib/cache')
 const config = require('../../config')
 const { uuid } = require('ivory-shared').utils
 const id = 'eda64615-c9c4-4047-9190-41ece7d34df3'
@@ -19,6 +19,10 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(Payment, 'set').value(() => {})
       sandbox.stub(Payment, 'get').value(() => {
         return { paymentId: 'payment-id' }
+      })
+      sandbox.stub(Registration, 'set').value(() => {})
+      sandbox.stub(Registration, 'get').value(() => {
+        return {}
       })
       sandbox.stub(PaymentAPI.prototype, 'requestStatus').value(() => {
         return {

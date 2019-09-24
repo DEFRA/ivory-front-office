@@ -1,6 +1,6 @@
 const Boom = require('@hapi/boom')
 const { utils, Cache, Payment: PaymentAPI } = require('ivory-shared')
-const { Payment } = require('../../lib/cache')
+const { Payment, Registration } = require('../../lib/cache')
 const { paymentUrl, paymentKey } = require('../../config')
 const syncRegistration = require('../../lib/sync-registration')
 
@@ -20,10 +20,15 @@ class RestoreHandlers extends require('../common/handlers') {
     const result = await paymentApi.requestStatus(payment.paymentId)
     const status = utils.getNestedVal(result, 'state.status') || 'failed'
     payment.status = status
-    await Payment.set(request, payment)
 
     if (status === 'success') {
+      const registration = await Registration.get(request)
+      registration.status = 'submitted'
+      await Payment.set(request, payment, false)
+      await Registration.set(request, registration)
       return h.redirect('/confirmation')
+    } else {
+      await Payment.set(request, payment)
     }
 
     return Boom.expectationFailed('Payment failed', payment)
