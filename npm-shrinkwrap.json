@@ -767,9 +767,9 @@
       "dev": true
     },
     "@types/node": {
-      "version": "12.7.5",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.5.tgz",
-      "integrity": "sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==",
+      "version": "12.7.7",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.7.tgz",
+      "integrity": "sha512-4jUncNe2tj1nmrO/34PsRpZqYVnRV1svbU78cKhuQKkMntKB/AmdLyGgswcZKjFHEHGpiY8pVD8CuVI55nP54w==",
       "dev": true
     },
     "a-sync-waterfall": {
@@ -783,9 +783,9 @@
       "integrity": "sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q=="
     },
     "acorn": {
-      "version": "7.0.0",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-7.0.0.tgz",
-      "integrity": "sha512-PaF/MduxijYYt7unVGRuds1vBC9bFxbNf+VWqhOClfdgy7RlVkQqt610ig1/yxTgsDIfW1cWDel5EBbOy3jdtQ==",
+      "version": "7.1.0",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-7.1.0.tgz",
+      "integrity": "sha512-kL5CuoXA/dgxlBbVrflsflzQ3PAas7RYZB52NOm/6839iVYJgKMJ3cQJD+t2i5+qFa8h3MDpEOJiS64E8JLnSQ==",
       "dev": true
     },
     "acorn-jsx": {
@@ -1784,9 +1784,9 @@
       }
     },
     "end-of-stream": {
-      "version": "1.4.2",
-      "resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.2.tgz",
-      "integrity": "sha512-gUSUszrsxlDnUbUwEI9Oygyrk4ZEWtVaHQc+uZHphVeNxl+qeqMV/jDWoTkjN1RmGlZ5QWAP7o458p/JMlikQg==",
+      "version": "1.4.3",
+      "resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.3.tgz",
+      "integrity": "sha512-cbNhPFS6MlYlWTGncSiDYbdqKhwWFy7kNeb1YSOG6K65i/wPTkLVCJQj0hXA4j0m5Da+hBWnqopEnu1FFelisQ==",
       "requires": {
         "once": "^1.4.0"
       }
@@ -3308,9 +3308,9 @@
       "dev": true
     },
     "handlebars": {
-      "version": "4.2.1",
-      "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.2.1.tgz",
-      "integrity": "sha512-bqPIlDk06UWbVEIFoYj+LVo42WhK96J+b25l7hbFDpxrOXMphFM3fNIm+cluwg4Pk2jiLjWU5nHQY7igGE75NQ==",
+      "version": "4.3.1",
+      "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.3.1.tgz",
+      "integrity": "sha512-c0HoNHzDiHpBt4Kqe99N8tdLPKAnGCQ73gYMPWtAYM4PwGnf7xl8PBUHJqh9ijlzt2uQKaSRxbXRt+rZ7M2/kA==",
       "dev": true,
       "requires": {
         "neo-async": "^2.6.0",
@@ -3883,8 +3883,8 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#dda9c660be9a277bdb461f82476a6603139c25f2",
-      "from": "git+https://github.com/DEFRA/ivory-shared.git#dda9c660be9a277bdb461f82476a6603139c25f2",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#7936a4ed9e9a8c707febea97d10697300de35e18",
+      "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "@hapi/hoek": "^8.2.4",
         "@hapi/joi": "^15.1.1",
@@ -3917,9 +3917,9 @@
           "integrity": "sha512-O4QDrx+JoGKZc6aN64L04vqa7e41tIiLU+OvKdcYaEMP97UttL0f9GIi9/0A4WAMx0uBd6SidDIhktZhgOcN8Q=="
         },
         "@hapi/boom": {
-          "version": "7.4.9",
-          "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.9.tgz",
-          "integrity": "sha512-grHr7kbkvgN8UBht1dFoNYj7XMcozYC/tDJ+W7NVnLha4ZsU9UQvjwm24Qhbdrr3+o+mRfxvHBLFGBAJvkz4XQ==",
+          "version": "7.4.10",
+          "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.10.tgz",
+          "integrity": "sha512-QCeJhQTtY8U3N5H8IO/PMp6sMSCW0189ylquqfHX9PJkxSHvqKAgNzKvg5APjOKK1dcK8obTeg/UICkb3b3fXw==",
           "requires": {
             "@hapi/hoek": "8.x.x"
           }
@@ -4147,14 +4147,14 @@
           "integrity": "sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA=="
         },
         "@types/node": {
-          "version": "12.7.5",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.5.tgz",
-          "integrity": "sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w=="
+          "version": "12.7.6",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.6.tgz",
+          "integrity": "sha512-+lUz75GKlq6JKTigPUKd3Op8AZrnaoCut5S0jkjMZAw+i6eRTaM6vtytl/wfSxXyx+GPRTG2NUcbQWgiinnKng=="
         },
         "acorn": {
-          "version": "7.0.0",
-          "resolved": "https://registry.npmjs.org/acorn/-/acorn-7.0.0.tgz",
-          "integrity": "sha512-PaF/MduxijYYt7unVGRuds1vBC9bFxbNf+VWqhOClfdgy7RlVkQqt610ig1/yxTgsDIfW1cWDel5EBbOy3jdtQ=="
+          "version": "7.1.0",
+          "resolved": "https://registry.npmjs.org/acorn/-/acorn-7.1.0.tgz",
+          "integrity": "sha512-kL5CuoXA/dgxlBbVrflsflzQ3PAas7RYZB52NOm/6839iVYJgKMJ3cQJD+t2i5+qFa8h3MDpEOJiS64E8JLnSQ=="
         },
         "acorn-jsx": {
           "version": "5.0.2",
@@ -5149,9 +5149,9 @@
           "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
         },
         "handlebars": {
-          "version": "4.2.1",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.2.1.tgz",
-          "integrity": "sha512-bqPIlDk06UWbVEIFoYj+LVo42WhK96J+b25l7hbFDpxrOXMphFM3fNIm+cluwg4Pk2jiLjWU5nHQY7igGE75NQ==",
+          "version": "4.3.0",
+          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.3.0.tgz",
+          "integrity": "sha512-7XlnO8yBXOdi7AzowjZssQr47Ctidqm7GbgARapOaqSN9HQhlClnOkR9HieGauIT3A8MBC6u9wPCXs97PCYpWg==",
           "requires": {
             "neo-async": "^2.6.0",
             "optimist": "^0.6.1",
