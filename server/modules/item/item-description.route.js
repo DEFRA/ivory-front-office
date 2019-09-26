@@ -1,5 +1,6 @@
 const Joi = require('@hapi/joi')
 const { Item } = require('../../lib/cache')
+const config = require('../../config')
 
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
@@ -13,6 +14,21 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
       'item-description': {
         'any.empty': 'Enter a description of the item'
       }
+    }
+  }
+
+  async requiresAgeExemptionDeclaration (request) {
+    const { itemType } = await Item.get(request) || {}
+    const reference = config.referenceData.itemType.choices.find(({ shortName }) => shortName === itemType)
+    return !!reference.ageExemptionDeclaration
+  }
+
+  // Overrides parent class getNextPath
+  async getNextPath (request) {
+    if (await this.requiresAgeExemptionDeclaration(request)) {
+      return '/item-age-exemption-declaration'
+    } else {
+      return '/owner-email'
     }
   }
 
@@ -41,7 +57,8 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'Describe the item',
     view: 'item/item-description',
-    nextPath: '/owner-email',
+    // nextPath is derived in the getNextPath method above
+    nextPath: '/item-age-exemption-declaration',
     isQuestionPage: true
   }
 })

@@ -69,6 +69,9 @@ class SelectOneOptionHandlers extends require('../handlers') {
   async handlePost (request, h) {
     const data = await this.getData(request)
     const choice = this.choices.find(({ shortName }) => request.payload[this.fieldName] === shortName)
+    if (this.onChange && data[this.fieldName] !== choice.value) {
+      await this.onChange(data)
+    }
     data[this.fieldName] = choice.value
     await this.setData(request, data)
     return super.handlePost(request, h)
