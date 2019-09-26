@@ -767,9 +767,9 @@
       "dev": true
     },
     "@types/node": {
-      "version": "12.7.7",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.7.tgz",
-      "integrity": "sha512-4jUncNe2tj1nmrO/34PsRpZqYVnRV1svbU78cKhuQKkMntKB/AmdLyGgswcZKjFHEHGpiY8pVD8CuVI55nP54w==",
+      "version": "12.7.8",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.8.tgz",
+      "integrity": "sha512-FMdVn84tJJdV+xe+53sYiZS4R5yn1mAIxfj+DVoNiQjTYz1+OYmjwEZr1ev9nU0axXwda0QDbYl06QHanRVH3A==",
       "dev": true
     },
     "a-sync-waterfall": {
@@ -1784,9 +1784,9 @@
       }
     },
     "end-of-stream": {
-      "version": "1.4.3",
-      "resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.3.tgz",
-      "integrity": "sha512-cbNhPFS6MlYlWTGncSiDYbdqKhwWFy7kNeb1YSOG6K65i/wPTkLVCJQj0hXA4j0m5Da+hBWnqopEnu1FFelisQ==",
+      "version": "1.4.4",
+      "resolved": "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.4.tgz",
+      "integrity": "sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==",
       "requires": {
         "once": "^1.4.0"
       }
@@ -3883,7 +3883,7 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#7936a4ed9e9a8c707febea97d10697300de35e18",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#48f8ea02ca59d1c7b3bbb2896d105f0860c790d6",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "@hapi/hoek": "^8.2.4",
@@ -4147,9 +4147,9 @@
           "integrity": "sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA=="
         },
         "@types/node": {
-          "version": "12.7.6",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.6.tgz",
-          "integrity": "sha512-+lUz75GKlq6JKTigPUKd3Op8AZrnaoCut5S0jkjMZAw+i6eRTaM6vtytl/wfSxXyx+GPRTG2NUcbQWgiinnKng=="
+          "version": "12.7.8",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.8.tgz",
+          "integrity": "sha512-FMdVn84tJJdV+xe+53sYiZS4R5yn1mAIxfj+DVoNiQjTYz1+OYmjwEZr1ev9nU0axXwda0QDbYl06QHanRVH3A=="
         },
         "acorn": {
           "version": "7.1.0",
@@ -5149,9 +5149,9 @@
           "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
         },
         "handlebars": {
-          "version": "4.3.0",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.3.0.tgz",
-          "integrity": "sha512-7XlnO8yBXOdi7AzowjZssQr47Ctidqm7GbgARapOaqSN9HQhlClnOkR9HieGauIT3A8MBC6u9wPCXs97PCYpWg==",
+          "version": "4.3.1",
+          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.3.1.tgz",
+          "integrity": "sha512-c0HoNHzDiHpBt4Kqe99N8tdLPKAnGCQ73gYMPWtAYM4PwGnf7xl8PBUHJqh9ijlzt2uQKaSRxbXRt+rZ7M2/kA==",
           "requires": {
             "neo-async": "^2.6.0",
             "optimist": "^0.6.1",
@@ -6928,9 +6928,9 @@
       }
     },
     "mime-db": {
-      "version": "1.41.0",
-      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.41.0.tgz",
-      "integrity": "sha512-B5gxBI+2K431XW8C2rcc/lhppbuji67nf9v39eH8pkWoZDxnAL0PxdpH32KYRScniF8qDHBDlI+ipgg5WrCUYw=="
+      "version": "1.42.0",
+      "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.42.0.tgz",
+      "integrity": "sha512-UbfJCR4UAVRNgMpfImz05smAXK7+c+ZntjaA26ANtkXLlOe947Aag5zdIcKQULAiF9Cq4WxBi9jUs5zkA84bYQ=="
     },
     "mime-types": {
       "version": "2.1.24",
