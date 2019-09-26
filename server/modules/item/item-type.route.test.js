@@ -30,7 +30,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects correctly', async ({ context }) => {
       const { request } = context
       request.payload.itemType = 'portrait-miniature-pre-1918'
-      await routesHelper.expectRedirection(request, '/item-description')
+      await routesHelper.expectRedirection(request, '/add-photograph')
       Code.expect(routesHelper.cache.Item.itemType).to.equal('portrait-miniature-pre-1918')
     })
   })

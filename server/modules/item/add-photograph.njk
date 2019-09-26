@@ -1,0 +1,26 @@
+{% extends 'common/two-thirds-layout.njk' %}
+
+{% from "file-upload/macro.njk" import govukFileUpload %}
+
+{# Override the form block to set multipart encoding #}
+{% block formDefinition %}
+  <form method="post" autocomplete="off" {{ novalidateVal }} enctype="multipart/form-data" >
+    <input id="defra-csrf-token" type="hidden" name="DefraCsrfToken" value="{{ DefraCsrfToken }}">
+{% endblock %}
+
+{% block formContent %}
+
+  {{ govukFileUpload({
+    id: "photograph",
+    name: "photograph",
+    hint: {
+      text: "The ivory in the item must be clearly visible"
+    },
+    errorMessage: errors['photograph'],
+    classes: "ivory-govuk-file-upload",
+    attributes: {
+      accept: "image/*"
+    }
+  }) }}
+
+{% endblock %}

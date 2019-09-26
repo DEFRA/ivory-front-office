@@ -33,7 +33,7 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'What type of item are you registering?',
     view: 'common/option/select-one-option',
-    nextPath: '/item-description',
+    nextPath: '/add-photograph',
     isQuestionPage: true
   }
 })

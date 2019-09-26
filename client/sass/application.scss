@@ -78,3 +78,34 @@
     @extend %govuk-section-break--xl;
   }
 }
+
+/* Add photo input file style */
+/* Please direct questions to @nicprice */
+/* Based on nostyle.herokuapp.com */
+/* Implemented as subclass of govuk-file-upload (e.g. <input class="govuk-file-upload ivory-govuk-file-upload"...) */
+.ivory-govuk-file-upload {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding: .5em;
+  border: 2px solid #eee;
+  background-color: #eee;
+  width: 100%;
+  max-width: 26em;
+
+  &:hover {
+    border: 2px solid #222;
+  }
+
+  &:focus {
+    outline: 3px solid #222;
+  }
+}
+
+.check-photo-img {
+  width: 100%;
+  max-width: 26em;
+  margin-bottom: 30px
+}
+
+
