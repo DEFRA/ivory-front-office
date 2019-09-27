@@ -8,6 +8,7 @@
 !/log/.keep
 /lcov.info
 /tmp
+/temp
 *~
 .DS_Store
 .svn
