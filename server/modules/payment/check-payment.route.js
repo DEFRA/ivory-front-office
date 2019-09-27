@@ -28,9 +28,17 @@ class RestoreHandlers extends require('../common/handlers') {
       await Registration.set(request, registration)
       return h.redirect('/confirmation')
     } else {
-      await Payment.set(request, payment)
+      const code = utils.getNestedVal(result, 'state.code')
+      const message = utils.getNestedVal(result, 'state.message')
+      if (code) {
+        payment.code = code
+        payment.message = message
+        await Payment.set(request, payment)
+        return h.redirect('/check-your-answers')
+      }
     }
 
+    await Payment.set(request, payment)
     return Boom.expectationFailed('Payment failed', payment)
   }
 }
