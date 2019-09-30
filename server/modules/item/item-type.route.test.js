@@ -8,11 +8,14 @@ const pageHeading = 'What type of item are you registering?'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
-    stubCallback: (sandbox) => {
-      sandbox.stub(SelectOneOptionHandlers.prototype, 'referenceData').value({
-        choices: [
-          { shortName: 'portrait-miniature-pre-1918', value: 'portrait-miniature-pre-1918' }
-        ]
+    stubCallback: ({ context }) => {
+      const { sandbox } = context
+      sandbox.stub(SelectOneOptionHandlers.prototype, 'referenceData').get(() => {
+        return {
+          choices: [
+            { shortName: 'portrait-miniature-pre-1918', value: 'portrait-miniature-pre-1918' }
+          ]
+        }
       })
     }
   })
@@ -21,8 +24,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when who owns the item has not been selected', async ({ context }) => {
-      const { request } = context
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'itemType', message: 'Select what type of item you are registering' }
       ])
     })
@@ -30,8 +32,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects correctly', async ({ context }) => {
       const { request } = context
       request.payload.itemType = 'portrait-miniature-pre-1918'
-      await routesHelper.expectRedirection(request, '/add-photograph')
-      Code.expect(routesHelper.cache.Item.itemType).to.equal('portrait-miniature-pre-1918')
+      await routesHelper.expectRedirection(context, '/add-photograph')
+      Code.expect(TestHelper.getCache(context, 'Item').itemType).to.equal('portrait-miniature-pre-1918')
     })
   })
 })

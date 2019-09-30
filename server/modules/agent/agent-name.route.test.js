@@ -10,16 +10,18 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('full name has not been pre-filled', async ({ context }) => {
-      const response = await routesHelper.server.inject(context.request)
+      const { request, server } = context
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#full-name').val()).to.not.exist()
     })
 
     lab.test('full name has been pre-filled', async ({ context }) => {
+      const { request, server } = context
       const fullName = 'James Bond'
-      routesHelper.cache.Agent = { fullName: 'James Bond' }
-      const response = await routesHelper.server.inject(context.request)
+      TestHelper.setCache(context, 'Agent', { fullName })
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#full-name').val()).to.equal(fullName)
@@ -30,7 +32,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the full name has not been entered', async ({ context }) => {
       const { request } = context
       request.payload['full-name'] = ''
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'full-name', message: 'Enter your full name' }
       ])
     })
@@ -39,8 +41,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const fullName = 'James Bond'
       request.payload['full-name'] = fullName
-      await routesHelper.expectRedirection(request, '/agent-email')
-      Code.expect(routesHelper.cache.Agent.fullName).to.equal(fullName)
+      await routesHelper.expectRedirection(context, '/agent-email')
+      Code.expect(TestHelper.getCache(context, 'Agent').fullName).to.equal(fullName)
     })
   })
 })

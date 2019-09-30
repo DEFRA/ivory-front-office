@@ -4,7 +4,7 @@ const { Payment, Registration } = require('../../lib/cache')
 const { paymentUrl, paymentKey } = require('../../config')
 const syncRegistration = require('../../lib/sync-registration')
 
-class RestoreHandlers extends require('../common/handlers') {
+class CheckPaymentHandlers extends require('../common/handlers') {
   async handleGet (request, h, errors) {
     // Clear the cookies and create a new registration
     await Cache.clear(request)
@@ -43,7 +43,7 @@ class RestoreHandlers extends require('../common/handlers') {
   }
 }
 
-const handlers = new RestoreHandlers()
+const handlers = new CheckPaymentHandlers()
 
 module.exports = handlers.routes({
   path: '/check-payment/{id}',

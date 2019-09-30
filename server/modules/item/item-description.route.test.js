@@ -11,9 +11,10 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('description has been pre-filled when cache exists', async ({ context }) => {
+      const { request, server } = context
       const description = 'Test item description'
-      routesHelper.cache.Item = { description: description }
-      const response = await routesHelper.server.inject(context.request)
+      TestHelper.setCache(context, 'Item', { description })
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#item-description').val()).to.equal(description)
@@ -27,12 +28,14 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { sandbox } = context
       const itemType = 'portrait-miniature-pre-1918'
 
-      routesHelper.cache.Item = { itemType }
+      TestHelper.setCache(context, 'Item', { itemType })
       itemChoice = { shortName: itemType }
 
-      sandbox.stub(config, 'referenceData').value({
-        itemType: {
-          choices: [itemChoice]
+      sandbox.stub(config, 'referenceData').get(() => {
+        return {
+          itemType: {
+            choices: [itemChoice]
+          }
         }
       })
     })
@@ -40,7 +43,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the item description has not been entered', async ({ context }) => {
       const { request } = context
       request.payload['item-description'] = ''
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'item-description', message: 'Enter a description of the item' }
       ])
     })
@@ -48,7 +51,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the item description contains only spaces', async ({ context }) => {
       const { request } = context
       request.payload['item-description'] = ' '
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'item-description', message: 'Enter a description of the item' }
       ])
     })
@@ -60,14 +63,12 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       })
 
       lab.test('and no exemption declarations are required', async ({ context }) => {
-        const { request } = context
-        await routesHelper.expectRedirection(request, '/owner-name')
+        await routesHelper.expectRedirection(context, '/owner-name')
       })
 
       lab.test('exemption declarations are required', async ({ context }) => {
-        const { request } = context
         itemChoice.ageExemptionDeclaration = 'age-exemption-declaration'
-        await routesHelper.expectRedirection(request, '/item-age-exemption-declaration')
+        await routesHelper.expectRedirection(context, '/item-age-exemption-declaration')
       })
     })
   })

@@ -9,12 +9,11 @@ const photos = require('./photos')
 const Readable = require('stream').Readable
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  let sandbox
-
-  lab.before(() => {
+  lab.before(({ context }) => {
     // Set up the stubs
-    sandbox = sinon.createSandbox()
-    TestHelper.stubCommon(sandbox)
+    context.sandbox = sinon.createSandbox()
+    TestHelper.stubCommon(context)
+    const { sandbox } = context
     sandbox.stub(config, 's3Enabled').value(true)
 
     sandbox.stub(S3.prototype, 'upload').value(({ Key }) => {
@@ -30,7 +29,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
   })
 
-  lab.after(async () => {
+  lab.after(async ({ context }) => {
+    const { sandbox } = context
     // Restore the sandbox to make sure the stubs are removed correctly
     sandbox.restore()
   })

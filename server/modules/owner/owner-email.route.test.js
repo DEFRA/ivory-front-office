@@ -10,24 +10,27 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      routesHelper.cache.Registration = { agentIsOwner: true }
-      const response = await routesHelper.server.inject(context.request)
+      const { request, server } = context
+      TestHelper.setCache(context, 'Registration', { agentIsOwner: true })
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('h1').text().trim()).to.equal('Your email address')
     })
 
     lab.test('email address has not been pre-filled', async ({ context }) => {
-      const response = await routesHelper.server.inject(context.request)
+      const { request, server } = context
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#email').val()).to.not.exist()
     })
 
     lab.test('email address has been pre-filled', async ({ context }) => {
+      const { request, server } = context
       const email = 'James Bond'
-      routesHelper.cache.Owner = { email }
-      const response = await routesHelper.server.inject(context.request)
+      TestHelper.setCache(context, 'Owner', { email })
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#email').val()).to.equal(email)
@@ -38,7 +41,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the email address has not been entered', async ({ context }) => {
       const { request } = context
       request.payload.email = ''
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'email', message: 'Enter an email address in the correct format, like name@example.com' }
       ])
     })
@@ -47,8 +50,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const email = 'james.bond@defra.test.gov.uk'
       request.payload.email = email
-      await routesHelper.expectRedirection(request, '/dealing-intent')
-      Code.expect(routesHelper.cache.Owner.email).to.equal(email)
+      await routesHelper.expectRedirection(context, '/dealing-intent')
+      Code.expect(TestHelper.getCache(context, 'Owner').email).to.equal(email)
     })
   })
 })

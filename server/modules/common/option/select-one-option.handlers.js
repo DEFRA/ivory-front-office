@@ -1,6 +1,7 @@
 const Joi = require('@hapi/joi')
 const { Registration } = require('../../../lib/cache')
-const { referenceData } = require('../../../config')
+const config = require('../../../config')
+const { referenceData } = config
 
 class SelectOneOptionHandlers extends require('../handlers') {
   get referenceData () {
@@ -68,7 +69,9 @@ class SelectOneOptionHandlers extends require('../handlers') {
   // Overrides parent class handlePost
   async handlePost (request, h) {
     const data = await this.getData(request)
-    const choice = this.choices.find(({ shortName }) => request.payload[this.fieldName] === shortName)
+    const choice = this.choices.find(({ shortName }) => {
+      return request.payload[this.fieldName] === shortName
+    })
     if (this.onChange && data[this.fieldName] !== choice.value) {
       await this.onChange(data)
     }
