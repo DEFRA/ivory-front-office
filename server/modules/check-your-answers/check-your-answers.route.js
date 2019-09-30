@@ -89,7 +89,7 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
       //     {
       //       href: '#',
       //       text: 'Change',
-      //       visuallyHiddenText: value.toLowerCase()
+      //       visuallyHiddenText: key.toLowerCase()
       //     }
       //   ]
       // }
@@ -162,7 +162,7 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
       const intent = CheckYourAnswersHandlers.getReference('dealingIntent', dealingIntent)
       answers.push({
         key: 'Intention',
-        value: intent.label
+        value: intent.display
       })
     }
 

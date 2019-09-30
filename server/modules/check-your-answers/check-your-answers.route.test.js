@@ -15,8 +15,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(config, 'referenceData').value({
         dealingIntent: {
           choices: [
-            { shortName: 'hire', label: 'hire' },
-            { shortName: 'sell', label: 'sell' }
+            { shortName: 'hire', label: 'hire', display: 'Hire' },
+            { shortName: 'sell', label: 'sell', display: 'Sale' }
           ]
         },
         itemType: {
@@ -35,6 +35,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('page answers are displayed correctly', async ({ context }) => {
       const agentIsOwner = true
       const dealingIntent = 'hire'
+      const dealingIntentDisplay = 'Hire'
       const itemType = 'portrait-miniature-pre-1918'
       const fullName = 'James Bond'
       const email = 'james007@bond.co.uk'
@@ -73,7 +74,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       Code.expect($('.ivory-your-name').text()).to.include(fullName)
       Code.expect($('.ivory-your-address').text()).to.include(addressLine.split(',').join(''))
       Code.expect($('.ivory-your-email').text()).to.include(email)
-      Code.expect($('.ivory-intention').text()).to.include(dealingIntent)
+      Code.expect($('.ivory-intention').text()).to.include(dealingIntentDisplay)
     })
   })
 })

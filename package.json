@@ -27,7 +27,7 @@
     "test": "npm run lint && npm run unit-test"
   },
   "dependencies": {
-    "@hapi/boom": "^7.4.10",
+    "@hapi/boom": "^7.4.11",
     "@hapi/catbox": "^10.2.3",
     "@hapi/catbox-redis": "^5.0.3",
     "@hapi/crumb": "^7.3.2",
