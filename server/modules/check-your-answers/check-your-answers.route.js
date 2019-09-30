@@ -62,7 +62,7 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
             <br>
             Other supporting evidence:
             <br><br>
-            ${description}
+            ${description.replace(/[\r]/g, '<br>')}
         `
       })
     }
@@ -132,7 +132,7 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
     if (item.description) {
       answers.push({
         key: 'Description',
-        value: item.description
+        html: item.description.replace(/[\r]/g, '<br>')
       })
     }
 
