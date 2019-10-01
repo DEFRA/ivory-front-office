@@ -22,6 +22,7 @@ class Agent extends BaseCache {}
 class AgentAddress extends BaseCache {}
 class Item extends BaseCache {}
 class Payment extends BaseCache {}
+class Photo extends BaseCache {}
 
 module.exports = {
   Registration,
@@ -30,5 +31,6 @@ module.exports = {
   Agent,
   AgentAddress,
   Item,
-  Payment
+  Payment,
+  Photo
 }

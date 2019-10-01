@@ -53,7 +53,19 @@ const schema = {
   // Service API
   serviceApiEnabled: Joi.bool().default(true),
   serviceApiPort: Joi.when('serviceApiEnabled', { is: true, then: Joi.number().required() }),
-  serviceApiHost: Joi.when('serviceApiEnabled', { is: true, then: Joi.string().required() })
+  serviceApiHost: Joi.when('serviceApiEnabled', { is: true, then: Joi.string().required() }),
+
+  // Amazon S3
+  s3Enabled: Joi.bool().default(true),
+  s3Region: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
+  s3ApiVersion: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
+  s3Bucket: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
+  s3AccessKeyId: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
+  s3SecretAccessKey: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
+
+  // Photo upload
+  photoUploadPhotoMaxMb: Joi.number().min(1).max(20).default(10),
+  photoUploadPayloadMaxBytes: Joi.number().min(1).max(20 * 1024 * 1024).default(10 * 1024 * 1024)
 }
 
 // Build the config
@@ -95,7 +107,17 @@ const config = {
   // Service API
   serviceApiEnabled: process.env.SERVICE_API_ENABLED,
   serviceApiPort: process.env.SERVICE_API_PORT,
-  serviceApiHost: process.env.SERVICE_API_HOST
+  serviceApiHost: process.env.SERVICE_API_HOST,
+
+  // Amazon S3
+  s3Enabled: process.env.AWS_S3_ENABLED,
+  s3Region: process.env.AWS_S3_REGION,
+  s3ApiVersion: process.env.AWS_S3_APIVERSION,
+  s3Bucket: process.env.AWS_S3_BUCKET,
+  s3AccessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  s3SecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  photoUploadPhotoMaxMb: process.env.PHOTO_UPLOAD_PHOTO_MAX_MB,
+  photoUploadPayloadMaxBytes: process.env.PHOTO_UPLOAD_PAYLOAD_MAX_BYTES
 }
 
 // Validate the config

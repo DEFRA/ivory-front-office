@@ -1,0 +1,18 @@
+{% extends 'common/two-thirds-layout.njk' %}
+
+{% block formContent %}
+
+  <div class="govuk-form-group">
+    <p>
+      <img id="photograph" class="check-photo-img" src="{{ viewData.photoUrl }}" />
+    </p>
+  </div>
+
+{% endblock %}
+
+{# Overwrite this block to set the different button text #}
+{% block continueButton %}
+  {{ govukButton({
+    text: "Use this photo"
+  }) }}
+{% endblock %}

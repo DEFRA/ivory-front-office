@@ -18,7 +18,7 @@ module.exports = class Handlers {
   }
 
   async getViewData () {
-    return this.viewData
+    return this.viewData || {} // If viewData has not been set return an empty object (so a future 'Object.assign(viewData, ...' works)
   }
 
   async getIsQuestionPage (request) {
@@ -79,7 +79,7 @@ module.exports = class Handlers {
       .takeover()
   }
 
-  routes ({ path, app }) {
+  routes ({ path, app, payload }) {
     const tags = utils.getNestedVal(app, 'tags') || []
     return [
       {
@@ -103,7 +103,8 @@ module.exports = class Handlers {
           validate: {
             payload: this.schema,
             failAction: this.failAction.bind(this)
-          }
+          },
+          payload
         }
       }
     ]

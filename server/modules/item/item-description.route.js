@@ -34,9 +34,9 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
-    const { description } = await Item.get(request) || {}
+    const { description = '' } = await Item.get(request) || {}
     this.viewData = {
-      'item-description': description
+      'item-description': description.trim()
     }
     return super.handleGet(request, h, errors)
   }
