@@ -54,12 +54,6 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
         html: `
             I declare ${reference}
             <br><br>
-            Evidence:
-            <br>
-            <ul>
-            <li>Other</li>
-            </ul>
-            <br>
             Other supporting evidence:
             <br><br>
             ${description.replace(/[\r]/g, '<br>')}
@@ -123,8 +117,8 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
     if (item.photos) {
       item.photos.forEach((photo) => {
         answers.push({
-          key: 'photograph',
-          html: `<img src="routeToImage?imageName=${photo.filename}" height="200" border="0">`
+          key: 'Photograph',
+          html: `<img src="/photos/${photo.filename}" height="200" border="0">`
         })
       })
     }
