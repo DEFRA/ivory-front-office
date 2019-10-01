@@ -114,8 +114,8 @@ const config = {
   s3Region: process.env.AWS_S3_REGION,
   s3ApiVersion: process.env.AWS_S3_APIVERSION,
   s3Bucket: process.env.AWS_S3_BUCKET,
-  s3AccessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  s3SecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  s3AccessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
+  s3SecretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
   photoUploadPhotoMaxMb: process.env.PHOTO_UPLOAD_PHOTO_MAX_MB,
   photoUploadPayloadMaxBytes: process.env.PHOTO_UPLOAD_PAYLOAD_MAX_BYTES
 }
