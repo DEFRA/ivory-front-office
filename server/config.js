@@ -60,8 +60,6 @@ const schema = {
   s3Region: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
   s3ApiVersion: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
   s3Bucket: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
-  s3AccessKeyId: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
-  s3SecretAccessKey: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
 
   // Photo upload
   photoUploadPhotoMaxMb: Joi.number().min(1).max(20).default(10),
@@ -114,8 +112,6 @@ const config = {
   s3Region: process.env.AWS_S3_REGION,
   s3ApiVersion: process.env.AWS_S3_APIVERSION,
   s3Bucket: process.env.AWS_S3_BUCKET,
-  s3AccessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
-  s3SecretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
   photoUploadPhotoMaxMb: process.env.PHOTO_UPLOAD_PHOTO_MAX_MB,
   photoUploadPayloadMaxBytes: process.env.PHOTO_UPLOAD_PAYLOAD_MAX_BYTES
 }

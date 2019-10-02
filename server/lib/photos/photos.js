@@ -11,10 +11,8 @@ const photos = {
   async uploadPhoto (filename, contentType, readableStream) {
     // Pull in the S3 config
     const config = require('../../config')
-    const { s3Enabled, s3Region, s3ApiVersion, s3Bucket, s3AccessKeyId, s3SecretAccessKey } = config
+    const { s3Enabled, s3Region, s3ApiVersion, s3Bucket } = config
     const s3Config = {
-      accessKeyId: s3AccessKeyId,
-      secretAccessKey: s3SecretAccessKey,
       region: s3Region,
       apiVersion: s3ApiVersion
     }
@@ -53,10 +51,8 @@ const photos = {
 
     // Pull in the S3 config
     const config = require('../../config')
-    const { s3Enabled, s3Region, s3ApiVersion, s3Bucket, s3AccessKeyId, s3SecretAccessKey } = config
+    const { s3Enabled, s3Region, s3ApiVersion, s3Bucket } = config
     const s3Config = {
-      accessKeyId: s3AccessKeyId,
-      secretAccessKey: s3SecretAccessKey,
       region: s3Region,
       apiVersion: s3ApiVersion
     }
