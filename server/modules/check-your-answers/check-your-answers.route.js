@@ -113,14 +113,16 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
       })
     }
 
-    // ToDo: Expect photograph to be here
+    // TODO: Handle multiple photos
     if (item.photos) {
-      item.photos.forEach((photo) => {
-        answers.push({
-          key: 'Photograph',
-          html: `<img src="/photos/${photo.filename}" height="200" border="0">`
-        })
+      // item.photos.forEach((photo) => {
+      const lastphoto = item.photos[item.photos.length - 1] // Until we handle multiple photos, take the last photo
+      answers.push({
+        key: 'Photograph',
+        // html: `<img src="/photos/${photo.filename}" height="200" border="0">`
+        html: `<img src="/photos/${lastphoto.filename}" height="200" border="0">`
       })
+      // })
     }
 
     if (item.description) {
