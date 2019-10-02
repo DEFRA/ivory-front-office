@@ -66,7 +66,8 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'Add a photo',
     view: 'item/add-photograph',
-    nextPath: '/check-photograph'
+    nextPath: '/check-photograph',
+    isQuestionPage: true
   },
   payload: { // https://hapi.dev/api/?v=18.4.0#route.options.payload
     allow: 'multipart/form-data',

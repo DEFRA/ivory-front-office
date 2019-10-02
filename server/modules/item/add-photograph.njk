@@ -11,8 +11,13 @@
 {% block formContent %}
 
   {{ govukFileUpload({
-    id: "photograph",
     name: "photograph",
+    id: "photograph",
+    label: {
+      text: pageHeading,
+      isPageHeading: isQuestionPage,
+      classes: "govuk-label--xl"
+    },
     hint: {
       text: "The ivory in the item must be clearly visible"
     },
