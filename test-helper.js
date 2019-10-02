@@ -16,7 +16,7 @@ process.env.LOG_LEVEL = 'error'
 const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
-const { Cache } = require('ivory-shared')
+const { Cache, utils } = require('ivory-shared')
 const syncRegistration = require('./server/lib/sync-registration')
 const routesPlugin = require('./server/plugins/router')
 
@@ -28,38 +28,35 @@ module.exports = class TestHelper {
     const { stubCallback, stubCache = true } = options || {}
 
     lab.beforeEach(async ({ context }) => {
-      this._cache = {}
-
       // Create a sinon sandbox to stub methods
-      this._sandbox = sinon.createSandbox()
-      context.sandbox = this._sandbox
+      context.sandbox = sinon.createSandbox()
 
       // Stub common methods
-      TestHelper.stubCommon(this._sandbox)
-
-      // Stub methods
-      if (stubCache) {
-        this._stubCache()
-      }
+      TestHelper.stubCommon(context)
 
       // Stub any methods specific to the test
       if (stubCallback) {
-        stubCallback(this._sandbox, context)
+        stubCallback({ context })
+      }
+
+      if (stubCache) {
+        TestHelper.stubCache(context)
       }
 
       // Stub the routes to include only the tested route derived from the test filename
       const routes = TestHelper.getFile(testFile).replace('.test.js', '.js').substr(1)
-      this._sandbox.stub(routesPlugin, 'options').value({ routes })
+      context.sandbox.stub(routesPlugin, 'options').value({ routes })
 
-      this._server = await require('./server')()
+      context.server = await require('./server')()
     })
 
-    lab.afterEach(async () => {
+    lab.afterEach(async ({ context }) => {
+      const { sandbox, server } = context
       // Restore the sandbox to make sure the stubs are removed correctly
-      this._sandbox.restore()
+      sandbox.restore()
 
       // Stop the server
-      await this._server.stop()
+      return server.stop()
     })
   }
 
@@ -70,20 +67,25 @@ module.exports = class TestHelper {
   getRequestTests ({ lab, pageHeading, url }, requestTestsCallback) {
     lab.experiment(`GET ${url}`, () => {
       lab.beforeEach(({ context }) => {
-        context.request = {
-          method: 'GET',
-          url
-        }
+        const { request = {} } = context
+        // just in case
+        request.method = request.method || 'GET'
+        request.url = request.url || url
+        request.app = request.app || {}
+        request.app.cache = request.app.cache || {}
+        context.request = request
       })
 
       lab.test('page loads ok', async ({ context }) => {
-        const response = await this.server.inject(context.request)
+        const { server } = context
+        const response = await server.inject(context.request)
         Code.expect(response.statusCode).to.equal(200)
         Code.expect(response.headers['content-type']).to.include('text/html')
       })
 
       lab.test('page heading is correct', async ({ context }) => {
-        const response = await this.server.inject(context.request)
+        const { server } = context
+        const response = await server.inject(context.request)
         const $ = this.getDomParser(response.payload)
 
         Code.expect($('h1').text()).to.include(pageHeading)
@@ -94,10 +96,11 @@ module.exports = class TestHelper {
       }
 
       lab.test('get throws an error', async ({ context }) => {
-        context.sandbox.stub(Handlers.prototype, 'handleGet').value(() => {
+        const { request, sandbox, server } = context
+        sandbox.stub(Handlers.prototype, 'handleGet').value(() => {
           throw new Error('Failed to load heading')
         })
-        const response = await this.server.inject(context.request)
+        const response = await server.inject(request)
         const $ = this.getDomParser(response.payload)
 
         Code.expect($('h1').text()).to.include('Sorry, there is a problem with the service')
@@ -108,23 +111,27 @@ module.exports = class TestHelper {
   postRequestTests ({ lab, pageHeading, url }, requestTestsCallback) {
     lab.experiment(`POST ${url}`, () => {
       lab.beforeEach(({ context }) => {
-        context.request = {
-          method: 'POST',
-          url,
-          payload: {}
-        }
+        const { request = {} } = context
+        // just in case
+        request.method = request.method || 'POST'
+        request.url = request.url || url
+        request.payload = request.payload || {}
+        request.app = request.app || {}
+        request.app.cache = request.app.cache || {}
+        context.request = request
       })
 
       if (requestTestsCallback) {
         requestTestsCallback()
       }
 
-      // ToDo: Check this works once refactored
-      // lab.test.only('post throws an error', async ({ context }) => {
-      //   context.sandbox.stub(Handlers.prototype, 'handlePost').value(() => {
+      // ToDo: Fix at a later date
+      // lab.test('post throws an error', async ({ context }) => {
+      //   const { request, sandbox, server } = context
+      //   sandbox.stub(Handlers.prototype, 'handlePost').value(() => {
       //     throw new Error('Failed to load heading')
       //   })
-      //   const response = await this.server.inject(context.request)
+      //   const response = await server.inject(request)
       //   const $ = this.getDomParser(response.payload)
       //
       //   Code.expect($('h1').text()).to.include('Sorry, there is a problem with the service')
@@ -132,8 +139,8 @@ module.exports = class TestHelper {
     })
   }
 
-  static stubCommon (sandbox, options = {}) {
-    const { skip = {} } = options
+  static stubCommon (context) {
+    const { sandbox, skip = {} } = context
     sandbox.stub(dotenv, 'config').value(() => {})
     sandbox.stub(config, 'serviceName').value('Service name')
     sandbox.stub(logger, 'debug').value(() => undefined)
@@ -148,27 +155,67 @@ module.exports = class TestHelper {
     }
   }
 
-  _stubCache () {
-    this._sandbox.stub(Cache, 'get').value((request, key) => {
-      if (typeof key === 'string') {
-        return this._cache[key]
-      }
-      return key.map((key) => this._cache[key])
+  static __cache (context) {
+    if (!context.request) {
+      context.request = {}
+    }
+
+    const { request } = context
+
+    if (!request.app) {
+      request.app = {}
+    }
+
+    const { app } = request
+    if (!app.cache) {
+      app.cache = {}
+    }
+    return app.cache
+  }
+
+  static getCache (context, key) {
+    return key === undefined ? this.__cache(context) : this.__cache(context)[key]
+  }
+
+  static setCache (context, key, data) {
+    this.__cache(context)[key] = data
+    return data
+  }
+
+  static clearCache (context) {
+    const cache = this.__cache(context)
+    Object.keys(cache).forEach((key) => {
+      delete cache[key]
     })
-    this._sandbox.stub(Cache, 'set').value((request, key, val) => { this._cache[key] = val })
-    this._sandbox.stub(Cache, 'clear').value(() => { this._cache = {} })
   }
 
-  get server () {
-    return this._server
-  }
+  static stubCache (context) {
+    const { sandbox } = context
 
-  get cache () {
-    return this._cache
-  }
+    sandbox.stub(Cache, 'get').value(async (request, key) => {
+      const contextData = utils.getNestedVal(context, `request.app.cache.${key}`)
+      const requestData = utils.getNestedVal(request, `app.cache.${key}`)
+      if (!contextData && !requestData) {
+        return undefined
+      }
+      const data = Object.assign({}, contextData || {}, requestData || {})
+      // Set if not empty
+      if (Object.keys(data).length) {
+        TestHelper.setCache(context, key, data)
+        TestHelper.setCache({ request }, key, data)
+      }
+      return data
+    })
 
-  get sandbox () {
-    return this._sandbox
+    sandbox.stub(Cache, 'set').value(async (request, key, data) => {
+      TestHelper.setCache(context, key, data)
+      TestHelper.setCache({ request }, key, data)
+      return data
+    })
+
+    sandbox.stub(Cache, 'clear').value(() => {
+      TestHelper.clearCache(context)
+    })
   }
 
   getDomParser (payload) {
@@ -189,8 +236,9 @@ module.exports = class TestHelper {
     return `#${field}-error`
   }
 
-  async expectValidationErrors (request, errors) {
-    const response = await this.server.inject(request)
+  async expectValidationErrors (context, errors) {
+    const { request, server } = context
+    const response = await server.inject(request)
     Code.expect(response.statusCode).to.equal(400)
     const $ = this.getDomParser(response.payload)
 
@@ -200,8 +248,10 @@ module.exports = class TestHelper {
     })
   }
 
-  async expectRedirection (request, nextPath) {
-    const response = await this.server.inject(request)
+  async expectRedirection (context, nextPath) {
+    const { request, server } = context
+
+    const response = await server.inject(request)
 
     Code.expect(response.statusCode).to.equal(302)
     Code.expect(response.headers.location).to.equal(nextPath)

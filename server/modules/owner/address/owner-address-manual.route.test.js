@@ -6,10 +6,8 @@ const url = '/owner-full-address'
 const pageHeading = 'Owner\'s address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  let address
-
-  lab.beforeEach(() => {
-    address = {
+  lab.beforeEach(({ context }) => {
+    context.address = {
       addressLine1: '38',
       addressLine2: 'Smith Rd',
       town: 'Jonesville',
@@ -22,23 +20,26 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
-      routesHelper.cache.Registration = { agentIsOwner: true }
-      const response = await routesHelper.server.inject(context.request)
+      const { request, server } = context
+      TestHelper.setCache(context, 'Registration', { agentIsOwner: true })
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('h1').text().trim()).to.equal('Your address')
     })
 
     lab.test('address has not been pre-filled', async ({ context }) => {
-      const response = await routesHelper.server.inject(context.request)
+      const { request, server } = context
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#postcode').val()).to.not.exist()
     })
 
     lab.test('address has been pre-filled', async ({ context }) => {
-      routesHelper.cache.OwnerAddress = address
-      const response = await routesHelper.server.inject(context.request)
+      const { request, server, address } = context
+      TestHelper.setCache(context, 'OwnerAddress', address)
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#address-line-1').val()).to.equal(address.addressLine1)
@@ -59,7 +60,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-county': '',
         'address-postcode': ''
       })
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'address-line-1', message: 'Enter a valid building and street' },
         { field: 'address-town', message: 'Enter a valid town or city' },
         { field: 'address-postcode', message: 'Enter a valid postcode' }
@@ -75,7 +76,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-county': ' ',
         'address-postcode': ' '
       })
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'address-line-1', message: 'Enter a valid building and street' },
         { field: 'address-town', message: 'Enter a valid town or city' },
         { field: 'address-postcode', message: 'Enter a valid postcode' }
@@ -83,7 +84,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
 
     lab.test('redirects correctly when the address has been manually entered correctly', async ({ context }) => {
-      const { request } = context
+      const { request, address } = context
       Object.assign(request.payload, {
         'address-line-1': address.addressLine1,
         'address-line-2': address.addressLine2,
@@ -91,8 +92,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-county': address.county,
         'address-postcode': address.postcode
       })
-      await routesHelper.expectRedirection(request, '/owner-email')
-      Code.expect(routesHelper.cache.OwnerAddress.postcode).to.equal(address.postcode)
+      await routesHelper.expectRedirection(context, '/owner-email')
+      Code.expect(TestHelper.getCache(context, 'OwnerAddress').postcode).to.equal(address.postcode)
     })
   })
 })

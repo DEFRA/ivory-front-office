@@ -12,27 +12,30 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.beforeEach(({ context }) => {
       const { sandbox } = context
-      sandbox.stub(config, 'referenceData').value({
-        dealingIntent: {
-          choices: [
-            { shortName: 'hire', label: 'hire', display: 'Hire' },
-            { shortName: 'sell', label: 'sell', display: 'Sale' }
-          ]
-        },
-        itemType: {
-          choices: [
-            {
-              shortName: 'portrait-miniature-pre-1918',
-              label: 'portrait-miniature-pre-1918',
-              ageExemptionDeclaration: 'the item was made before 1918',
-              volumeExemptionDeclaration: 'the portrait miniature is less than 320cm²'
-            }
-          ]
+      sandbox.stub(config, 'referenceData').get(() => {
+        return {
+          dealingIntent: {
+            choices: [
+              { shortName: 'hire', label: 'hire', display: 'Hire' },
+              { shortName: 'sell', label: 'sell', display: 'Sale' }
+            ]
+          },
+          itemType: {
+            choices: [
+              {
+                shortName: 'portrait-miniature-pre-1918',
+                label: 'portrait-miniature-pre-1918',
+                ageExemptionDeclaration: 'the item was made before 1918',
+                volumeExemptionDeclaration: 'the portrait miniature is less than 320cm²'
+              }
+            ]
+          }
         }
       })
     })
 
     lab.test('page answers are displayed correctly', async ({ context }) => {
+      const { request, server } = context
       const agentIsOwner = true
       const dealingIntent = 'hire'
       const dealingIntentDisplay = 'Hire'
@@ -48,21 +51,19 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const ageExemptionDeclarationLabel = 'I declare the item was made before 1918'
       const volumeExemptionDeclarationLabel = 'I declare the portrait miniature is less than 320cm²'
 
-      Object.assign(routesHelper.cache, {
-        Registration: { dealingIntent, agentIsOwner },
-        Owner: { fullName, email },
-        OwnerAddress: { addressLine },
-        Item: {
-          description,
-          itemType,
-          ageExemptionDeclaration,
-          ageExemptionDescription,
-          volumeExemptionDeclaration,
-          volumeExemptionDescription
-        }
+      TestHelper.setCache(context, 'Registration', { dealingIntent, agentIsOwner })
+      TestHelper.setCache(context, 'Owner', { fullName, email })
+      TestHelper.setCache(context, 'OwnerAddress', { addressLine })
+      TestHelper.setCache(context, 'Item', {
+        description,
+        itemType,
+        ageExemptionDeclaration,
+        ageExemptionDescription,
+        volumeExemptionDeclaration,
+        volumeExemptionDescription
       })
 
-      const response = await routesHelper.server.inject(context.request)
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('.ivory-item-type').text()).to.include(itemType)

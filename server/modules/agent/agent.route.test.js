@@ -8,12 +8,15 @@ const url = '/agent'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
-    stubCallback: (sandbox) => {
-      sandbox.stub(SelectOneOptionHandlers.prototype, 'referenceData').value({
-        choices: [
-          { shortName: 'executor', value: 'executor' },
-          { shortName: 'trustee', value: 'trustee' }
-        ]
+    stubCallback: ({ context }) => {
+      const { sandbox } = context
+      sandbox.stub(SelectOneOptionHandlers.prototype, 'referenceData').get(() => {
+        return {
+          choices: [
+            { shortName: 'executor', value: 'executor' },
+            { shortName: 'trustee', value: 'trustee' }
+          ]
+        }
       })
     }
   })
@@ -22,8 +25,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when nothing is selected', async ({ context }) => {
-      const { request } = context
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'agentActingAs', message: 'Select how you are acting on behalf of the owner' }
       ])
     })
@@ -31,15 +33,15 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects correctly when "Executor" is selected', async ({ context }) => {
       const { request } = context
       request.payload.agentActingAs = 'executor'
-      await routesHelper.expectRedirection(request, '/agent-name')
-      Code.expect(routesHelper.cache.Registration.agentActingAs).to.equal('executor')
+      await routesHelper.expectRedirection(context, '/agent-name')
+      Code.expect(TestHelper.getCache(context, 'Registration').agentActingAs).to.equal('executor')
     })
 
     lab.test('redirects correctly when "Trustee" is selected', async ({ context }) => {
       const { request } = context
       request.payload.agentActingAs = 'trustee'
-      await routesHelper.expectRedirection(request, '/agent-name')
-      Code.expect(routesHelper.cache.Registration.agentActingAs).to.equal('trustee')
+      await routesHelper.expectRedirection(context, '/agent-name')
+      Code.expect(TestHelper.getCache(context, 'Registration').agentActingAs).to.equal('trustee')
     })
   })
 })

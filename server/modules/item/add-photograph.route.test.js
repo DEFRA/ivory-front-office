@@ -27,7 +27,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         '--WebAppBoundary--'
       ].join('\r\n')
 
-      await routesHelper.expectRedirection(request, '/check-photograph')
+      await routesHelper.expectRedirection(context, '/check-photograph')
     })
 
     lab.test('fails validation when no photo selected', async ({ context }) => {
@@ -41,7 +41,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         '--WebAppBoundary--'
       ].join('\r\n')
 
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'photograph', message: 'Select a photograph' }
       ])
     })

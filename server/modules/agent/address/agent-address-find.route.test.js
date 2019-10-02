@@ -9,7 +9,8 @@ const pageHeading = 'Your address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
-    stubCallback: (sandbox) => {
+    stubCallback: ({ context }) => {
+      const { sandbox } = context
       sandbox.stub(config, 'addressLookUpEnabled').value(true)
       sandbox.stub(config, 'addressLookUpUri').value('http://fake.com')
       sandbox.stub(config, 'addressLookUpUsername').value('username')
@@ -29,16 +30,18 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('postcode has not been pre-filled', async ({ context }) => {
-      const response = await routesHelper.server.inject(context.request)
+      const { request, server } = context
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#postcode').val()).to.not.exist()
     })
 
     lab.test('postcode has been pre-filled', async ({ context }) => {
+      const { request, server } = context
       const postcode = 'WC1A 1AA'
-      routesHelper.cache.AgentAddress = { postcode }
-      const response = await routesHelper.server.inject(context.request)
+      TestHelper.setCache(context, 'AgentAddress', { postcode })
+      const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
       Code.expect($('#postcode').val()).to.equal(postcode)
@@ -49,7 +52,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the postcode has not been entered', async ({ context }) => {
       const { request } = context
       request.payload.postcode = ''
-      return routesHelper.expectValidationErrors(request, [
+      return routesHelper.expectValidationErrors(context, [
         { field: 'postcode', message: 'Enter a valid postcode' }
       ])
     })
@@ -58,8 +61,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const postcode = 'WA41AB'
       request.payload.postcode = postcode
-      await routesHelper.expectRedirection(request, '/agent-address-select')
-      Code.expect(routesHelper.cache.AgentAddress.postcode).to.equal(postcode)
+      await routesHelper.expectRedirection(context, '/agent-address-select')
+      Code.expect(TestHelper.getCache(context, 'AgentAddress').postcode).to.equal(postcode)
     })
   })
 })

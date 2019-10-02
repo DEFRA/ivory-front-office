@@ -3,30 +3,23 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
 const TestHelper = require('../../test-helper')
-const { Cache, Persistence } = require('ivory-shared')
+const { Persistence } = require('ivory-shared')
 const syncRegistration = require('./sync-registration')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  let sandbox
-
   lab.beforeEach(({ context }) => {
-    context.request = { cache: {} }
     // Stub methods
-    sandbox = sinon.createSandbox()
-    TestHelper.stubCommon(sandbox, { skip: { syncRegistration: true } })
-    sandbox.stub(Cache, 'get').value((request, key) => {
-      const { cache } = request
-      if (typeof key === 'string') {
-        return cache[key]
-      }
-      return key.map((key) => cache[key])
-    })
-    sandbox.stub(Cache, 'set').value((request, key, val) => { request.cache[key] = val })
+    context.sandbox = sinon.createSandbox()
+    context.skip = { syncRegistration: true }
+    TestHelper.stubCache(context)
+    const { sandbox } = context
     sandbox.stub(Persistence.prototype, 'save').value((data) => data)
     sandbox.stub(Persistence.prototype, 'restore').value(() => ({}))
+    TestHelper.clearCache(context)
   })
 
-  lab.afterEach(async () => {
+  lab.afterEach(async ({ context }) => {
+    const { sandbox } = context
     // Restore the sandbox to make sure the stubs are removed correctly
     sandbox.restore()
   })
@@ -47,49 +40,48 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     })
 
     lab.test('passes as registration exists with empty cache entries', async ({ context }) => {
-      const { request } = context
-      Object.assign(request.cache, {
+      const cache = {
         Registration: {},
         Owner: {},
         OwnerAddress: {},
         Agent: {},
         AgentAddress: {},
+        Payment: {},
         Item: {}
+      }
+
+      Object.entries(cache).forEach(([key, val]) => {
+        TestHelper.setCache(context, key, val)
       })
-      const registration = await syncRegistration.save(request)
+
+      const registration = await syncRegistration.save(context.request)
       Code.expect(registration).to.equal(true)
-      Code.expect(request.cache).to.equal({
-        Registration: {},
-        Owner: {},
-        OwnerAddress: {},
-        Agent: {},
-        AgentAddress: {},
-        Item: {}
-      })
+      Code.expect(context.request.app.cache).to.equal(cache)
     })
 
     lab.test('passes as registration exists with only owner cache entries with sanitised address details', async ({ context }) => {
-      const { request } = context
-      Object.assign(request.cache, {
-        Registration: {},
+      const address = {
+        addressLine1: 'the house',
+        addressLine2: 'somewhere street',
+        town: 'no where town'
+      }
+
+      address.addressLine = Object.values(address).join(', ')
+      const cache = {
+        Registration: {
+          agentIsOwner: true
+        },
         Owner: {},
-        OwnerAddress: {
-          addressLine1: 'the house',
-          addressLine2: 'somewhere street',
-          road: 'no where road'
-        }
+        OwnerAddress: address
+      }
+
+      Object.entries(cache).forEach(([key, val]) => {
+        TestHelper.setCache(context, key, val)
       })
-      const registration = await syncRegistration.save(request)
+
+      const registration = await syncRegistration.save(context.request)
       Code.expect(registration).to.equal(true)
-      Code.expect(request.cache).to.equal({
-        Registration: {},
-        Owner: {},
-        OwnerAddress: {
-          addressLine1: 'the house',
-          addressLine2: 'somewhere street',
-          addressLine: 'the house, somewhere street'
-        }
-      })
+      Code.expect(TestHelper.getCache(context)).to.equal(cache)
     })
   })
 })

@@ -10,7 +10,8 @@ const testdomain = 'http://fake-ivory.com'
 lab.experiment(TestHelper.getFile(__filename), () => {
   let returnUrl
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
-    stubCallback: (sandbox) => {
+    stubCallback: ({ context }) => {
+      const { sandbox } = context
       sandbox.stub(config, 'serviceUrl').value(testdomain)
       sandbox.stub(config, 'paymentEnabled').value(true)
       sandbox.stub(config, 'paymentUrl').value('http://fake.com')
@@ -34,17 +35,16 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   const registrationId = uuid()
 
   lab.experiment(`GET ${url}`, () => {
-    lab.test('route works', async () => {
-      const request = {
+    lab.test('route works', async ({ context }) => {
+      TestHelper.setCache(context, 'Registration', { id: registrationId, registrationNumber: 'abc' })
+      context.request = {
         method: 'GET',
         url
       }
 
       returnUrl = `${testdomain}/check-payment/${registrationId}`
 
-      routesHelper.cache.Registration = { id: registrationId, registrationNumber: 'abc' }
-
-      await routesHelper.expectRedirection(request, returnUrl)
+      await routesHelper.expectRedirection(context, returnUrl)
     })
   })
 })
