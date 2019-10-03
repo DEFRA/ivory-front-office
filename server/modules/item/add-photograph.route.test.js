@@ -3,9 +3,17 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/add-photograph'
 const pageHeading = 'Add a photo'
+const config = require('../../config')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
+    stubCallback: ({ context }) => {
+      const { sandbox } = context
+      sandbox.stub(config, 's3Region').value('REGION')
+      sandbox.stub(config, 's3ApiVersion').value('APIVERSION')
+      sandbox.stub(config, 's3Bucket').value('BUCKET')
+    }
+  })
 
   routesHelper.getRequestTests({ lab, pageHeading, url })
 

@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi')
 const { Item } = require('../../lib/cache')
-const { photoUploadPhotoMaxMb, photoUploadPayloadMaxBytes } = require('../../config')
-const photos = require('../../lib/photos/photos')
+const config = require('../../config')
+const Photos = require('../../lib/photos/photos')
 const path = require('path')
 const { uuid } = require('ivory-shared').utils
 
@@ -15,7 +15,7 @@ class AddPhotographsHandlers extends require('../common/handlers') {
             'content-type': Joi.string().required() // Check the content-type is set, so we can set it in S3
           }).unknown(true)
         }).unknown(true),
-        _data: Joi.binary().min(1).max(photoUploadPhotoMaxMb * 1024 * 1024) // Check the file data buffer size (the important one)
+        _data: Joi.binary().min(1).max(config.photoUploadPhotoMaxMb * 1024 * 1024) // Check the file data buffer size (the important one)
       }).unknown(true)
     })
   }
@@ -26,7 +26,7 @@ class AddPhotographsHandlers extends require('../common/handlers') {
         'any.empty': 'Select a photograph',
         'any.required': 'Select a photograph',
         'binary.min': 'Select a photograph',
-        'binary.max': `The selected file must be smaller than ${photoUploadPhotoMaxMb}MB`
+        'binary.max': `The selected file must be smaller than ${config.photoUploadPhotoMaxMb}MB`
       }
     }
   }
@@ -44,6 +44,11 @@ class AddPhotographsHandlers extends require('../common/handlers') {
     const photoFilename = uuid() + fileExtension
 
     // Upload photo
+    const photos = new Photos({
+      region: config.s3Region,
+      apiVersion: config.s3ApiVersion,
+      bucket: config.s3Bucket
+    })
     const filename = await photos.uploadPhoto(photoFilename, contentType, photoPayload)
 
     // Handle cache
@@ -73,6 +78,6 @@ module.exports = handlers.routes({
     allow: 'multipart/form-data',
     output: 'stream',
     parse: true,
-    maxBytes: photoUploadPayloadMaxBytes // Hapi defaults to 1048576 (1MB). Allow the max photo size plus some additional payload data.
+    maxBytes: config.photoUploadPayloadMaxBytes // Hapi defaults to 1048576 (1MB). Allow the max photo size plus some additional payload data.
   }
 })
