@@ -47,7 +47,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const description = 'valid data'
       request.payload.description = description
       request.payload.declaration = 'volumeExemptionDeclaration'
-      await routesHelper.expectRedirection(context, '/owner-name')
+      await routesHelper.expectRedirection(context, '/who-owns-item')
       Code.expect(TestHelper.getCache(context, 'Item').volumeExemptionDeclaration).to.equal(true)
       Code.expect(TestHelper.getCache(context, 'Item').volumeExemptionDescription).to.equal(description)
     })

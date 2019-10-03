@@ -57,13 +57,11 @@ const syncRegistration = {
     const { address } = person
     if (address) {
       // Add addressLine and postcodeAddressList back in to the cache if they exist
-      let { addressLine, postcodeAddressList } = await Address.get(request) || {}
-      if (!addressLine) {
-        const { addressLine1 = '', addressLine2 = '', town = '', postcode = '' } = address
-        addressLine = [addressLine1, addressLine2, town, postcode]
-          .filter((lineItem) => lineItem)
-          .join(', ')
-      }
+      const { postcodeAddressList } = await Address.get(request) || {}
+      const { businessName = '', addressLine1 = '', addressLine2 = '', town = '', postcode = '' } = address
+      const addressLine = [businessName, addressLine1, addressLine2, town, postcode]
+        .filter((lineItem) => lineItem)
+        .join(', ')
       if (addressLine) {
         address.addressLine = addressLine
       }
@@ -104,8 +102,8 @@ const syncRegistration = {
   },
 
   _getSavableAddress (address) {
-    const { id, postcode, addressLine1, addressLine2, town, county, country, uprn } = address
-    address = { id, postcode, addressLine1, addressLine2, town, county, country, uprn }
+    const { id, postcode, businessName, addressLine1, addressLine2, town, county, country, uprn } = address
+    address = { id, postcode, businessName, addressLine1, addressLine2, town, county, country, uprn }
     Object.entries(address).forEach(([prop, val]) => {
       if (val === undefined) {
         delete address[prop]

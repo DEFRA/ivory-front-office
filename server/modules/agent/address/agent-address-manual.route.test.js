@@ -33,6 +33,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
+      Code.expect($('#business-name').val()).to.equal(address.businessName)
       Code.expect($('#address-line-1').val()).to.equal(address.addressLine1)
       Code.expect($('#address-line-2').val()).to.equal(address.addressLine2)
       Code.expect($('#address-town').val()).to.equal(address.town)
@@ -45,6 +46,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the address has not been entered', async ({ context }) => {
       const { request } = context
       Object.assign(request.payload, {
+        'business-name': '',
         'address-line-1': '',
         'address-line-2': '',
         'address-town': '',
@@ -83,7 +85,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-county': address.county,
         'address-postcode': address.postcode
       })
-      await routesHelper.expectRedirection(context, '/owner-name')
+      await routesHelper.expectRedirection(context, '/agent-email')
       Code.expect(TestHelper.getCache(context, 'AgentAddress').postcode).to.equal(address.postcode)
     })
   })

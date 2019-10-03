@@ -13,7 +13,7 @@ class WhoOwnsHandlers extends require('../common/option/select-one-option.handle
     if (agentIsOwner) {
       return '/owner-name'
     } else {
-      return '/agent'
+      return '/agent-name'
     }
   }
 }

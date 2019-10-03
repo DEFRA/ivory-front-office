@@ -17,6 +17,10 @@ module.exports = {
     return '/owner-full-address'
   },
 
+  get skipBusinessName () {
+    return true
+  },
+
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
     if (await this.isOwner(request)) {

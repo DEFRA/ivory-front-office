@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/agent-name'
-const pageHeading = 'Your name'
+const pageHeading = 'Contact name'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
@@ -41,7 +41,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const fullName = 'James Bond'
       request.payload['full-name'] = fullName
-      await routesHelper.expectRedirection(context, '/agent-email')
+      await routesHelper.expectRedirection(context, '/agent-full-address')
       Code.expect(TestHelper.getCache(context, 'Agent').fullName).to.equal(fullName)
     })
   })

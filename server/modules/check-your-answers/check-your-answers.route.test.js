@@ -36,7 +36,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('page answers are displayed correctly', async ({ context }) => {
       const { request, server } = context
-      const agentIsOwner = true
+      const agentIsOwner = false
       const dealingIntent = 'hire'
       const dealingIntentDisplay = 'Hire'
       const itemType = 'portrait-miniature-pre-1918'
@@ -52,6 +52,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const volumeExemptionDeclarationLabel = 'I declare the portrait miniature is less than 320cm²'
 
       TestHelper.setCache(context, 'Registration', { dealingIntent, agentIsOwner })
+      TestHelper.setCache(context, 'Agent', { fullName, email })
+      TestHelper.setCache(context, 'AgentAddress', { addressLine })
       TestHelper.setCache(context, 'Owner', { fullName, email })
       TestHelper.setCache(context, 'OwnerAddress', { addressLine })
       TestHelper.setCache(context, 'Item', {
@@ -72,10 +74,17 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       Code.expect($('.ivory-age-of-ivory').text()).to.include(ageExemptionDeclarationLabel)
       Code.expect($('.ivory-volume-of-ivory').text()).to.include(volumeExemptionDescription)
       Code.expect($('.ivory-volume-of-ivory').text()).to.include(volumeExemptionDeclarationLabel)
-      Code.expect($('.ivory-your-name').text()).to.include(fullName)
+      Code.expect($('.ivory-contact-name').text()).to.include(fullName)
       Code.expect($('.ivory-your-address').text()).to.include(addressLine.split(',').join(''))
       Code.expect($('.ivory-your-email').text()).to.include(email)
       Code.expect($('.ivory-intention').text()).to.include(dealingIntentDisplay)
+    })
+  })
+
+  routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
+    lab.test('redirects correctly', async ({ context }) => {
+      await routesHelper.expectRedirection(context, '/payment')
+      Code.expect(TestHelper.getCache(context, 'Registration').registrationNumber).to.exist()
     })
   })
 })

@@ -63,7 +63,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       })
 
       lab.test('and no exemption declarations are required', async ({ context }) => {
-        await routesHelper.expectRedirection(context, '/owner-name')
+        await routesHelper.expectRedirection(context, '/who-owns-item')
       })
 
       lab.test('exemption declarations are required', async ({ context }) => {

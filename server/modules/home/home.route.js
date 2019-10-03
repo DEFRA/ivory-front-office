@@ -7,8 +7,6 @@ class HomeHandlers extends require('../common/handlers') {
     await Cache.clear(request)
 
     const registration = {
-      // ToDo: Remove setting the agentIsOwner flag once "Who owns the item" page has been added
-      agentIsOwner: true,
       status: 'draft'
     }
     await Registration.set(request, registration)

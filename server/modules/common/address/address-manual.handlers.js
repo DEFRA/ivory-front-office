@@ -3,6 +3,7 @@ const Joi = require('@hapi/joi')
 class AddressManualHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
+      'business-name': Joi.string().allow('').trim(),
       'address-line-1': Joi.string().trim().required(),
       'address-line-2': Joi.string().allow('').trim(),
       'address-town': Joi.string().trim().required(),
@@ -24,12 +25,14 @@ class AddressManualHandlers extends require('../handlers') {
     const { Address } = this
     const address = await Address.get(request) || {}
     this.viewData = {
+      'business-name': address.businessName,
       'address-line-1': address.addressLine1,
       'address-line-2': address.addressLine2,
       'address-town': address.town,
       'address-county': address.county,
       'address-postcode': address.postcode,
-      findAddressLink: this.findAddressLink
+      findAddressLink: this.findAddressLink,
+      includeBusinessName: !this.skipBusinessName
     }
     return super.handleGet(request, h, errors)
   }
@@ -39,6 +42,7 @@ class AddressManualHandlers extends require('../handlers') {
     const { Address } = this
     const address = await Address.get(request) || {}
     const {
+      'business-name': businessName,
       'address-line-1': addressLine1,
       'address-line-2': addressLine2,
       'address-town': town,
@@ -46,7 +50,7 @@ class AddressManualHandlers extends require('../handlers') {
       'address-postcode': postcode
     } = request.payload
 
-    Object.assign(address, { addressLine1, addressLine2, town, county, postcode })
+    Object.assign(address, { businessName, addressLine1, addressLine2, town, county, postcode })
 
     address.addressLine = [addressLine1, addressLine2, town, postcode]
       .filter((lineItem) => lineItem)
