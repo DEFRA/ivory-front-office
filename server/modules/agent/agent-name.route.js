@@ -4,10 +4,6 @@ class AgentNameHandlers extends require('../common/person/person-name.handlers')
   get Person () {
     return Agent
   }
-
-  get fullNameLabel () {
-    return 'Enter your full name'
-  }
 }
 
 const handlers = new AgentNameHandlers()

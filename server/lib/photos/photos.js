@@ -8,9 +8,9 @@ const fs = require('fs')
 module.exports = class Photos {
   constructor (config) {
     const schema = {
-      region: joi.string().required(),
-      apiVersion: joi.string().required(),
-      bucket: joi.string().required()
+      region: joi.string().default('REGION'),
+      apiVersion: joi.string().default('API_VERSION'),
+      bucket: joi.string().default('BUCKET')
     }
 
     // Validate the config

@@ -21,7 +21,10 @@ class OwnerNameHandlers extends mixin(require('../common/person/person-name.hand
     }
   }
 
-  get fullNameLabel () {
+  async fullNameLabel (request) {
+    if (await this.isOwner(request)) {
+      return 'Enter your full name'
+    }
     return 'Owner\'s full name'
   }
 

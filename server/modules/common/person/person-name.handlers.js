@@ -15,13 +15,17 @@ class PersonNameHandlers extends require('../handlers') {
     }
   }
 
+  async fullNameLabel () {
+    return 'Enter your full name'
+  }
+
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { Person } = this
     const person = await Person.get(request) || {}
     this.viewData = {
       'full-name': person.fullName,
-      'full-name-label': this.fullNameLabel || 'Full name'
+      'full-name-label': await this.fullNameLabel(request)
     }
     return super.handleGet(request, h, errors)
   }
