@@ -20,24 +20,27 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
   }
 
   getPerson (person, address, prefix = 'Your') {
+    if (typeof prefix !== 'object') {
+      prefix = { default: prefix }
+    }
     const answers = []
     if (person.fullName) {
       answers.push({
-        key: `${prefix} name`,
+        key: `${prefix.name || prefix.default} name`,
         value: person.fullName
       })
     }
 
     if (address.addressLine) {
       answers.push({
-        key: `${prefix} address`,
+        key: `${prefix.address || prefix.default} address`,
         html: address.addressLine.split(',').join('<br>')
       })
     }
 
     if (person.email) {
       answers.push({
-        key: `${prefix} email`,
+        key: `${prefix.email || prefix.default} email`,
         value: person.email
       })
     }
@@ -147,7 +150,7 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
     }
 
     if (agent.fullName) {
-      answers = answers.concat(this.getPerson(agent, agentAddress, 'Your'))
+      answers = answers.concat(this.getPerson(agent, agentAddress, { name: 'Contact', default: 'Your' }))
     }
 
     if (owner.fullName) {

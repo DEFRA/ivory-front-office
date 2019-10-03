@@ -28,7 +28,7 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
     if (await this.requiresAgeExemptionDeclaration(request)) {
       return '/item-age-exemption-declaration'
     } else {
-      return '/owner-name'
+      return '/who-owns-item'
     }
   }
 

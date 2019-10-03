@@ -41,7 +41,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const email = 'james.bond@defra.test.gov.uk'
       request.payload.email = email
-      await routesHelper.expectRedirection(context, '/agent-address')
+      await routesHelper.expectRedirection(context, '/owner-name')
       Code.expect(TestHelper.getCache(context, 'Agent').email).to.equal(email)
     })
   })

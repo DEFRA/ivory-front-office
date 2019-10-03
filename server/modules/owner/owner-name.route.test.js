@@ -42,13 +42,14 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       request.payload['full-name'] = ''
       return routesHelper.expectValidationErrors(context, [
-        { field: 'full-name', message: 'Enter your full name' }
+        { field: 'full-name', message: 'Enter owner\'s full name' }
       ])
     })
 
-    lab.test('fails validation when the full name only contains spaces', async ({ context }) => {
+    lab.test('fails validation when the full name only contains spaces and the agent is the owner', async ({ context }) => {
       const { request } = context
       request.payload['full-name'] = ' '
+      TestHelper.setCache(context, 'Registration', { agentIsOwner: true })
       return routesHelper.expectValidationErrors(context, [
         { field: 'full-name', message: 'Enter your full name' }
       ])

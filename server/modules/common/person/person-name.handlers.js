@@ -20,7 +20,8 @@ class PersonNameHandlers extends require('../handlers') {
     const { Person } = this
     const person = await Person.get(request) || {}
     this.viewData = {
-      'full-name': person.fullName
+      'full-name': person.fullName,
+      'full-name-label': this.fullNameLabel || 'Full name'
     }
     return super.handleGet(request, h, errors)
   }

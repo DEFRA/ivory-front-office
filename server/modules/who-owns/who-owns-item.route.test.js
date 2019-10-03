@@ -40,7 +40,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects correctly when "someone else" is selected', async ({ context }) => {
       const { request } = context
       request.payload.agentIsOwner = 'someone-else'
-      await routesHelper.expectRedirection(context, '/agent')
+      await routesHelper.expectRedirection(context, '/agent-name')
       Code.expect(TestHelper.getCache(context, 'Registration').agentIsOwner).to.equal(false)
     })
   })

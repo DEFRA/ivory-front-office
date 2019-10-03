@@ -6,6 +6,25 @@ class OwnerNameHandlers extends mixin(require('../common/person/person-name.hand
     return Owner
   }
 
+  async errorMessages (request) {
+    if (await this.isOwner(request)) {
+      return {
+        'full-name': {
+          'any.empty': 'Enter your full name'
+        }
+      }
+    }
+    return {
+      'full-name': {
+        'any.empty': 'Enter owner\'s full name'
+      }
+    }
+  }
+
+  get fullNameLabel () {
+    return 'Owner\'s full name'
+  }
+
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
     if (await this.isOwner(request)) {

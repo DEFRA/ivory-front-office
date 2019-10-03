@@ -8,6 +8,6 @@ module.exports = handlers.routes({
   app: {
     pageHeading: 'Your address',
     view: 'common/address/address-select',
-    nextPath: '/owner-name'
+    nextPath: '/agent-email'
   }
 })

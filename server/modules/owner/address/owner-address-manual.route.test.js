@@ -8,6 +8,7 @@ const pageHeading = 'Owner\'s address'
 lab.experiment(TestHelper.getFile(__filename), () => {
   lab.beforeEach(({ context }) => {
     context.address = {
+      businessName: 'Sprockets Ltd',
       addressLine1: '38',
       addressLine2: 'Smith Rd',
       town: 'Jonesville',
@@ -42,6 +43,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
+      // ToDo: This needs the comment removed when we include the business name
+      // Code.expect($('#business-name').val()).to.equal(address.businessName)
       Code.expect($('#address-line-1').val()).to.equal(address.addressLine1)
       Code.expect($('#address-line-2').val()).to.equal(address.addressLine2)
       Code.expect($('#address-town').val()).to.equal(address.town)
@@ -54,6 +57,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the address has not been entered', async ({ context }) => {
       const { request } = context
       Object.assign(request.payload, {
+        'business-name': '',
         'address-line-1': '',
         'address-line-2': '',
         'address-town': '',

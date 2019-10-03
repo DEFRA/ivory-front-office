@@ -45,7 +45,7 @@ module.exports = handlers.routes({
   app: {
     // pageHeading is derived in the getPageHeading method above
     view: 'common/declaration/declaration',
-    nextPath: '/owner-name',
+    nextPath: '/who-owns-item',
     isQuestionPage: true
   }
 })

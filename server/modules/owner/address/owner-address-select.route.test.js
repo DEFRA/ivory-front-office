@@ -77,7 +77,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects correctly when the address has been selected', async ({ context }) => {
       const { request } = context
       request.payload.address = address.uprn
-      await routesHelper.expectRedirection(context, '/dealing-intent')
+      await routesHelper.expectRedirection(context, '/owner-email')
       Code.expect(TestHelper.getCache(context, 'OwnerAddress').uprn).to.equal(address.uprn)
     })
   })
