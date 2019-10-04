@@ -1,22 +1,41 @@
 const Joi = require('@hapi/joi')
 
 class AddressManualHandlers extends require('../handlers') {
+  get maxAddressLineLength () {
+    return 100
+  }
+
+  get maxPostcodeLength () {
+    return 8
+  }
+
   get schema () {
     return Joi.object({
-      'business-name': Joi.string().allow('').trim(),
-      'address-line-1': Joi.string().trim().required(),
-      'address-line-2': Joi.string().allow('').trim(),
-      'address-town': Joi.string().trim().required(),
-      'address-county': Joi.string().allow('').trim(),
-      'address-postcode': Joi.string().trim().required()
+      'business-name': Joi.string().allow('').trim().max(this.maxAddressLineLength),
+      'address-line-1': Joi.string().trim().max(this.maxAddressLineLength).required(),
+      'address-line-2': Joi.string().allow('').trim().max(this.maxAddressLineLength),
+      'address-town': Joi.string().trim().max(this.maxAddressLineLength).required(),
+      'address-county': Joi.string().allow('').trim().max(this.maxAddressLineLength),
+      'address-postcode': Joi.string().trim().uppercase().max(this.maxPostcodeLength).regex(/^[a-z0-9\s]+$/i).required()
     })
+  }
+
+  errorMessagesFor (fieldDescription, maxLength = this.maxAddressLineLength) {
+    return {
+      'any.required': `Enter ${fieldDescription}`,
+      'string.regex.base': `Enter ${fieldDescription}`,
+      'string.max': `Enter ${fieldDescription} in ${maxLength} characters or less`
+    }
   }
 
   get errorMessages () {
     return {
-      'address-line-1': { 'any.empty': 'Enter a valid building and street' },
-      'address-town': { 'any.empty': 'Enter a valid town or city' },
-      'address-postcode': { 'any.empty': 'Enter a valid postcode' }
+      'business-name': this.errorMessagesFor('the business name'),
+      'address-line-1': this.errorMessagesFor('a valid building and street'),
+      'address-line-2': this.errorMessagesFor('the second address line'),
+      'address-town': this.errorMessagesFor('a valid town or city'),
+      'address-county': this.errorMessagesFor('the county'),
+      'address-postcode': this.errorMessagesFor('a valid postcode', this.maxPostcodeLength)
     }
   }
 

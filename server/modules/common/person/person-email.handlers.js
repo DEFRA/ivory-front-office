@@ -1,9 +1,13 @@
 const Joi = require('@hapi/joi')
 
 class PersonEmailHandlers extends require('../handlers') {
+  get maxEmailAddressLength () {
+    return 320
+  }
+
   get schema () {
     return Joi.object({
-      email: Joi.string().trim().email().required()
+      email: Joi.string().trim().email().max(this.maxEmailAddressLength).required()
     })
   }
 
@@ -11,7 +15,8 @@ class PersonEmailHandlers extends require('../handlers') {
     return {
       email: {
         'any.empty': 'Enter an email address in the correct format, like name@example.com',
-        'string.email': 'Enter an email address in the correct format, like name@example.com'
+        'string.email': 'Enter an email address in the correct format, like name@example.com',
+        'string.max': `Enter an email address in ${this.maxEmailAddressLength} characters or less`
       }
     }
   }

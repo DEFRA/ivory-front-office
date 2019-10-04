@@ -64,11 +64,15 @@ module.exports = class Handlers {
     const errorMessages = {}
 
     // Format the error messages for the view
-    await Promise.all(errors.details.map(async ({ path, type }) => {
+    await Promise.all(errors.details.map(async ({ path, type, message }) => {
       const field = path[0]
       errorMessages[field] = {
         text: typeof this.errorMessages === 'function' ? (await this.errorMessages(request))[field][type] : this.errorMessages[field][type],
         href: this.errorLink(field)
+      }
+      if (!errorMessages[field].text) {
+        // use default message if not specified
+        errorMessages[field].text = message
       }
     }))
 
