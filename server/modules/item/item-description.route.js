@@ -5,14 +5,15 @@ const config = require('../../config')
 class ItemDescriptionHandlers extends require('../common/handlers') {
   get schema () {
     return Joi.object({
-      'item-description': Joi.string().trim().required()
+      'item-description': Joi.string().trim().max(this.maxFreeTextLength).required()
     })
   }
 
   get errorMessages () {
     return {
       'item-description': {
-        'any.empty': 'Enter a description of the item'
+        'any.empty': 'Enter a description of the item',
+        'string.max': `Enter a description of the item in less than ${this.maxFreeTextLength} characters`
       }
     }
   }

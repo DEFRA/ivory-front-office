@@ -5,7 +5,7 @@ class DeclarationHandlers extends require('../handlers') {
   get schema () {
     return Joi.object({
       declaration: Joi.string().valid(this.declaration).required(),
-      description: Joi.string().trim().required()
+      description: Joi.string().trim().max(this.maxFreeTextLength).required()
     })
   }
 
@@ -19,7 +19,8 @@ class DeclarationHandlers extends require('../handlers') {
       },
       description: {
         'any.empty': `You must explain how you know ${details}`,
-        'any.required': `You must explain how you know ${details}`
+        'any.required': `You must explain how you know ${details}`,
+        'string.max': `You must explain how you know ${details} in less than ${this.maxFreeTextLength} characters`
       }
     }
   }

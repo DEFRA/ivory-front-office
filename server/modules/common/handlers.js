@@ -1,6 +1,10 @@
 const { utils } = require('ivory-shared')
 
 module.exports = class Handlers {
+  get maxFreeTextLength () {
+    return 3000
+  }
+
   async getPageHeading (request) {
     return request.route.settings.app.pageHeading
   }
