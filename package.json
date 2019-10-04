@@ -40,7 +40,7 @@
     "@hapi/vision": "^5.5.4",
     "@hapi/wreck": "^15.1.0",
     "@hapi/yar": "^9.2.1",
-    "aws-sdk": "^2.529.0",
+    "aws-sdk": "^2.542.0",
     "blipp": "^4.0.1",
     "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
     "dotenv": "^8.1.0",

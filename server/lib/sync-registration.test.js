@@ -69,7 +69,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       address.addressLine = Object.values(address).join(', ')
       const cache = {
         Registration: {
-          agentIsOwner: true
+          ownerType: 'agent'
         },
         Owner: {},
         OwnerAddress: address

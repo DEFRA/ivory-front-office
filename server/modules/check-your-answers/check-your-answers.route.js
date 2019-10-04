@@ -15,8 +15,8 @@ class CheckYourAnswersHandlers extends require('../common/handlers') {
   }
 
   async isOwner (request) {
-    const { agentIsOwner } = await Registration.get(request) || {}
-    return agentIsOwner
+    const { ownerType } = await Registration.get(request) || {}
+    return ownerType === 'agent'
   }
 
   getPerson (person, address, prefix = 'Your') {
