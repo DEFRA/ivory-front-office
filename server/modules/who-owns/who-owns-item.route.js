@@ -1,6 +1,6 @@
 class WhoOwnsHandlers extends require('../common/option/select-one-option.handlers') {
   get fieldName () {
-    return 'agentIsOwner'
+    return 'ownerType'
   }
 
   get selectError () {
@@ -9,8 +9,8 @@ class WhoOwnsHandlers extends require('../common/option/select-one-option.handle
 
   // Overrides parent class getNextPath
   async getNextPath (request) {
-    const { agentIsOwner } = await this.getData(request)
-    if (agentIsOwner) {
+    const { ownerType } = await this.getData(request)
+    if (ownerType === 'agent') {
       return '/owner-name'
     } else {
       return '/agent-name'

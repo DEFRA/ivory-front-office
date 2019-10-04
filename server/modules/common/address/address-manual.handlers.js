@@ -32,7 +32,7 @@ class AddressManualHandlers extends require('../handlers') {
       'address-county': address.county,
       'address-postcode': address.postcode,
       findAddressLink: this.findAddressLink,
-      includeBusinessName: !this.skipBusinessName
+      includeBusinessName: !(this.skipBusinessName && await this.skipBusinessName(request))
     }
     return super.handleGet(request, h, errors)
   }

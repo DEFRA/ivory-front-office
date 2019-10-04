@@ -13,8 +13,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(SelectOneOptionHandlers.prototype, 'referenceData').get(() => {
         return {
           choices: [
-            { shortName: 'agent', value: true },
-            { shortName: 'someone-else', value: false }
+            { shortName: 'agent', value: 'agent' },
+            { shortName: 'someone-else', value: 'someone-else' }
           ]
         }
       })
@@ -26,22 +26,22 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when who owns the item has not been selected', async ({ context }) => {
       return routesHelper.expectValidationErrors(context, [
-        { field: 'agentIsOwner', message: 'Select who owns the item' }
+        { field: 'ownerType', message: 'Select who owns the item' }
       ])
     })
 
     lab.test('redirects correctly when "I own it" is selected', async ({ context }) => {
       const { request } = context
-      request.payload.agentIsOwner = 'agent'
+      request.payload.ownerType = 'agent'
       await routesHelper.expectRedirection(context, '/owner-name')
-      Code.expect(TestHelper.getCache(context, 'Registration').agentIsOwner).to.equal(true)
+      Code.expect(TestHelper.getCache(context, 'Registration').ownerType).to.equal('agent')
     })
 
     lab.test('redirects correctly when "someone else" is selected', async ({ context }) => {
       const { request } = context
-      request.payload.agentIsOwner = 'someone-else'
+      request.payload.ownerType = 'someone-else'
       await routesHelper.expectRedirection(context, '/agent-name')
-      Code.expect(TestHelper.getCache(context, 'Registration').agentIsOwner).to.equal(false)
+      Code.expect(TestHelper.getCache(context, 'Registration').ownerType).to.equal('someone-else')
     })
   })
 })
