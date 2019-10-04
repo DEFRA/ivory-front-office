@@ -68,8 +68,6 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the postcode has not been entered', async ({ context }) => {
-      const { request } = context
-      request.payload.postcode = ''
       return routesHelper.expectValidationErrors(context, [
         { field: 'postcode', message: 'Enter a valid postcode' }
       ])

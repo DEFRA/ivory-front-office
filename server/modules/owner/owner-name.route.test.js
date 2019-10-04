@@ -42,7 +42,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       request.payload['full-name'] = ''
       return routesHelper.expectValidationErrors(context, [
-        { field: 'full-name', message: 'Enter owner\'s full name' }
+        { field: 'full-name', message: 'Enter the owner\'s full name' }
       ])
     })
 

@@ -12,17 +12,22 @@ const {
 const lookUpOptions = { uri, username, password, key, maxresults: 100 }
 
 class AddressFindHandlers extends require('../handlers') {
+  get maxPostcodeLength () {
+    return 8
+  }
+
   get schema () {
     return Joi.object({
-      postcode: Joi.string().required()
+      postcode: Joi.string().trim().uppercase().max(this.maxPostcodeLength).regex(/^[a-z0-9\s]+$/i).required()
     })
   }
 
   get errorMessages () {
     return {
       postcode: {
-        'any.empty': 'Enter a valid postcode',
-        'any.required': 'Enter a valid postcode'
+        'any.required': 'Enter a valid postcode',
+        'string.regex.base': 'Enter a valid postcode',
+        'string.max': `Enter a valid postcode in ${this.maxPostcodeLength} characters or less`
       }
     }
   }

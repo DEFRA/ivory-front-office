@@ -55,31 +55,6 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the address has not been entered', async ({ context }) => {
-      const { request } = context
-      Object.assign(request.payload, {
-        'business-name': '',
-        'address-line-1': '',
-        'address-line-2': '',
-        'address-town': '',
-        'address-county': '',
-        'address-postcode': ''
-      })
-      return routesHelper.expectValidationErrors(context, [
-        { field: 'address-line-1', message: 'Enter a valid building and street' },
-        { field: 'address-town', message: 'Enter a valid town or city' },
-        { field: 'address-postcode', message: 'Enter a valid postcode' }
-      ])
-    })
-
-    lab.test('fails validation when the address fields only contain spaces', async ({ context }) => {
-      const { request } = context
-      Object.assign(request.payload, {
-        'address-line-1': ' ',
-        'address-line-2': ' ',
-        'address-town': ' ',
-        'address-county': ' ',
-        'address-postcode': ' '
-      })
       return routesHelper.expectValidationErrors(context, [
         { field: 'address-line-1', message: 'Enter a valid building and street' },
         { field: 'address-town', message: 'Enter a valid town or city' },

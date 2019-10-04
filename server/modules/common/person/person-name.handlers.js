@@ -1,16 +1,21 @@
 const Joi = require('@hapi/joi')
 
 class PersonNameHandlers extends require('../handlers') {
+  get maxNameLength () {
+    return 100
+  }
+
   get schema () {
     return Joi.object({
-      'full-name': Joi.string().trim().required()
+      'full-name': Joi.string().trim().max(this.maxNameLength).required()
     })
   }
 
   get errorMessages () {
     return {
       'full-name': {
-        'any.empty': 'Enter your full name'
+        'any.empty': 'Enter your full name',
+        'string.max': `Enter your full name in ${this.maxNameLength} characters or less`
       }
     }
   }
