@@ -146,13 +146,27 @@
       }
     },
     "@hapi/catbox-redis": {
-      "version": "5.0.3",
-      "resolved": "https://registry.npmjs.org/@hapi/catbox-redis/-/catbox-redis-5.0.3.tgz",
-      "integrity": "sha512-bBT5E0UzjaxjkpT8EWB3ZdUvOprBzMhzATzL6WCpIjxWZ1A2A9iEomXyzmI/lVyP8mmFxQd8iv87lSmvpN+wfQ==",
+      "version": "5.0.5",
+      "resolved": "https://registry.npmjs.org/@hapi/catbox-redis/-/catbox-redis-5.0.5.tgz",
+      "integrity": "sha512-S1O9yfnuGQYYB6EVXYcmYlXnyN6GJ9jICUvm0nCp5DA3dw0PHbdPN9zmtJzltOnZkhYF5Lzcn+12MA4Ot5N7bw==",
       "requires": {
         "@hapi/hoek": "8.x.x",
-        "@hapi/joi": "15.x.x",
+        "@hapi/joi": "16.x.x",
         "ioredis": "4.x.x"
+      },
+      "dependencies": {
+        "@hapi/joi": {
+          "version": "16.1.7",
+          "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.7.tgz",
+          "integrity": "sha512-anaIgnZhNooG3LJLrTFzgGALTiO97zRA1UkvQHm9KxxoSiIzCozB3RCNCpDnfhTJD72QlrHA8nwGmNgpFFCIeg==",
+          "requires": {
+            "@hapi/address": "^2.1.2",
+            "@hapi/formula": "^1.2.0",
+            "@hapi/hoek": "^8.2.4",
+            "@hapi/pinpoint": "^1.0.2",
+            "@hapi/topo": "^3.1.3"
+          }
+        }
       }
     },
     "@hapi/code": {
