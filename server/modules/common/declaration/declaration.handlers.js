@@ -1,5 +1,6 @@
 const Joi = require('@hapi/joi')
 const config = require('../../../config')
+const { utils } = require('ivory-shared')
 
 class DeclarationHandlers extends require('../handlers') {
   get schema () {
@@ -42,7 +43,7 @@ class DeclarationHandlers extends require('../handlers') {
     this.viewData = {
       declaration: this.declaration,
       declarationLabel: await this.getDeclarationLabel(reference),
-      declarationChecked: !errors && model[this.declaration],
+      declarationChecked: model[this.declaration] || !!utils.getNestedVal(request, 'payload.declaration'),
       description: model[this.description],
       descriptionLabel: `Explain how you know ${reference[this.declaration]}`
     }
