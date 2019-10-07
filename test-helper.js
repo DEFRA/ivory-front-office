@@ -124,18 +124,6 @@ module.exports = class TestHelper {
       if (requestTestsCallback) {
         requestTestsCallback()
       }
-
-      // ToDo: Fix at a later date
-      // lab.test('post throws an error', async ({ context }) => {
-      //   const { request, sandbox, server } = context
-      //   sandbox.stub(Handlers.prototype, 'handlePost').value(() => {
-      //     throw new Error('Failed to load heading')
-      //   })
-      //   const response = await server.inject(request)
-      //   const $ = this.getDomParser(response.payload)
-      //
-      //   Code.expect($('h1').text()).to.include('Sorry, there is a problem with the service')
-      // })
     })
   }
 
