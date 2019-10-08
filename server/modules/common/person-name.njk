@@ -1,0 +1,13 @@
+{% extends 'two-thirds-layout.njk' %}
+
+{% from "person/name/macro.njk" import ivoryPersonName %}
+
+{% block formContent %}
+
+  {{ ivoryPersonName({
+    fullname: viewData['full-name'],
+    fullnameLabel: viewData['full-name-label'],
+    errors: errors
+  }) }}
+
+{% endblock %}

@@ -1,20 +1,18 @@
 const { Item } = require('../../lib/cache')
+const config = require('../../config')
+const { referenceData } = config
 
-class DealingIntentHandlers extends require('../common/option/select-one-option.handlers') {
-  get fieldName () {
+class ItemTypeHandlers extends require('ivory-common-modules').option.single.handlers {
+  get Model () {
+    return Item
+  }
+
+  get fieldname () {
     return 'itemType'
   }
 
   get selectError () {
     return 'Select what type of item you are registering'
-  }
-
-  async getData (request) {
-    return await Item.get(request) || {}
-  }
-
-  async setData (request, item) {
-    return Item.set(request, item)
   }
 
   async onChange (item) {
@@ -26,13 +24,13 @@ class DealingIntentHandlers extends require('../common/option/select-one-option.
   }
 }
 
-const handlers = new DealingIntentHandlers()
+const handlers = new ItemTypeHandlers({ referenceData })
 
 module.exports = handlers.routes({
   path: '/item-type',
   app: {
     pageHeading: 'What type of item are you registering?',
-    view: 'common/option/select-one-option',
+    view: 'common/select-one-option',
     nextPath: '/add-photograph',
     isQuestionPage: true
   }

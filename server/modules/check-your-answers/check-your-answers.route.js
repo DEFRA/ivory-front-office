@@ -9,7 +9,7 @@ const {
   Item
 } = require('../../lib/cache')
 
-class CheckYourAnswersHandlers extends require('../common/handlers') {
+class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers {
   static getReference (group, shortName) {
     return config.referenceData[group].choices.find((choice) => choice.shortName === shortName)
   }

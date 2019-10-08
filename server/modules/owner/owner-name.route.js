@@ -40,7 +40,7 @@ module.exports = handlers.routes({
   path: '/owner-name',
   app: {
     // pageHeading is derived in the getPageHeading method above
-    view: 'common/person/person-name',
+    view: 'common/person-name',
     nextPath: '/owner-full-address'
   }
 })

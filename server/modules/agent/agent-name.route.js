@@ -12,7 +12,7 @@ module.exports = handlers.routes({
   path: '/agent-name',
   app: {
     pageHeading: 'Contact name',
-    view: 'common/person/person-name',
+    view: 'common/person-name',
     nextPath: '/agent-full-address'
   }
 })

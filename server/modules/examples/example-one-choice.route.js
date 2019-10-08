@@ -1,6 +1,6 @@
 const { Cache } = require('ivory-shared')
 
-class ExampleOneChoiceHandlers extends require('../common/option/select-one-option.handlers') {
+class ExampleOneChoiceHandlers extends require('ivory-common-modules').option.single.handlers {
   get referenceData () {
     return {
       hint: 'Hinting about this',
@@ -23,14 +23,14 @@ class ExampleOneChoiceHandlers extends require('../common/option/select-one-opti
           shortName: 'other',
           conditional: {
             label: 'Custom choice',
-            fieldName: 'other-choice'
+            fieldname: 'other-choice'
           }
         }
       ]
     }
   }
 
-  get fieldName () {
+  get fieldname () {
     return 'exampleId'
   }
 
@@ -51,13 +51,13 @@ class ExampleOneChoiceHandlers extends require('../common/option/select-one-opti
   }
 }
 
-const handlers = new ExampleOneChoiceHandlers()
+const handlers = new ExampleOneChoiceHandlers(require('../../config'))
 
 module.exports = handlers.routes({
   path: '/examples/example-one-choice',
   app: {
     pageHeading: 'What is your choice?',
-    view: 'common/option/select-one-option'
+    view: 'common/select-one-option'
   },
   nextPath: '/examples'
 })

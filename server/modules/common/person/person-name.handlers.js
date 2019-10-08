@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-class PersonNameHandlers extends require('../handlers') {
+class PersonNameHandlers extends require('ivory-common-modules').handlers {
   get maxNameLength () {
     return 100
   }

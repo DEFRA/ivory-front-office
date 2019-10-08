@@ -1,6 +1,6 @@
 const { Item } = require('../../lib/cache')
 
-class ConfirmPhotographHandlers extends require('../common/handlers') {
+class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { photos = [] } = await Item.get(request) || {}

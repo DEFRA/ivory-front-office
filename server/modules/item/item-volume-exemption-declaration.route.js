@@ -1,6 +1,7 @@
 const { Item } = require('../../lib/cache')
+const config = require('../../config')
 
-class ItemVolumeExemptionDeclarationHandlers extends require('../common/declaration/declaration.handlers') {
+class ItemVolumeExemptionDeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
   get Model () {
     return Item
   }
@@ -38,13 +39,13 @@ class ItemVolumeExemptionDeclarationHandlers extends require('../common/declarat
   }
 }
 
-const handlers = new ItemVolumeExemptionDeclarationHandlers()
+const handlers = new ItemVolumeExemptionDeclarationHandlers(config)
 
 module.exports = handlers.routes({
   path: '/item-volume-exemption-declaration',
   app: {
     // pageHeading is derived in the getPageHeading method above
-    view: 'common/declaration/declaration',
+    view: 'common/declaration',
     nextPath: '/who-owns-item',
     isQuestionPage: true
   }

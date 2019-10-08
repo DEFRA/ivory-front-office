@@ -1,6 +1,6 @@
 const { Registration } = require('../../lib/cache')
 
-class ConfirmationHandlers extends require('../common/handlers') {
+class ConfirmationHandlers extends require('ivory-common-modules').handlers {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { registrationNumber } = await Registration.get(request) || {}

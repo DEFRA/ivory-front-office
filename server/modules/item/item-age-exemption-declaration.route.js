@@ -1,6 +1,7 @@
 const { Item } = require('../../lib/cache')
+const config = require('../../config')
 
-class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration/declaration.handlers') {
+class ItemAgeExemptionDeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
   get Model () {
     return Item
   }
@@ -24,13 +25,13 @@ class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration
   }
 }
 
-const handlers = new ItemAgeExemptionDeclarationHandlers()
+const handlers = new ItemAgeExemptionDeclarationHandlers(config)
 
 module.exports = handlers.routes({
   path: '/item-age-exemption-declaration',
   app: {
     // pageHeading is derived in the getPageHeading method above
-    view: 'common/declaration/declaration',
+    view: 'common/declaration',
     nextPath: '/item-volume-exemption-declaration',
     isQuestionPage: true
   }

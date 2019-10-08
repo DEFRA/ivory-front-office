@@ -1,5 +1,13 @@
-class DealingIntentHandlers extends require('../common/option/select-one-option.handlers') {
-  get fieldName () {
+const { Registration } = require('../../lib/cache')
+const config = require('../../config')
+const { referenceData } = config
+
+class DealingIntentHandlers extends require('ivory-common-modules').option.single.handlers {
+  get Model () {
+    return Registration
+  }
+
+  get fieldname () {
     return 'dealingIntent'
   }
 
@@ -8,13 +16,13 @@ class DealingIntentHandlers extends require('../common/option/select-one-option.
   }
 }
 
-const handlers = new DealingIntentHandlers()
+const handlers = new DealingIntentHandlers({ referenceData })
 
 module.exports = handlers.routes({
   path: '/dealing-intent',
   app: {
     pageHeading: 'What do you plan to do with the item?',
-    view: 'common/option/select-one-option',
+    view: 'common/select-one-option',
     nextPath: '/check-your-answers',
     isQuestionPage: true
   }

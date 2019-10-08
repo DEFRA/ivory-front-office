@@ -2,7 +2,6 @@ const sinon = require('sinon')
 const Code = require('@hapi/code')
 const htmlparser2 = require('htmlparser2')
 const cheerio = require('cheerio')
-const Handlers = require('./server/modules/common/handlers')
 const dotenv = require('dotenv')
 
 // SET Environment variables before loading the config
@@ -95,17 +94,6 @@ module.exports = class TestHelper {
       if (requestTestsCallback) {
         requestTestsCallback()
       }
-
-      lab.test('get throws an error', async ({ context }) => {
-        const { request, sandbox, server } = context
-        sandbox.stub(Handlers.prototype, 'handleGet').value(() => {
-          throw new Error('Failed to load heading')
-        })
-        const response = await server.inject(request)
-        const $ = this.getDomParser(response.payload)
-
-        Code.expect($('h1').text()).to.include('Sorry, there is a problem with the service')
-      })
     })
   }
 

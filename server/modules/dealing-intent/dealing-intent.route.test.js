@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const SelectOneOptionHandlers = require('../common/option/select-one-option.handlers')
+const SingleOptionHandlers = require('ivory-common-modules').option.single.handlers
 const url = '/dealing-intent'
 const pageHeading = 'What do you plan to do with the item?'
 
@@ -10,7 +10,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
     stubCallback: ({ context }) => {
       const { sandbox } = context
-      sandbox.stub(SelectOneOptionHandlers.prototype, 'referenceData').get(() => {
+      sandbox.stub(SingleOptionHandlers.prototype, 'referenceData').get(() => {
         return {
           choices: [
             { shortName: 'sell', value: 'sell' },

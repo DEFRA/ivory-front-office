@@ -46,6 +46,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('addresses has been pre-filled, one selected', async ({ context }) => {
       const { request, server } = context
       const uprn = postcodeAddressList[0].uprn
+
       TestHelper.setCache(context, 'OwnerAddress', { uprn })
 
       const response = await server.inject(request)
@@ -59,11 +60,10 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     const address = { uprn: '1234' }
     lab.beforeEach(({ context }) => {
-      TestHelper.setCache(context, 'OwnerAddress', {
-        postcodeAddressList: [
-          address
-        ]
-      })
+      const postcodeAddressList = [
+        address
+      ]
+      TestHelper.setCache(context, 'OwnerAddress', { postcodeAddressList })
     })
 
     lab.test('fails validation when an address has not been selected', async ({ context }) => {

@@ -5,7 +5,7 @@ const persistence = new Persistence({ path: `${serviceApi}/version` })
 const { name, homepage, version } = require('../../../package')
 const git = require('git-last-commit')
 
-class VersionHandlers extends require('../common/handlers') {
+class VersionHandlers extends require('ivory-common-modules').handlers {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const commit = await new Promise((resolve, reject) => {

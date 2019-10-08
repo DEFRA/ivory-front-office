@@ -1,6 +1,13 @@
+const { Registration } = require('../../lib/cache')
+const config = require('../../config')
+const { referenceData } = config
 
-class AgentHandlers extends require('../common/option/select-one-option.handlers') {
-  get fieldName () {
+class AgentHandlers extends require('ivory-common-modules').option.single.handlers {
+  get Model () {
+    return Registration
+  }
+
+  get fieldname () {
     return 'agentActingAs'
   }
 
@@ -9,13 +16,13 @@ class AgentHandlers extends require('../common/option/select-one-option.handlers
   }
 }
 
-const handlers = new AgentHandlers()
+const handlers = new AgentHandlers({ referenceData })
 
 module.exports = handlers.routes({
   path: '/agent',
   app: {
     pageHeading: 'How are you acting on behalf of the owner?',
-    view: 'common/option/select-one-option',
+    view: 'common/select-one-option',
     nextPath: '/agent-name',
     isQuestionPage: true
   }
