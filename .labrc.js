@@ -5,7 +5,7 @@ const config = {
   coverage: true,
   threshold: 90,
   'coverage-exclude': testFiles.concat(['test-helper.js']),
-  globals: '__core-js_shared__'
+  globals: 'version, __core-js_shared__'
 }
 
 module.exports = config
