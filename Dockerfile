@@ -21,8 +21,6 @@ COPY ./bin ./bin
 COPY ./client ./client
 COPY ./index.js .
 
-RUN mkdir -p ./public/build/stylesheets
-
 RUN npm install --production
 
 COPY ./server ./server

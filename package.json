@@ -20,6 +20,7 @@
     "start": "node index",
     "build": "bin/build.sh",
     "build:css": "bin/build-css.sh",
+    "postinstall": "npm run build",
     "docker:build": "docker build --no-cache -t ivory/front-office .",
     "docker:run": "docker run -p \"3000:3000\" --env-file .env ivory/front-office",
     "lint": "standard",
