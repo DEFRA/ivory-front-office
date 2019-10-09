@@ -12,6 +12,7 @@ process.env.REDIS_ENABLED = false
 process.env.SERVICE_API_ENABLED = false
 process.env.PAYMENT_ENABLED = false
 process.env.AWS_S3_ENABLED = false
+process.env.NOTIFY_ENABLED = false
 process.env.LOG_LEVEL = 'error'
 const config = require('./server/config')
 

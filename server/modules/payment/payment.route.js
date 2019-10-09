@@ -9,7 +9,7 @@ class PaymentHandlers extends require('../common/handlers') {
 
     if (!paymentEnabled) {
       logger.warn('Payments have been disabled!')
-      return h.redirect('/confirmation')
+      return h.redirect('/confirmation-notify')
     }
 
     const payment = new PaymentAPI({

@@ -43,7 +43,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       }
       TestHelper.setCache(context, 'Registration', { id: registrationId, registrationNumber: 'abc' })
 
-      await routesHelper.expectRedirection(context, '/confirmation')
+      await routesHelper.expectRedirection(context, '/confirmation-notify')
     })
   })
 })

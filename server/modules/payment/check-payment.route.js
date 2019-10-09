@@ -26,7 +26,7 @@ class CheckPaymentHandlers extends require('../common/handlers') {
       registration.status = 'submitted'
       await Payment.set(request, payment, false)
       await Registration.set(request, registration)
-      return h.redirect('/confirmation')
+      return h.redirect('/confirmation-notify')
     } else {
       const code = utils.getNestedVal(result, 'state.code')
       const message = utils.getNestedVal(result, 'state.message')

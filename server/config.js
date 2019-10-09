@@ -55,6 +55,13 @@ const schema = {
   serviceApiPort: Joi.when('serviceApiEnabled', { is: true, then: Joi.number().required() }),
   serviceApiHost: Joi.when('serviceApiEnabled', { is: true, then: Joi.string().required() }),
 
+  // Notify
+  // ToDo: Set the default of notifyEnabled to true when the notify functionality is complete
+  notifyEnabled: Joi.bool().default(false),
+  notifyApiKey: Joi.when('notifyEnabled', { is: true, then: Joi.string().required() }),
+  notifyConfirmationTemplateId: Joi.when('notifyEnabled', { is: true, then: Joi.string().required() }),
+  notifyEmailReplyToId: Joi.when('notifyEnabled', { is: true, then: Joi.string().email().required() }),
+
   // Amazon S3
   s3Enabled: Joi.bool().default(true),
   s3Region: Joi.when('s3Enabled', { is: true, then: Joi.string().required() }),
@@ -107,11 +114,19 @@ const config = {
   serviceApiPort: process.env.SERVICE_API_PORT,
   serviceApiHost: process.env.SERVICE_API_HOST,
 
+  // Notify
+  notifyEnabled: process.env.NOTIFY_ENABLED,
+  notifyApiKey: process.env.NOTIFY_API_KEY,
+  notifyConfirmationTemplateId: process.env.NOTIFY_CONFIRMATION_TEMPLATE_ID,
+  notifyEmailReplyToId: process.env.NOTIFY_EMAIL_REPLY_TO_ID,
+
   // Amazon S3
   s3Enabled: process.env.AWS_S3_ENABLED,
   s3Region: process.env.AWS_S3_REGION,
   s3ApiVersion: process.env.AWS_S3_APIVERSION,
   s3Bucket: process.env.AWS_S3_BUCKET,
+
+  // Photo upload
   photoUploadPhotoMaxMb: process.env.PHOTO_UPLOAD_PHOTO_MAX_MB,
   photoUploadPayloadMaxBytes: process.env.PHOTO_UPLOAD_PAYLOAD_MAX_BYTES
 }
