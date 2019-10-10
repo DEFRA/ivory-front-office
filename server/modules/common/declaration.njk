@@ -1,0 +1,14 @@
+{% extends 'two-thirds-layout.njk' %}
+
+{% from "declaration/macro.njk" import ivoryDeclaration %}
+
+{% block formContent %}
+
+  {{ ivoryDeclaration({
+    pageHeading: pageHeading,
+    viewData: viewData,
+    errors: errors,
+    isQuestionPage: isQuestionPage
+  }) }}
+
+{% endblock %}

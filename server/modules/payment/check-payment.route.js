@@ -4,7 +4,7 @@ const { Payment, Registration } = require('../../lib/cache')
 const { paymentUrl, paymentKey } = require('../../config')
 const syncRegistration = require('../../lib/sync-registration')
 
-class CheckPaymentHandlers extends require('../common/handlers') {
+class CheckPaymentHandlers extends require('ivory-common-modules').handlers {
   async handleGet (request, h, errors) {
     // Clear the cookies and create a new registration
     await Cache.clear(request)

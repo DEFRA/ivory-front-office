@@ -1,8 +1,9 @@
 const Joi = require('@hapi/joi')
 const { Item } = require('../../lib/cache')
+const { utils } = require('ivory-shared')
 const config = require('../../config')
 
-class ItemDescriptionHandlers extends require('../common/handlers') {
+class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
   get schema () {
     return Joi.object({
       'item-description': Joi.string().trim().max(this.maxFreeTextLength).required()
@@ -21,7 +22,7 @@ class ItemDescriptionHandlers extends require('../common/handlers') {
   async requiresAgeExemptionDeclaration (request) {
     const { itemType } = await Item.get(request) || {}
     const reference = config.referenceData.itemType.choices.find(({ shortName }) => shortName === itemType)
-    return !!reference.ageExemptionDeclaration
+    return !!utils.getNestedVal(reference, 'ageExemptionDeclaration')
   }
 
   // Overrides parent class getNextPath

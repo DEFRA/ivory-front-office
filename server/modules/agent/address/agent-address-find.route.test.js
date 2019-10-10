@@ -2,12 +2,13 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
+const FindAddressHandlers = require('ivory-common-modules').address.find.handlers
 const config = require('../../../config')
-const { AddressLookUp } = require('ivory-shared')
 const url = '/agent-address'
 const pageHeading = 'Your address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
+  let postcodeAddressList
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
     stubCallback: ({ context }) => {
       const { sandbox } = context
@@ -16,16 +17,20 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(config, 'addressLookUpUsername').value('username')
       sandbox.stub(config, 'addressLookUpPassword').value('password')
       sandbox.stub(config, 'addressLookUpKey').value('key')
-      sandbox.stub(AddressLookUp.prototype, 'lookUpByPostcode').value((postcode) => {
-        if (postcode === 'WA41AB') {
-          // Contains an address
-          return [{}]
-        } else {
-          // Contains no addresses
-          return []
-        }
-      })
     }
+  })
+
+  lab.beforeEach(({ context }) => {
+    const { sandbox } = context
+    postcodeAddressList = []
+    sandbox.stub(FindAddressHandlers.prototype, 'lookUpAddress').value((postcode) => {
+      const address = { postcode, postcodeAddressList }
+      if (postcode === 'WA41AB') {
+        // Contains an address
+        address.postcodeAddressList.push({ postcode })
+      }
+      return address
+    })
   })
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
@@ -46,12 +51,25 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
       Code.expect($('#postcode').val()).to.equal(postcode)
     })
+
+    lab.test('redirects to manual address', async ({ context }) => {
+      const { sandbox } = context
+      sandbox.stub(FindAddressHandlers.prototype, 'lookUpEnabled').get(() => false)
+      await routesHelper.expectRedirection(context, '/agent-full-address')
+    })
   })
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the postcode has not been entered', async ({ context }) => {
+      return routesHelper.expectValidationErrors(context, [
+        { field: 'postcode', message: 'Enter a valid postcode' }
+      ])
+    })
+
+    lab.test('fails validation when the postcode lookup returns a message without an error', async ({ context }) => {
       const { request } = context
-      request.payload.postcode = ''
+      request.payload.postcode = 'WA41A'
+      postcodeAddressList = { message: 'No postcode found' }
       return routesHelper.expectValidationErrors(context, [
         { field: 'postcode', message: 'Enter a valid postcode' }
       ])

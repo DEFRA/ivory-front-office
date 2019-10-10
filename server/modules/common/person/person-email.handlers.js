@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-class PersonEmailHandlers extends require('../handlers') {
+class PersonEmailHandlers extends require('ivory-common-modules').handlers {
   get maxEmailAddressLength () {
     return 320
   }

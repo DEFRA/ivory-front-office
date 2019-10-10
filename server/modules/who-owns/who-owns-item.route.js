@@ -1,5 +1,13 @@
-class WhoOwnsHandlers extends require('../common/option/select-one-option.handlers') {
-  get fieldName () {
+const { Registration } = require('../../lib/cache')
+const config = require('../../config')
+const { referenceData } = config
+
+class WhoOwnsHandlers extends require('ivory-common-modules').option.single.handlers {
+  get Model () {
+    return Registration
+  }
+
+  get fieldname () {
     return 'ownerType'
   }
 
@@ -18,13 +26,13 @@ class WhoOwnsHandlers extends require('../common/option/select-one-option.handle
   }
 }
 
-const handlers = new WhoOwnsHandlers()
+const handlers = new WhoOwnsHandlers({ referenceData })
 
 module.exports = handlers.routes({
   path: '/who-owns-item',
   app: {
     pageHeading: 'Who owns the item?',
-    view: 'common/option/select-one-option',
+    view: 'common/select-one-option',
     isQuestionPage: true
   }
   // nextPath is derived in the getNextPath method above

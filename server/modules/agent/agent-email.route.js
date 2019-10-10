@@ -16,7 +16,7 @@ module.exports = handlers.routes({
   path: '/agent-email',
   app: {
     pageHeading: 'Your email address',
-    view: 'common/person/person-email',
+    view: 'common/person-email',
     nextPath: '/owner-name',
     isQuestionPage: true
   }

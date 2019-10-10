@@ -2,34 +2,31 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const config = require('../../config')
+const DeclarationHandlers = require('ivory-common-modules').declaration.handlers
 const url = '/item-volume-exemption-declaration'
 const volumeExemptionDeclaration = 'this is true'
 const pageHeading = `Confirm ${volumeExemptionDeclaration}`
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
-
   let itemChoice
+  const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
+    stubCallback: ({ context }) => {
+      const { sandbox } = context
+      const itemType = 'portrait-miniature-pre-1918'
+      const volumeExemptionDescription = undefined
+      TestHelper.setCache(context, 'Item', { itemType, volumeExemptionDescription })
 
-  lab.beforeEach(({ context }) => {
-    const { sandbox } = context
-    const itemType = 'portrait-miniature-pre-1918'
-    const volumeExemptionDescription = undefined
-    TestHelper.setCache(context, 'Item', { itemType, volumeExemptionDescription })
+      itemChoice = {
+        shortName: itemType,
+        volumeExemptionDeclaration
+      }
 
-    itemChoice = {
-      shortName: itemType,
-      volumeExemptionDeclaration
-    }
-
-    sandbox.stub(config, 'referenceData').get(() => {
-      return {
-        itemType: {
+      sandbox.stub(DeclarationHandlers.prototype, 'referenceData').get(() => {
+        return {
           choices: [itemChoice]
         }
-      }
-    })
+      })
+    }
   })
 
   routesHelper.getRequestTests({ lab, pageHeading, url })

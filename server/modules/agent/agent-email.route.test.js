@@ -19,7 +19,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('email address has been pre-filled', async ({ context }) => {
       const { request, server } = context
-      const email = 'James Bond'
+      const email = 'james.bond@defra.test.gov.uk'
       TestHelper.setCache(context, 'Agent', { email })
       const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)

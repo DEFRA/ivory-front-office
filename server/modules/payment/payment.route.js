@@ -3,7 +3,7 @@ const { logger } = require('defra-logging-facade')
 const { Registration, Payment } = require('../../lib/cache')
 const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = require('../../config')
 
-class PaymentHandlers extends require('../common/handlers') {
+class PaymentHandlers extends require('ivory-common-modules').handlers {
   async handleGet (request, h, errors) {
     const registration = await Registration.get(request) || {}
 

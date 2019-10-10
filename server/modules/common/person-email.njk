@@ -1,0 +1,15 @@
+{% extends 'two-thirds-layout.njk' %}
+
+{% from "person/email/macro.njk" import ivoryPersonEmail %}
+
+{% block formContent %}
+
+  {{ ivoryPersonEmail({
+    pageHeading: pageHeading,
+    email: viewData.email,
+    emailHint: viewData.emailHint,
+    errors: errors,
+    isQuestionPage: isQuestionPage
+  }) }}
+
+{% endblock %}

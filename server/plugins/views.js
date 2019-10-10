@@ -21,7 +21,8 @@ module.exports = {
           options.compileOptions.environment = nunjucks.configure([
             path.join(options.relativeTo || process.cwd(), options.path),
             'node_modules/govuk-frontend/',
-            'node_modules/govuk-frontend/components/'
+            'node_modules/govuk-frontend/components/',
+            'node_modules/ivory-common-modules/source/modules/'
           ], {
             autoescape: true,
             watch: false

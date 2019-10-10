@@ -5,7 +5,7 @@ const { notifyEnabled, notifyApiKey, notifyConfirmationTemplateId, notifyEmailRe
 
 const NotifyClient = require('notifications-node-client').NotifyClient
 
-class ConfirmationHandlers extends require('../common/handlers') {
+class ConfirmationHandlers extends require('ivory-common-modules').handlers {
   async notifyRegistration (contact, registrationNumber) {
     const { fullName, email: emailAddress } = contact || {}
     const reference = registrationNumber + Date.now()
@@ -29,7 +29,7 @@ class ConfirmationHandlers extends require('../common/handlers') {
   }
 
   // Overrides parent class handleGet
-  async handleGet (request, h, errors) {
+  async handleGet (request, h) {
     const [registration, agent, owner] = await Promise.all([
       Registration.get(request),
       Agent.get(request),

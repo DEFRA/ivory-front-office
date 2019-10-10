@@ -5,7 +5,7 @@ const Photos = require('../../lib/photos/photos')
 const path = require('path')
 const { uuid } = require('ivory-shared').utils
 
-class AddPhotographsHandlers extends require('../common/handlers') {
+class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
   get schema () {
     return Joi.object({
       photograph: Joi.object({

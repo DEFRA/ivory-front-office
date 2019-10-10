@@ -1,0 +1,15 @@
+{% extends 'two-thirds-layout.njk' %}
+
+{% from "option/single/macro.njk" import ivorySingleOption %}
+
+{% block formContent %}
+
+  {{ ivorySingleOption({
+    pageHeading: pageHeading,
+    viewData: viewData,
+    fieldname: fieldname,
+    errors: errors,
+    isQuestionPage: isQuestionPage
+  }) }}
+
+{% endblock %}
