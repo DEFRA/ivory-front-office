@@ -51,7 +51,7 @@ class ExampleOneChoiceHandlers extends require('ivory-common-modules').option.si
   }
 }
 
-const handlers = new ExampleOneChoiceHandlers(require('../../config'))
+const handlers = new ExampleOneChoiceHandlers()
 
 module.exports = handlers.routes({
   path: '/examples/example-one-choice',

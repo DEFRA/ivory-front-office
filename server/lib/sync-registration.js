@@ -1,12 +1,19 @@
 
 const { Persistence } = require('ivory-shared')
 const { serviceApi } = require('../config')
-const persistence = new Persistence({ path: `${serviceApi}/full-registrations` })
 const { logger } = require('defra-logging-facade')
-const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item, Payment } = require('./cache')
 
-const syncRegistration = {
+class SyncRegistration {
+  get persistence () {
+    return new Persistence({ path: `${serviceApi}/full-registrations` })
+  }
+
+  get cache () {
+    return require('./cache')
+  }
+
   async save (request) {
+    const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item, Payment } = this.cache
     const registration = await Registration.get(request)
     const owner = await Owner.get(request)
     const ownerAddress = await OwnerAddress.get(request)
@@ -18,13 +25,13 @@ const syncRegistration = {
     if (registration) {
       if (owner) {
         if (ownerAddress) {
-          owner.address = syncRegistration._getSavableAddress(ownerAddress)
+          owner.address = this._getSavableAddress(ownerAddress)
         }
         registration.owner = owner
       }
       if (agent) {
         if (agentAddress) {
-          agent.address = syncRegistration._getSavableAddress(agentAddress)
+          agent.address = this._getSavableAddress(agentAddress)
         }
         registration.agent = agent
       }
@@ -36,22 +43,22 @@ const syncRegistration = {
       }
 
       logger.debug('Saving: ', registration)
-      const result = await persistence.save(registration)
+      const result = await this.persistence.save(registration)
       if (result.error) {
         logger.error(result)
         throw new Error(result)
       }
       logger.debug('Saved: ', result)
-      return syncRegistration.reloadCache(request, result)
+      return this.reloadCache(request, result)
     }
     return false
-  },
+  }
 
   async restore (request, id) {
-    const registration = await persistence.restore(id)
+    const registration = await this.persistence.restore(id)
     logger.debug('Retrieved: ', registration)
-    return syncRegistration.reloadCache(request, registration)
-  },
+    return this.reloadCache(request, registration)
+  }
 
   async setPerson (request, person, Person, Address) {
     const { address } = person
@@ -72,9 +79,10 @@ const syncRegistration = {
       delete person.address
     }
     await Person.set(request, person, false)
-  },
+  }
 
   async reloadCache (request, registration) {
+    const { Registration, Owner, OwnerAddress, Agent, AgentAddress, Item, Payment } = this.cache
     const { owner, agent, item, payment } = registration
 
     if (owner) {
@@ -99,7 +107,7 @@ const syncRegistration = {
 
     await Registration.set(request, registration, false)
     return true
-  },
+  }
 
   _getSavableAddress (address) {
     const { id, postcode, businessName, addressLine1, addressLine2, town, county, country, uprn } = address
@@ -113,4 +121,4 @@ const syncRegistration = {
   }
 }
 
-module.exports = syncRegistration
+module.exports = SyncRegistration

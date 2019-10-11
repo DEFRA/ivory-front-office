@@ -1,6 +1,4 @@
 const { Registration } = require('../../lib/cache')
-const config = require('../../config')
-const { referenceData } = config
 
 class AgentHandlers extends require('ivory-common-modules').option.single.handlers {
   get Model () {
@@ -16,7 +14,7 @@ class AgentHandlers extends require('ivory-common-modules').option.single.handle
   }
 }
 
-const handlers = new AgentHandlers({ referenceData })
+const handlers = new AgentHandlers()
 
 module.exports = handlers.routes({
   path: '/agent',

@@ -1171,9 +1171,9 @@
       "optional": true
     },
     "aws-sdk": {
-      "version": "2.548.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.548.0.tgz",
-      "integrity": "sha512-dnG1MEc3uOonGDswHPiq7TYn6EOG3+IQhF2LSRambz9adaZxwRgFOII7UVPJjh33FtxKpMzOSmf62R+EX822Nw==",
+      "version": "2.549.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.549.0.tgz",
+      "integrity": "sha512-dzkdgZWRG9CyPNjQ/yt82XKjv5OO8Ce2SLJeBnd6KOKkxCwjldOsPRv0MSsx02hQv/Izva8yaUPesftqdJamew==",
       "requires": {
         "buffer": "4.9.1",
         "events": "1.1.1",
@@ -4134,10 +4134,10 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#19d04d0e29fb4a9110ca755db8501c6c7fbd691e",
-      "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#5f9ce6b4adea3914cffa5946c7e35a497090a64b",
+      "from": "git+https://github.com/DEFRA/ivory-common-modules.git#Make-sync-registration-a-class",
       "requires": {
-        "@hapi/hoek": "^8.3.0",
+        "@hapi/hoek": "^8.3.1",
         "@hapi/joi": "^15.1.1",
         "@hapi/wreck": "^15.1.0",
         "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
@@ -4236,9 +4236,9 @@
           "integrity": "sha512-UFbtbGPjstz0eWHb+ga/GM3Z9EzqKXFWIbSOFURU0A/Gku0Bky4bCk9/h//K2Xr3IrCfjFNhMm4jyZ5dbCewGA=="
         },
         "@hapi/hoek": {
-          "version": "8.3.0",
-          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.0.tgz",
-          "integrity": "sha512-C0QL9bmgUXTSuf8nDeGrpMjtJG7tPUr8wG6/wxPbP62tGwCwQtdMSJYfESowmY4P3Hn593f+8OzNY5bckcu/LQ=="
+          "version": "8.3.1",
+          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.1.tgz",
+          "integrity": "sha512-75ocgnI7HG/I01iGA3/rs0y6PXydUA/kxhFZM0HoT8NLSTnt/J8Gq03iKl4a4B/2A3iMG0ctXtxr5Hg9SGr1gw=="
         },
         "@hapi/joi": {
           "version": "15.1.1",
