@@ -18,6 +18,15 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       Code.expect($('h1').text().trim()).to.equal('Your email address')
     })
 
+    lab.test('page heading is correct when an agent is involved', async ({ context }) => {
+      const { request, server } = context
+      TestHelper.setCache(context, 'Registration', { ownerType: 'someone-else' })
+      const response = await server.inject(request)
+      const $ = routesHelper.getDomParser(response.payload)
+
+      Code.expect($('h1').text().trim()).to.equal('Owner\'s email address')
+    })
+
     lab.test('email address has not been pre-filled', async ({ context }) => {
       const { request, server } = context
       const response = await server.inject(request)

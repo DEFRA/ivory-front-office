@@ -29,6 +29,15 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       Code.expect($('h1').text().trim()).to.equal('Your address')
     })
 
+    lab.test('page heading is correct when an agent is involved', async ({ context }) => {
+      const { request, server } = context
+      TestHelper.setCache(context, 'Registration', { ownerType: 'someone-else' })
+      const response = await server.inject(request)
+      const $ = routesHelper.getDomParser(response.payload)
+
+      Code.expect($('h1').text().trim()).to.equal('Owner\'s address')
+    })
+
     lab.test('address has not been pre-filled', async ({ context }) => {
       const { request, server } = context
       const response = await server.inject(request)
@@ -62,8 +71,9 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       ])
     })
 
-    lab.test('redirects correctly when the address has been manually entered correctly', async ({ context }) => {
+    lab.test('redirects correctly when the address has been manually entered correctly and there is no agent', async ({ context }) => {
       const { request, address } = context
+      TestHelper.setCache(context, 'Registration', { ownerType: 'agent' })
       Object.assign(request.payload, {
         'address-line-1': address.addressLine1,
         'address-line-2': address.addressLine2,
@@ -72,6 +82,20 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'address-postcode': address.postcode
       })
       await routesHelper.expectRedirection(context, '/owner-email')
+      Code.expect(TestHelper.getCache(context, 'OwnerAddress').postcode).to.equal(address.postcode)
+    })
+
+    lab.test('redirects correctly when the address has been manually entered correctly and there is an agent', async ({ context }) => {
+      const { request, address } = context
+      TestHelper.setCache(context, 'Registration', { ownerType: 'someone-else' })
+      Object.assign(request.payload, {
+        'address-line-1': address.addressLine1,
+        'address-line-2': address.addressLine2,
+        'address-town': address.town,
+        'address-county': address.county,
+        'address-postcode': address.postcode
+      })
+      await routesHelper.expectRedirection(context, '/dealing-intent')
       Code.expect(TestHelper.getCache(context, 'OwnerAddress').postcode).to.equal(address.postcode)
     })
   })
