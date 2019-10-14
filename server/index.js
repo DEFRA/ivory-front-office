@@ -77,6 +77,9 @@ async function createServer () {
   // Add a reference to the server in the config
   config.server = server
 
+  // Add a reference to the config in the server
+  server.app.config = config
+
   // Load reference data
   if (config.serviceApiEnabled) {
     // Add protocol to service api url if it doesn't exist already
