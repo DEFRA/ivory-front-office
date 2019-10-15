@@ -40,6 +40,7 @@ async function registerPlugins (server) {
     require('./plugins/robots'),
     require('./plugins/cache'),
     require('./plugins/navigation'),
+    require('./plugins/change-your-answers'),
     require('./plugins/error-pages')
   ])
 

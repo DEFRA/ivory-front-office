@@ -28,7 +28,7 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
     return ownerType === 'i-own-it'
   }
 
-  getPerson (person, address, prefix = 'Your') {
+  getPerson (person, address, prefix = 'Your', personLink, addressLink, emailLink) {
     if (typeof prefix !== 'object') {
       prefix = { default: prefix }
     }
@@ -36,40 +36,44 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
     if (person.fullName) {
       answers.push({
         key: `${prefix.name || prefix.default} name`,
-        value: person.fullName
+        value: person.fullName,
+        link: personLink
       })
     }
 
     if (address.addressLine) {
       answers.push({
         key: `${prefix.address || prefix.default} address`,
-        html: address.addressLine.split(',').join('<br>')
+        html: address.addressLine.split(',').join('<br>'),
+        link: addressLink
       })
     }
 
     if (person.email) {
       answers.push({
         key: `${prefix.email || prefix.default} email`,
-        value: person.email
+        value: person.email,
+        link: emailLink
       })
     }
 
     return answers
   }
 
-  getExemption (heading, declaration, description, reference) {
+  getExemption (heading, declaration, description, reference, link) {
     const answers = []
 
     if (declaration) {
       answers.push({
         key: heading,
         html: `
-            I declare ${reference}
+            <span class="ivory-declaration">I declare ${reference}</span>
             <br><br>
             Other supporting evidence:
             <br><br>
-            ${description.replace(/[\r]/g, '<br>')}
-        `
+            <span class="ivory-explanation">${description.replace(/[\r]/g, '<br>')}</span>
+        `,
+        link
       })
     }
 
@@ -77,7 +81,7 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
   }
 
   buildRows (answers) {
-    return answers.map(({ key, value, html }) => {
+    return answers.map(({ key, value, html, link }) => {
       const classes = `ivory-${key.toLowerCase().split(' ').join('-')}`
       const row = {
         key: { text: key }
@@ -89,16 +93,17 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
         row.value = { classes, html }
       }
 
-      // ToDo: Add the actions when changing data functionality is implemented
-      // actions: {
-      //   items: [
-      //     {
-      //       href: '#',
-      //       text: 'Change',
-      //       visuallyHiddenText: key.toLowerCase()
-      //     }
-      //   ]
-      // }
+      if (config.changeYourAnswersEnabled) {
+        row.actions = {
+          items: [
+            {
+              href: link,
+              text: 'Change',
+              visuallyHiddenText: key.toLowerCase()
+            }
+          ]
+        }
+      }
 
       return row
     })
@@ -116,7 +121,7 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
     const agent = await Agent.get(request) || {}
     const agentAddress = await AgentAddress.get(request) || {}
     const item = await Item.get(request) || {}
-    const { dealingIntent } = registration
+    const { dealingIntent, ownerType } = registration
     const { itemType } = item
 
     let answers = []
@@ -126,7 +131,8 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
     if (itemTypeReference) {
       answers.push({
         key: 'Item type',
-        value: itemTypeReference.label
+        value: itemTypeReference.label,
+        link: '/item-type'
       })
     }
 
@@ -136,7 +142,8 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
       const lastphoto = item.photos[item.photos.length - 1] // Until we handle multiple photos, take the last photo
       answers.push({
         key: 'Photograph',
-        html: `<img class="check-photo-img" src="/photos/medium/${lastphoto.filename}" border="0">`
+        html: `<img class="check-photo-img" src="/photos/medium/${lastphoto.filename}" border="0">`,
+        link: '/check-photograph'
       })
       // })
     }
@@ -144,7 +151,8 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
     if (item.description) {
       answers.push({
         key: 'Description',
-        html: item.description.replace(/[\r]/g, '<br>')
+        html: item.description.replace(/[\r]/g, '<br>'),
+        link: '/item-description'
       })
     }
 
@@ -152,29 +160,45 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
       answers = answers.concat(this.getExemption('Age of Ivory',
         item.ageExemptionDeclaration,
         item.ageExemptionDescription,
-        itemTypeReference.ageExemptionDeclaration))
+        itemTypeReference.ageExemptionDeclaration,
+        '/item-age-exemption-declaration'))
     }
 
     if (item.volumeExemptionDeclaration) {
       answers = answers.concat(this.getExemption('Volume of Ivory',
         item.volumeExemptionDeclaration,
         item.volumeExemptionDescription,
-        itemTypeReference.volumeExemptionDeclaration))
+        itemTypeReference.volumeExemptionDeclaration,
+        '/item-volume-exemption-declaration'))
+    }
+
+    if (ownerType) {
+      const { label } = CheckYourAnswersHandlers.getReference('ownerType', ownerType)
+      answers.push({
+        key: 'Who owns the item',
+        value: label,
+        link: '/who-owns-item'
+      })
     }
 
     if (agent.fullName) {
-      answers = answers.concat(this.getPerson(agent, agentAddress, { name: 'Contact', default: 'Your' }))
+      answers = answers.concat(this.getPerson(agent, agentAddress,
+        { name: 'Contact', default: 'Your' },
+        '/agent-name', '/agent-full-address', 'agent-email'))
     }
 
     if (owner.fullName) {
-      answers = answers.concat(this.getPerson(owner, ownerAddress, await this.isOwner(request) ? 'Your' : 'Owner\'s'))
+      answers = answers.concat(this.getPerson(owner, ownerAddress,
+        await this.isOwner(request) ? 'Your' : 'Owner\'s',
+        '/owner-name', '/owner-full-address', '/owner-email'))
     }
 
     if (dealingIntent) {
-      const intent = CheckYourAnswersHandlers.getReference('dealingIntent', dealingIntent)
+      const { display } = CheckYourAnswersHandlers.getReference('dealingIntent', dealingIntent)
       answers.push({
         key: 'Intention',
-        value: intent.display
+        value: display,
+        link: '/dealing-intent'
       })
     }
 

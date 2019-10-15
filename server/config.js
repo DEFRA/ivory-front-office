@@ -73,7 +73,11 @@ const schema = Joi.object({
   photoUploadPayloadMaxBytes: Joi.number().min(50 * 1024).max(20 * 1024 * 1024).default(10 * 1024 * 1024),
 
   // Google Analytics
-  googleAnalyticsId: Joi.string()
+  googleAnalyticsId: Joi.string(),
+
+  // Change your answers
+  // ToDo: Switch default to true when officially added
+  changeYourAnswersEnabled: Joi.bool().default(false)
 })
 
 // Build the config
@@ -135,7 +139,10 @@ const config = {
   photoUploadPayloadMaxBytes: process.env.PHOTO_UPLOAD_PAYLOAD_MAX_BYTES,
 
   // Google Analytics
-  googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID
+  googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,
+
+  // Change your answers
+  changeYourAnswersEnabled: process.env.CHANGE_YOUR_ANSWERS_ENABLED
 }
 
 // Validate the config

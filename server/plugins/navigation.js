@@ -26,6 +26,7 @@ module.exports = {
             return Boom.preconditionFailed('Registration already submitted', { registrationNumber })
           }
         }
+
         return h.continue
       })
     }
