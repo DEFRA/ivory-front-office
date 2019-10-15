@@ -1,6 +1,4 @@
 const { Registration } = require('../../lib/cache')
-const config = require('../../config')
-const { referenceData } = config
 
 class DealingIntentHandlers extends require('ivory-common-modules').option.single.handlers {
   get Model () {
@@ -16,7 +14,7 @@ class DealingIntentHandlers extends require('ivory-common-modules').option.singl
   }
 }
 
-const handlers = new DealingIntentHandlers({ referenceData })
+const handlers = new DealingIntentHandlers()
 
 module.exports = handlers.routes({
   path: '/dealing-intent',

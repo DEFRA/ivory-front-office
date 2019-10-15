@@ -1,8 +1,7 @@
 const { mixin } = require('ivory-shared')
-const config = require('../../../config')
 class AgentAddressFindHandlers extends mixin(require('ivory-common-modules').address.find.handlers, require('./agent-address-mixin')) {}
 
-const handlers = new AgentAddressFindHandlers(config)
+const handlers = new AgentAddressFindHandlers()
 
 module.exports = handlers.routes({
   path: handlers.findAddressLink,

@@ -1,15 +1,12 @@
 const Boom = require('@hapi/boom')
-const { utils, Cache, Payment: PaymentAPI } = require('ivory-shared')
-const { Payment, Registration } = require('../../lib/cache')
+const { utils, Payment: PaymentAPI } = require('ivory-shared')
+const cache = require('../../lib/cache')
+const { Payment, Registration } = cache
 const { paymentUrl, paymentKey } = require('../../config')
-const syncRegistration = require('../../lib/sync-registration')
 
 class CheckPaymentHandlers extends require('ivory-common-modules').handlers {
-  async handleGet (request, h, errors) {
-    // Clear the cookies and create a new registration
-    await Cache.clear(request)
-    const { id } = request.params
-    await syncRegistration.restore(request, id)
+  async handleGet (request, h) {
+    await cache.restore(request, request.params.id)
     const payment = await Payment.get(request)
 
     const paymentApi = new PaymentAPI({

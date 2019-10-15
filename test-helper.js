@@ -17,7 +17,7 @@ const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
 const { Cache, utils } = require('ivory-shared')
-const syncRegistration = require('./server/lib/sync-registration')
+const SyncRegistration = require('./server/lib/sync-registration')
 const routesPlugin = require('./server/plugins/router')
 
 // Suppress MaxListenersExceededWarning within tests
@@ -127,8 +127,8 @@ module.exports = class TestHelper {
     sandbox.stub(logger, 'serverError').value(() => undefined)
     sandbox.stub(config, 'logLevel').value('error')
     if (!skip.syncRegistration) {
-      sandbox.stub(syncRegistration, 'save').value((data) => data)
-      sandbox.stub(syncRegistration, 'restore').value(() => {})
+      sandbox.stub(SyncRegistration.prototype, 'save').value((data) => data)
+      sandbox.stub(SyncRegistration.prototype, 'restore').value(() => {})
     }
   }
 

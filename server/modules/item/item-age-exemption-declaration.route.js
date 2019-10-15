@@ -1,5 +1,4 @@
 const { Item } = require('../../lib/cache')
-const config = require('../../config')
 
 class ItemAgeExemptionDeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
   get Model () {
@@ -25,7 +24,7 @@ class ItemAgeExemptionDeclarationHandlers extends require('ivory-common-modules'
   }
 }
 
-const handlers = new ItemAgeExemptionDeclarationHandlers(config)
+const handlers = new ItemAgeExemptionDeclarationHandlers()
 
 module.exports = handlers.routes({
   path: '/item-age-exemption-declaration',

@@ -1,6 +1,4 @@
 const { Item } = require('../../lib/cache')
-const config = require('../../config')
-const { referenceData } = config
 
 class ItemTypeHandlers extends require('ivory-common-modules').option.single.handlers {
   get Model () {
@@ -24,7 +22,7 @@ class ItemTypeHandlers extends require('ivory-common-modules').option.single.han
   }
 }
 
-const handlers = new ItemTypeHandlers({ referenceData })
+const handlers = new ItemTypeHandlers()
 
 module.exports = handlers.routes({
   path: '/item-type',

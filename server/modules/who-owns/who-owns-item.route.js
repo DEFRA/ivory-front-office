@@ -1,6 +1,4 @@
 const { Registration } = require('../../lib/cache')
-const config = require('../../config')
-const { referenceData } = config
 
 class WhoOwnsHandlers extends require('ivory-common-modules').option.single.handlers {
   get Model () {
@@ -26,7 +24,7 @@ class WhoOwnsHandlers extends require('ivory-common-modules').option.single.hand
   }
 }
 
-const handlers = new WhoOwnsHandlers({ referenceData })
+const handlers = new WhoOwnsHandlers()
 
 module.exports = handlers.routes({
   path: '/who-owns-item',

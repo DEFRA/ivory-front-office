@@ -1,12 +1,8 @@
-const { Cache } = require('ivory-shared')
-const syncRegistration = require('../../lib/sync-registration')
+const cache = require('../../lib/cache')
 
 class RestoreHandlers extends require('ivory-common-modules').handlers {
-  async handleGet (request, h, errors) {
-    // Clear the cookies and create a new registration
-    await Cache.clear(request)
-    const { id } = request.params
-    await syncRegistration.restore(request, id)
+  async handleGet (request, h) {
+    await cache.restore(request, request.params.id)
     return h.redirect('/check-your-answers')
   }
 }
