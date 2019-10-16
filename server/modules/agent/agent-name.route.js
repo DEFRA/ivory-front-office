@@ -4,6 +4,15 @@ class AgentNameHandlers extends require('../common/person/person-name.handlers')
   get Person () {
     return Agent
   }
+
+  async errorMessages (request) {
+    return {
+      'full-name': {
+        'any.empty': 'Enter your full name',
+        'string.max': `Your full name must be ${this.maxNameLength} characters or fewer`
+      }
+    }
+  }
 }
 
 const handlers = new AgentNameHandlers()

@@ -31,11 +31,27 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         'Content-Disposition: form-data; name="photograph"; filename="elephant.jpg"',
         'Content-Type: image/jpeg',
         '',
-        'file-contents of the image',
+        'file-contents of the image'.repeat(1024 * 2),
         '--WebAppBoundary--'
       ].join('\r\n')
 
       await routesHelper.expectRedirection(context, '/check-photograph')
+    })
+
+    lab.test('fails validation when photo is too small', async ({ context }) => {
+      const { request } = context
+      request.payload = [
+        '--WebAppBoundary',
+        'Content-Disposition: form-data; name="photograph"; filename="elephant.jpg"',
+        'Content-Type: image/jpeg',
+        '',
+        'file-contents of the image',
+        '--WebAppBoundary--'
+      ].join('\r\n')
+
+      return routesHelper.expectValidationErrors(context, [
+        { field: 'photograph', message: 'The selected file must be bigger than 50KB' }
+      ])
     })
 
     lab.test('fails validation when no photo selected', async ({ context }) => {
@@ -50,7 +66,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       ].join('\r\n')
 
       return routesHelper.expectValidationErrors(context, [
-        { field: 'photograph', message: 'Select a photograph' }
+        { field: 'photograph', message: 'You must add a photo' }
       ])
     })
   })

@@ -8,12 +8,17 @@ class OwnerNameHandlers extends mixin(require('../common/person/person-name.hand
 
   async errorMessages (request) {
     if (await this.isOwner(request)) {
-      return super.errorMessages
+      return {
+        'full-name': {
+          'any.empty': 'Enter your full name',
+          'string.max': `Your full name must be ${this.maxNameLength} characters or fewer`
+        }
+      }
     }
     return {
       'full-name': {
         'any.empty': 'Enter the owner\'s full name',
-        'string.max': `Enter the owner's  full name in ${this.maxNameLength} characters or less`
+        'string.max': `Owner's full name must be ${this.maxNameLength} characters or fewer`
       }
     }
   }

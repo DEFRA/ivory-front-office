@@ -10,7 +10,7 @@ class ItemTypeHandlers extends require('ivory-common-modules').option.single.han
   }
 
   get selectError () {
-    return 'Select what type of item you are registering'
+    return 'Select the type of item it is'
   }
 
   async onChange (item) {

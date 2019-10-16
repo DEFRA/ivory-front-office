@@ -10,7 +10,7 @@ class DealingIntentHandlers extends require('ivory-common-modules').option.singl
   }
 
   get selectError () {
-    return 'Select what you plan to do with the item'
+    return 'Select if you want to sell or hire it'
   }
 }
 

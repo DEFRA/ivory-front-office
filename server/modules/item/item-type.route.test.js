@@ -25,7 +25,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when who owns the item has not been selected', async ({ context }) => {
       return routesHelper.expectValidationErrors(context, [
-        { field: 'itemType', message: 'Select what type of item you are registering' }
+        { field: 'itemType', message: 'Select the type of item it is' }
       ])
     })
 

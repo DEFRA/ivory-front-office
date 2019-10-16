@@ -69,7 +69,8 @@ const schema = {
 
   // Photo upload
   photoUploadPhotoMaxMb: Joi.number().min(1).max(20).default(10),
-  photoUploadPayloadMaxBytes: Joi.number().min(1).max(20 * 1024 * 1024).default(10 * 1024 * 1024)
+  photoUploadPhotoMinKb: Joi.number().min(1).max(50).default(50),
+  photoUploadPayloadMaxBytes: Joi.number().min(50 * 1024).max(20 * 1024 * 1024).default(10 * 1024 * 1024)
 }
 
 // Build the config
@@ -127,6 +128,7 @@ const config = {
 
   // Photo upload
   photoUploadPhotoMaxMb: process.env.PHOTO_UPLOAD_PHOTO_MAX_MB,
+  photoUploadPhotoMinKb: process.env.PHOTO_UPLOAD_PHOTO_MIN_KB,
   photoUploadPayloadMaxBytes: process.env.PHOTO_UPLOAD_PAYLOAD_MAX_BYTES
 }
 

@@ -45,9 +45,30 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the address has not been entered', async ({ context }) => {
       return routesHelper.expectValidationErrors(context, [
-        { field: 'address-line-1', message: 'Enter a valid building and street' },
-        { field: 'address-town', message: 'Enter a valid town or city' },
-        { field: 'address-postcode', message: 'Enter a valid postcode' }
+        { field: 'address-line-1', message: 'Enter building and street' },
+        { field: 'address-town', message: 'Enter town or city' },
+        { field: 'address-postcode', message: 'Enter postcode' }
+      ])
+    })
+
+    lab.test('fails validation when the address fields exceed maximum characters', async ({ context }) => {
+      const { request } = context
+      Object.assign(request.payload, {
+        'business-name': 'x'.repeat(101),
+        'address-line-1': 'x'.repeat(101),
+        'address-line-2': 'x'.repeat(101),
+        'address-town': 'x'.repeat(101),
+        'address-county': 'x'.repeat(101),
+        'address-postcode': 'x'.repeat(9)
+      })
+
+      return routesHelper.expectValidationErrors(context, [
+        { field: 'business-name', message: 'Business name must be 100 characters or fewer' },
+        { field: 'address-line-1', message: 'Building and street must be 100 characters or fewer' },
+        { field: 'address-line-2', message: 'Second address line must be 100 characters or fewer' },
+        { field: 'address-town', message: 'Town or city must be 100 characters or fewer' },
+        { field: 'address-county', message: 'County must be 100 characters or fewer' },
+        { field: 'address-postcode', message: 'Postcode must be 8 characters or fewer' }
       ])
     })
 
