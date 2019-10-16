@@ -1,4 +1,5 @@
 const { Item } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
 
 class ItemVolumeExemptionDeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
   get Model () {
@@ -40,12 +41,6 @@ class ItemVolumeExemptionDeclarationHandlers extends require('ivory-common-modul
 
 const handlers = new ItemVolumeExemptionDeclarationHandlers()
 
-module.exports = handlers.routes({
-  path: '/item-volume-exemption-declaration',
-  app: {
-    // pageHeading is derived in the getPageHeading method above
-    view: 'common/declaration',
-    nextPath: '/who-owns-item',
-    isQuestionPage: true
-  }
-})
+const routes = getRoutes.bind(handlers)('item-volume-exemption-declaration')
+
+module.exports = handlers.routes(routes)

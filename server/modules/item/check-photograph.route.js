@@ -1,4 +1,5 @@
 const { Item } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
 
 class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers {
   // Overrides parent class handleGet
@@ -15,11 +16,6 @@ class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers
 
 const handlers = new ConfirmPhotographHandlers()
 
-module.exports = handlers.routes({
-  path: '/check-photograph',
-  app: {
-    pageHeading: 'This is your photo',
-    view: 'item/check-photograph',
-    nextPath: '/item-description'
-  }
-})
+const routes = getRoutes.bind(handlers)('check-photograph')
+
+module.exports = handlers.routes(routes)

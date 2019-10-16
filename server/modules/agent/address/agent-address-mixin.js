@@ -1,4 +1,5 @@
 const { AgentAddress } = require('../../../lib/cache')
+const { flow } = require('../../../flow')
 
 module.exports = {
   get Address () {
@@ -6,14 +7,14 @@ module.exports = {
   },
 
   get findAddressLink () {
-    return '/agent-address'
+    return flow['agent-address-find'].path
   },
 
   get selectAddressLink () {
-    return '/agent-address-select'
+    return flow['agent-address-select'].path
   },
 
   get manualAddressLink () {
-    return '/agent-full-address'
+    return flow['agent-address-full'].path
   }
 }

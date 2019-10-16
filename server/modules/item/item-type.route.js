@@ -1,4 +1,5 @@
 const { Item } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
 
 class ItemTypeHandlers extends require('ivory-common-modules').option.single.handlers {
   get Model () {
@@ -24,12 +25,6 @@ class ItemTypeHandlers extends require('ivory-common-modules').option.single.han
 
 const handlers = new ItemTypeHandlers()
 
-module.exports = handlers.routes({
-  path: '/item-type',
-  app: {
-    pageHeading: 'What type of item are you registering?',
-    view: 'common/select-one-option',
-    nextPath: '/add-photograph',
-    isQuestionPage: true
-  }
-})
+const routes = getRoutes.bind(handlers)('item-type')
+
+module.exports = handlers.routes(routes)

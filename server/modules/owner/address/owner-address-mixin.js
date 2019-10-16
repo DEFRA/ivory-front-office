@@ -1,4 +1,5 @@
 const { OwnerAddress } = require('../../../lib/cache')
+const { flow } = require('../../../flow')
 
 module.exports = {
   get Address () {
@@ -6,26 +7,18 @@ module.exports = {
   },
 
   get findAddressLink () {
-    return '/owner-address'
+    return flow['owner-address-find'].path
   },
 
   get selectAddressLink () {
-    return '/owner-address-select'
+    return flow['owner-address-select'].path
   },
 
   get manualAddressLink () {
-    return '/owner-full-address'
+    return flow['owner-address-full'].path
   },
 
   async skipBusinessName (request) {
     return !(await this.isOwner(request))
-  },
-
-  // Overrides parent class getPageHeading
-  async getPageHeading (request) {
-    if (await this.isOwner(request)) {
-      return 'Your address'
-    }
-    return 'Owner\'s address'
   }
 }

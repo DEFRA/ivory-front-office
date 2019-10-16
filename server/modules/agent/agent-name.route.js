@@ -1,4 +1,6 @@
 const { Agent } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
+const { addressLookUpEnabled } = require('../../config')
 
 class AgentNameHandlers extends require('../common/person/person-name.handlers') {
   get Person () {
@@ -13,15 +15,14 @@ class AgentNameHandlers extends require('../common/person/person-name.handlers')
       }
     }
   }
+
+  lookUpEnabled () {
+    return addressLookUpEnabled
+  }
 }
 
 const handlers = new AgentNameHandlers()
 
-module.exports = handlers.routes({
-  path: '/agent-name',
-  app: {
-    pageHeading: 'Contact name',
-    view: 'common/person-name',
-    nextPath: '/agent-full-address'
-  }
-})
+const routes = getRoutes.bind(handlers)('agent-name')
+
+module.exports = handlers.routes(routes)
