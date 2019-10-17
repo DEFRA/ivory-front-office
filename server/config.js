@@ -56,11 +56,10 @@ const schema = {
   serviceApiHost: Joi.when('serviceApiEnabled', { is: true, then: Joi.string().required() }),
 
   // Notify
-  // ToDo: Set the default of notifyEnabled to true when the notify functionality is complete
-  notifyEnabled: Joi.bool().default(false),
+  notifyEnabled: Joi.bool().default(true),
   notifyApiKey: Joi.when('notifyEnabled', { is: true, then: Joi.string().required() }),
   notifyConfirmationTemplateId: Joi.when('notifyEnabled', { is: true, then: Joi.string().required() }),
-  notifyEmailReplyToId: Joi.when('notifyEnabled', { is: true, then: Joi.string().email().required() }),
+  notifyEmailReplyToId: Joi.when('notifyEnabled', { is: true, then: Joi.string().email() }),
 
   // Amazon S3
   s3Enabled: Joi.bool().default(true),

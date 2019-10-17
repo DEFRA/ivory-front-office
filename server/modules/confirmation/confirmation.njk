@@ -13,7 +13,9 @@
 
 {#      <p class="govuk-body">Your application and payment were successful.</p>#}
 
-{#      <p class="govuk-body">We’ve sent you an email with confirmation of registration and a payment receipt.</p>#}
+      {% if viewData.confirmationSent %}
+      <p class="govuk-body">We’ve sent you an email with confirmation of registration and a payment receipt.</p>
+      {% endif %}
 
 {#      <dl class="govuk-body defra-dl">#}
 {#        <dt class="defra-dt">Registration status:</dt>#}

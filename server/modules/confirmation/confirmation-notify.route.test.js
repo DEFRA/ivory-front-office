@@ -8,7 +8,7 @@ const url = '/confirmation-notify'
 const testdomain = 'http://fake-ivory.com'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
-  let result
+  let notifyInput
   const registrationNumber = 'abc'
   const timestamp = Date.now()
   const expectedNotifyInput = {
@@ -30,7 +30,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(config, 'notifyEmailReplyToId').value(expectedNotifyInput.data.emailReplyToId)
       sandbox.stub(Date, 'now').value(() => timestamp)
       sandbox.stub(NotifyClient.prototype, 'sendEmail').value((notifyConfirmationTemplateId, emailAddress, data) => {
-        result = { notifyConfirmationTemplateId, emailAddress, data }
+        notifyInput = { notifyConfirmationTemplateId, emailAddress, data }
         return {}
       })
     }
@@ -50,7 +50,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       TestHelper.setCache(context, 'Owner', { fullName, email })
 
       await routesHelper.expectRedirection(context, '/confirmation')
-      Code.expect(result).to.equal(expectedNotifyInput)
+      Code.expect(notifyInput).to.equal(expectedNotifyInput)
+      Code.expect(TestHelper.getCache(context, 'Registration')).to.equal({ registrationNumber, status: 'submitted', confirmationSent: true })
     })
   })
 })

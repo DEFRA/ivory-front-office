@@ -1,5 +1,4 @@
 const { logger } = require('defra-logging-facade')
-const Boom = require('@hapi/boom')
 const { Registration, Agent, Owner } = require('../../lib/cache')
 const { notifyEnabled, notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId } = require('../../config')
 
@@ -40,8 +39,10 @@ class ConfirmationHandlers extends require('ivory-common-modules').handlers {
     if (notifyEnabled) {
       const result = await this.notifyRegistration(contact, registrationNumber)
       if (result.error) {
-        logger.error(result.error)
-        return Boom.boomify(result.error.errors.pop)
+        logger.error('Failed to send confirmation email:', result.error)
+      } else {
+        registration.confirmationSent = true
+        await Registration.set(request, registration)
       }
     }
     return h.redirect('/confirmation')
