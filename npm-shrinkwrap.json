@@ -9751,10 +9751,10 @@
       }
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#6af9c395c34ed104e88fd62df37ea6ee54c5e2b2",
-      "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#4cc68e1b8b34e6175a71a52872ddc1f1731a6a8b",
+      "from": "git+https://github.com/DEFRA/ivory-shared.git#4cc68e1b8b34e6175a71a52872ddc1f1731a6a8b",
       "requires": {
-        "@hapi/hoek": "^8.3.1",
+        "@hapi/hoek": "^8.3.2",
         "@hapi/joi": "^15.1.1",
         "@hapi/wreck": "^16.0.1",
         "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
@@ -9860,9 +9860,9 @@
           "integrity": "sha512-UFbtbGPjstz0eWHb+ga/GM3Z9EzqKXFWIbSOFURU0A/Gku0Bky4bCk9/h//K2Xr3IrCfjFNhMm4jyZ5dbCewGA=="
         },
         "@hapi/hoek": {
-          "version": "8.3.1",
-          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.1.tgz",
-          "integrity": "sha512-75ocgnI7HG/I01iGA3/rs0y6PXydUA/kxhFZM0HoT8NLSTnt/J8Gq03iKl4a4B/2A3iMG0ctXtxr5Hg9SGr1gw=="
+          "version": "8.3.2",
+          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.2.tgz",
+          "integrity": "sha512-NP5SG4bzix+EtSMtcudp8TvI0lB46mXNo8uFpTDw6tqxGx4z5yx+giIunEFA0Z7oUO4DuWrOJV9xqR2tJVEdyA=="
         },
         "@hapi/joi": {
           "version": "15.1.1",
