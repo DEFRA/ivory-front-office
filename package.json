@@ -50,7 +50,7 @@
     "govuk-frontend": "2.13.0",
     "hapi-robots": "^3.2.0",
     "hapi-router": "^5.0.0",
-    "ivory-common-modules": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
+    "ivory-common-modules": "git+https://github.com/DEFRA/ivory-common-modules.git#validate-declarations",
     "ivory-shared": "git+https://github.com/DEFRA/ivory-shared.git#master",
     "lodash.merge": "^4.6.2",
     "moment": "^2.24.0",
