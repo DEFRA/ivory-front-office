@@ -1171,9 +1171,9 @@
       "optional": true
     },
     "aws-sdk": {
-      "version": "2.550.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.550.0.tgz",
-      "integrity": "sha512-eZQYY7O6VJeVQvBWnctOOTOO/+aTXhy23+T7QU1FcHfuvWV7K+7+7Uats9rgMS42SQ4R8q1cIZZ1InWnmmfrEw==",
+      "version": "2.553.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.553.0.tgz",
+      "integrity": "sha512-tcITF/3ijBumvP13Qrq/VB1eRWW6szKF0xVwZ/ch0MGkaEiTQ9n3zNRPtQc1drllsVEm5u5aXp3inoi5zmq0xg==",
       "requires": {
         "buffer": "4.9.1",
         "events": "1.1.1",
@@ -3464,9 +3464,9 @@
       "integrity": "sha512-wpnmsd2dW1MnoencljcWO/06VUealfMaY40ZjK5t3v9ljL+bKCMbNaTn/YzwIh4pDo2hk5QcN+pLzUJ8aWB17A=="
     },
     "glob": {
-      "version": "7.1.4",
-      "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.4.tgz",
-      "integrity": "sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==",
+      "version": "7.1.5",
+      "resolved": "https://registry.npmjs.org/glob/-/glob-7.1.5.tgz",
+      "integrity": "sha512-J9dlskqUXK1OeTOYBEn5s8aMukWMwWfs+rPTn/jn50Ux4MNXVhubL1wu/j2t+H4NVI+cXEcCaYellqaPVGXNqQ==",
       "requires": {
         "fs.realpath": "^1.0.0",
         "inflight": "^1.0.4",
@@ -4134,12 +4134,12 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#4b8ae16212204ae43d9632ffe5fd2d2b5883131c",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#386059253f1fe70b2eefc01e12d74e7901317975",
       "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
       "requires": {
-        "@hapi/hoek": "^8.3.1",
+        "@hapi/hoek": "^8.3.2",
         "@hapi/joi": "^15.1.1",
-        "@hapi/wreck": "^15.1.0",
+        "@hapi/wreck": "^16.0.1",
         "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
         "ivory-shared": "git+https://github.com/DEFRA/ivory-shared.git#master",
         "lodash": "^4.17.15"
@@ -4169,9 +4169,9 @@
           "integrity": "sha512-O4QDrx+JoGKZc6aN64L04vqa7e41tIiLU+OvKdcYaEMP97UttL0f9GIi9/0A4WAMx0uBd6SidDIhktZhgOcN8Q=="
         },
         "@hapi/boom": {
-          "version": "7.4.11",
-          "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.11.tgz",
-          "integrity": "sha512-VSU/Cnj1DXouukYxxkes4nNJonCnlogHvIff1v1RVoN4xzkKhMXX+GRmb3NyH1iar10I9WFPDv2JPwfH3GaV0A==",
+          "version": "8.0.1",
+          "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-8.0.1.tgz",
+          "integrity": "sha512-SnBM2GzEYEA6AGFKXBqNLWXR3uNBui0bkmklYXX1gYtevVhDTy2uakwkSauxvIWMtlANGRhzChYg95If3FWCwA==",
           "requires": {
             "@hapi/hoek": "8.x.x"
           }
@@ -4186,6 +4186,14 @@
             "@hapi/joi": "16.x.x"
           },
           "dependencies": {
+            "@hapi/boom": {
+              "version": "7.4.11",
+              "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.11.tgz",
+              "integrity": "sha512-VSU/Cnj1DXouukYxxkes4nNJonCnlogHvIff1v1RVoN4xzkKhMXX+GRmb3NyH1iar10I9WFPDv2JPwfH3GaV0A==",
+              "requires": {
+                "@hapi/hoek": "8.x.x"
+              }
+            },
             "@hapi/joi": {
               "version": "16.1.7",
               "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.7.tgz",
@@ -4236,9 +4244,9 @@
           "integrity": "sha512-UFbtbGPjstz0eWHb+ga/GM3Z9EzqKXFWIbSOFURU0A/Gku0Bky4bCk9/h//K2Xr3IrCfjFNhMm4jyZ5dbCewGA=="
         },
         "@hapi/hoek": {
-          "version": "8.3.1",
-          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.1.tgz",
-          "integrity": "sha512-75ocgnI7HG/I01iGA3/rs0y6PXydUA/kxhFZM0HoT8NLSTnt/J8Gq03iKl4a4B/2A3iMG0ctXtxr5Hg9SGr1gw=="
+          "version": "8.3.2",
+          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.2.tgz",
+          "integrity": "sha512-NP5SG4bzix+EtSMtcudp8TvI0lB46mXNo8uFpTDw6tqxGx4z5yx+giIunEFA0Z7oUO4DuWrOJV9xqR2tJVEdyA=="
         },
         "@hapi/joi": {
           "version": "15.1.1",
@@ -4252,9 +4260,9 @@
           }
         },
         "@hapi/lab": {
-          "version": "20.4.0",
-          "resolved": "https://registry.npmjs.org/@hapi/lab/-/lab-20.4.0.tgz",
-          "integrity": "sha512-QuugZQjjFOaT5iEktnCiOKFmcmPBZ+8waXoaBV+oZVT/C5f01fD0ubJHZwz4YQFUqyQa8FHLtFcvLuQmmc6+gQ==",
+          "version": "21.0.0",
+          "resolved": "https://registry.npmjs.org/@hapi/lab/-/lab-21.0.0.tgz",
+          "integrity": "sha512-csYjq2DE+JzKPW+BaqEfDzbHJC5LIC+M1eYUljm0+zD7xoaKUXFPEWqlP4JSbJ4e16wRNY8Uid3UshxC+rUByw==",
           "requires": {
             "@hapi/bossy": "4.x.x",
             "@hapi/eslint-config-hapi": "12.x.x",
@@ -4314,11 +4322,11 @@
           }
         },
         "@hapi/wreck": {
-          "version": "15.1.0",
-          "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-15.1.0.tgz",
-          "integrity": "sha512-tQczYRTTeYBmvhsek/D49En/5khcShaBEmzrAaDjMrFXKJRuF8xA8+tlq1ETLBFwGd6Do6g2OC74rt11kzawzg==",
+          "version": "16.0.1",
+          "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-16.0.1.tgz",
+          "integrity": "sha512-fL6IwZ5nk1jBMLBPugt72u23rw8KnnyupLor7TZihgvAXTulxJprUe9YiCLuGbKsEBh2qDo31ixvLCSaxC2+xQ==",
           "requires": {
-            "@hapi/boom": "7.x.x",
+            "@hapi/boom": "8.x.x",
             "@hapi/bourne": "1.x.x",
             "@hapi/hoek": "8.x.x"
           }
@@ -4399,9 +4407,9 @@
           "integrity": "sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA=="
         },
         "@types/node": {
-          "version": "12.7.11",
-          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.11.tgz",
-          "integrity": "sha512-Otxmr2rrZLKRYIybtdG/sgeO+tHY20GxeDjcGmUnmmlCWyEnv2a2x1ZXBo3BTec4OiTXMQCiazB8NMBf0iRlFw=="
+          "version": "12.11.2",
+          "resolved": "https://registry.npmjs.org/@types/node/-/node-12.11.2.tgz",
+          "integrity": "sha512-dsfE4BHJkLQW+reOS6b17xhZ/6FB1rB8eRRvO08nn5o+voxf3i74tuyFWNH6djdfgX7Sm5s6LD8t6mJug4dpDw=="
         },
         "acorn": {
           "version": "7.1.0",
@@ -4683,9 +4691,9 @@
           }
         },
         "commander": {
-          "version": "2.20.1",
-          "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.1.tgz",
-          "integrity": "sha512-cCuLsMhJeWQ/ZpsFTbE765kvVfoeSddc4nU3up4fV+fDBcfUXnbITJ+JzhkdjzOqhURjZgujxaioam4RM9yGUg==",
+          "version": "2.20.3",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz",
+          "integrity": "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==",
           "optional": true
         },
         "concat-map": {
@@ -5400,9 +5408,9 @@
           "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
         },
         "handlebars": {
-          "version": "4.4.2",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.2.tgz",
-          "integrity": "sha512-cIv17+GhL8pHHnRJzGu2wwcthL5sb8uDKBHvZ2Dtu5s1YNt0ljbzKbamnc+gr69y7bzwQiBdr5+hOpRd5pnOdg==",
+          "version": "4.4.5",
+          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.5.tgz",
+          "integrity": "sha512-0Ce31oWVB7YidkaTq33ZxEbN+UDxMMgThvCe8ptgQViymL5DPis9uLdTA13MiRPhgvqyxIegugrP97iK3JeBHg==",
           "requires": {
             "neo-async": "^2.6.0",
             "optimist": "^0.6.1",
@@ -5610,12 +5618,12 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#87a64a0acf8f9dc995602e4060bd1a6f2999d0e9",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#4cc68e1b8b34e6175a71a52872ddc1f1731a6a8b",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
-            "@hapi/hoek": "^8.3.1",
+            "@hapi/hoek": "^8.3.2",
             "@hapi/joi": "^15.1.1",
-            "@hapi/wreck": "^15.1.0",
+            "@hapi/wreck": "^16.0.1",
             "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
             "lodash": "^4.17.15"
           },
@@ -5644,9 +5652,9 @@
               "integrity": "sha512-O4QDrx+JoGKZc6aN64L04vqa7e41tIiLU+OvKdcYaEMP97UttL0f9GIi9/0A4WAMx0uBd6SidDIhktZhgOcN8Q=="
             },
             "@hapi/boom": {
-              "version": "7.4.11",
-              "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.11.tgz",
-              "integrity": "sha512-VSU/Cnj1DXouukYxxkes4nNJonCnlogHvIff1v1RVoN4xzkKhMXX+GRmb3NyH1iar10I9WFPDv2JPwfH3GaV0A==",
+              "version": "8.0.1",
+              "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-8.0.1.tgz",
+              "integrity": "sha512-SnBM2GzEYEA6AGFKXBqNLWXR3uNBui0bkmklYXX1gYtevVhDTy2uakwkSauxvIWMtlANGRhzChYg95If3FWCwA==",
               "requires": {
                 "@hapi/hoek": "8.x.x"
               }
@@ -5661,6 +5669,14 @@
                 "@hapi/joi": "16.x.x"
               },
               "dependencies": {
+                "@hapi/boom": {
+                  "version": "7.4.11",
+                  "resolved": "https://registry.npmjs.org/@hapi/boom/-/boom-7.4.11.tgz",
+                  "integrity": "sha512-VSU/Cnj1DXouukYxxkes4nNJonCnlogHvIff1v1RVoN4xzkKhMXX+GRmb3NyH1iar10I9WFPDv2JPwfH3GaV0A==",
+                  "requires": {
+                    "@hapi/hoek": "8.x.x"
+                  }
+                },
                 "@hapi/joi": {
                   "version": "16.1.7",
                   "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.7.tgz",
@@ -5711,9 +5727,9 @@
               "integrity": "sha512-UFbtbGPjstz0eWHb+ga/GM3Z9EzqKXFWIbSOFURU0A/Gku0Bky4bCk9/h//K2Xr3IrCfjFNhMm4jyZ5dbCewGA=="
             },
             "@hapi/hoek": {
-              "version": "8.3.1",
-              "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.1.tgz",
-              "integrity": "sha512-75ocgnI7HG/I01iGA3/rs0y6PXydUA/kxhFZM0HoT8NLSTnt/J8Gq03iKl4a4B/2A3iMG0ctXtxr5Hg9SGr1gw=="
+              "version": "8.3.2",
+              "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.2.tgz",
+              "integrity": "sha512-NP5SG4bzix+EtSMtcudp8TvI0lB46mXNo8uFpTDw6tqxGx4z5yx+giIunEFA0Z7oUO4DuWrOJV9xqR2tJVEdyA=="
             },
             "@hapi/joi": {
               "version": "15.1.1",
@@ -5727,9 +5743,9 @@
               }
             },
             "@hapi/lab": {
-              "version": "20.4.0",
-              "resolved": "https://registry.npmjs.org/@hapi/lab/-/lab-20.4.0.tgz",
-              "integrity": "sha512-QuugZQjjFOaT5iEktnCiOKFmcmPBZ+8waXoaBV+oZVT/C5f01fD0ubJHZwz4YQFUqyQa8FHLtFcvLuQmmc6+gQ==",
+              "version": "21.0.0",
+              "resolved": "https://registry.npmjs.org/@hapi/lab/-/lab-21.0.0.tgz",
+              "integrity": "sha512-csYjq2DE+JzKPW+BaqEfDzbHJC5LIC+M1eYUljm0+zD7xoaKUXFPEWqlP4JSbJ4e16wRNY8Uid3UshxC+rUByw==",
               "requires": {
                 "@hapi/bossy": "4.x.x",
                 "@hapi/eslint-config-hapi": "12.x.x",
@@ -5789,11 +5805,11 @@
               }
             },
             "@hapi/wreck": {
-              "version": "15.1.0",
-              "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-15.1.0.tgz",
-              "integrity": "sha512-tQczYRTTeYBmvhsek/D49En/5khcShaBEmzrAaDjMrFXKJRuF8xA8+tlq1ETLBFwGd6Do6g2OC74rt11kzawzg==",
+              "version": "16.0.1",
+              "resolved": "https://registry.npmjs.org/@hapi/wreck/-/wreck-16.0.1.tgz",
+              "integrity": "sha512-fL6IwZ5nk1jBMLBPugt72u23rw8KnnyupLor7TZihgvAXTulxJprUe9YiCLuGbKsEBh2qDo31ixvLCSaxC2+xQ==",
               "requires": {
-                "@hapi/boom": "7.x.x",
+                "@hapi/boom": "8.x.x",
                 "@hapi/bourne": "1.x.x",
                 "@hapi/hoek": "8.x.x"
               }
@@ -5874,9 +5890,9 @@
               "integrity": "sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA=="
             },
             "@types/node": {
-              "version": "12.7.11",
-              "resolved": "https://registry.npmjs.org/@types/node/-/node-12.7.11.tgz",
-              "integrity": "sha512-Otxmr2rrZLKRYIybtdG/sgeO+tHY20GxeDjcGmUnmmlCWyEnv2a2x1ZXBo3BTec4OiTXMQCiazB8NMBf0iRlFw=="
+              "version": "12.11.1",
+              "resolved": "https://registry.npmjs.org/@types/node/-/node-12.11.1.tgz",
+              "integrity": "sha512-TJtwsqZ39pqcljJpajeoofYRfeZ7/I/OMUQ5pR4q5wOKf2ocrUvBAZUMhWsOvKx3dVc/aaV5GluBivt0sWqA5A=="
             },
             "acorn": {
               "version": "7.1.0",
@@ -6158,9 +6174,9 @@
               }
             },
             "commander": {
-              "version": "2.20.1",
-              "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.1.tgz",
-              "integrity": "sha512-cCuLsMhJeWQ/ZpsFTbE765kvVfoeSddc4nU3up4fV+fDBcfUXnbITJ+JzhkdjzOqhURjZgujxaioam4RM9yGUg==",
+              "version": "2.20.0",
+              "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.0.tgz",
+              "integrity": "sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==",
               "optional": true
             },
             "concat-map": {
@@ -6875,9 +6891,9 @@
               "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
             },
             "handlebars": {
-              "version": "4.4.2",
-              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.2.tgz",
-              "integrity": "sha512-cIv17+GhL8pHHnRJzGu2wwcthL5sb8uDKBHvZ2Dtu5s1YNt0ljbzKbamnc+gr69y7bzwQiBdr5+hOpRd5pnOdg==",
+              "version": "4.4.3",
+              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.3.tgz",
+              "integrity": "sha512-B0W4A2U1ww3q7VVthTKfh+epHx+q4mCt6iK+zEAzbMBpWQAwxCeKxEGpj/1oQTpzPXDNSOG7hmG14TsISH50yw==",
               "requires": {
                 "neo-async": "^2.6.0",
                 "optimist": "^0.6.1",
@@ -8256,17 +8272,17 @@
               "integrity": "sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ=="
             },
             "typescript": {
-              "version": "3.6.3",
-              "resolved": "https://registry.npmjs.org/typescript/-/typescript-3.6.3.tgz",
-              "integrity": "sha512-N7bceJL1CtRQ2RiG0AQME13ksR7DiuQh/QehubYcghzv20tnh+MQnQIuJddTmsbqYj+dztchykemz0zFzlvdQw=="
+              "version": "3.6.4",
+              "resolved": "https://registry.npmjs.org/typescript/-/typescript-3.6.4.tgz",
+              "integrity": "sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg=="
             },
             "uglify-js": {
-              "version": "3.6.0",
-              "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.0.tgz",
-              "integrity": "sha512-W+jrUHJr3DXKhrsS7NUVxn3zqMOFn0hL/Ei6v0anCIMoKC93TjcflTagwIHLW7SfMFfiQuktQyFVCFHGUE0+yg==",
+              "version": "3.6.2",
+              "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.2.tgz",
+              "integrity": "sha512-+gh/xFte41GPrgSMJ/oJVq15zYmqr74pY9VoM69UzMzq9NFk4YDylclb1/bhEzZSaUQjbW5RvniHeq1cdtRYjw==",
               "optional": true,
               "requires": {
-                "commander": "~2.20.0",
+                "commander": "2.20.0",
                 "source-map": "~0.6.1"
               },
               "dependencies": {
@@ -9589,17 +9605,17 @@
           "integrity": "sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ=="
         },
         "typescript": {
-          "version": "3.6.3",
-          "resolved": "https://registry.npmjs.org/typescript/-/typescript-3.6.3.tgz",
-          "integrity": "sha512-N7bceJL1CtRQ2RiG0AQME13ksR7DiuQh/QehubYcghzv20tnh+MQnQIuJddTmsbqYj+dztchykemz0zFzlvdQw=="
+          "version": "3.6.4",
+          "resolved": "https://registry.npmjs.org/typescript/-/typescript-3.6.4.tgz",
+          "integrity": "sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg=="
         },
         "uglify-js": {
-          "version": "3.6.0",
-          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.0.tgz",
-          "integrity": "sha512-W+jrUHJr3DXKhrsS7NUVxn3zqMOFn0hL/Ei6v0anCIMoKC93TjcflTagwIHLW7SfMFfiQuktQyFVCFHGUE0+yg==",
+          "version": "3.6.3",
+          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.3.tgz",
+          "integrity": "sha512-KfQUgOqTkLp2aZxrMbCuKCDGW9slFYu2A23A36Gs7sGzTLcRBDORdOi5E21KWHFIfkY8kzgi/Pr1cXCh0yIp5g==",
           "optional": true,
           "requires": {
-            "commander": "~2.20.0",
+            "commander": "~2.20.3",
             "source-map": "~0.6.1"
           },
           "dependencies": {
@@ -9751,10 +9767,10 @@
       }
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#6af9c395c34ed104e88fd62df37ea6ee54c5e2b2",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#4cc68e1b8b34e6175a71a52872ddc1f1731a6a8b",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
-        "@hapi/hoek": "^8.3.1",
+        "@hapi/hoek": "^8.3.2",
         "@hapi/joi": "^15.1.1",
         "@hapi/wreck": "^16.0.1",
         "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
@@ -9860,9 +9876,9 @@
           "integrity": "sha512-UFbtbGPjstz0eWHb+ga/GM3Z9EzqKXFWIbSOFURU0A/Gku0Bky4bCk9/h//K2Xr3IrCfjFNhMm4jyZ5dbCewGA=="
         },
         "@hapi/hoek": {
-          "version": "8.3.1",
-          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.1.tgz",
-          "integrity": "sha512-75ocgnI7HG/I01iGA3/rs0y6PXydUA/kxhFZM0HoT8NLSTnt/J8Gq03iKl4a4B/2A3iMG0ctXtxr5Hg9SGr1gw=="
+          "version": "8.3.2",
+          "resolved": "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.3.2.tgz",
+          "integrity": "sha512-NP5SG4bzix+EtSMtcudp8TvI0lB46mXNo8uFpTDw6tqxGx4z5yx+giIunEFA0Z7oUO4DuWrOJV9xqR2tJVEdyA=="
         },
         "@hapi/joi": {
           "version": "15.1.1",
