@@ -6,25 +6,36 @@ const path = require('path')
 const { uuid } = require('ivory-shared').utils
 
 class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
+  get validFileTypes () {
+    return {
+      JPG: { mimeType: 'image/jpeg' },
+      JPEG: { mimeType: 'image/jpeg' },
+      PNG: { mimeType: 'image/png' }
+    }
+  }
+
   get schema () {
+    const mimeTypes = Object.values(this.validFileTypes).map(({ mimeType }) => mimeType)
     return Joi.object({
       photograph: Joi.object({
         _data: Joi.binary().min(config.photoUploadPhotoMinKb * 1024).max(config.photoUploadPhotoMaxMb * 1024 * 1024), // Check the file data buffer size (the important one)
         hapi: Joi.object({
-          filename: Joi.string().required(), // Check a filename is there to get the extension from
           headers: Joi.object({
-            'content-type': Joi.string().required() // Check the content-type is set, so we can set it in S3
-          }).unknown(true)
+            'content-type': Joi.string().valid(...mimeTypes).required() // Check the content-type is set, so we can set it in S3
+          }).unknown(true),
+          filename: Joi.string().required() // Check a filename is there to get the extension from
         }).unknown(true)
       }).unknown(true)
     })
   }
 
   get errorMessages () {
+    const fileTypes = Object.keys((this.validFileTypes)).join(', ')
     return {
       photograph: {
         'any.empty': 'You must add a photo',
         'any.required': 'You must add a photo',
+        'any.allowOnly': `The selected file must be a ${fileTypes.replace(/,\s([^,]+)$/, ' or $1')}`,
         'binary.min': `The selected file must be bigger than ${config.photoUploadPhotoMinKb}KB`,
         'binary.max': `The selected file must be smaller than ${config.photoUploadPhotoMaxMb}MB`
       }
