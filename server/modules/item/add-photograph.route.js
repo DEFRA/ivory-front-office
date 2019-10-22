@@ -9,13 +9,13 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
   get schema () {
     return Joi.object({
       photograph: Joi.object({
+        _data: Joi.binary().min(config.photoUploadPhotoMinKb * 1024).max(config.photoUploadPhotoMaxMb * 1024 * 1024), // Check the file data buffer size (the important one)
         hapi: Joi.object({
           filename: Joi.string().required(), // Check a filename is there to get the extension from
           headers: Joi.object({
             'content-type': Joi.string().required() // Check the content-type is set, so we can set it in S3
           }).unknown(true)
-        }).unknown(true),
-        _data: Joi.binary().min(1).max(config.photoUploadPhotoMaxMb * 1024 * 1024) // Check the file data buffer size (the important one)
+        }).unknown(true)
       }).unknown(true)
     })
   }
@@ -23,9 +23,9 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
   get errorMessages () {
     return {
       photograph: {
-        'any.empty': 'Select a photograph',
-        'any.required': 'Select a photograph',
-        'binary.min': 'Select a photograph',
+        'any.empty': 'You must add a photo',
+        'any.required': 'You must add a photo',
+        'binary.min': `The selected file must be bigger than ${config.photoUploadPhotoMinKb}KB`,
         'binary.max': `The selected file must be smaller than ${config.photoUploadPhotoMaxMb}MB`
       }
     }

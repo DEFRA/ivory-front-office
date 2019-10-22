@@ -26,7 +26,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when who owns the item has not been selected', async ({ context }) => {
       return routesHelper.expectValidationErrors(context, [
-        { field: 'dealingIntent', message: 'Select what you plan to do with the item' }
+        { field: 'dealingIntent', message: 'Select if you want to sell or hire it' }
       ])
     })
 

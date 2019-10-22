@@ -44,7 +44,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       request.payload['item-description'] = ''
       return routesHelper.expectValidationErrors(context, [
-        { field: 'item-description', message: 'Enter a description of the item' }
+        { field: 'item-description', message: 'Enter the item\'s description' }
       ])
     })
 
@@ -52,7 +52,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       request.payload['item-description'] = ' '
       return routesHelper.expectValidationErrors(context, [
-        { field: 'item-description', message: 'Enter a description of the item' }
+        { field: 'item-description', message: 'Enter the item\'s description' }
       ])
     })
 

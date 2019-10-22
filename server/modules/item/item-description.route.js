@@ -13,8 +13,8 @@ class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
   get errorMessages () {
     return {
       'item-description': {
-        'any.empty': 'Enter a description of the item',
-        'string.max': `Enter a description of the item in less than ${this.maxFreeTextLength} characters`
+        'any.empty': 'Enter the item\'s description',
+        'string.max': `The description must be ${this.maxFreeTextLength} characters or fewer`
       }
     }
   }
