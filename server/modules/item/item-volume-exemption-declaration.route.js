@@ -13,6 +13,18 @@ class ItemVolumeExemptionDeclarationHandlers extends require('ivory-common-modul
     return 'volumeExemptionDeclaration'
   }
 
+  async errorMessages (request) {
+    const errorMessages = await super.errorMessages(request)
+    const reference = await this.reference(request)
+    const { shortName } = reference
+    if (shortName !== 'portrait-miniature-pre-1918') {
+      Object.entries(errorMessages.declaration).forEach(([type, message]) => {
+        errorMessages.declaration[type] = `${message} by volume`
+      })
+    }
+    return errorMessages
+  }
+
   // Overrides parent class getPageHeading
   async getPageHeading (request) {
     const reference = await this.reference(request)
@@ -22,15 +34,10 @@ class ItemVolumeExemptionDeclarationHandlers extends require('ivory-common-modul
   // Overrides parent class getPageHeading
   getDeclarationLabel (reference) {
     const { shortName, volumeExemptionDeclaration } = reference
-    switch (shortName) {
-      case 'pre-1947-less-than-10-percent':
-      case 'musical-pre-1975-less-than-20-percent':
-        return `I declare ${volumeExemptionDeclaration} by volume`
-      case 'portrait-miniature-pre-1918':
-        return `I declare ${volumeExemptionDeclaration}`
-      default:
-        throw new Error('Invalid volume exception declaration')
+    if (shortName !== 'portrait-miniature-pre-1918') {
+      return `I declare ${volumeExemptionDeclaration} by volume`
     }
+    return `I declare ${volumeExemptionDeclaration}`
   }
 
   get description () {

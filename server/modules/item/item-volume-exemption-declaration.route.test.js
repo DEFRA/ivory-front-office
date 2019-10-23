@@ -34,8 +34,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when the declaration check box has not been selected', async ({ context }) => {
       return routesHelper.expectValidationErrors(context, [
-        { field: 'declaration', message: `You must declare ${volumeExemptionDeclaration}` },
-        { field: 'description', message: `You must explain how you know ${volumeExemptionDeclaration}` }
+        { field: 'declaration', message: `Select if you declare ${volumeExemptionDeclaration}` },
+        { field: 'description', message: 'Enter an explanation' }
       ])
     })
 
