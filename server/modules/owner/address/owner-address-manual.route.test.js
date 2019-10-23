@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
-const url = '/owner-full-address'
+const url = '/owner-address-full'
 const pageHeading = 'Owner\'s address'
 
 lab.experiment(TestHelper.getFile(__filename), () => {

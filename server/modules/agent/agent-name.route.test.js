@@ -41,7 +41,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request } = context
       const fullName = 'James Bond'
       request.payload['full-name'] = fullName
-      await routesHelper.expectRedirection(context, '/agent-full-address')
+      await routesHelper.expectRedirection(context, '/agent-address-full')
       Code.expect(TestHelper.getCache(context, 'Agent').fullName).to.equal(fullName)
     })
   })

@@ -1,13 +1,10 @@
 const { mixin } = require('ivory-shared')
+const { getRoutes } = require('../../../flow')
+
 class AgentAddressSelectHandlers extends mixin(require('ivory-common-modules').address.select.handlers, require('./agent-address-mixin')) {}
 
 const handlers = new AgentAddressSelectHandlers()
 
-module.exports = handlers.routes({
-  path: handlers.selectAddressLink,
-  app: {
-    pageHeading: 'Your address',
-    view: 'common/address-select',
-    nextPath: '/agent-email'
-  }
-})
+const routes = getRoutes.bind(handlers)('agent-address-select')
+
+module.exports = handlers.routes(routes)

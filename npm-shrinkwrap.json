@@ -1054,7 +1054,6 @@
       "version": "1.0.10",
       "resolved": "https://registry.npmjs.org/argparse/-/argparse-1.0.10.tgz",
       "integrity": "sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==",
-      "dev": true,
       "requires": {
         "sprintf-js": "~1.0.2"
       }
@@ -1171,9 +1170,9 @@
       "optional": true
     },
     "aws-sdk": {
-      "version": "2.553.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.553.0.tgz",
-      "integrity": "sha512-tcITF/3ijBumvP13Qrq/VB1eRWW6szKF0xVwZ/ch0MGkaEiTQ9n3zNRPtQc1drllsVEm5u5aXp3inoi5zmq0xg==",
+      "version": "2.554.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.554.0.tgz",
+      "integrity": "sha512-23EQhz4pCRwzCRRc40deQgoO2ddCT4ylfoVPAuQKOQA8SZqMCWYGkntHjtNWVMd5zIJzHYt26qo8s8zsorc7Rg==",
       "requires": {
         "buffer": "4.9.1",
         "events": "1.1.1",
@@ -2485,8 +2484,7 @@
     "esprima": {
       "version": "4.0.1",
       "resolved": "https://registry.npmjs.org/esprima/-/esprima-4.0.1.tgz",
-      "integrity": "sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==",
-      "dev": true
+      "integrity": "sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A=="
     },
     "esquery": {
       "version": "1.0.1",
@@ -12602,7 +12600,6 @@
       "version": "3.13.1",
       "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.13.1.tgz",
       "integrity": "sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==",
-      "dev": true,
       "requires": {
         "argparse": "^1.0.7",
         "esprima": "^4.0.0"
@@ -14504,8 +14501,7 @@
     "sprintf-js": {
       "version": "1.0.3",
       "resolved": "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.0.3.tgz",
-      "integrity": "sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=",
-      "dev": true
+      "integrity": "sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw="
     },
     "sshpk": {
       "version": "1.16.1",

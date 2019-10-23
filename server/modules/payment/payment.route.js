@@ -2,6 +2,7 @@ const { utils, Payment: PaymentAPI } = require('ivory-shared')
 const { logger } = require('defra-logging-facade')
 const { Registration, Payment } = require('../../lib/cache')
 const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = require('../../config')
+const { getRoutes } = require('../../flow')
 
 class PaymentHandlers extends require('ivory-common-modules').handlers {
   async handleGet (request, h, errors) {
@@ -30,13 +31,14 @@ class PaymentHandlers extends require('ivory-common-modules').handlers {
       return h.redirect(result._links.next_url.href)
     }
   }
+
+  paymentEnabled () {
+    return paymentEnabled
+  }
 }
 
 const handlers = new PaymentHandlers()
 
-module.exports = handlers.routes({
-  path: '/payment',
-  app: {
-    tags: ['always']
-  }
-})
+const routes = getRoutes.bind(handlers)('payment')
+
+module.exports = handlers.routes(routes)

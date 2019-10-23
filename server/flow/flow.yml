@@ -1,0 +1,233 @@
+  # =====================
+  # ===== Main flow =====
+  # =====================
+
+  home:
+    path: "/"
+    next: item-type
+    tags:
+      - always
+
+  who-owns-item:
+    path: "/who-owns-item"
+    pageHeading: Who owns the item?
+    view: common/select-one-option
+    isQuestionPage: true
+    next:
+      query: isOwner
+      result:
+        'true': owner-name
+        'false': agent-name
+
+  dealing-intent:
+    path: "/dealing-intent"
+    pageHeading: What do you plan to do with the item?
+    view: common/select-one-option
+    isQuestionPage: true
+    next: check-your-answers
+
+  check-your-answers:
+    path: "/check-your-answers"
+    pageHeading: Check your answers
+    view: check-your-answers/check-your-answers
+    next: payment
+
+  restore:
+    path: "/restore/{id}"
+    next: check-your-answers
+    tags:
+      - always
+
+  confirmation-notify:
+    path: "/confirmation-notify"
+    next: confirmation
+    tags:
+      - submitted
+
+  confirmation:
+    path: "/confirmation"
+    pageHeading: Registration complete
+    view: confirmation/confirmation
+    tags:
+      - submitted
+
+
+  # =====================
+  # ===== Item flow =====
+  # =====================
+
+  item-type:
+    path: "/item-type"
+    pageHeading: What type of item are you registering?
+    view: common/select-one-option
+    isQuestionPage: true
+    next: add-photograph
+
+  item-description:
+    path: "/item-description"
+    pageHeading: Describe the item
+    view: item/item-description
+    isQuestionPage: true
+    next:
+      query: requiresAgeExemptionDeclaration
+      result:
+        'true': item-age-exemption-declaration
+        'false': who-owns-item
+
+  item-age-exemption-declaration:
+    path: "/item-age-exemption-declaration"
+    view: common/declaration
+    isQuestionPage: true
+    next: item-volume-exemption-declaration
+
+  item-volume-exemption-declaration:
+    path: "/item-volume-exemption-declaration"
+    view: common/declaration
+    isQuestionPage: true
+    next: who-owns-item
+
+
+  # =====================
+  # ==== Photos flow ====
+  # =====================
+
+  add-photograph:
+    path: "/add-photograph"
+    pageHeading: Add a photo
+    view: item/add-photograph
+    isQuestionPage: true
+    next: check-photograph
+
+  check-photograph:
+    path: "/check-photograph"
+    pageHeading: This is your photo
+    view: item/check-photograph
+    next: item-description
+
+
+  # ======================
+  # ===== Agent flow =====
+  # ======================
+
+  agent-name:
+    path: "/agent-name"
+    pageHeading: Contact name
+    view: common/person-name
+    next:
+      query: lookUpEnabled
+      result:
+        'true': agent-address-find
+        'false': agent-address-full
+
+  agent-address-find:
+    path: "/agent-address"
+    pageHeading: Your address
+    view: common/address-find
+    next: agent-address-select
+
+  agent-address-select:
+    path: "/agent-address-select"
+    pageHeading: Your address
+    view: common/address-select
+    next: agent-email
+
+  agent-address-full:
+    path: "/agent-address-full"
+    pageHeading: Your address
+    view: common/address-manual
+    next: agent-email
+
+  agent-email:
+    path: "/agent-email"
+    pageHeading: Your email address
+    view: common/person-email
+    isQuestionPage: true
+    next: owner-name
+
+
+  # ======================
+  # ===== Owner flow =====
+  # ======================
+
+  owner-name:
+    path: "/owner-name"
+    view: common/person-name
+    pageHeading:
+      query: isOwner
+      result:
+        'true': Your name
+        'false': Owner's name
+    next:
+      query: lookUpEnabled
+      result:
+        'true': owner-address-find
+        'false': owner-address-full
+
+  owner-address-find:
+    path: "/owner-address"
+    view: common/address-find
+    pageHeading:
+      query: isOwner
+      result:
+        'true': Your address
+        'false': Owner's address
+    next: owner-address-select
+
+  owner-address-select:
+    path: "/owner-address-select"
+    view: common/address-select
+    pageHeading:
+      query: isOwner
+      result:
+        'true': Your address
+        'false': Owner's address
+    next:
+      query: isOwner
+      result:
+        'true': owner-email
+        'false': dealing-intent
+
+  owner-address-full:
+    path: "/owner-address-full"
+    view: common/address-manual
+    pageHeading:
+      query: isOwner
+      result:
+        'true': Your address
+        'false': Owner's address
+    next:
+      query: isOwner
+      result:
+        'true': owner-email
+        'false': dealing-intent
+
+  owner-email:
+    path: "/owner-email"
+    pageHeading:
+      query: isOwner
+      result:
+        'true': Your email address
+        'false': Owner's email address
+    view: common/person-email
+    isQuestionPage: true
+    next: dealing-intent
+
+
+  # ======================
+  # ==== Payment flow ====
+  # ======================
+
+  payment:
+    path: "/payment"
+    next:
+      query: paymentEnabled
+      result:
+        'false': confirmation
+    tags:
+      - always
+
+  check-payment:
+    path: "/check-payment/{id}"
+    next: confirmation-notify
+    tags:
+      - always

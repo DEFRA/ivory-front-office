@@ -1,6 +1,7 @@
 const { logger } = require('defra-logging-facade')
 const { Registration, Agent, Owner } = require('../../lib/cache')
 const { notifyEnabled, notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId } = require('../../config')
+const { getRoutes } = require('../../flow')
 
 const NotifyClient = require('notifications-node-client').NotifyClient
 
@@ -45,15 +46,14 @@ class ConfirmationHandlers extends require('ivory-common-modules').handlers {
         await Registration.set(request, registration)
       }
     }
-    return h.redirect('/confirmation')
+    const nextPath = await this.getNextPath(request)
+
+    return h.redirect(nextPath)
   }
 }
 
 const handlers = new ConfirmationHandlers()
 
-module.exports = handlers.routes({
-  path: '/confirmation-notify',
-  app: {
-    tags: ['submitted']
-  }
-})
+const routes = getRoutes.bind(handlers)('confirmation-notify')
+
+module.exports = handlers.routes(routes)

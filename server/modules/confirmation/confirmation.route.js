@@ -1,4 +1,5 @@
 const { Registration } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
 
 class ConfirmationHandlers extends require('ivory-common-modules').handlers {
   // Overrides parent class handleGet
@@ -11,11 +12,6 @@ class ConfirmationHandlers extends require('ivory-common-modules').handlers {
 
 const handlers = new ConfirmationHandlers()
 
-module.exports = handlers.routes({
-  path: '/confirmation',
-  app: {
-    pageHeading: 'Registration complete',
-    view: 'confirmation/confirmation',
-    tags: ['submitted']
-  }
-})
+const routes = getRoutes.bind(handlers)('confirmation')
+
+module.exports = handlers.routes(routes)

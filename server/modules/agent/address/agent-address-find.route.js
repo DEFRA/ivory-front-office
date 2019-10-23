@@ -1,13 +1,9 @@
 const { mixin } = require('ivory-shared')
+const { getRoutes } = require('../../../flow')
 class AgentAddressFindHandlers extends mixin(require('ivory-common-modules').address.find.handlers, require('./agent-address-mixin')) {}
 
 const handlers = new AgentAddressFindHandlers()
 
-module.exports = handlers.routes({
-  path: handlers.findAddressLink,
-  app: {
-    pageHeading: 'Your address',
-    view: 'common/address-find'
-    // nextPath is derived in the getNextPath method in the address-find-handler
-  }
-})
+const routes = getRoutes.bind(handlers)('agent-address-find')
+
+module.exports = handlers.routes(routes)
