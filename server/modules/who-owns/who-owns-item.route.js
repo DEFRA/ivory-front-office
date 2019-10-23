@@ -11,7 +11,7 @@ class WhoOwnsHandlers extends require('ivory-common-modules').option.single.hand
   }
 
   get selectError () {
-    return 'Select who owns the item'
+    return 'Select if you own it or someone else owns it'
   }
 
   async isOwner (request) {

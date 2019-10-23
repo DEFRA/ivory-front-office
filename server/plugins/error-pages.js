@@ -2,10 +2,20 @@
 * Add an `onPreResponse` listener to return error pages
 */
 
+const Joi = require('@hapi/joi')
 const { logger } = require('defra-logging-facade')
 const { Registration } = require('../lib/cache')
 
-// TODO: Handle finding no cookie is present
+// Creates a custom joi validation error structure
+function createError (request, h, field, type) {
+  // Generate an example error structure
+  const errors = Joi.validate({ [field]: true }, { [field]: Joi.string() })
+  const [error] = errors.error.details
+  // Replace contents with error we want to create
+  error.message = `"${field}" ${request.response.message}`
+  error.type = type
+  return errors.error
+}
 
 module.exports = {
   plugin: {
@@ -27,6 +37,10 @@ module.exports = {
               // Set the registration number in the cache only to prevent back button forgetting registration has already been sent
               await Registration.set(request, { registrationNumber: 'DUMMY' }, false)
               return h.view(`error-handling/${statusCode}`).code(statusCode)
+            case 413: {
+              const error = createError(request, h, 'photograph', 'binary.max')
+              return request.route.settings.validate.failAction(request, h, error)
+            }
             default:
               request.log('error', {
                 statusCode: statusCode,
