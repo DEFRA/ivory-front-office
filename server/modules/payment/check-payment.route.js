@@ -3,6 +3,7 @@ const { utils, Payment: PaymentAPI } = require('ivory-shared')
 const cache = require('../../lib/cache')
 const { Payment, Registration } = cache
 const { paymentUrl, paymentKey } = require('../../config')
+const { getRoutes } = require('../../flow')
 
 class CheckPaymentHandlers extends require('ivory-common-modules').handlers {
   async handleGet (request, h) {
@@ -42,9 +43,6 @@ class CheckPaymentHandlers extends require('ivory-common-modules').handlers {
 
 const handlers = new CheckPaymentHandlers()
 
-module.exports = handlers.routes({
-  path: '/check-payment/{id}',
-  app: {
-    tags: ['always']
-  }
-})
+const routes = getRoutes.bind(handlers)('check-payment')
+
+module.exports = handlers.routes(routes)

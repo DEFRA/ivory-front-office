@@ -1,5 +1,7 @@
 const { Owner } = require('../../lib/cache')
 const { mixin } = require('ivory-shared')
+const { getRoutes } = require('../../flow')
+const { addressLookUpEnabled } = require('../../config')
 
 class OwnerNameHandlers extends mixin(require('../common/person/person-name.handlers'), require('./owner-mixin')) {
   get Person () {
@@ -30,22 +32,13 @@ class OwnerNameHandlers extends mixin(require('../common/person/person-name.hand
     return 'Owner\'s full name'
   }
 
-  // Overrides parent class getPageHeading
-  async getPageHeading (request) {
-    if (await this.isOwner(request)) {
-      return 'Your name'
-    }
-    return 'Owner\'s name'
+  lookUpEnabled () {
+    return addressLookUpEnabled
   }
 }
 
 const handlers = new OwnerNameHandlers()
 
-module.exports = handlers.routes({
-  path: '/owner-name',
-  app: {
-    // pageHeading is derived in the getPageHeading method above
-    view: 'common/person-name',
-    nextPath: '/owner-full-address'
-  }
-})
+const routes = getRoutes.bind(handlers)('owner-name')
+
+module.exports = handlers.routes(routes)

@@ -1,4 +1,5 @@
 const { Item } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
 
 class ItemAgeExemptionDeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
   get Model () {
@@ -26,12 +27,6 @@ class ItemAgeExemptionDeclarationHandlers extends require('ivory-common-modules'
 
 const handlers = new ItemAgeExemptionDeclarationHandlers()
 
-module.exports = handlers.routes({
-  path: '/item-age-exemption-declaration',
-  app: {
-    // pageHeading is derived in the getPageHeading method above
-    view: 'common/declaration',
-    nextPath: '/item-volume-exemption-declaration',
-    isQuestionPage: true
-  }
-})
+const routes = getRoutes.bind(handlers)('item-age-exemption-declaration')
+
+module.exports = handlers.routes(routes)

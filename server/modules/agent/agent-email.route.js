@@ -1,4 +1,5 @@
 const { Agent } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
 
 class AgentNameHandlers extends require('../common/person/person-email.handlers') {
   get Person () {
@@ -12,12 +13,6 @@ class AgentNameHandlers extends require('../common/person/person-email.handlers'
 
 const handlers = new AgentNameHandlers()
 
-module.exports = handlers.routes({
-  path: '/agent-email',
-  app: {
-    pageHeading: 'Your email address',
-    view: 'common/person-email',
-    nextPath: '/owner-name',
-    isQuestionPage: true
-  }
-})
+const routes = getRoutes.bind(handlers)('agent-email')
+
+module.exports = handlers.routes(routes)

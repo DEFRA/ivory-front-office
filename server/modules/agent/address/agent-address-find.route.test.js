@@ -55,7 +55,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('redirects to manual address', async ({ context }) => {
       const { sandbox } = context
       sandbox.stub(FindAddressHandlers.prototype, 'lookUpEnabled').get(() => false)
-      await routesHelper.expectRedirection(context, '/agent-full-address')
+      await routesHelper.expectRedirection(context, '/agent-address-full')
     })
   })
 

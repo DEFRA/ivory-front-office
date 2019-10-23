@@ -2,6 +2,7 @@ const Joi = require('@hapi/joi')
 const { Item } = require('../../lib/cache')
 const { utils } = require('ivory-shared')
 const config = require('../../config')
+const { getRoutes } = require('../../flow')
 
 class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
   get schema () {
@@ -25,15 +26,6 @@ class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
     return !!utils.getNestedVal(reference, 'ageExemptionDeclaration')
   }
 
-  // Overrides parent class getNextPath
-  async getNextPath (request) {
-    if (await this.requiresAgeExemptionDeclaration(request)) {
-      return '/item-age-exemption-declaration'
-    } else {
-      return '/who-owns-item'
-    }
-  }
-
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { description = '' } = await Item.get(request) || {}
@@ -54,13 +46,6 @@ class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
 
 const handlers = new ItemDescriptionHandlers()
 
-module.exports = handlers.routes({
-  path: '/item-description',
-  app: {
-    pageHeading: 'Describe the item',
-    view: 'item/item-description',
-    // nextPath is derived in the getNextPath method above
-    nextPath: '/item-age-exemption-declaration',
-    isQuestionPage: true
-  }
-})
+const routes = getRoutes.bind(handlers)('item-description')
+
+module.exports = handlers.routes(routes)

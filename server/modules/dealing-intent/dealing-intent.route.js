@@ -1,4 +1,5 @@
 const { Registration } = require('../../lib/cache')
+const { getRoutes } = require('../../flow')
 
 class DealingIntentHandlers extends require('ivory-common-modules').option.single.handlers {
   get Model () {
@@ -16,12 +17,6 @@ class DealingIntentHandlers extends require('ivory-common-modules').option.singl
 
 const handlers = new DealingIntentHandlers()
 
-module.exports = handlers.routes({
-  path: '/dealing-intent',
-  app: {
-    pageHeading: 'What do you plan to do with the item?',
-    view: 'common/select-one-option',
-    nextPath: '/check-your-answers',
-    isQuestionPage: true
-  }
-})
+const routes = getRoutes.bind(handlers)('dealing-intent')
+
+module.exports = handlers.routes(routes)
