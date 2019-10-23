@@ -16,6 +16,7 @@ module.exports = {
 
       const photoStream = await photos.getPhotoStream(key)
       return h.response(photoStream)
-    }
+    },
+    tags: ['always']
   }
 }
