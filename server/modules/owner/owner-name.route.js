@@ -29,7 +29,7 @@ class OwnerNameHandlers extends mixin(require('../common/person/person-name.hand
     if (await this.isOwner(request)) {
       return 'Enter your full name'
     }
-    return 'Owner\'s full name'
+    return 'Enter the owner\'s full name'
   }
 
   lookUpEnabled () {
