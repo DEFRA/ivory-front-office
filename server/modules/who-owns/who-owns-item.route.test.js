@@ -26,7 +26,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('fails validation when who owns the item has not been selected', async ({ context }) => {
       return routesHelper.expectValidationErrors(context, [
-        { field: 'ownerType', message: 'Select who owns the item' }
+        { field: 'ownerType', message: 'Select if you own it or someone else owns it' }
       ])
     })
 
