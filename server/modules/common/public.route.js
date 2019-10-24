@@ -2,7 +2,7 @@ module.exports = [{
   method: 'GET',
   path: '/assets/all.js',
   handler: {
-    file: 'node_modules/govuk-frontend/all.js'
+    file: 'node_modules/govuk-frontend/govuk/all.js'
   },
   options: {
     tags: ['asset', 'always']
@@ -15,7 +15,7 @@ module.exports = [{
       path: [
         'public/static',
         'public/build',
-        'node_modules/govuk-frontend/assets'
+        'node_modules/govuk-frontend/govuk/assets'
       ]
     }
   },
