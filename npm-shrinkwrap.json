@@ -1883,7 +1883,7 @@
     },
     "defra-logging-facade": {
       "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-      "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
+      "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
       "requires": {
         "airbrake-js": "~1.4.9",
         "lodash.clonedeep": "~4.5.0",
@@ -4203,13 +4203,13 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#870d513650b896b29ca4035ae13aca1cc040dfc4",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#354b897eae5e46e48233e6a50d6c9521d23b2f97",
       "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.3.2",
         "@hapi/joi": "^15.1.1",
         "@hapi/wreck": "^16.0.1",
-        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
+        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
         "ivory-shared": "git+https://github.com/DEFRA/ivory-shared.git#master",
         "lodash": "^4.17.15"
       },
@@ -4835,7 +4835,7 @@
         },
         "defra-logging-facade": {
           "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
+          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
           "requires": {
             "airbrake-js": "~1.4.9",
             "lodash.clonedeep": "~4.5.0",
@@ -5687,13 +5687,13 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#4cc68e1b8b34e6175a71a52872ddc1f1731a6a8b",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#42b989ea25ad0b9dc531125e5e29f3c70208fac2",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
             "@hapi/hoek": "^8.3.2",
             "@hapi/joi": "^15.1.1",
             "@hapi/wreck": "^16.0.1",
-            "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
+            "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
             "lodash": "^4.17.15"
           },
           "dependencies": {
@@ -6318,7 +6318,7 @@
             },
             "defra-logging-facade": {
               "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-              "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
+              "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
               "requires": {
                 "airbrake-js": "~1.4.9",
                 "lodash.clonedeep": "~4.5.0",
@@ -9836,13 +9836,13 @@
       }
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#4cc68e1b8b34e6175a71a52872ddc1f1731a6a8b",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#42b989ea25ad0b9dc531125e5e29f3c70208fac2",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "@hapi/hoek": "^8.3.2",
         "@hapi/joi": "^15.1.1",
         "@hapi/wreck": "^16.0.1",
-        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
+        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
         "lodash": "^4.17.15"
       },
       "dependencies": {
@@ -10467,7 +10467,7 @@
         },
         "defra-logging-facade": {
           "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
+          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
           "requires": {
             "airbrake-js": "~1.4.9",
             "lodash.clonedeep": "~4.5.0",
