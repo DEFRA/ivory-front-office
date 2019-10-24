@@ -1170,9 +1170,9 @@
       "optional": true
     },
     "aws-sdk": {
-      "version": "2.554.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.554.0.tgz",
-      "integrity": "sha512-23EQhz4pCRwzCRRc40deQgoO2ddCT4ylfoVPAuQKOQA8SZqMCWYGkntHjtNWVMd5zIJzHYt26qo8s8zsorc7Rg==",
+      "version": "2.555.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.555.0.tgz",
+      "integrity": "sha512-2zn2B3f7Gtv5q3DnR2vJBj9VQgqgu5s4u5x92yWsr3Sxoljp8L/j0SPdMa5YECMHNpCKEguSGIn8d0CxutGOnA==",
       "requires": {
         "buffer": "4.9.1",
         "events": "1.1.1",
@@ -3602,9 +3602,9 @@
       }
     },
     "govuk-frontend": {
-      "version": "2.13.0",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-2.13.0.tgz",
-      "integrity": "sha512-6XDtTt5plSrPQvPgLFN4LCtb9ULuqoXCgkHy5c7XE/70/sVm47RPbLR11tYGPcmV8cOApBhW0wL8y8ryspHfpw=="
+      "version": "3.3.0",
+      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-3.3.0.tgz",
+      "integrity": "sha512-ncOGTAV6mzz1CPBlr/UGETiG3IO6P3b0CvSI0wxBz7Uo0A/6jttLoxkvuYXju2oNA2yqRh2NjD1zJUOP3Q32CQ=="
     },
     "graceful-fs": {
       "version": "4.2.2",
@@ -13223,9 +13223,9 @@
       }
     },
     "node-sass": {
-      "version": "4.12.0",
-      "resolved": "https://registry.npmjs.org/node-sass/-/node-sass-4.12.0.tgz",
-      "integrity": "sha512-A1Iv4oN+Iel6EPv77/HddXErL2a+gZ4uBeZUy+a8O35CFYTXhgA8MgLCWBtwpGZdCvTvQ9d+bQxX/QC36GDPpQ==",
+      "version": "4.13.0",
+      "resolved": "https://registry.npmjs.org/node-sass/-/node-sass-4.13.0.tgz",
+      "integrity": "sha512-W1XBrvoJ1dy7VsvTAS5q1V45lREbTlZQqFbiHb3R3OTTCma0XBtuG6xZ6Z4506nR4lmHPTqVRwxT6KgtWC97CA==",
       "requires": {
         "async-foreach": "^0.1.3",
         "chalk": "^1.1.1",
@@ -13234,7 +13234,7 @@
         "get-stdin": "^4.0.1",
         "glob": "^7.0.3",
         "in-publish": "^2.0.0",
-        "lodash": "^4.17.11",
+        "lodash": "^4.17.15",
         "meow": "^3.7.0",
         "mkdirp": "^0.5.1",
         "nan": "^2.13.2",
