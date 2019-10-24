@@ -7,6 +7,7 @@ const S3 = require('aws-sdk/clients/s3')
 const config = require('../../config')
 const Photos = require('./photos')
 const Readable = require('stream').Readable
+const fs = require('fs')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const photosConfig = {
@@ -69,6 +70,20 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const photos = new Photos(photosConfig)
       const result = await photos.getPhotoStream(filename)
       Code.expect(result).to.be.an.instanceof(Readable)
+    })
+  })
+
+  // resizeImage() function
+  lab.experiment('resizeImage', () => {
+    lab.test('resizes a photo', async ({ context }) => {
+      // Get readableStream of test photo
+      const photo = `${__dirname}/photos.test.examplePhoto.jpg`
+      const photoReadStream = await fs.createReadStream(photo)
+      // Resize image
+      const photos = new Photos(photosConfig)
+      const resizedPhotoReadStream = await photos.resizeImage(photoReadStream, 300, 300)
+      // Ideally this should be more thorough and check for image width, height, content-type and file extension.  But this is proving tricky without writing the stream to file
+      Code.expect(resizedPhotoReadStream).to.be.an.instanceof(Readable)
     })
   })
 })

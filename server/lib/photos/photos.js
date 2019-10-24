@@ -4,6 +4,7 @@ const S3 = require('aws-sdk/clients/s3') // The s3 service (rather than the whol
 const config = require('../../config')
 const stream = require('stream')
 const fs = require('fs')
+const sharp = require('sharp')
 
 module.exports = class Photos {
   constructor (config) {
@@ -85,5 +86,16 @@ module.exports = class Photos {
   // This is in a separate function so we can stub this function out.  The getObject function appears a dynamically generated function so difficult to stub.
   async createReadStream (params) {
     return this.s3.getObject(params).createReadStream()
+  }
+
+  async resizeImage (readableStream, width, height) {
+    const imageResizer = sharp()
+      .resize({
+        width: width,
+        height: height,
+        fit: sharp.fit.inside, // Preserving aspect ratio, resize the image to be as large as possible while ensuring its dimensions are less than or equal to both those specified
+        withoutEnlargement: true // Do not enlarge if the width or height are already less than the specified dimensions
+      })
+    return readableStream.pipe(imageResizer)
   }
 }
