@@ -1170,9 +1170,9 @@
       "optional": true
     },
     "aws-sdk": {
-      "version": "2.555.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.555.0.tgz",
-      "integrity": "sha512-2zn2B3f7Gtv5q3DnR2vJBj9VQgqgu5s4u5x92yWsr3Sxoljp8L/j0SPdMa5YECMHNpCKEguSGIn8d0CxutGOnA==",
+      "version": "2.556.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.556.0.tgz",
+      "integrity": "sha512-qILMUNl/a7FYWU67Y24OGsXFhyDHM4qYdplMR2tps/g17pN9bEQ5ijxvGzW2T8VVyAsTanmn+dFyl/CH38pC5Q==",
       "requires": {
         "buffer": "4.9.1",
         "events": "1.1.1",
@@ -4203,7 +4203,7 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#354b897eae5e46e48233e6a50d6c9521d23b2f97",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#5e7906c8eb393426d29e6b7faf2ee25eb8549c1f",
       "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.3.2",
@@ -5687,7 +5687,7 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#42b989ea25ad0b9dc531125e5e29f3c70208fac2",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#76c4c07bb20c70a1eff2c99fe0b70c98a0de8be8",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
             "@hapi/hoek": "^8.3.2",
@@ -9836,7 +9836,7 @@
       }
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#42b989ea25ad0b9dc531125e5e29f3c70208fac2",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#76c4c07bb20c70a1eff2c99fe0b70c98a0de8be8",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "@hapi/hoek": "^8.3.2",
