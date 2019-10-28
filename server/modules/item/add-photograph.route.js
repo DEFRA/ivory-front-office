@@ -3,7 +3,7 @@ const { Item } = require('../../lib/cache')
 const config = require('../../config')
 const Photos = require('../../lib/photos/photos')
 const path = require('path')
-const { uuid } = require('ivory-shared').utils
+const { uuid, setNestedVal, getNestedVal } = require('ivory-shared').utils
 const { getRoutes } = require('../../flow')
 
 class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
@@ -45,7 +45,12 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
-    return super.handleGet(request, h, errors)
+    const result = await super.handleGet(request, h, errors)
+    if (errors && !getNestedVal(result, 'source.context.DefraCsrfToken')) {
+      // Make sure the Csrf Token is included during a photograph upload error
+      setNestedVal(result, 'source.context.DefraCsrfToken', request.state.DefraCsrfToken)
+    }
+    return result
   }
 
   // Overrides parent class handlePost
