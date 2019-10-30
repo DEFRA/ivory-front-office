@@ -16,7 +16,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const $ = routesHelper.getDomParser(response.payload)
       const photographSrc = $('#photograph')[0].attribs.src
 
-      Code.expect(photographSrc).to.equal(`/photos/300x300/${photos[0].filename}`)
+      Code.expect(photographSrc).to.equal(`/photos/medium/${photos[0].filename}`)
     })
   })
 

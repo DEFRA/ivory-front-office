@@ -1,17 +1,27 @@
+
 const Lab = require('@hapi/lab')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/add-photograph'
 const pageHeading = 'Add a photo'
 const config = require('../../config')
+const Photos = require('../../lib/photos/photos')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
     stubCallback: ({ context }) => {
       const { sandbox } = context
+      sandbox.stub(config, 's3Enabled').value(false) // Not needed in these tests
       sandbox.stub(config, 's3Region').value('REGION')
       sandbox.stub(config, 's3ApiVersion').value('APIVERSION')
       sandbox.stub(config, 's3Bucket').value('BUCKET')
+
+      // Stub the photos.upload function here, so we can override it in later tests
+      context.sandbox.photosUploadStub = context.sandbox.stub(Photos.prototype, 'upload').value(() => {
+        return {
+          promise: async () => {}
+        }
+      })
     }
   })
 
@@ -90,6 +100,27 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
       return routesHelper.expectValidationErrors(context, [
         { field: 'photograph', message: 'The selected file must be a JPG, JPEG or PNG' }
+      ])
+    })
+
+    lab.test('fails validation when the upload fails', async ({ context }) => {
+      const { request } = context
+      request.payload = [
+        '--WebAppBoundary',
+        'Content-Disposition: form-data; name="photograph"; filename="elephant.jpg"',
+        'Content-Type: image/jpeg',
+        '',
+        'file-contents of the image'.repeat(1024 * 2),
+        '--WebAppBoundary--'
+      ].join('\r\n')
+
+      // Stub the Photos.upload() to throw an error
+      context.sandbox.photosUploadStub.value(async () => {
+        throw new Error('upload failed from stub')
+      })
+
+      return routesHelper.expectValidationErrors(context, [
+        { field: 'photograph', message: 'The selected file could not be uploaded – try again' }
       ])
     })
   })

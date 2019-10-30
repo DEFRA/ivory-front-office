@@ -38,7 +38,8 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
         'any.required': 'You must add a photo',
         'any.only': `The selected file must be a ${fileTypes.replace(/,\s([^,]+)$/, ' or $1')}`,
         'binary.min': `The selected file must be bigger than ${config.photoUploadPhotoMinKb}KB`,
-        'binary.max': `The selected file must be smaller than ${config.photoUploadPhotoMaxMb}MB`
+        'binary.max': `The selected file must be smaller than ${config.photoUploadPhotoMaxMb}MB`,
+        'custom.uploadfailed': 'The selected file could not be uploaded – try again'
       }
     }
   }
@@ -58,22 +59,35 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
     const photoPayload = request.payload.photograph
     const fileExtension = path.extname(path.basename(photoPayload.hapi.filename))
     const contentType = photoPayload.hapi.headers['content-type']
-    const photoFilename = uuid() + fileExtension
+    const filename = uuid() + fileExtension
 
-    // Upload photo
+    // Prepare upload config
     const photos = new Photos({
       region: config.s3Region,
       apiVersion: config.s3ApiVersion,
       bucket: config.s3Bucket
     })
-    const filename = await photos.uploadPhoto(photoFilename, contentType, photoPayload)
+
+    let filenameUploaded
+    try {
+      filenameUploaded = await photos.upload(filename, contentType, photoPayload)
+    } catch (err) {
+      // The upload failed, so tell the user to try again
+      // Rather than building from scratch, generate an example error structure and overwrite the type
+      console.log(`Caught error from upload in handler: ${err}`)
+      const schema = Joi.object({ photograph: Joi.string() })
+      const errors = schema.validate({ photograph: true })
+      errors.error.details[0].type = 'custom.uploadfailed' // Updating the type should pick the correct message up during failAction()
+      const error = errors.error
+      return this.failAction(request, h, error)
+    }
 
     // Handle cache
     const item = await Item.get(request) || { description: '  ' } // Had to include description of spaces so the service doesn't fail saving an empty item
     if (!item.photos) {
       item.photos = []
     }
-    const photo = { filename, rank: item.photos.length }
+    const photo = { filename: filenameUploaded, rank: item.photos.length }
     item.photos.push(photo)
     await Item.set(request, item)
 
