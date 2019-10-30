@@ -41,7 +41,7 @@
     "@hapi/vision": "^5.5.4",
     "@hapi/wreck": "^16.0.1",
     "@hapi/yar": "^9.2.1",
-    "aws-sdk": "^2.556.0",
+    "aws-sdk": "^2.559.0",
     "blipp": "^4.0.1",
     "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
     "dotenv": "^8.2.0",
@@ -59,7 +59,7 @@
     "notifications-node-client": "^4.6.0",
     "nunjucks": "3.2.0",
     "require-all": "^3.0.0",
-    "sharp": "^0.23.1"
+    "sharp": "^0.23.2"
   },
   "devDependencies": {
     "@hapi/code": "^7.0.0",
