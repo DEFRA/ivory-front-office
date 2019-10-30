@@ -1,7 +1,7 @@
 const { Agent } = require('../../lib/cache')
 const { getRoutes } = require('../../flow')
 
-class AgentNameHandlers extends require('../common/person/person-email.handlers') {
+class AgentNameHandlers extends require('ivory-common-modules').person.email.handlers {
   get Person () {
     return Agent
   }

@@ -1,7 +1,7 @@
 const { Registration } = require('../../lib/cache')
 const { getRoutes } = require('../../flow')
 
-class DealingIntentHandlers extends require('ivory-common-modules').option.single.handlers {
+class DealingIntentHandlers extends require('../common/single-option-handlers') {
   get Model () {
     return Registration
   }

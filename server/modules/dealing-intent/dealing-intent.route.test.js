@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const SingleOptionHandlers = require('ivory-common-modules').option.single.handlers
+const SingleOptionHandlers = require('../common/single-option-handlers')
 const url = '/dealing-intent'
 const pageHeading = 'What do you plan to do with the item?'
 

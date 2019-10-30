@@ -1,7 +1,7 @@
 const { Item } = require('../../lib/cache')
 const { getRoutes } = require('../../flow')
 
-class ItemAgeExemptionDeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
+class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration-handlers') {
   get Model () {
     return Item
   }

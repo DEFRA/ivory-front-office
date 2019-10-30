@@ -1,6 +1,6 @@
 const { Registration } = require('../../lib/cache')
 
-class AgentHandlers extends require('ivory-common-modules').option.single.handlers {
+class AgentHandlers extends require('../common/single-option-handlers') {
   get Model () {
     return Registration
   }

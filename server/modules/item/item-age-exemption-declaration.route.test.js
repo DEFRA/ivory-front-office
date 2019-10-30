@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const DeclarationHandlers = require('ivory-common-modules').declaration.handlers
+const DeclarationHandlers = require('../common/declaration-handlers')
 const url = '/item-age-exemption-declaration'
 const ageExemptionDeclaration = 'this is true'
 const pageHeading = `Confirm ${ageExemptionDeclaration}`
