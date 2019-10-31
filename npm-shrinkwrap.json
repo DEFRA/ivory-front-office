@@ -4203,7 +4203,7 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#e35c054c4a0ccd75845088ad8bd88e9bd8685203",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#4762382d7ce2673b8e372e437e25c9716d3b3320",
       "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
@@ -5808,7 +5808,7 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#b62d4b9695a33c5c7de570edad9309e3c97c67fa",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#ffeaba929292ab9ba043bcffd00b35b1a84b2afc",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
@@ -9957,7 +9957,7 @@
       }
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#b62d4b9695a33c5c7de570edad9309e3c97c67fa",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#ffeaba929292ab9ba043bcffd00b35b1a84b2afc",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
