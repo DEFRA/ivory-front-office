@@ -1,6 +1,6 @@
 const { Cache } = require('ivory-shared')
 
-class ExampleOneChoiceHandlers extends require('ivory-common-modules').option.single.handlers {
+class ExampleOneChoiceHandlers extends require('../common/single-option-handlers') {
   get referenceData () {
     return {
       hint: 'Hinting about this',

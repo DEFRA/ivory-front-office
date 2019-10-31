@@ -1,7 +1,7 @@
 const { Item } = require('../../lib/cache')
 const { getRoutes } = require('../../flow')
 
-class ItemTypeHandlers extends require('ivory-common-modules').option.single.handlers {
+class ItemTypeHandlers extends require('../common/single-option-handlers') {
   get Model () {
     return Item
   }

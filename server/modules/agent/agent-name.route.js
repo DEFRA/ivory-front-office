@@ -2,7 +2,7 @@ const { Agent } = require('../../lib/cache')
 const { getRoutes } = require('../../flow')
 const { addressLookUpEnabled } = require('../../config')
 
-class AgentNameHandlers extends require('../common/person/person-name.handlers') {
+class AgentNameHandlers extends require('ivory-common-modules').person.name.handlers {
   get Person () {
     return Agent
   }

@@ -1,7 +1,7 @@
 const { Item } = require('../../lib/cache')
 const { getRoutes } = require('../../flow')
 
-class ItemVolumeExemptionDeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
+class ItemVolumeExemptionDeclarationHandlers extends require('../common/declaration-handlers') {
   get Model () {
     return Item
   }

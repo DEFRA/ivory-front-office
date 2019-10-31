@@ -2,7 +2,7 @@ const { Owner } = require('../../lib/cache')
 const { mixin } = require('ivory-shared')
 const { getRoutes } = require('../../flow')
 
-class OwnerEmailHandlers extends mixin(require('../common/person/person-email.handlers'), require('./owner-mixin')) {
+class OwnerEmailHandlers extends mixin(require('ivory-common-modules').person.email.handlers, require('./owner-mixin')) {
   get Person () {
     return Owner
   }
