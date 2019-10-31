@@ -34,9 +34,9 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
     const fileTypes = Object.keys((this.validFileTypes)).join(', ')
     return {
       photograph: {
-        'any.empty': 'You must add a photo',
+        'string.empty': 'You must add a photo',
         'any.required': 'You must add a photo',
-        'any.allowOnly': `The selected file must be a ${fileTypes.replace(/,\s([^,]+)$/, ' or $1')}`,
+        'any.only': `The selected file must be a ${fileTypes.replace(/,\s([^,]+)$/, ' or $1')}`,
         'binary.min': `The selected file must be bigger than ${config.photoUploadPhotoMinKb}KB`,
         'binary.max': `The selected file must be smaller than ${config.photoUploadPhotoMaxMb}MB`
       }

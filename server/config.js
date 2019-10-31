@@ -15,7 +15,7 @@ dotenv.config() // Load variables from .env before any other code (especially be
 const DEFAULT_PORT = 3000
 
 // Define the config schema
-const schema = {
+const schema = Joi.object({
   port: Joi.number().default(DEFAULT_PORT),
   env: Joi.string().valid(DEVELOPMENT, TEST, PRODUCTION).default(DEVELOPMENT),
   serviceName: Joi.string().required(),
@@ -71,7 +71,7 @@ const schema = {
   photoUploadPhotoMaxMb: Joi.number().min(1).max(20).default(10),
   photoUploadPhotoMinKb: Joi.number().min(1).max(50).default(50),
   photoUploadPayloadMaxBytes: Joi.number().min(50 * 1024).max(20 * 1024 * 1024).default(10 * 1024 * 1024)
-}
+})
 
 // Build the config
 const config = {
@@ -133,7 +133,7 @@ const config = {
 }
 
 // Validate the config
-const { value, error } = Joi.validate(config, schema, {
+const { value, error } = schema.validate(config, {
   abortEarly: false
 })
 

@@ -9,7 +9,8 @@ const { Registration } = require('../lib/cache')
 // Creates a custom joi validation error structure
 function createError (request, h, field, type) {
   // Generate an example error structure
-  const errors = Joi.validate({ [field]: true }, { [field]: Joi.string() })
+  const schema = Joi.object({ [field]: Joi.string() })
+  const errors = schema.validate({ [field]: true })
   const [error] = errors.error.details
   // Replace contents with error we want to create
   error.message = `"${field}" ${request.response.message}`

@@ -12,14 +12,14 @@ class OwnerNameHandlers extends mixin(require('ivory-common-modules').person.nam
     if (await this.isOwner(request)) {
       return {
         'full-name': {
-          'any.empty': 'Enter your full name',
+          'string.empty': 'Enter your full name',
           'string.max': `Your full name must be ${this.maxNameLength} characters or fewer`
         }
       }
     }
     return {
       'full-name': {
-        'any.empty': 'Enter the owner\'s full name',
+        'string.empty': 'Enter the owner\'s full name',
         'string.max': `Owner's full name must be ${this.maxNameLength} characters or fewer`
       }
     }

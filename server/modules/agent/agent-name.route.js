@@ -10,7 +10,7 @@ class AgentNameHandlers extends require('ivory-common-modules').person.name.hand
   async errorMessages (request) {
     return {
       'full-name': {
-        'any.empty': 'Enter your full name',
+        'string.empty': 'Enter your full name',
         'string.max': `Your full name must be ${this.maxNameLength} characters or fewer`
       }
     }
