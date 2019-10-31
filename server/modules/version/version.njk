@@ -7,17 +7,21 @@
         <ul class="govuk-list">
           <li>
             <label>Service:</label>
-            <strong id="application-version">{{ service.name }}</strong>
+            <strong id="application-service-{{ service-name }}">{{ service.name }}</strong>
           </li>
           <li>
             <label>Version:</label>
-            <strong id="application-version">{{ service.version }}</strong>
+            <strong id="application-version-{{ service-name }}">{{ service.version }}</strong>
           </li>
           <li>
             <label>Commit hash:</label>
             <strong>
-              <a id="commit-hash" target="_blank" class="govuk-link" href="{{ service.commit }}">{{ service.hash }}</a>
+              <a id="commit-hash-{{ service-name }}" target="_blank" class="govuk-link" href="{{ service.commit }}">{{ service.hash }}</a>
             </strong>
+          </li>
+          <li>
+            <label>Started:</label>
+            <strong>{{ service.instance.startedTimestamp }}</strong>
           </li>
         </ul>
       {% endfor %}
