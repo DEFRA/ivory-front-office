@@ -61,7 +61,11 @@
     pageHeading: What type of item are you registering?
     view: common/select-one-option
     isQuestionPage: true
-    next: add-photograph
+    next:
+      query: hasPhotos
+      result:
+        'true': check-photograph
+        'false': add-photograph
 
   item-description:
     path: "/item-description"

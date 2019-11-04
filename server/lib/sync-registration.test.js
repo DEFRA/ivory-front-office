@@ -76,8 +76,12 @@ lab.experiment(TestHelper.getFile(__filename), () => {
         Registration: {
           ownerType: 'agent'
         },
+        Agent: undefined,
+        AgentAddress: undefined,
+        Item: undefined,
         Owner: {},
-        OwnerAddress: address
+        OwnerAddress: address,
+        Payment: undefined
       }
 
       Object.entries(cache).forEach(([key, val]) => {

@@ -1,5 +1,6 @@
 const { Item } = require('../../lib/cache')
 const { getRoutes } = require('../../flow')
+const { getNestedVal } = require('ivory-shared').utils
 
 class ItemTypeHandlers extends require('../common/single-option-handlers') {
   get Model () {
@@ -14,12 +15,9 @@ class ItemTypeHandlers extends require('../common/single-option-handlers') {
     return 'Select the type of item it is'
   }
 
-  async onChange (item) {
-    // Make sure the exemptions are reset if the item type has changed
-    item.ageExemptionDeclaration = null
-    item.ageExemptionDescription = null
-    item.volumeExemptionDeclaration = null
-    item.volumeExemptionDescription = null
+  async hasPhotos (request) {
+    const item = await Item.get(request)
+    return !!getNestedVal(item, 'photos.length')
   }
 }
 

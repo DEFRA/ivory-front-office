@@ -77,6 +77,8 @@ class SyncRegistration {
       }
       await Address.set(request, address, false)
       delete person.address
+    } else {
+      await Address.set(request, undefined, false)
     }
     await Person.set(request, person, false)
   }
@@ -88,21 +90,31 @@ class SyncRegistration {
     if (owner) {
       await this.setPerson(request, owner, Owner, OwnerAddress)
       delete registration.owner
+    } else {
+      await Owner.set(request, undefined, false)
+      await OwnerAddress.set(request, undefined, false)
     }
 
     if (agent) {
       await this.setPerson(request, agent, Agent, AgentAddress)
       delete registration.agent
+    } else {
+      await Agent.set(request, undefined, false)
+      await AgentAddress.set(request, undefined, false)
     }
 
     if (item) {
       await Item.set(request, item, false)
       delete registration.item
+    } else {
+      await Item.set(request, undefined, false)
     }
 
     if (payment) {
       await Payment.set(request, payment, false)
       delete registration.payment
+    } else {
+      await Payment.set(request, undefined, false)
     }
 
     await Registration.set(request, registration, false)
