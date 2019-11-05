@@ -102,6 +102,13 @@ async function createServer () {
 
   server.events.on('start', () => startHandler(server))
 
+  // Add a reference to the google analytics ID
+  if (config.googleAnalyticsId) {
+    server.app.googleAnalyticsId = config.googleAnalyticsId
+  } else {
+    logger.warn('GOOGLE_ANALYTICS_ID not set')
+  }
+
   return server
 }
 
