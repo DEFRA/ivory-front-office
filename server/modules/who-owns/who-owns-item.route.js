@@ -16,7 +16,7 @@ class WhoOwnsHandlers extends require('../common/single-option-handlers') {
 
   async isOwner (request) {
     const { ownerType } = await this.getData(request)
-    return (ownerType === 'agent')
+    return (ownerType === 'i-own-it')
   }
 }
 

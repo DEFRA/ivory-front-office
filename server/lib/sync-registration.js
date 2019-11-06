@@ -42,6 +42,9 @@ class SyncRegistration {
         registration.payment = payment
       }
 
+      // Remove the validForPayment flag when saving.  (This is because it's only used to identify whether the registration is complete when loaded
+      delete registration.validForPayment
+
       logger.debug('Saving: ', registration)
       const result = await this.persistence.save(registration)
       if (result.error) {

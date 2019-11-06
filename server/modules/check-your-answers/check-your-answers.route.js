@@ -1,5 +1,7 @@
+const Boom = require('@hapi/boom')
 const registrationNumberGenerator = require('../../lib/registration-number-generator')
 const config = require('../../config')
+const cache = require('../../lib/cache')
 const {
   Registration,
   Owner,
@@ -7,7 +9,7 @@ const {
   Agent,
   AgentAddress,
   Item
-} = require('../../lib/cache')
+} = cache
 const { getRoutes } = require('../../flow')
 
 class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers {
@@ -15,9 +17,15 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
     return config.referenceData[group].choices.find((choice) => choice.shortName === shortName)
   }
 
+  async restoreRegistration (request) {
+    // Clear the cache and restore a previous registration
+    const registration = await Registration.get(request) || {}
+    return cache.restore(request, registration.id)
+  }
+
   async isOwner (request) {
     const { ownerType } = await Registration.get(request) || {}
-    return ownerType === 'agent'
+    return ownerType === 'i-own-it'
   }
 
   getPerson (person, address, prefix = 'Your') {
@@ -97,7 +105,12 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
   }
 
   async handleGet (request, h, errors) {
-    const registration = await Registration.get(request) || {}
+    const registration = await this.restoreRegistration(request)
+
+    if (!registration.validForPayment) {
+      return Boom.badData('Registration not valid for payment', registration)
+    }
+
     const owner = await Owner.get(request) || {}
     const ownerAddress = await OwnerAddress.get(request) || {}
     const agent = await Agent.get(request) || {}
@@ -171,7 +184,12 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
   }
 
   async handlePost (request, h) {
-    const registration = await Registration.get(request) || {}
+    const registration = await this.restoreRegistration(request)
+
+    if (!registration.validForPayment) {
+      return Boom.badData('Registration not valid for payment', registration)
+    }
+
     if (!registration.registrationNumber) {
       registration.registrationNumber = await registrationNumberGenerator.get()
     }

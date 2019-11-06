@@ -22,7 +22,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
       const { request, server } = context
-      TestHelper.setCache(context, 'Registration', { ownerType: 'agent' })
+      TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })
       const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -96,7 +96,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('redirects correctly when the address has been manually entered correctly and there is no agent', async ({ context }) => {
       const { request, address } = context
-      TestHelper.setCache(context, 'Registration', { ownerType: 'agent' })
+      TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })
       Object.assign(request.payload, {
         'address-line-1': address.addressLine1,
         'address-line-2': address.addressLine2,
