@@ -20,12 +20,11 @@ module.exports = {
           if (registration.status !== 'submitted') {
             return Boom.notFound()
           }
-        // ToDo: Need to support already submitted when designed
-        // } else {
-        //   const { status, registrationNumber } = registration
-        //   if (status === 'submitted') {
-        //     return Boom.preconditionFailed('Registration already submitted', { registrationNumber })
-        //   }
+        } else {
+          const { status, registrationNumber } = registration
+          if (status === 'submitted') {
+            return Boom.preconditionFailed('Registration already submitted', { registrationNumber })
+          }
         }
         return h.continue
       })
