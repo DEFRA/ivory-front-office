@@ -11,7 +11,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
     lab.test('page heading is correct when no agent', async ({ context }) => {
       const { request, server } = context
-      TestHelper.setCache(context, 'Registration', { ownerType: 'agent' })
+      TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })
       const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -58,7 +58,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     lab.test('fails validation when the full name only contains spaces and the agent is the owner', async ({ context }) => {
       const { request } = context
       request.payload['full-name'] = ' '
-      TestHelper.setCache(context, 'Registration', { ownerType: 'agent' })
+      TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })
       return routesHelper.expectValidationErrors(context, [
         { field: 'full-name', message: 'Enter your full name' }
       ])

@@ -38,9 +38,10 @@ const cache = {
 const cacheClasses = Object.values(cache)
 
 cache.restore = async (request, id) => {
-  // Clear the cache and restore a previous registration
   await Promise.all(cacheClasses.map((CacheClass) => CacheClass.set(request)))
   await syncRegistration.restore(request, id)
+
+  return (await Registration.get(request) || {})
 }
 
 cache.save = async (request) => syncRegistration.save(request)

@@ -27,7 +27,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('page heading is correct when no agent', async ({ context }) => {
       const { request, server } = context
-      TestHelper.setCache(context, 'Registration', { ownerType: 'agent' })
+      TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })
       const response = await server.inject(request)
       const $ = routesHelper.getDomParser(response.payload)
 
@@ -85,7 +85,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('redirects correctly when the address has been selected when there is no agent', async ({ context }) => {
       const { request } = context
-      TestHelper.setCache(context, 'Registration', { ownerType: 'agent' })
+      TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })
       request.payload.address = address.uprn
       await routesHelper.expectRedirection(context, '/owner-email')
       Code.expect(TestHelper.getCache(context, 'OwnerAddress').uprn).to.equal(address.uprn)

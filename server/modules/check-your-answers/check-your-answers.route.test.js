@@ -4,6 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const config = require('../../config')
 const url = '/check-your-answers'
+const cache = require('../../lib/cache')
 const pageHeading = 'Check your answers'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
@@ -32,11 +33,18 @@ lab.experiment(TestHelper.getFile(__filename), () => {
           }
         }
       })
+
+      sandbox.stub(cache, 'restore').value(async () => {
+        const registration = TestHelper.getCache(context, 'Registration') || {}
+        registration.validForPayment = true
+        return registration
+      })
     })
 
     lab.test('page answers are displayed correctly', async ({ context }) => {
       const { request, server } = context
-      const ownerType = 'agent'
+      const validForPayment = true
+      const ownerType = 'i-own-it'
       const dealingIntent = 'hire'
       const dealingIntentDisplay = 'Hire'
       const itemType = 'portrait-miniature-pre-1918'
@@ -51,7 +59,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const ageExemptionDeclarationLabel = 'I declare the item was made before 1918'
       const volumeExemptionDeclarationLabel = 'I declare the portrait miniature is less than 320cm²'
 
-      TestHelper.setCache(context, 'Registration', { dealingIntent, ownerType })
+      TestHelper.setCache(context, 'Registration', { dealingIntent, ownerType, validForPayment })
       TestHelper.setCache(context, 'Agent', { fullName, email })
       TestHelper.setCache(context, 'AgentAddress', { addressLine })
       TestHelper.setCache(context, 'Owner', { fullName, email })
@@ -83,6 +91,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     lab.test('redirects correctly', async ({ context }) => {
+      const { sandbox } = context
+      sandbox.stub(cache, 'restore').value(async () => { return { validForPayment: true } })
       await routesHelper.expectRedirection(context, '/payment')
       Code.expect(TestHelper.getCache(context, 'Registration').registrationNumber).to.exist()
     })

@@ -13,7 +13,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(SingleOptionHandlers.prototype, 'referenceData').get(() => {
         return {
           choices: [
-            { shortName: 'agent', value: 'agent' },
+            { shortName: 'i-own-it', value: 'i-own-it' },
             { shortName: 'someone-else', value: 'someone-else' }
           ]
         }
@@ -32,9 +32,9 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('redirects correctly when "I own it" is selected', async ({ context }) => {
       const { request } = context
-      request.payload.ownerType = 'agent'
+      request.payload.ownerType = 'i-own-it'
       await routesHelper.expectRedirection(context, '/owner-name')
-      Code.expect(TestHelper.getCache(context, 'Registration').ownerType).to.equal('agent')
+      Code.expect(TestHelper.getCache(context, 'Registration').ownerType).to.equal('i-own-it')
     })
 
     lab.test('redirects correctly when "someone else" is selected', async ({ context }) => {
