@@ -1339,9 +1339,9 @@
       }
     },
     "bluebird": {
-      "version": "3.7.0",
-      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.7.0.tgz",
-      "integrity": "sha512-aBQ1FxIa7kSWCcmKHlcHFlT2jt6J/l4FzC7KcPELkOJOsPOb/bccdhmIrKDfXhwFrmc7vDoDrrepFvGqjyXGJg=="
+      "version": "3.7.1",
+      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.7.1.tgz",
+      "integrity": "sha512-DdmyoGCleJnkbp3nkbxTLJ18rjDsE4yCggEwKNXkeV123sPNfOCYeDoeuOY+F2FrSjO1YXcTU+dsy96KMy+gcg=="
     },
     "boolbase": {
       "version": "1.0.0",
@@ -12846,9 +12846,9 @@
       "optional": true
     },
     "notifications-node-client": {
-      "version": "4.6.0",
-      "resolved": "https://registry.npmjs.org/notifications-node-client/-/notifications-node-client-4.6.0.tgz",
-      "integrity": "sha512-O5aRzQc7rJxyrmlBHXbXsGJu3/mmTtoEYzuWawNA+gVx894dFoflGDN+QBiMuB9t0aDPdjpgCB081zIbDKc/Jw==",
+      "version": "4.7.0",
+      "resolved": "https://registry.npmjs.org/notifications-node-client/-/notifications-node-client-4.7.0.tgz",
+      "integrity": "sha512-u3xjddyiSmlxFummgiWgG5uBbZk29D7xnT8hIfIRiFFoFlpq3rzN/yGBJRwedCb79t38SAenmH/fPSQbpkC1/A==",
       "requires": {
         "jsonwebtoken": "8.2.1",
         "request": "2.87.0",
