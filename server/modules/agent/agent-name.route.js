@@ -1,4 +1,4 @@
-const { Agent } = require('../../lib/cache')
+const { Agent } = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 const { addressLookUpEnabled } = require('../../config')
 

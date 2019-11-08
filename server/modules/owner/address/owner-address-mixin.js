@@ -1,4 +1,4 @@
-const { OwnerAddress } = require('../../../lib/cache')
+const { OwnerAddress } = require('ivory-data-mapping').cache
 const { flow } = require('../../../flow')
 
 module.exports = {

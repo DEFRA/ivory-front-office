@@ -37,7 +37,7 @@ module.exports = {
             case 412: {
               // ToDo: Need to support already submitted when designed
 
-              // const { Registration } = require('../lib/cache')
+              // const { Registration } = require('ivory-data-mapping').cache
               // // Set the registration number in the cache only to prevent back button forgetting registration has already been sent
               // await Registration.set(request, { registrationNumber: 'DUMMY' }, false)
               // return h.view(`error-handling/${statusCode}`).code(statusCode)

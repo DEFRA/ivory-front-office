@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { Item } = require('../../lib/cache')
+const { Item } = require('ivory-data-mapping').cache
 const config = require('../../config')
 const Photos = require('../../lib/photos/photos')
 const path = require('path')

@@ -1,4 +1,4 @@
-const { Agent } = require('../../lib/cache')
+const { Agent } = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 
 class AgentNameHandlers extends require('ivory-common-modules').person.email.handlers {

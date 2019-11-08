@@ -1,4 +1,4 @@
-const { Item } = require('../../lib/cache')
+const { Item } = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 const { getNestedVal } = require('ivory-shared').utils
 

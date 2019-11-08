@@ -1,5 +1,5 @@
 const { Cache } = require('ivory-shared')
-const { Registration } = require('../lib/cache')
+const { Registration } = require('ivory-data-mapping').cache
 const { flow } = require('../flow')
 
 const options = {

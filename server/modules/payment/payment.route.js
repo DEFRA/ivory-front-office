@@ -1,6 +1,6 @@
 const { utils, Payment: PaymentAPI } = require('ivory-shared')
 const { logger } = require('defra-logging-facade')
-const { Registration, Payment } = require('../../lib/cache')
+const { Registration, Payment } = require('ivory-data-mapping').cache
 const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = require('../../config')
 const { getRoutes } = require('../../flow')
 
@@ -41,4 +41,4 @@ const handlers = new PaymentHandlers()
 
 const routes = getRoutes.bind(handlers)('payment')
 
-module.exports = handlers.routes(routes)
+module.exports = handlers.routes(routes).filter(({ method }) => method === 'GET')

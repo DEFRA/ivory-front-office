@@ -1,5 +1,5 @@
 const { logger } = require('defra-logging-facade')
-const { Registration, Agent, Owner } = require('../../lib/cache')
+const { Registration, Agent, Owner } = require('ivory-data-mapping').cache
 const { notifyEnabled, notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId } = require('../../config')
 const { getRoutes } = require('../../flow')
 

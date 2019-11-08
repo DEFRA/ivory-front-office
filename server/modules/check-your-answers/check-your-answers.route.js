@@ -1,7 +1,7 @@
 const Boom = require('@hapi/boom')
 const registrationNumberGenerator = require('../../lib/registration-number-generator')
 const config = require('../../config')
-const cache = require('../../lib/cache')
+const cache = require('ivory-data-mapping').cache
 const {
   Registration,
   Owner,

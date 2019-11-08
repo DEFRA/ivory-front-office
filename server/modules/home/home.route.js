@@ -1,5 +1,4 @@
-const { Cache } = require('ivory-shared')
-const { Registration } = require('../../lib/cache')
+const { Registration, Cache } = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 
 class HomeHandlers extends require('ivory-common-modules').handlers {
@@ -22,4 +21,4 @@ const handlers = new HomeHandlers()
 
 const routes = getRoutes.bind(handlers)('home')
 
-module.exports = handlers.routes(routes)
+module.exports = handlers.routes(routes).filter(({ method }) => method === 'GET')

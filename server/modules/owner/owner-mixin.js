@@ -1,4 +1,4 @@
-const { Registration } = require('../../lib/cache')
+const { Registration } = require('ivory-data-mapping').cache
 
 module.exports = {
   async isOwner (request) {
