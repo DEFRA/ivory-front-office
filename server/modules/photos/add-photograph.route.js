@@ -82,13 +82,21 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
       return this.failAction(request, h, error)
     }
 
-    // Handle cache
+    // Handle cache and delete/overwrite any previously uploaded photo
+    // (Despite being an array, for now this only works assuming there's a single photo.. the multiple photos will come later))
     const item = await Item.get(request) || { description: '  ' } // Had to include description of spaces so the service doesn't fail saving an empty item
-    if (!item.photos) {
+    if (item.photos) {
+      // There's already a photo, so delete it from storage and overwrite it in the cache/database (reusing the photo id for now until we handle the array create/delete in the services layer)
+      const previousPhotoFilename = item.photos[0].filename
+      await photos.delete(previousPhotoFilename)
+      item.photos[0].filename = filenameUploaded
+      item.photos[0].rank = 0
+    } else {
+      // Else it's the first photo, so create the photos array
       item.photos = []
+      const photo = { filename: filenameUploaded, rank: item.photos.length }
+      item.photos.push(photo)
     }
-    const photo = { filename: filenameUploaded, rank: item.photos.length }
-    item.photos.push(photo)
     await Item.set(request, item)
 
     return super.handlePost(request, h)
