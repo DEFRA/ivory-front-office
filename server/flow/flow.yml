@@ -98,14 +98,14 @@
   add-photograph:
     path: "/add-photograph"
     pageHeading: Add a photo
-    view: item/add-photograph
+    view: photos/add-photograph
     isQuestionPage: true
     next: check-photograph
 
   check-photograph:
     path: "/check-photograph"
     pageHeading: This is your photo
-    view: item/check-photograph
+    view: photos/check-photograph
     next: item-description
 
 

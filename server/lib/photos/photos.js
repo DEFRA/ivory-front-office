@@ -75,7 +75,7 @@ module.exports = class Photos {
     ])
       .then(values => {
         logger.debug(`resultArray: ${values}`)
-        logger.info('The photo (and its alternative sizes) were uploaded to S3.')
+        logger.info(`The photo (and its alternative sizes) were uploaded to S3: ${filename}`)
       })
       .catch(error => {
         // The Promise.all resolves once a single promise rejects, so we don't know which uploads were successful.
@@ -101,7 +101,7 @@ module.exports = class Photos {
         logger.error(`Error while uploading to S3: ${error}`)
         throw (error)
       })
-    logger.info(`Photo uploaded with ${response.Key}`)
+    logger.debug(`Photo uploaded with ${response.Key}`)
     return response.Key
   }
 
@@ -133,7 +133,7 @@ module.exports = class Photos {
       ...Object.values(this.alternativeSizes).map((sizeConfig) => this._deleteFromS3(`${sizeConfig.filenamePrefix}${filename}`))
     ])
       .then(() => {
-        logger.info(`Photo (and it's alternative sizes) deleted from S3: ${filename}`)
+        logger.info(`The photo (and it's alternative sizes) were deleted from S3: ${filename}`)
       })
       .catch(error => {
         logger.info('One or all of the photo alternative sizes failed to delete.')
