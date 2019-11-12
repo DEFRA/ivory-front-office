@@ -136,7 +136,7 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
       const lastphoto = item.photos[item.photos.length - 1] // Until we handle multiple photos, take the last photo
       answers.push({
         key: 'Photograph',
-        html: `<img class="check-photo-img" src="/photos/300x300/${lastphoto.filename}" border="0">`
+        html: `<img class="check-photo-img" src="/photos/medium/${lastphoto.filename}" border="0">`
       })
       // })
     }

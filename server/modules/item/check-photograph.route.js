@@ -8,7 +8,7 @@ class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers
     const filename = photos.length ? photos[photos.length - 1].filename : {}
 
     this.viewData = {
-      photoUrl: `/photos/300x300/${filename}`
+      photoUrl: `/photos/medium/${filename}`
     }
     return super.handleGet(request, h, errors)
   }
