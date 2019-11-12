@@ -21,6 +21,12 @@ lab.experiment(TestHelper.getFile(__filename), () => {
               { shortName: 'sell', label: 'sell', display: 'Sale' }
             ]
           },
+          ownerType: {
+            choices: [
+              { shortName: 'i-own-it', label: 'I own it' },
+              { shortName: 'someone-else', label: 'Someone else' }
+            ]
+          },
           itemType: {
             choices: [
               {
@@ -45,6 +51,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { request, server } = context
       const validForPayment = true
       const ownerType = 'i-own-it'
+      const ownerTypeLabel = 'I own it'
       const dealingIntent = 'hire'
       const dealingIntentDisplay = 'Hire'
       const itemType = 'portrait-miniature-pre-1918'
@@ -78,10 +85,11 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
       Code.expect($('.ivory-item-type').text()).to.include(itemType)
       Code.expect($('.ivory-description').text()).to.include(description)
-      Code.expect($('.ivory-age-of-ivory').text()).to.include(ageExemptionDescription)
-      Code.expect($('.ivory-age-of-ivory').text()).to.include(ageExemptionDeclarationLabel)
-      Code.expect($('.ivory-volume-of-ivory').text()).to.include(volumeExemptionDescription)
-      Code.expect($('.ivory-volume-of-ivory').text()).to.include(volumeExemptionDeclarationLabel)
+      Code.expect($('.ivory-age-of-ivory .ivory-explanation').text()).to.include(ageExemptionDescription)
+      Code.expect($('.ivory-age-of-ivory .ivory-declaration').text()).to.include(ageExemptionDeclarationLabel)
+      Code.expect($('.ivory-volume-of-ivory .ivory-explanation').text()).to.include(volumeExemptionDescription)
+      Code.expect($('.ivory-volume-of-ivory .ivory-declaration').text()).to.include(volumeExemptionDeclarationLabel)
+      Code.expect($('.ivory-who-owns-the-item').text()).to.include(ownerTypeLabel)
       Code.expect($('.ivory-contact-name').text()).to.include(fullName)
       Code.expect($('.ivory-your-address').text()).to.include(addressLine.split(',').join(''))
       Code.expect($('.ivory-your-email').text()).to.include(email)
