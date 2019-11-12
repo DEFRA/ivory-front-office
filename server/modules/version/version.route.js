@@ -38,4 +38,4 @@ module.exports = handlers.routes({
     view: 'version/version',
     tags: ['always']
   }
-})
+}).filter(({ method }) => method === 'GET')

@@ -51,6 +51,7 @@
     "hapi-robots": "^3.2.0",
     "hapi-router": "^5.0.0",
     "ivory-common-modules": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
+    "ivory-data-mapping": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
     "ivory-shared": "git+https://github.com/DEFRA/ivory-shared.git#master",
     "js-yaml": "^3.13.1",
     "lodash.merge": "^4.6.2",

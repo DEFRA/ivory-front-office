@@ -1,4 +1,4 @@
-const cache = require('../../lib/cache')
+const cache = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 
 class RestoreHandlers extends require('ivory-common-modules').handlers {
@@ -15,4 +15,4 @@ const handlers = new RestoreHandlers()
 
 const routes = getRoutes.bind(handlers)('restore')
 
-module.exports = handlers.routes(routes)
+module.exports = handlers.routes(routes).filter(({ method }) => method === 'GET')

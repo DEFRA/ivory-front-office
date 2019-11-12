@@ -1,4 +1,4 @@
-const { Owner } = require('../../lib/cache')
+const { Owner } = require('ivory-data-mapping').cache
 const { mixin } = require('ivory-shared')
 const { getRoutes } = require('../../flow')
 const { addressLookUpEnabled } = require('../../config')

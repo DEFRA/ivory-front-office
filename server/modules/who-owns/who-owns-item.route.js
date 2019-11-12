@@ -1,4 +1,4 @@
-const { Registration } = require('../../lib/cache')
+const { Registration } = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 
 class WhoOwnsHandlers extends require('../common/single-option-handlers') {

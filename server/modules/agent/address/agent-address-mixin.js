@@ -1,4 +1,4 @@
-const { AgentAddress } = require('../../../lib/cache')
+const { AgentAddress } = require('ivory-data-mapping').cache
 const { flow } = require('../../../flow')
 
 module.exports = {

@@ -16,12 +16,14 @@ process.env.LOG_LEVEL = 'error'
 const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
-const { Cache, utils } = require('ivory-shared')
-const SyncRegistration = require('./server/lib/sync-registration')
+const { utils } = require('ivory-shared')
+const { SyncRegistration, cache } = require('ivory-data-mapping')
 const routesPlugin = require('./server/plugins/router')
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity
+
+SyncRegistration.serviceApi = 'http://fake-service.com'
 
 module.exports = class TestHelper {
   constructor (lab, testFile, options) {
@@ -169,7 +171,7 @@ module.exports = class TestHelper {
   static stubCache (context) {
     const { sandbox } = context
 
-    sandbox.stub(Cache, 'get').value(async (request, key) => {
+    sandbox.stub(cache.Cache, 'get').value(async (request, key) => {
       const contextData = utils.getNestedVal(context, `request.app.cache.${key}`)
       const requestData = utils.getNestedVal(request, `app.cache.${key}`)
       if (!contextData && !requestData) {
@@ -184,13 +186,13 @@ module.exports = class TestHelper {
       return data
     })
 
-    sandbox.stub(Cache, 'set').value(async (request, key, data) => {
+    sandbox.stub(cache.Cache, 'set').value(async (request, key, data) => {
       TestHelper.setCache(context, key, data)
       TestHelper.setCache({ request }, key, data)
       return data
     })
 
-    sandbox.stub(Cache, 'clear').value(() => {
+    sandbox.stub(cache.Cache, 'clear').value(() => {
       TestHelper.clearCache(context)
     })
   }

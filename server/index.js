@@ -1,5 +1,6 @@
 const hapi = require('@hapi/hapi')
 const { Persistence } = require('ivory-shared')
+const { SyncRegistration } = require('ivory-data-mapping')
 const { logger } = require('defra-logging-facade')
 const config = require('./config')
 
@@ -94,6 +95,9 @@ async function createServer () {
     }
     const persistence = new Persistence({ path: `${config.serviceApi}/reference-data` })
     config.referenceData = await persistence.restore()
+
+    // Register the service api
+    SyncRegistration.serviceApi = config.serviceApi
   } else {
     config.referenceData = {}
   }

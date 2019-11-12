@@ -1,4 +1,4 @@
-const { Item } = require('../../lib/cache')
+const { Item } = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 
 class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration-handlers') {

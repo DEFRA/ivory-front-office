@@ -1,6 +1,6 @@
 const Boom = require('@hapi/boom')
 const { utils, Payment: PaymentAPI } = require('ivory-shared')
-const cache = require('../../lib/cache')
+const cache = require('ivory-data-mapping').cache
 const { Payment, Registration } = cache
 const { paymentUrl, paymentKey } = require('../../config')
 const { getRoutes } = require('../../flow')
@@ -45,4 +45,4 @@ const handlers = new CheckPaymentHandlers()
 
 const routes = getRoutes.bind(handlers)('check-payment')
 
-module.exports = handlers.routes(routes)
+module.exports = handlers.routes(routes).filter(({ method }) => method === 'GET')

@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const config = require('../../config')
 const url = '/check-your-answers'
-const cache = require('../../lib/cache')
+const { cache } = require('ivory-data-mapping')
 const pageHeading = 'Check your answers'
 
 lab.experiment(TestHelper.getFile(__filename), () => {

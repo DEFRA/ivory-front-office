@@ -1,4 +1,4 @@
-const { Item } = require('../../lib/cache')
+const { Item } = require('ivory-data-mapping').cache
 const { getRoutes } = require('../../flow')
 
 class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers {
