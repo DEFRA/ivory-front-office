@@ -49,16 +49,13 @@ function changeYourAnswers (server, options) {
       return h.continue
     }
 
-    const { route, method } = request
+    const { method } = request
 
     if (method === 'post' && await isChanging(request)) {
-      if (route.path === checkYourAnswersPath) {
+      if (await validData(request)) {
         // Make sure Changing is switched off
         await setChanging(request, false)
-      } else {
-        if (await validData(request)) {
-          return h.redirect(checkYourAnswersPath).takeover()
-        }
+        return h.redirect(checkYourAnswersPath).takeover()
       }
     }
 
