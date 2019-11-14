@@ -3,7 +3,9 @@ const { Item } = require('ivory-data-mapping').cache
 const config = require('../../config')
 const Photos = require('../../lib/photos/photos')
 const path = require('path')
-const { uuid, setNestedVal, getNestedVal } = require('ivory-shared').utils
+const { utils, joiUtilities } = require('ivory-shared')
+const { uuid, setNestedVal, getNestedVal } = utils
+const { createError } = joiUtilities
 const { getRoutes } = require('../../flow')
 
 class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
@@ -75,11 +77,7 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
       // The upload failed, so tell the user to try again
       // Rather than building from scratch, generate an example error structure and overwrite the type
       console.log(`Caught error from upload in handler: ${err}`)
-      const schema = Joi.object({ photograph: Joi.string() })
-      const errors = schema.validate({ photograph: true })
-      errors.error.details[0].type = 'custom.uploadfailed' // Updating the type should pick the correct message up during failAction()
-      const error = errors.error
-      return this.failAction(request, h, error)
+      return this.failAction(request, h, createError(request, 'photograph', 'custom.uploadfailed'))
     }
 
     // Handle cache and delete/overwrite any previously uploaded photo
