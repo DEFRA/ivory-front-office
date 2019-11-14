@@ -1900,7 +1900,7 @@
     },
     "defra-logging-facade": {
       "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-      "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+      "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
       "requires": {
         "airbrake-js": "~1.4.9",
         "lodash.clonedeep": "~4.5.0",
@@ -4211,13 +4211,13 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#afc474b61d41b24984dcafee6ff88ca1860bcb62",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#195de8f777c847a2dd05820b3d3b2a63e95b5e24",
       "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
         "@hapi/joi": "^16.1.7",
         "@hapi/wreck": "^16.0.1",
-        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
         "ivory-shared": "git+https://github.com/DEFRA/ivory-shared.git#master",
         "lodash": "^4.17.15"
       },
@@ -4844,7 +4844,7 @@
         },
         "defra-logging-facade": {
           "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
           "requires": {
             "airbrake-js": "~1.4.9",
             "lodash.clonedeep": "~4.5.0",
@@ -5817,7 +5817,7 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#216d20969c7f2f3b1d9085bab223ad8c308c93d1",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#236c47a7087074dd2adc94f58e1bb39d617f35dd",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
@@ -6374,9 +6374,9 @@
               }
             },
             "commander": {
-              "version": "2.20.0",
-              "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.0.tgz",
-              "integrity": "sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==",
+              "version": "2.20.3",
+              "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz",
+              "integrity": "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==",
               "optional": true
             },
             "concat-map": {
@@ -7091,9 +7091,9 @@
               "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
             },
             "handlebars": {
-              "version": "4.4.3",
-              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.3.tgz",
-              "integrity": "sha512-B0W4A2U1ww3q7VVthTKfh+epHx+q4mCt6iK+zEAzbMBpWQAwxCeKxEGpj/1oQTpzPXDNSOG7hmG14TsISH50yw==",
+              "version": "4.5.2",
+              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.2.tgz",
+              "integrity": "sha512-29Zxv/cynYB7mkT1rVWQnV7mGX6v7H/miQ6dbEpYTKq5eJBN7PsRB+ViYJlcT6JINTSu4dVB9kOqEun78h6Exg==",
               "requires": {
                 "neo-async": "^2.6.0",
                 "optimist": "^0.6.1",
@@ -8477,12 +8477,12 @@
               "integrity": "sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg=="
             },
             "uglify-js": {
-              "version": "3.6.2",
-              "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.2.tgz",
-              "integrity": "sha512-+gh/xFte41GPrgSMJ/oJVq15zYmqr74pY9VoM69UzMzq9NFk4YDylclb1/bhEzZSaUQjbW5RvniHeq1cdtRYjw==",
+              "version": "3.6.9",
+              "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.9.tgz",
+              "integrity": "sha512-pcnnhaoG6RtrvHJ1dFncAe8Od6Nuy30oaJ82ts6//sGSXOP5UjBMEthiProjXmMNHOfd93sqlkztifFMcb+4yw==",
               "optional": true,
               "requires": {
-                "commander": "2.20.0",
+                "commander": "~2.20.3",
                 "source-map": "~0.6.1"
               },
               "dependencies": {
@@ -9967,11 +9967,11 @@
       }
     },
     "ivory-data-mapping": {
-      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#feb3c431ea8d57158f11633073487f1e12df7c73",
+      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#66ea8b4dadd23c541c9cbd4d664173873778e5f4",
       "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
       "requires": {
         "@hapi/joi": "^15.1.1",
-        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
         "ivory-shared": "git+https://github.com/DEFRA/ivory-shared.git#master"
       },
       "dependencies": {
@@ -10578,7 +10578,7 @@
         },
         "defra-logging-facade": {
           "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
           "requires": {
             "airbrake-js": "~1.4.9",
             "lodash.clonedeep": "~4.5.0",
@@ -11430,13 +11430,13 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#216d20969c7f2f3b1d9085bab223ad8c308c93d1",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#236c47a7087074dd2adc94f58e1bb39d617f35dd",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
             "@hapi/joi": "^16.1.7",
             "@hapi/wreck": "^16.0.1",
-            "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+            "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
             "lodash": "^4.17.15"
           },
           "dependencies": {
@@ -11987,9 +11987,9 @@
               }
             },
             "commander": {
-              "version": "2.20.0",
-              "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.0.tgz",
-              "integrity": "sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==",
+              "version": "2.20.3",
+              "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz",
+              "integrity": "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==",
               "optional": true
             },
             "concat-map": {
@@ -12062,7 +12062,7 @@
             },
             "defra-logging-facade": {
               "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-              "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+              "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
               "requires": {
                 "airbrake-js": "~1.4.9",
                 "lodash.clonedeep": "~4.5.0",
@@ -12704,9 +12704,9 @@
               "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
             },
             "handlebars": {
-              "version": "4.4.3",
-              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.3.tgz",
-              "integrity": "sha512-B0W4A2U1ww3q7VVthTKfh+epHx+q4mCt6iK+zEAzbMBpWQAwxCeKxEGpj/1oQTpzPXDNSOG7hmG14TsISH50yw==",
+              "version": "4.5.2",
+              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.2.tgz",
+              "integrity": "sha512-29Zxv/cynYB7mkT1rVWQnV7mGX6v7H/miQ6dbEpYTKq5eJBN7PsRB+ViYJlcT6JINTSu4dVB9kOqEun78h6Exg==",
               "requires": {
                 "neo-async": "^2.6.0",
                 "optimist": "^0.6.1",
@@ -14090,12 +14090,12 @@
               "integrity": "sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg=="
             },
             "uglify-js": {
-              "version": "3.6.2",
-              "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.2.tgz",
-              "integrity": "sha512-+gh/xFte41GPrgSMJ/oJVq15zYmqr74pY9VoM69UzMzq9NFk4YDylclb1/bhEzZSaUQjbW5RvniHeq1cdtRYjw==",
+              "version": "3.6.9",
+              "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.9.tgz",
+              "integrity": "sha512-pcnnhaoG6RtrvHJ1dFncAe8Od6Nuy30oaJ82ts6//sGSXOP5UjBMEthiProjXmMNHOfd93sqlkztifFMcb+4yw==",
               "optional": true,
               "requires": {
-                "commander": "2.20.0",
+                "commander": "~2.20.3",
                 "source-map": "~0.6.1"
               },
               "dependencies": {
@@ -15580,13 +15580,13 @@
       }
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#d25d043edc5e534b1c1cf185c1228cb2b94fe844",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#236c47a7087074dd2adc94f58e1bb39d617f35dd",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
         "@hapi/joi": "^16.1.7",
         "@hapi/wreck": "^16.0.1",
-        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+        "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
         "lodash": "^4.17.15"
       },
       "dependencies": {
@@ -16212,7 +16212,7 @@
         },
         "defra-logging-facade": {
           "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+          "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
           "requires": {
             "airbrake-js": "~1.4.9",
             "lodash.clonedeep": "~4.5.0",

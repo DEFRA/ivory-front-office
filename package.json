@@ -43,7 +43,7 @@
     "@hapi/yar": "^9.2.1",
     "aws-sdk": "^2.571.0",
     "blipp": "^4.0.1",
-    "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+    "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
     "dotenv": "^8.2.0",
     "git-last-commit": "^1.0.0",
     "glob": "^7.1.6",
