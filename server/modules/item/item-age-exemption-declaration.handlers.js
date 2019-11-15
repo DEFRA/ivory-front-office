@@ -1,5 +1,4 @@
 const { Item } = require('ivory-data-mapping').cache
-const { getRoutes } = require('../../flow')
 
 class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration-handlers') {
   get Model () {
@@ -25,8 +24,4 @@ class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration
   }
 }
 
-const handlers = new ItemAgeExemptionDeclarationHandlers()
-
-const routes = getRoutes.bind(handlers)('item-age-exemption-declaration')
-
-module.exports = handlers.routes(routes)
+module.exports = ItemAgeExemptionDeclarationHandlers

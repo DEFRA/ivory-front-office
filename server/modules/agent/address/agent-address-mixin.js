@@ -1,20 +1,24 @@
 const { AgentAddress } = require('ivory-data-mapping').cache
-const { flow } = require('../../../flow')
+const { routeFlow } = require('ivory-common-modules').plugins
 
 module.exports = {
   get Address () {
     return AgentAddress
   },
 
+  get flow () {
+    return routeFlow.flow()
+  },
+
   get findAddressLink () {
-    return flow['agent-address-find'].path
+    return this.flow['agent-address-find'].path
   },
 
   get selectAddressLink () {
-    return flow['agent-address-select'].path
+    return this.flow['agent-address-select'].path
   },
 
   get manualAddressLink () {
-    return flow['agent-address-full'].path
+    return this.flow['agent-address-full'].path
   }
 }

@@ -23,6 +23,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(Registration, 'get').value(() => {
         return {}
       })
+      sandbox.stub(PaymentAPI, 'constructor').value(() => { return {} })
       sandbox.stub(PaymentAPI.prototype, 'requestStatus').value(() => {
         return {
           state: {

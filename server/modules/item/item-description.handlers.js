@@ -2,7 +2,6 @@ const Joi = require('@hapi/joi')
 const { Item } = require('ivory-data-mapping').cache
 const { utils } = require('ivory-shared')
 const config = require('../../config')
-const { getRoutes } = require('../../flow')
 
 class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
   get schema () {
@@ -44,8 +43,4 @@ class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
   }
 }
 
-const handlers = new ItemDescriptionHandlers()
-
-const routes = getRoutes.bind(handlers)('item-description')
-
-module.exports = handlers.routes(routes)
+module.exports = ItemDescriptionHandlers

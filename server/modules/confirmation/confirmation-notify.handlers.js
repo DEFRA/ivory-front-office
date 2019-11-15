@@ -1,12 +1,12 @@
 const { logger } = require('defra-logging-facade')
 const { Registration, Agent, Owner } = require('ivory-data-mapping').cache
-const { notifyEnabled, notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId } = require('../../config')
-const { getRoutes } = require('../../flow')
+const config = require('../../config')
 
 const NotifyClient = require('notifications-node-client').NotifyClient
 
 class ConfirmationHandlers extends require('ivory-common-modules').handlers {
   async notifyRegistration (contact, registrationNumber) {
+    const { notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId } = config
     const { fullName, email: emailAddress } = contact || {}
     const reference = registrationNumber + Date.now()
     const personalisation = {
@@ -37,7 +37,7 @@ class ConfirmationHandlers extends require('ivory-common-modules').handlers {
     ])
     const contact = agent || owner
     const { registrationNumber } = registration || {}
-    if (notifyEnabled) {
+    if (config.notifyEnabled) {
       const result = await this.notifyRegistration(contact, registrationNumber)
       if (result.error) {
         logger.error('Failed to send confirmation email:', result.error)
@@ -52,8 +52,4 @@ class ConfirmationHandlers extends require('ivory-common-modules').handlers {
   }
 }
 
-const handlers = new ConfirmationHandlers()
-
-const routes = getRoutes.bind(handlers)('confirmation-notify')
-
-module.exports = handlers.routes(routes)
+module.exports = ConfirmationHandlers

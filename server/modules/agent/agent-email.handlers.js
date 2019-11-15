@@ -1,5 +1,4 @@
 const { Agent } = require('ivory-data-mapping').cache
-const { getRoutes } = require('../../flow')
 
 class AgentNameHandlers extends require('ivory-common-modules').person.email.handlers {
   get Person () {
@@ -11,8 +10,4 @@ class AgentNameHandlers extends require('ivory-common-modules').person.email.han
   }
 }
 
-const handlers = new AgentNameHandlers()
-
-const routes = getRoutes.bind(handlers)('agent-email')
-
-module.exports = handlers.routes(routes)
+module.exports = AgentNameHandlers

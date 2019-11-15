@@ -2,6 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
+const config = require('../../config')
 const url = '/owner-name'
 const pageHeading = 'Owner\'s name'
 
@@ -9,6 +10,11 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename)
 
   routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
+    lab.beforeEach(({ context }) => {
+      const { sandbox } = context
+      sandbox.stub(config, 'addressLookUpEnabled').get(() => false)
+    })
+
     lab.test('page heading is correct when no agent', async ({ context }) => {
       const { request, server } = context
       TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })

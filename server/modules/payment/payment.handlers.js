@@ -1,11 +1,11 @@
 const { utils, Payment: PaymentAPI } = require('ivory-shared')
 const { logger } = require('defra-logging-facade')
 const { Registration, Payment } = require('ivory-data-mapping').cache
-const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = require('../../config')
-const { getRoutes } = require('../../flow')
+const config = require('../../config')
 
 class PaymentHandlers extends require('ivory-common-modules').handlers {
   async handleGet (request, h, errors) {
+    const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = config
     const registration = await Registration.get(request) || {}
 
     if (!paymentEnabled) {
@@ -26,19 +26,23 @@ class PaymentHandlers extends require('ivory-common-modules').handlers {
     const status = utils.getNestedVal(result, 'state.status')
     if (status === 'created') {
       const { amount, description, reference, payment_id: paymentId, payment_provider: paymentProvider, created_date: createdDate } = result
-      const payment = { amount, description, reference, paymentId, paymentProvider, status, createdDate }
+      const payment = {
+        amount,
+        description,
+        reference,
+        paymentId,
+        paymentProvider,
+        status,
+        createdDate
+      }
       await Payment.set(request, payment)
       return h.redirect(result._links.next_url.href)
     }
   }
 
   paymentEnabled () {
-    return paymentEnabled
+    return config.paymentEnabled
   }
 }
 
-const handlers = new PaymentHandlers()
-
-const routes = getRoutes.bind(handlers)('payment')
-
-module.exports = handlers.routes(routes).filter(({ method }) => method === 'GET')
+module.exports = PaymentHandlers

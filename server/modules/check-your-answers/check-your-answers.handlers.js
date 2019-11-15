@@ -10,7 +10,6 @@ const {
   AgentAddress,
   Item
 } = cache
-const { getRoutes } = require('../../flow')
 
 class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers {
   static getReference (group, shortName) {
@@ -222,8 +221,4 @@ class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers 
   }
 }
 
-const handlers = new CheckYourAnswersHandlers()
-
-const routes = getRoutes.bind(handlers)('check-your-answers')
-
-module.exports = handlers.routes(routes)
+module.exports = CheckYourAnswersHandlers

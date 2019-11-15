@@ -1,6 +1,5 @@
 const { Agent } = require('ivory-data-mapping').cache
-const { getRoutes } = require('../../flow')
-const { addressLookUpEnabled } = require('../../config')
+const config = require('../../config')
 
 class AgentNameHandlers extends require('ivory-common-modules').person.name.handlers {
   get Person () {
@@ -17,12 +16,8 @@ class AgentNameHandlers extends require('ivory-common-modules').person.name.hand
   }
 
   lookUpEnabled () {
-    return addressLookUpEnabled
+    return config.addressLookUpEnabled
   }
 }
 
-const handlers = new AgentNameHandlers()
-
-const routes = getRoutes.bind(handlers)('agent-name')
-
-module.exports = handlers.routes(routes)
+module.exports = AgentNameHandlers

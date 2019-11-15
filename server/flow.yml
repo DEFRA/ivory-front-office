@@ -4,12 +4,14 @@
 
   home:
     path: "/"
+    handlers: home/home.handlers
     next: item-type
     tags:
       - always
 
   who-owns-item:
     path: "/who-owns-item"
+    handlers: who-owns/who-owns-item.handlers
     pageHeading: Who owns the item?
     view: common/select-one-option
     isQuestionPage: true
@@ -21,6 +23,7 @@
 
   dealing-intent:
     path: "/dealing-intent"
+    handlers: dealing-intent/dealing-intent.handlers
     pageHeading: What do you plan to do with the item?
     view: common/select-one-option
     isQuestionPage: true
@@ -28,24 +31,28 @@
 
   check-your-answers:
     path: "/check-your-answers"
+    handlers: check-your-answers/check-your-answers.handlers
     pageHeading: Check your answers
     view: check-your-answers/check-your-answers
     next: payment
 
   restore:
     path: "/restore/{id}"
+    handlers: restore/restore.handlers
     next: check-your-answers
     tags:
       - always
 
   confirmation-notify:
     path: "/confirmation-notify"
+    handlers: confirmation/confirmation-notify.handlers
     next: confirmation
     tags:
       - submitted
 
   confirmation:
     path: "/confirmation"
+    handlers: confirmation/confirmation.handlers
     pageHeading: Registration complete
     view: confirmation/confirmation
     tags:
@@ -58,6 +65,7 @@
 
   item-type:
     path: "/item-type"
+    handlers: item/item-type.handlers
     pageHeading: What type of item are you registering?
     view: common/select-one-option
     isQuestionPage: true
@@ -69,6 +77,7 @@
 
   item-description:
     path: "/item-description"
+    handlers: item/item-description.handlers
     pageHeading: Describe the item
     view: item/item-description
     isQuestionPage: true
@@ -80,12 +89,14 @@
 
   item-age-exemption-declaration:
     path: "/item-age-exemption-declaration"
+    handlers: item/item-age-exemption-declaration.handlers
     view: common/declaration
     isQuestionPage: true
     next: item-volume-exemption-declaration
 
   item-volume-exemption-declaration:
     path: "/item-volume-exemption-declaration"
+    handlers: item/item-volume-exemption-declaration.handlers
     view: common/declaration
     isQuestionPage: true
     next: who-owns-item
@@ -97,6 +108,7 @@
 
   add-photograph:
     path: "/add-photograph"
+    handlers: photos/add-photograph.handlers
     pageHeading: Add a photo
     view: photos/add-photograph
     isQuestionPage: true
@@ -104,6 +116,7 @@
 
   check-photograph:
     path: "/check-photograph"
+    handlers: photos/check-photograph.handlers
     pageHeading: This is your photo
     view: photos/check-photograph
     next: item-description
@@ -115,6 +128,7 @@
 
   agent-name:
     path: "/agent-name"
+    handlers: agent/agent-name.handlers
     pageHeading: Contact name
     view: common/person-name
     next:
@@ -125,24 +139,28 @@
 
   agent-address-find:
     path: "/agent-address"
+    handlers: agent/address/agent-address-find.handlers
     pageHeading: Your address
     view: common/address-find
     next: agent-address-select
 
   agent-address-select:
     path: "/agent-address-select"
+    handlers: agent/address/agent-address-select.handlers
     pageHeading: Your address
     view: common/address-select
     next: agent-email
 
   agent-address-full:
     path: "/agent-address-full"
+    handlers: agent/address/agent-address-manual.handlers
     pageHeading: Your address
     view: common/address-manual
     next: agent-email
 
   agent-email:
     path: "/agent-email"
+    handlers: agent/agent-email.handlers
     pageHeading: Your email address
     view: common/person-email
     isQuestionPage: true
@@ -155,6 +173,7 @@
 
   owner-name:
     path: "/owner-name"
+    handlers: owner/owner-name.handlers
     view: common/person-name
     pageHeading:
       query: isOwner
@@ -169,6 +188,7 @@
 
   owner-address-find:
     path: "/owner-address"
+    handlers: owner/address/owner-address-find.handlers
     view: common/address-find
     pageHeading:
       query: isOwner
@@ -179,6 +199,7 @@
 
   owner-address-select:
     path: "/owner-address-select"
+    handlers: owner/address/owner-address-select.handlers
     view: common/address-select
     pageHeading:
       query: isOwner
@@ -193,6 +214,7 @@
 
   owner-address-full:
     path: "/owner-address-full"
+    handlers: owner/address/owner-address-manual.handlers
     view: common/address-manual
     pageHeading:
       query: isOwner
@@ -207,6 +229,7 @@
 
   owner-email:
     path: "/owner-email"
+    handlers: owner/owner-email.handlers
     pageHeading:
       query: isOwner
       result:
@@ -223,6 +246,7 @@
 
   payment:
     path: "/payment"
+    handlers: payment/payment.handlers
     next:
       query: paymentEnabled
       result:
@@ -232,6 +256,7 @@
 
   check-payment:
     path: "/check-payment/{id}"
+    handlers: payment/check-payment.handlers
     next: confirmation-notify
     tags:
       - always

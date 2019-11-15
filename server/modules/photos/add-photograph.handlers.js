@@ -6,7 +6,6 @@ const path = require('path')
 const { utils, joiUtilities } = require('ivory-shared')
 const { uuid, setNestedVal, getNestedVal } = utils
 const { createError } = joiUtilities
-const { getRoutes } = require('../../flow')
 
 class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
   get validFileTypes () {
@@ -98,17 +97,15 @@ class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
 
     return super.handlePost(request, h)
   }
+
+  get payload () {
+    return { // https://hapi.dev/api/?v=18.4.0#route.options.payload
+      allow: 'multipart/form-data',
+      output: 'stream',
+      parse: true,
+      maxBytes: config.photoUploadPayloadMaxBytes // Hapi defaults to 1048576 (1MB). Allow the max photo size plus some additional payload data.
+    }
+  }
 }
 
-const handlers = new AddPhotographsHandlers()
-
-const routes = getRoutes.bind(handlers)('add-photograph')
-
-routes.payload = { // https://hapi.dev/api/?v=18.4.0#route.options.payload
-  allow: 'multipart/form-data',
-  output: 'stream',
-  parse: true,
-  maxBytes: config.photoUploadPayloadMaxBytes // Hapi defaults to 1048576 (1MB). Allow the max photo size plus some additional payload data.
-}
-
-module.exports = handlers.routes(routes)
+module.exports = AddPhotographsHandlers

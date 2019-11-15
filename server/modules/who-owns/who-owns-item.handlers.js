@@ -1,5 +1,4 @@
 const { Registration } = require('ivory-data-mapping').cache
-const { getRoutes } = require('../../flow')
 
 class WhoOwnsHandlers extends require('../common/single-option-handlers') {
   get Model () {
@@ -20,8 +19,4 @@ class WhoOwnsHandlers extends require('../common/single-option-handlers') {
   }
 }
 
-const handlers = new WhoOwnsHandlers()
-
-const routes = getRoutes.bind(handlers)('who-owns-item')
-
-module.exports = handlers.routes(routes)
+module.exports = WhoOwnsHandlers
