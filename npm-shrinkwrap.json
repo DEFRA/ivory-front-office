@@ -9967,7 +9967,7 @@
       }
     },
     "ivory-data-mapping": {
-      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#fb094afed588ced9e26f9b4dc9cef6c18c8ef2af",
+      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#3dd140b5a637fc00547e6ab971721354fe6df9b8",
       "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
       "requires": {
         "@hapi/joi": "^15.1.1",
