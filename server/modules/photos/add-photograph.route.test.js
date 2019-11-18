@@ -70,7 +70,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       ].join('\r\n')
 
       return routesHelper.expectValidationErrors(context, [
-        { field: 'photograph', message: 'The selected file must be bigger than 50KB' }
+        { field: 'photograph', message: `The selected file must be bigger than ${config.photoUploadPhotoMinKb}KB` }
       ])
     })
 
