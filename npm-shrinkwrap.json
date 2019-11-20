@@ -4211,7 +4211,7 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#d53c973d62d7c2602e23c3cb9435af708c232631",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#86010dc38226519509406052cde1a7abb3f64a4b",
       "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
@@ -5607,9 +5607,9 @@
           "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
         },
         "handlebars": {
-          "version": "4.4.5",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.5.tgz",
-          "integrity": "sha512-0Ce31oWVB7YidkaTq33ZxEbN+UDxMMgThvCe8ptgQViymL5DPis9uLdTA13MiRPhgvqyxIegugrP97iK3JeBHg==",
+          "version": "4.5.3",
+          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.3.tgz",
+          "integrity": "sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==",
           "requires": {
             "neo-async": "^2.6.0",
             "optimist": "^0.6.1",
@@ -5817,7 +5817,7 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#216d20969c7f2f3b1d9085bab223ad8c308c93d1",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#46007e73387f97995a285cd161ac2a7cf9ad092a",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
@@ -7091,9 +7091,9 @@
               "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
             },
             "handlebars": {
-              "version": "4.5.2",
-              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.2.tgz",
-              "integrity": "sha512-29Zxv/cynYB7mkT1rVWQnV7mGX6v7H/miQ6dbEpYTKq5eJBN7PsRB+ViYJlcT6JINTSu4dVB9kOqEun78h6Exg==",
+              "version": "4.5.3",
+              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.3.tgz",
+              "integrity": "sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==",
               "requires": {
                 "neo-async": "^2.6.0",
                 "optimist": "^0.6.1",
@@ -9810,9 +9810,9 @@
           "integrity": "sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg=="
         },
         "uglify-js": {
-          "version": "3.6.3",
-          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.3.tgz",
-          "integrity": "sha512-KfQUgOqTkLp2aZxrMbCuKCDGW9slFYu2A23A36Gs7sGzTLcRBDORdOi5E21KWHFIfkY8kzgi/Pr1cXCh0yIp5g==",
+          "version": "3.6.9",
+          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.9.tgz",
+          "integrity": "sha512-pcnnhaoG6RtrvHJ1dFncAe8Od6Nuy30oaJ82ts6//sGSXOP5UjBMEthiProjXmMNHOfd93sqlkztifFMcb+4yw==",
           "optional": true,
           "requires": {
             "commander": "~2.20.3",
@@ -9967,7 +9967,7 @@
       }
     },
     "ivory-data-mapping": {
-      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#3e478b009f51e16325836b900e6ac8f8f742b9c3",
+      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#cbc90727d0541df51545fc411a6828309ce97e4a",
       "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
       "requires": {
         "@hapi/joi": "^15.1.1",
@@ -10503,9 +10503,9 @@
           }
         },
         "commander": {
-          "version": "2.20.0",
-          "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.0.tgz",
-          "integrity": "sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==",
+          "version": "2.20.3",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz",
+          "integrity": "sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==",
           "optional": true
         },
         "concat-map": {
@@ -11220,9 +11220,9 @@
           "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
         },
         "handlebars": {
-          "version": "4.4.3",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.4.3.tgz",
-          "integrity": "sha512-B0W4A2U1ww3q7VVthTKfh+epHx+q4mCt6iK+zEAzbMBpWQAwxCeKxEGpj/1oQTpzPXDNSOG7hmG14TsISH50yw==",
+          "version": "4.5.3",
+          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.3.tgz",
+          "integrity": "sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==",
           "requires": {
             "neo-async": "^2.6.0",
             "optimist": "^0.6.1",
@@ -11430,13 +11430,13 @@
           "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
         },
         "ivory-shared": {
-          "version": "git+https://github.com/DEFRA/ivory-shared.git#216d20969c7f2f3b1d9085bab223ad8c308c93d1",
+          "version": "git+https://github.com/DEFRA/ivory-shared.git#46007e73387f97995a285cd161ac2a7cf9ad092a",
           "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
             "@hapi/joi": "^16.1.7",
             "@hapi/wreck": "^16.0.1",
-            "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+            "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
             "lodash": "^4.17.15"
           },
           "dependencies": {
@@ -12062,7 +12062,7 @@
             },
             "defra-logging-facade": {
               "version": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
-              "from": "git+https://github.com/DEFRA/defra-logging-facade.git#bb51e5bcbc70a7bc8ffbbc6d14820a2b5ca71f94",
+              "from": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
               "requires": {
                 "airbrake-js": "~1.4.9",
                 "lodash.clonedeep": "~4.5.0",
@@ -12704,9 +12704,9 @@
               "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
             },
             "handlebars": {
-              "version": "4.5.2",
-              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.2.tgz",
-              "integrity": "sha512-29Zxv/cynYB7mkT1rVWQnV7mGX6v7H/miQ6dbEpYTKq5eJBN7PsRB+ViYJlcT6JINTSu4dVB9kOqEun78h6Exg==",
+              "version": "4.5.3",
+              "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.3.tgz",
+              "integrity": "sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==",
               "requires": {
                 "neo-async": "^2.6.0",
                 "optimist": "^0.6.1",
@@ -15423,12 +15423,12 @@
           "integrity": "sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg=="
         },
         "uglify-js": {
-          "version": "3.6.2",
-          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.2.tgz",
-          "integrity": "sha512-+gh/xFte41GPrgSMJ/oJVq15zYmqr74pY9VoM69UzMzq9NFk4YDylclb1/bhEzZSaUQjbW5RvniHeq1cdtRYjw==",
+          "version": "3.6.9",
+          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.6.9.tgz",
+          "integrity": "sha512-pcnnhaoG6RtrvHJ1dFncAe8Od6Nuy30oaJ82ts6//sGSXOP5UjBMEthiProjXmMNHOfd93sqlkztifFMcb+4yw==",
           "optional": true,
           "requires": {
-            "commander": "2.20.0",
+            "commander": "~2.20.3",
             "source-map": "~0.6.1"
           },
           "dependencies": {
@@ -15580,7 +15580,7 @@
       }
     },
     "ivory-shared": {
-      "version": "git+https://github.com/DEFRA/ivory-shared.git#2bc91c683e404c65bba753c1d90d75916b3b0a7c",
+      "version": "git+https://github.com/DEFRA/ivory-shared.git#46007e73387f97995a285cd161ac2a7cf9ad092a",
       "from": "git+https://github.com/DEFRA/ivory-shared.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
@@ -16854,9 +16854,9 @@
           "integrity": "sha1-TK+tdrxi8C+gObL5Tpo906ORpyU="
         },
         "handlebars": {
-          "version": "4.5.2",
-          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.2.tgz",
-          "integrity": "sha512-29Zxv/cynYB7mkT1rVWQnV7mGX6v7H/miQ6dbEpYTKq5eJBN7PsRB+ViYJlcT6JINTSu4dVB9kOqEun78h6Exg==",
+          "version": "4.5.3",
+          "resolved": "https://registry.npmjs.org/handlebars/-/handlebars-4.5.3.tgz",
+          "integrity": "sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==",
           "requires": {
             "neo-async": "^2.6.0",
             "optimist": "^0.6.1",
