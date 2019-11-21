@@ -4211,7 +4211,7 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-common-modules": {
-      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#30be67cfb8cd61c09a46f09c072126573d3ede1d",
+      "version": "git+https://github.com/DEFRA/ivory-common-modules.git#0d1777a172c284426bb24325927060a0a37a5185",
       "from": "git+https://github.com/DEFRA/ivory-common-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
