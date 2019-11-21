@@ -1,8 +1,8 @@
-const { errorPages } = require('ivory-common-modules').plugins
-const { routeFlow } = require('ivory-common-modules').plugins
+const { errorPages, routeFlow } = require('ivory-common-modules').plugins
 let flow
 
 module.exports = {
+  plugin: errorPages,
   options: {
     handleFailedPrecondition: (request, h) => {
       // ToDo: Need to support already submitted when designed
@@ -16,9 +16,5 @@ module.exports = {
       flow = flow || routeFlow.flow()
       return h.redirect(flow.home.path)
     }
-  },
-  plugin: {
-    name: 'error-pages',
-    register: errorPages
   }
 }

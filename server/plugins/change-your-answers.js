@@ -4,6 +4,7 @@ const { changeYourAnswers, routeFlow } = require('ivory-common-modules').plugins
 let flow
 
 module.exports = {
+  plugin: changeYourAnswers,
   options: {
     async validData (request) {
       const { validForPayment } = await Registration.get(request) || {}
@@ -23,9 +24,5 @@ module.exports = {
     async isChanging (request) {
       return Cache.get(request, 'Changing')
     }
-  },
-  plugin: {
-    name: 'change-your-answers',
-    register: changeYourAnswers
   }
 }
