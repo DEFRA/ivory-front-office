@@ -14,14 +14,4 @@ class AgentHandlers extends require('../common/single-option-handlers') {
   }
 }
 
-const handlers = new AgentHandlers()
-
-module.exports = handlers.routes({
-  path: '/agent',
-  app: {
-    pageHeading: 'How are you acting on behalf of the owner?',
-    view: 'common/select-one-option',
-    nextPath: '/agent-name',
-    isQuestionPage: true
-  }
-})
+module.exports = AgentHandlers

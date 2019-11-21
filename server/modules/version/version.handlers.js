@@ -29,13 +29,4 @@ class VersionHandlers extends require('ivory-common-modules').handlers {
   }
 }
 
-const handlers = new VersionHandlers()
-
-module.exports = handlers.routes({
-  path: '/version',
-  app: {
-    pageHeading: 'Version',
-    view: 'version/version',
-    tags: ['always']
-  }
-}).filter(({ method }) => method === 'GET')
+module.exports = VersionHandlers

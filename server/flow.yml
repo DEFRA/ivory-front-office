@@ -121,10 +121,24 @@
     view: photos/check-photograph
     next: item-description
 
+  photo:
+    path: "/photos/{size}/{filename}"
+    handlers: photos/photos.handlers
+    tags:
+      - always
+
 
   # ======================
   # ===== Agent flow =====
   # ======================
+
+  agent:
+    path: "/agent"
+    handlers: agent/agent.handlers
+    pageHeading: How are you acting on behalf of the owner?
+    view: common/select-one-option
+    isQuestionPage: true
+    next: 'agent-name'
 
   agent-name:
     path: "/agent-name"
@@ -258,5 +272,18 @@
     path: "/check-payment/{id}"
     handlers: payment/check-payment.handlers
     next: confirmation-notify
+    tags:
+      - always
+
+
+  # ======================
+  # ==== Support flow ====
+  # ======================
+
+  version:
+    path: "/version"
+    handlers: version/version.handlers
+    pageHeading: Version
+    view: version/version
     tags:
       - always
