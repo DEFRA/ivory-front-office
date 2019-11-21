@@ -1,5 +1,4 @@
 const { Item } = require('ivory-data-mapping').cache
-const { getRoutes } = require('../../flow')
 const { getNestedVal } = require('ivory-shared').utils
 
 class ItemTypeHandlers extends require('../common/single-option-handlers') {
@@ -21,8 +20,4 @@ class ItemTypeHandlers extends require('../common/single-option-handlers') {
   }
 }
 
-const handlers = new ItemTypeHandlers()
-
-const routes = getRoutes.bind(handlers)('item-type')
-
-module.exports = handlers.routes(routes)
+module.exports = ItemTypeHandlers

@@ -1,5 +1,6 @@
-const { flow } = require('../flow')
 const { errorPages } = require('ivory-common-modules').plugins
+const { routeFlow } = require('ivory-common-modules').plugins
+let flow
 
 module.exports = {
   options: {
@@ -12,6 +13,7 @@ module.exports = {
       // return h.view(`error-handling/${statusCode}`).code(statusCode)
 
       // Just redirect home for now
+      flow = flow || routeFlow.flow()
       return h.redirect(flow.home.path)
     }
   },

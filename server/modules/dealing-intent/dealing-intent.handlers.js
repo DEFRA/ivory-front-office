@@ -1,5 +1,4 @@
 const { Registration } = require('ivory-data-mapping').cache
-const { getRoutes } = require('../../flow')
 
 class DealingIntentHandlers extends require('../common/single-option-handlers') {
   get Model () {
@@ -15,8 +14,4 @@ class DealingIntentHandlers extends require('../common/single-option-handlers') 
   }
 }
 
-const handlers = new DealingIntentHandlers()
-
-const routes = getRoutes.bind(handlers)('dealing-intent')
-
-module.exports = handlers.routes(routes)
+module.exports = DealingIntentHandlers

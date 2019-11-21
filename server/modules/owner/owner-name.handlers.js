@@ -1,7 +1,6 @@
 const { Owner } = require('ivory-data-mapping').cache
 const { mixin } = require('ivory-shared')
-const { getRoutes } = require('../../flow')
-const { addressLookUpEnabled } = require('../../config')
+const config = require('../../config')
 
 class OwnerNameHandlers extends mixin(require('ivory-common-modules').person.name.handlers, require('./owner-mixin')) {
   get Person () {
@@ -33,12 +32,8 @@ class OwnerNameHandlers extends mixin(require('ivory-common-modules').person.nam
   }
 
   lookUpEnabled () {
-    return addressLookUpEnabled
+    return config.addressLookUpEnabled
   }
 }
 
-const handlers = new OwnerNameHandlers()
-
-const routes = getRoutes.bind(handlers)('owner-name')
-
-module.exports = handlers.routes(routes)
+module.exports = OwnerNameHandlers

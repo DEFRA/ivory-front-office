@@ -1,5 +1,4 @@
 const { Item } = require('ivory-data-mapping').cache
-const { getRoutes } = require('../../flow')
 
 class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers {
   // Overrides parent class handleGet
@@ -14,8 +13,4 @@ class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers
   }
 }
 
-const handlers = new ConfirmPhotographHandlers()
-
-const routes = getRoutes.bind(handlers)('check-photograph')
-
-module.exports = handlers.routes(routes)
+module.exports = ConfirmPhotographHandlers

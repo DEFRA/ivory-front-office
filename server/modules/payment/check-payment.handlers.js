@@ -2,18 +2,22 @@ const Boom = require('@hapi/boom')
 const { utils, Payment: PaymentAPI } = require('ivory-shared')
 const cache = require('ivory-data-mapping').cache
 const { Payment, Registration } = cache
-const { paymentUrl, paymentKey } = require('../../config')
-const { getRoutes } = require('../../flow')
+const config = require('../../config')
 
 class CheckPaymentHandlers extends require('ivory-common-modules').handlers {
+  get paymentApi () {
+    const { paymentUrl, paymentKey } = config
+    return new PaymentAPI({
+      paymentsUrl: paymentUrl,
+      apiKey: paymentKey
+    })
+  }
+
   async handleGet (request, h) {
     await cache.restore(request, request.params.id)
     const payment = await Payment.get(request)
 
-    const paymentApi = new PaymentAPI({
-      paymentsUrl: paymentUrl,
-      apiKey: paymentKey
-    })
+    const paymentApi = this.paymentApi
 
     const result = await paymentApi.requestStatus(payment.paymentId)
     const status = utils.getNestedVal(result, 'state.status') || 'failed'
@@ -41,8 +45,4 @@ class CheckPaymentHandlers extends require('ivory-common-modules').handlers {
   }
 }
 
-const handlers = new CheckPaymentHandlers()
-
-const routes = getRoutes.bind(handlers)('check-payment')
-
-module.exports = handlers.routes(routes).filter(({ method }) => method === 'GET')
+module.exports = CheckPaymentHandlers

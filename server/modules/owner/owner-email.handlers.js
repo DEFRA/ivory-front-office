@@ -1,6 +1,5 @@
 const { Owner } = require('ivory-data-mapping').cache
 const { mixin } = require('ivory-shared')
-const { getRoutes } = require('../../flow')
 
 class OwnerEmailHandlers extends mixin(require('ivory-common-modules').person.email.handlers, require('./owner-mixin')) {
   get Person () {
@@ -14,8 +13,4 @@ class OwnerEmailHandlers extends mixin(require('ivory-common-modules').person.em
   }
 }
 
-const handlers = new OwnerEmailHandlers()
-
-const routes = getRoutes.bind(handlers)('owner-email')
-
-module.exports = handlers.routes(routes)
+module.exports = OwnerEmailHandlers

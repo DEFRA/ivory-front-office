@@ -1,21 +1,25 @@
 const { OwnerAddress } = require('ivory-data-mapping').cache
-const { flow } = require('../../../flow')
+const { routeFlow } = require('ivory-common-modules').plugins
 
 module.exports = {
   get Address () {
     return OwnerAddress
   },
 
+  get flow () {
+    return routeFlow.flow()
+  },
+
   get findAddressLink () {
-    return flow['owner-address-find'].path
+    return this.flow['owner-address-find'].path
   },
 
   get selectAddressLink () {
-    return flow['owner-address-select'].path
+    return this.flow['owner-address-select'].path
   },
 
   get manualAddressLink () {
-    return flow['owner-address-full'].path
+    return this.flow['owner-address-full'].path
   },
 
   async skipBusinessName (request) {

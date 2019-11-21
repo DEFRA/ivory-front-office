@@ -1,21 +1,28 @@
 const { Cache } = require('ivory-shared')
 const { Registration } = require('ivory-data-mapping').cache
-const { flow } = require('../flow')
-const { changeYourAnswers } = require('ivory-common-modules').plugins
+const { changeYourAnswers, routeFlow } = require('ivory-common-modules').plugins
+let flow
 
 module.exports = {
   options: {
-    validData: async (request) => {
+    async validData (request) {
       const { validForPayment } = await Registration.get(request) || {}
       return validForPayment
     },
-    ignoreRoute: async ({ route }) => {
+    async ignoreRoute ({ route }) {
       const { tags = [] } = route.settings
       return (tags.includes('always'))
     },
-    checkYourAnswersPath: flow['check-your-answers'].path,
-    setChanging: async (request, flag) => Cache.set(request, 'Changing', flag),
-    isChanging: async (request) => Cache.get(request, 'Changing')
+    get checkYourAnswersPath () {
+      flow = flow || routeFlow.flow()
+      return flow['check-your-answers'].path
+    },
+    async setChanging (request, flag) {
+      return Cache.set(request, 'Changing', flag)
+    },
+    async isChanging (request) {
+      return Cache.get(request, 'Changing')
+    }
   },
   plugin: {
     name: 'change-your-answers',
