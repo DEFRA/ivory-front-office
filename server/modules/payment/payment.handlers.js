@@ -1,9 +1,9 @@
-const { utils, Payment: PaymentAPI } = require('ivory-shared')
+const { utils, Payment: PaymentAPI } = require('defra-hapi-utils')
 const { logger } = require('defra-logging-facade')
 const { Registration, Payment } = require('ivory-data-mapping').cache
 const config = require('../../config')
 
-class PaymentHandlers extends require('ivory-common-modules').handlers {
+class PaymentHandlers extends require('defra-hapi-modules').handlers {
   async handleGet (request, h, errors) {
     const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = config
     const registration = await Registration.get(request) || {}

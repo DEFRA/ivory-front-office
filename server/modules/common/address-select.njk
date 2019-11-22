@@ -1,10 +1,10 @@
 {% extends 'two-thirds-layout.njk' %}
 
-{% from "address/select/macro.njk" import ivorySelectAddress %}
+{% from "address/select/macro.njk" import defraSelectAddress %}
 
 {% block formContent %}
 
-  {{ ivorySelectAddress({
+  {{ defraSelectAddress({
     address: viewData.address,
     addresses: viewData.addresses,
     errors: errors

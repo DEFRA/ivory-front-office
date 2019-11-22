@@ -1,5 +1,5 @@
 
-const { routeFlow } = require('ivory-common-modules').plugins
+const { routeFlow } = require('defra-hapi-modules').plugins
 const yaml = require('js-yaml')
 const fs = require('fs')
 const flowConfig = yaml.safeLoad(fs.readFileSync(`${__dirname}/../flow.yml`, 'utf8'))

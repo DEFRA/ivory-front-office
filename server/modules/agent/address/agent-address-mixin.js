@@ -1,5 +1,5 @@
 const { AgentAddress } = require('ivory-data-mapping').cache
-const { routeFlow } = require('ivory-common-modules').plugins
+const { routeFlow } = require('defra-hapi-modules').plugins
 
 module.exports = {
   get Address () {

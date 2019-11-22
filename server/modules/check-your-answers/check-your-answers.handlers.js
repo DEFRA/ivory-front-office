@@ -11,7 +11,7 @@ const {
   Item
 } = cache
 
-class CheckYourAnswersHandlers extends require('ivory-common-modules').handlers {
+class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
   static getReference (group, shortName) {
     return config.referenceData[group].choices.find((choice) => choice.shortName === shortName)
   }

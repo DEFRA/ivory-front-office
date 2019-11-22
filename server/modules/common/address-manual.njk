@@ -1,10 +1,10 @@
 {% extends 'two-thirds-layout.njk' %}
 
-{% from "address/manual/macro.njk" import ivoryManualAddress %}
+{% from "address/manual/macro.njk" import defraManualAddress %}
 
 {% block formContent %}
 
-  {{ ivoryManualAddress({
+  {{ defraManualAddress({
     address: viewData,
     errors: errors
   }) }}

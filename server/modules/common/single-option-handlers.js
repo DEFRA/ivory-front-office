@@ -1,4 +1,4 @@
-class SingleOptionHandlers extends require('ivory-common-modules').option.single.handlers {
+class SingleOptionHandlers extends require('defra-hapi-modules').option.single.handlers {
   get referenceData () {
     const config = require('../../config')
     return config.referenceData[this.fieldname] || {}

@@ -1,6 +1,6 @@
-const { Cache } = require('ivory-shared')
+const { Cache } = require('defra-hapi-utils')
 const { Registration } = require('ivory-data-mapping').cache
-const { changeYourAnswers, routeFlow } = require('ivory-common-modules').plugins
+const { changeYourAnswers, routeFlow } = require('defra-hapi-modules').plugins
 let flow
 
 module.exports = {

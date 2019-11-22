@@ -10,7 +10,7 @@ const config = require('../../config')
  * /photos/medium/image.jpg
  * /photos/original/image.jpg
  */
-class PhotoHandlers extends require('ivory-common-modules').handlers {
+class PhotoHandlers extends require('defra-hapi-modules').handlers {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const filename = encodeURIComponent(request.params.filename)

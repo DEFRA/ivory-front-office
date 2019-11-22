@@ -1,10 +1,10 @@
 const Boom = require('@hapi/boom')
-const { utils, Payment: PaymentAPI } = require('ivory-shared')
+const { utils, Payment: PaymentAPI } = require('defra-hapi-utils')
 const cache = require('ivory-data-mapping').cache
 const { Payment, Registration } = cache
 const config = require('../../config')
 
-class CheckPaymentHandlers extends require('ivory-common-modules').handlers {
+class CheckPaymentHandlers extends require('defra-hapi-modules').handlers {
   get paymentApi () {
     const { paymentUrl, paymentKey } = config
     return new PaymentAPI({

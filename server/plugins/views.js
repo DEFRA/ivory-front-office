@@ -22,7 +22,7 @@ module.exports = {
             path.join(options.relativeTo || process.cwd(), options.path),
             'node_modules/govuk-frontend/govuk',
             'node_modules/govuk-frontend/govuk/components/',
-            'node_modules/ivory-common-modules/source/modules/'
+            'node_modules/defra-hapi-modules/source/modules/'
           ], {
             autoescape: true,
             watch: false
