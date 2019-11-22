@@ -1,5 +1,5 @@
 const { Item } = require('ivory-data-mapping').cache
-const { getNestedVal } = require('ivory-shared').utils
+const { getNestedVal } = require('defra-hapi-utils').utils
 
 class ItemTypeHandlers extends require('../common/single-option-handlers') {
   get Model () {

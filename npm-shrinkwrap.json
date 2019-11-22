@@ -1899,7 +1899,7 @@
       }
     },
     "defra-hapi-modules": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#67644757613ec86f36cf503486d539ad3958eeed",
+      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#179424ba44a87d7ace73cfeea9337d019c32dfed",
       "from": "git+https://github.com/DEFRA/defra-hapi-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",

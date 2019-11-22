@@ -1,10 +1,10 @@
 {% extends 'two-thirds-layout.njk' %}
 
-{% from "address/find/macro.njk" import ivoryFindAddress %}
+{% from "address/find/macro.njk" import defraFindAddress %}
 
 {% block formContent %}
 
-  {{ ivoryFindAddress({
+  {{ defraFindAddress({
     postcode: viewData.postcode,
     errors: errors
   }) }}

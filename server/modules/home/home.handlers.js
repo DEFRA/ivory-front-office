@@ -1,6 +1,6 @@
 const { Registration, Cache } = require('ivory-data-mapping').cache
 
-class HomeHandlers extends require('ivory-common-modules').handlers {
+class HomeHandlers extends require('defra-hapi-modules').handlers {
   async handleGet (request, h, errors) {
     // Clear the cookies and create a new registration
     await Cache.clear(request)

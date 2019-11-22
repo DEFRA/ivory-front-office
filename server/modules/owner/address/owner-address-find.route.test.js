@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../../test-helper')
-const FindAddressHandlers = require('ivory-common-modules').address.find.handlers
+const FindAddressHandlers = require('defra-hapi-modules').address.find.handlers
 const config = require('../../../config')
 const url = '/owner-address'
 const pageHeading = 'Owner\'s address'

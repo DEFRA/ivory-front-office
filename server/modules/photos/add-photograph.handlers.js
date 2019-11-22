@@ -3,11 +3,11 @@ const { Item } = require('ivory-data-mapping').cache
 const config = require('../../config')
 const Photos = require('../../lib/photos/photos')
 const path = require('path')
-const { utils, joiUtilities } = require('ivory-shared')
+const { utils, joiUtilities } = require('defra-hapi-utils')
 const { uuid, setNestedVal, getNestedVal } = utils
 const { createError } = joiUtilities
 
-class AddPhotographsHandlers extends require('ivory-common-modules').handlers {
+class AddPhotographsHandlers extends require('defra-hapi-modules').handlers {
   get validFileTypes () {
     return {
       JPG: { mimeType: 'image/jpeg' },

@@ -1,11 +1,11 @@
-const { Persistence } = require('ivory-shared')
+const { Persistence } = require('defra-hapi-utils')
 const moment = require('moment')
 const { serviceApi } = require('../../config')
 const persistence = new Persistence({ path: `${serviceApi}/version` })
 const { name, homepage, version } = require('../../../package')
 const git = require('git-last-commit')
 
-class VersionHandlers extends require('ivory-common-modules').handlers {
+class VersionHandlers extends require('defra-hapi-modules').handlers {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { info: instance } = request.server

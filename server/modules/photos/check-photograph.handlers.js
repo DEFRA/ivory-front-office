@@ -1,6 +1,6 @@
 const { Item } = require('ivory-data-mapping').cache
 
-class ConfirmPhotographHandlers extends require('ivory-common-modules').handlers {
+class ConfirmPhotographHandlers extends require('defra-hapi-modules').handlers {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { photos = [] } = await Item.get(request) || {}

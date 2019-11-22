@@ -1,12 +1,12 @@
 const hapi = require('@hapi/hapi')
 const { name, version } = require('../package')
-const { Persistence } = require('ivory-shared')
+const { Persistence } = require('defra-hapi-utils')
 const { SyncRegistration } = require('ivory-data-mapping')
 const { logger } = require('defra-logging-facade')
 const config = require('./config')
 
 // Inject config into common modules and data mapping
-require('ivory-common-modules').utils.setConfig(config)
+require('defra-hapi-modules').utils.setConfig(config)
 // ToDo: Add config to data mapping when developed
 // require('ivory-data-mapping').utils.setConfig(config)
 

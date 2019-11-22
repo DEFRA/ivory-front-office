@@ -1,9 +1,9 @@
 const Joi = require('@hapi/joi')
 const { Item } = require('ivory-data-mapping').cache
-const { utils } = require('ivory-shared')
+const { utils } = require('defra-hapi-utils')
 const config = require('../../config')
 
-class ItemDescriptionHandlers extends require('ivory-common-modules').handlers {
+class ItemDescriptionHandlers extends require('defra-hapi-modules').handlers {
   get schema () {
     return Joi.object({
       'item-description': Joi.string().trim().max(this.maxFreeTextLength).required()

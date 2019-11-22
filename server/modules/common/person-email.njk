@@ -1,10 +1,10 @@
 {% extends 'two-thirds-layout.njk' %}
 
-{% from "person/email/macro.njk" import ivoryPersonEmail %}
+{% from "person/email/macro.njk" import defraPersonEmail %}
 
 {% block formContent %}
 
-  {{ ivoryPersonEmail({
+  {{ defraPersonEmail({
     pageHeading: pageHeading,
     email: viewData.email,
     emailHint: viewData.emailHint,

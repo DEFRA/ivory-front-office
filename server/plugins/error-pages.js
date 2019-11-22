@@ -1,4 +1,4 @@
-const { errorPages, routeFlow } = require('ivory-common-modules').plugins
+const { errorPages, routeFlow } = require('defra-hapi-modules').plugins
 let flow
 
 module.exports = {

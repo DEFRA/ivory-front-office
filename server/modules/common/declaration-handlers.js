@@ -1,4 +1,4 @@
-class DeclarationHandlers extends require('ivory-common-modules').declaration.handlers {
+class DeclarationHandlers extends require('defra-hapi-modules').declaration.handlers {
   async reference (request) {
     const model = await this.Model.get(request)
     return this.choices.find(({ shortName }) => shortName === model[this.fieldname])

@@ -18,7 +18,7 @@ process.env.LOG_LEVEL = 'error'
 const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
-const { utils } = require('ivory-shared')
+const { utils } = require('defra-hapi-utils')
 const { SyncRegistration, cache } = require('ivory-data-mapping')
 const routesPlugin = require('./server/plugins/router')
 

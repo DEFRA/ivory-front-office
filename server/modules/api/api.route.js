@@ -1,4 +1,4 @@
-const { Persistence } = require('ivory-shared')
+const { Persistence } = require('defra-hapi-utils')
 const querystring = require('querystring')
 const { serviceApi, isProd } = require('../../config')
 

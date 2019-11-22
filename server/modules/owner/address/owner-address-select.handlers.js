@@ -1,5 +1,5 @@
-const { mixin } = require('ivory-shared')
+const { mixin } = require('defra-hapi-utils')
 
-class OwnerAddressSelectHandlers extends mixin(require('ivory-common-modules').address.select.handlers, require('../owner-mixin'), require('./owner-address-mixin')) {}
+class OwnerAddressSelectHandlers extends mixin(require('defra-hapi-modules').address.select.handlers, require('../owner-mixin'), require('./owner-address-mixin')) {}
 
 module.exports = OwnerAddressSelectHandlers
