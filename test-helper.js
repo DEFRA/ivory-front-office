@@ -8,7 +8,6 @@ const dotenv = require('dotenv')
 process.env.SERVICE_NAME = 'Demo Service'
 process.env.COOKIE_PASSWORD = '6eea0a1e5a8a4432810022b3d1d6054cf6716c3952bc5cbd71314397eaf0666bfa928ecc50232b49041299de6872643e6ea3f84b95b11fc78b1bbf44f648d92a'
 process.env.ADDRESS_LOOKUP_ENABLED = false
-process.env.AIRBRAKE_ENABLED = false
 process.env.REDIS_ENABLED = false
 process.env.SERVICE_API_ENABLED = false
 process.env.PAYMENT_ENABLED = false
