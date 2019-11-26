@@ -47,7 +47,6 @@
     "defra-hapi-utils": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
     "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
     "dotenv": "^8.2.0",
-    "git-last-commit": "^1.0.0",
     "glob": "^7.1.6",
     "govuk-frontend": "3.3.0",
     "hapi-robots": "^3.2.0",
@@ -58,7 +57,6 @@
     "node-sass": "4.13.0",
     "notifications-node-client": "^4.7.0",
     "nunjucks": "3.2.0",
-    "require-all": "^3.0.0",
     "sharp": "^0.23.3"
   },
   "devDependencies": {

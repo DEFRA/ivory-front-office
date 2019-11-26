@@ -12245,11 +12245,6 @@
         "assert-plus": "^1.0.0"
       }
     },
-    "git-last-commit": {
-      "version": "1.0.0",
-      "resolved": "https://registry.npmjs.org/git-last-commit/-/git-last-commit-1.0.0.tgz",
-      "integrity": "sha512-wpnmsd2dW1MnoencljcWO/06VUealfMaY40ZjK5t3v9ljL+bKCMbNaTn/YzwIh4pDo2hk5QcN+pLzUJ8aWB17A=="
-    },
     "github-from-package": {
       "version": "0.0.0",
       "resolved": "https://registry.npmjs.org/github-from-package/-/github-from-package-0.0.0.tgz",
@@ -20108,11 +20103,6 @@
       "requires": {
         "lodash": "^4.13.1"
       }
-    },
-    "require-all": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/require-all/-/require-all-3.0.0.tgz",
-      "integrity": "sha1-Rz1JcEvjEBFc4ST3c4Ox69hnExI="
     },
     "require-directory": {
       "version": "2.1.1",
