@@ -1,289 +1,289 @@
-  # =====================
-  # ===== Main flow =====
-  # =====================
+# =====================
+# ===== Main flow =====
+# =====================
 
-  home:
-    path: "/"
-    handlers: home/home.handlers
-    next: item-type
-    tags:
-      - always
+home:
+  path: "/"
+  handlers: home/home.handlers
+  next: item-type
+  tags:
+    - always
 
-  who-owns-item:
-    path: "/who-owns-item"
-    handlers: who-owns/who-owns-item.handlers
-    pageHeading: Who owns the item?
-    view: common/select-one-option
-    isQuestionPage: true
-    next:
-      query: isOwner
-      result:
-        'true': owner-name
-        'false': agent-name
+who-owns-item:
+  path: "/who-owns-item"
+  handlers: who-owns/who-owns-item.handlers
+  pageHeading: Who owns the item?
+  view: common/select-one-option
+  isQuestionPage: true
+  next:
+    query: isOwner
+    result:
+      'true': owner-name
+      'false': agent-name
 
-  dealing-intent:
-    path: "/dealing-intent"
-    handlers: dealing-intent/dealing-intent.handlers
-    pageHeading: What do you plan to do with the item?
-    view: common/select-one-option
-    isQuestionPage: true
-    next: check-your-answers
+dealing-intent:
+  path: "/dealing-intent"
+  handlers: dealing-intent/dealing-intent.handlers
+  pageHeading: What do you plan to do with the item?
+  view: common/select-one-option
+  isQuestionPage: true
+  next: check-your-answers
 
-  check-your-answers:
-    path: "/check-your-answers"
-    handlers: check-your-answers/check-your-answers.handlers
-    pageHeading: Check your answers
-    view: check-your-answers/check-your-answers
-    next: payment
+check-your-answers:
+  path: "/check-your-answers"
+  handlers: check-your-answers/check-your-answers.handlers
+  pageHeading: Check your answers
+  view: check-your-answers/check-your-answers
+  next: payment
 
-  restore:
-    path: "/restore/{id}"
-    handlers: restore/restore.handlers
-    next: check-your-answers
-    tags:
-      - always
+restore:
+  path: "/restore/{id}"
+  handlers: restore/restore.handlers
+  next: check-your-answers
+  tags:
+    - always
 
-  confirmation-notify:
-    path: "/confirmation-notify"
-    handlers: confirmation/confirmation-notify.handlers
-    next: confirmation
-    tags:
-      - submitted
+confirmation-notify:
+  path: "/confirmation-notify"
+  handlers: confirmation/confirmation-notify.handlers
+  next: confirmation
+  tags:
+    - submitted
 
-  confirmation:
-    path: "/confirmation"
-    handlers: confirmation/confirmation.handlers
-    pageHeading: Registration complete
-    view: confirmation/confirmation
-    tags:
-      - submitted
-
-
-  # =====================
-  # ===== Item flow =====
-  # =====================
-
-  item-type:
-    path: "/item-type"
-    handlers: item/item-type.handlers
-    pageHeading: What type of item are you registering?
-    view: common/select-one-option
-    isQuestionPage: true
-    next:
-      query: hasPhotos
-      result:
-        'true': check-photograph
-        'false': add-photograph
-
-  item-description:
-    path: "/item-description"
-    handlers: item/item-description.handlers
-    pageHeading: Describe the item
-    view: item/item-description
-    isQuestionPage: true
-    next:
-      query: requiresAgeExemptionDeclaration
-      result:
-        'true': item-age-exemption-declaration
-        'false': who-owns-item
-
-  item-age-exemption-declaration:
-    path: "/item-age-exemption-declaration"
-    handlers: item/item-age-exemption-declaration.handlers
-    view: common/declaration
-    isQuestionPage: true
-    next: item-volume-exemption-declaration
-
-  item-volume-exemption-declaration:
-    path: "/item-volume-exemption-declaration"
-    handlers: item/item-volume-exemption-declaration.handlers
-    view: common/declaration
-    isQuestionPage: true
-    next: who-owns-item
+confirmation:
+  path: "/confirmation"
+  handlers: confirmation/confirmation.handlers
+  pageHeading: Registration complete
+  view: confirmation/confirmation
+  tags:
+    - submitted
 
 
-  # =====================
-  # ==== Photos flow ====
-  # =====================
+# =====================
+# ===== Item flow =====
+# =====================
 
-  add-photograph:
-    path: "/add-photograph"
-    handlers: photos/add-photograph.handlers
-    pageHeading: Add a photo
-    view: photos/add-photograph
-    isQuestionPage: true
-    next: check-photograph
+item-type:
+  path: "/item-type"
+  handlers: item/item-type.handlers
+  pageHeading: What type of item are you registering?
+  view: common/select-one-option
+  isQuestionPage: true
+  next:
+    query: hasPhotos
+    result:
+      'true': check-photograph
+      'false': add-photograph
 
-  check-photograph:
-    path: "/check-photograph"
-    handlers: photos/check-photograph.handlers
-    pageHeading: This is your photo
-    view: photos/check-photograph
-    next: item-description
+item-description:
+  path: "/item-description"
+  handlers: item/item-description.handlers
+  pageHeading: Describe the item
+  view: item/item-description
+  isQuestionPage: true
+  next:
+    query: requiresAgeExemptionDeclaration
+    result:
+      'true': item-age-exemption-declaration
+      'false': who-owns-item
 
-  photo:
-    path: "/photos/{size}/{filename}"
-    handlers: photos/photos.handlers
-    tags:
-      - always
+item-age-exemption-declaration:
+  path: "/item-age-exemption-declaration"
+  handlers: item/item-age-exemption-declaration.handlers
+  view: common/declaration
+  isQuestionPage: true
+  next: item-volume-exemption-declaration
 
-
-  # ======================
-  # ===== Agent flow =====
-  # ======================
-
-  agent:
-    path: "/agent"
-    handlers: agent/agent.handlers
-    pageHeading: How are you acting on behalf of the owner?
-    view: common/select-one-option
-    isQuestionPage: true
-    next: 'agent-name'
-
-  agent-name:
-    path: "/agent-name"
-    handlers: agent/agent-name.handlers
-    pageHeading: Contact name
-    view: common/person-name
-    next:
-      query: lookUpEnabled
-      result:
-        'true': agent-address-find
-        'false': agent-address-full
-
-  agent-address-find:
-    path: "/agent-address"
-    handlers: agent/address/agent-address-find.handlers
-    pageHeading: Your address
-    view: common/address-find
-    next: agent-address-select
-
-  agent-address-select:
-    path: "/agent-address-select"
-    handlers: agent/address/agent-address-select.handlers
-    pageHeading: Your address
-    view: common/address-select
-    next: agent-email
-
-  agent-address-full:
-    path: "/agent-address-full"
-    handlers: agent/address/agent-address-manual.handlers
-    pageHeading: Your address
-    view: common/address-manual
-    next: agent-email
-
-  agent-email:
-    path: "/agent-email"
-    handlers: agent/agent-email.handlers
-    pageHeading: Your email address
-    view: common/person-email
-    isQuestionPage: true
-    next: owner-name
+item-volume-exemption-declaration:
+  path: "/item-volume-exemption-declaration"
+  handlers: item/item-volume-exemption-declaration.handlers
+  view: common/declaration
+  isQuestionPage: true
+  next: who-owns-item
 
 
-  # ======================
-  # ===== Owner flow =====
-  # ======================
+# =====================
+# ==== Photos flow ====
+# =====================
 
-  owner-name:
-    path: "/owner-name"
-    handlers: owner/owner-name.handlers
-    view: common/person-name
-    pageHeading:
-      query: isOwner
-      result:
-        'true': Your name
-        'false': Owner's name
-    next:
-      query: lookUpEnabled
-      result:
-        'true': owner-address-find
-        'false': owner-address-full
+add-photograph:
+  path: "/add-photograph"
+  handlers: photos/add-photograph.handlers
+  pageHeading: Add a photo
+  view: photos/add-photograph
+  isQuestionPage: true
+  next: check-photograph
 
-  owner-address-find:
-    path: "/owner-address"
-    handlers: owner/address/owner-address-find.handlers
-    view: common/address-find
-    pageHeading:
-      query: isOwner
-      result:
-        'true': Your address
-        'false': Owner's address
-    next: owner-address-select
+check-photograph:
+  path: "/check-photograph"
+  handlers: photos/check-photograph.handlers
+  pageHeading: This is your photo
+  view: photos/check-photograph
+  next: item-description
 
-  owner-address-select:
-    path: "/owner-address-select"
-    handlers: owner/address/owner-address-select.handlers
-    view: common/address-select
-    pageHeading:
-      query: isOwner
-      result:
-        'true': Your address
-        'false': Owner's address
-    next:
-      query: isOwner
-      result:
-        'true': owner-email
-        'false': dealing-intent
-
-  owner-address-full:
-    path: "/owner-address-full"
-    handlers: owner/address/owner-address-manual.handlers
-    view: common/address-manual
-    pageHeading:
-      query: isOwner
-      result:
-        'true': Your address
-        'false': Owner's address
-    next:
-      query: isOwner
-      result:
-        'true': owner-email
-        'false': dealing-intent
-
-  owner-email:
-    path: "/owner-email"
-    handlers: owner/owner-email.handlers
-    pageHeading:
-      query: isOwner
-      result:
-        'true': Your email address
-        'false': Owner's email address
-    view: common/person-email
-    isQuestionPage: true
-    next: dealing-intent
+photo:
+  path: "/photos/{size}/{filename}"
+  handlers: photos/photos.handlers
+  tags:
+    - always
 
 
-  # ======================
-  # ==== Payment flow ====
-  # ======================
+# ======================
+# ===== Agent flow =====
+# ======================
 
-  payment:
-    path: "/payment"
-    handlers: payment/payment.handlers
-    next:
-      query: paymentEnabled
-      result:
-        'false': confirmation
-    tags:
-      - always
+agent:
+  path: "/agent"
+  handlers: agent/agent.handlers
+  pageHeading: How are you acting on behalf of the owner?
+  view: common/select-one-option
+  isQuestionPage: true
+  next: 'agent-name'
 
-  check-payment:
-    path: "/check-payment/{id}"
-    handlers: payment/check-payment.handlers
-    next: confirmation-notify
-    tags:
-      - always
+agent-name:
+  path: "/agent-name"
+  handlers: agent/agent-name.handlers
+  pageHeading: Contact name
+  view: common/person-name
+  next:
+    query: lookUpEnabled
+    result:
+      'true': agent-address-find
+      'false': agent-address-full
+
+agent-address-find:
+  path: "/agent-address"
+  handlers: agent/address/agent-address-find.handlers
+  pageHeading: Your address
+  view: common/address-find
+  next: agent-address-select
+
+agent-address-select:
+  path: "/agent-address-select"
+  handlers: agent/address/agent-address-select.handlers
+  pageHeading: Your address
+  view: common/address-select
+  next: agent-email
+
+agent-address-full:
+  path: "/agent-address-full"
+  handlers: agent/address/agent-address-manual.handlers
+  pageHeading: Your address
+  view: common/address-manual
+  next: agent-email
+
+agent-email:
+  path: "/agent-email"
+  handlers: agent/agent-email.handlers
+  pageHeading: Your email address
+  view: common/person-email
+  isQuestionPage: true
+  next: owner-name
 
 
-  # ======================
-  # ==== Support flow ====
-  # ======================
+# ======================
+# ===== Owner flow =====
+# ======================
 
-  version:
-    path: "/version"
-    handlers: version/version.handlers
-    pageHeading: Version
-    view: version/version
-    tags:
-      - always
+owner-name:
+  path: "/owner-name"
+  handlers: owner/owner-name.handlers
+  view: common/person-name
+  pageHeading:
+    query: isOwner
+    result:
+      'true': Your name
+      'false': Owner's name
+  next:
+    query: lookUpEnabled
+    result:
+      'true': owner-address-find
+      'false': owner-address-full
+
+owner-address-find:
+  path: "/owner-address"
+  handlers: owner/address/owner-address-find.handlers
+  view: common/address-find
+  pageHeading:
+    query: isOwner
+    result:
+      'true': Your address
+      'false': Owner's address
+  next: owner-address-select
+
+owner-address-select:
+  path: "/owner-address-select"
+  handlers: owner/address/owner-address-select.handlers
+  view: common/address-select
+  pageHeading:
+    query: isOwner
+    result:
+      'true': Your address
+      'false': Owner's address
+  next:
+    query: isOwner
+    result:
+      'true': owner-email
+      'false': dealing-intent
+
+owner-address-full:
+  path: "/owner-address-full"
+  handlers: owner/address/owner-address-manual.handlers
+  view: common/address-manual
+  pageHeading:
+    query: isOwner
+    result:
+      'true': Your address
+      'false': Owner's address
+  next:
+    query: isOwner
+    result:
+      'true': owner-email
+      'false': dealing-intent
+
+owner-email:
+  path: "/owner-email"
+  handlers: owner/owner-email.handlers
+  pageHeading:
+    query: isOwner
+    result:
+      'true': Your email address
+      'false': Owner's email address
+  view: common/person-email
+  isQuestionPage: true
+  next: dealing-intent
+
+
+# ======================
+# ==== Payment flow ====
+# ======================
+
+payment:
+  path: "/payment"
+  handlers: payment/payment.handlers
+  next:
+    query: paymentEnabled
+    result:
+      'false': confirmation
+  tags:
+    - always
+
+check-payment:
+  path: "/check-payment/{id}"
+  handlers: payment/check-payment.handlers
+  next: confirmation-notify
+  tags:
+    - always
+
+
+# ======================
+# ==== Support flow ====
+# ======================
+
+version:
+  path: "/version"
+  handlers: version/version.handlers
+  pageHeading: Version
+  view: version/version
+  tags:
+    - always
