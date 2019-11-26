@@ -50,7 +50,6 @@
     "glob": "^7.1.6",
     "govuk-frontend": "3.3.0",
     "hapi-robots": "^3.2.0",
-    "hapi-router": "^5.0.0",
     "ivory-data-mapping": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
     "js-yaml": "^3.13.1",
     "lodash.merge": "^4.6.2",

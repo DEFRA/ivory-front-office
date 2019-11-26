@@ -1450,21 +1450,6 @@
       "resolved": "https://registry.npmjs.org/caseless/-/caseless-0.12.0.tgz",
       "integrity": "sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw="
     },
-    "cast-array": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/cast-array/-/cast-array-1.0.1.tgz",
-      "integrity": "sha1-Jk7xEp5YiLxIysQP6RTp9puNGJ0=",
-      "requires": {
-        "isarray": "0.0.1"
-      },
-      "dependencies": {
-        "isarray": {
-          "version": "0.0.1",
-          "resolved": "https://registry.npmjs.org/isarray/-/isarray-0.0.1.tgz",
-          "integrity": "sha1-ihis/Kmo9Bd+Cav8YDiTmwXR7t8="
-        }
-      }
-    },
     "chalk": {
       "version": "2.4.2",
       "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz",
@@ -12366,29 +12351,6 @@
       "integrity": "sha512-9N4znXU2GNY21QXXuHmPzG/DyKCvT7il1b5vzpeSeeouFW07VWB50FwmUzmMYXnJG6hiCwZ7a7VOE6IHLwEN/A==",
       "requires": {
         "lodash": "^4.15.0"
-      }
-    },
-    "hapi-router": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/hapi-router/-/hapi-router-5.0.0.tgz",
-      "integrity": "sha512-2UktztUjoM7hbBCr3qo+Pkhs4BxSn+w+lskAuoy6kgoV+kguDRG8+05bb8zrWbRL5JQiat+5KtSvA4aVwxPEOA==",
-      "requires": {
-        "cast-array": "^1.0.0",
-        "glob": "^5.0.3"
-      },
-      "dependencies": {
-        "glob": {
-          "version": "5.0.15",
-          "resolved": "https://registry.npmjs.org/glob/-/glob-5.0.15.tgz",
-          "integrity": "sha1-G8k2ueAvSmA/zCIuz3Yz0wuLk7E=",
-          "requires": {
-            "inflight": "^1.0.4",
-            "inherits": "2",
-            "minimatch": "2 || 3",
-            "once": "^1.3.0",
-            "path-is-absolute": "^1.0.0"
-          }
-        }
       }
     },
     "har-schema": {
