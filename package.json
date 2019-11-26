@@ -48,7 +48,7 @@
     "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
     "dotenv": "^8.2.0",
     "glob": "^7.1.6",
-    "govuk-frontend": "3.3.0",
+    "govuk-frontend": "3.4.0",
     "hapi-robots": "^3.2.0",
     "ivory-data-mapping": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
     "js-yaml": "^3.13.1",

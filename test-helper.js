@@ -19,7 +19,6 @@ const config = require('./server/config')
 const { logger } = require('defra-logging-facade')
 const { utils } = require('defra-hapi-utils')
 const { SyncRegistration, cache } = require('ivory-data-mapping')
-const routesPlugin = require('./server/plugins/router')
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity
@@ -45,10 +44,6 @@ module.exports = class TestHelper {
       if (stubCache) {
         TestHelper.stubCache(context)
       }
-
-      // Stub the routes to include only the tested route derived from the test filename
-      const routes = TestHelper.getFile(testFile).replace('.test.js', '.js').substr(1)
-      context.sandbox.stub(routesPlugin, 'options').value({ routes })
 
       context.server = await require('./server')()
     })

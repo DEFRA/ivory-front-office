@@ -12310,9 +12310,9 @@
       }
     },
     "govuk-frontend": {
-      "version": "3.3.0",
-      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-3.3.0.tgz",
-      "integrity": "sha512-ncOGTAV6mzz1CPBlr/UGETiG3IO6P3b0CvSI0wxBz7Uo0A/6jttLoxkvuYXju2oNA2yqRh2NjD1zJUOP3Q32CQ=="
+      "version": "3.4.0",
+      "resolved": "https://registry.npmjs.org/govuk-frontend/-/govuk-frontend-3.4.0.tgz",
+      "integrity": "sha512-rmYPtcCtWgz92QBejYwOnfSxbPGYfvSruLwB4CBk/yJtySHRY0whG1e2/iFRRSj0pMx1Bu+zh/IqCTo+84hbFw=="
     },
     "graceful-fs": {
       "version": "4.2.2",
@@ -12882,10 +12882,10 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-data-mapping": {
-      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#a47bbfe23b0c9aea6824f65b9a2677071c89c066",
+      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#f3541843eb3a1166590f9628887a2dc84e0ab8ac",
       "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
       "requires": {
-        "@hapi/joi": "^15.1.1",
+        "@hapi/joi": "^16.1.8",
         "defra-hapi-utils": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
         "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master"
       },
@@ -12945,11 +12945,6 @@
             }
           }
         },
-        "@hapi/bourne": {
-          "version": "1.3.2",
-          "resolved": "https://registry.npmjs.org/@hapi/bourne/-/bourne-1.3.2.tgz",
-          "integrity": "sha512-1dVNHT76Uu5N3eJNTYcvxee+jzX4Z9lfciqRRHCU27ihbUcYi+iSc2iml5Ke1LXe1SyJCLA0+14Jh4tXJgOppA=="
-        },
         "@hapi/code": {
           "version": "7.0.0",
           "resolved": "https://registry.npmjs.org/@hapi/code/-/code-7.0.0.tgz",
@@ -12986,14 +12981,15 @@
           "integrity": "sha512-C0QL9bmgUXTSuf8nDeGrpMjtJG7tPUr8wG6/wxPbP62tGwCwQtdMSJYfESowmY4P3Hn593f+8OzNY5bckcu/LQ=="
         },
         "@hapi/joi": {
-          "version": "15.1.1",
-          "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-15.1.1.tgz",
-          "integrity": "sha512-entf8ZMOK8sc+8YfeOlM8pCfg3b5+WZIKBfUaaJT8UsjAAPjartzxIYm3TIbjvA4u+u++KbcXD38k682nVHDAQ==",
+          "version": "16.1.8",
+          "resolved": "https://registry.npmjs.org/@hapi/joi/-/joi-16.1.8.tgz",
+          "integrity": "sha512-wAsVvTPe+FwSrsAurNt5vkg3zo+TblvC5Bb1zMVK6SJzZqw9UrJnexxR+76cpePmtUZKHAPxcQ2Bf7oVHyahhg==",
           "requires": {
-            "@hapi/address": "2.x.x",
-            "@hapi/bourne": "1.x.x",
-            "@hapi/hoek": "8.x.x",
-            "@hapi/topo": "3.x.x"
+            "@hapi/address": "^2.1.2",
+            "@hapi/formula": "^1.2.0",
+            "@hapi/hoek": "^8.2.4",
+            "@hapi/pinpoint": "^1.0.2",
+            "@hapi/topo": "^3.1.3"
           }
         },
         "@hapi/lab": {
