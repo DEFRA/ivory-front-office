@@ -38,7 +38,7 @@ async function registerPlugins (server) {
   await server.register([
     require('@hapi/inert'),
     require('./plugins/views'),
-    require('./plugins/router'),
+    require('./plugins/public'),
     require('./plugins/flow'),
     require('./plugins/robots'),
     require('./plugins/cache'),
