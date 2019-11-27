@@ -41,7 +41,7 @@
     "@hapi/vision": "^5.5.4",
     "@hapi/wreck": "^16.0.1",
     "@hapi/yar": "^9.2.1",
-    "aws-sdk": "^2.579.0",
+    "aws-sdk": "^2.580.0",
     "blipp": "^4.0.1",
     "defra-hapi-modules": "git+https://github.com/DEFRA/defra-hapi-modules.git#master",
     "defra-hapi-utils": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
