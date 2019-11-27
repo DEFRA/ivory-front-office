@@ -8,11 +8,16 @@ module.exports = {
       server.ext('onPostAuth', async (request, h) => {
         const { settings } = request.route
         const { tags = [] } = settings
-        const registration = await Registration.get(request) || {}
 
         // Always allow the following to continue
         if (tags.includes('always')) {
           return h.continue
+        }
+
+        const registration = await Registration.get(request)
+
+        if (!registration) {
+          return Boom.preconditionFailed('Registration doesn\'t exist yet')
         }
 
         // Check submitted tag

@@ -44,6 +44,8 @@ module.exports = class TestHelper {
 
       if (stubCache) {
         TestHelper.stubCache(context)
+        // Make sure the registration is set in order for the tests to pass
+        TestHelper.setCache(context, 'Registration', {})
       }
 
       // Stub addRoute to add only the tested handlers derived from the test filename

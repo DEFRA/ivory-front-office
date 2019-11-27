@@ -111,10 +111,6 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
   async handleGet (request, h, errors) {
     const registration = await this.restoreRegistration(request)
 
-    if (!registration.validForPayment) {
-      return Boom.badData('Registration not valid for payment', registration)
-    }
-
     const owner = await Owner.get(request) || {}
     const ownerAddress = await OwnerAddress.get(request) || {}
     const agent = await Agent.get(request) || {}
