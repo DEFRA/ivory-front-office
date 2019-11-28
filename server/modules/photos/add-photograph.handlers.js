@@ -87,10 +87,11 @@ class AddPhotographsHandlers extends require('defra-hapi-modules').handlers {
       // There's already a photo, so delete it from storage and overwrite it in the cache/database (reusing the photo id for now until we handle the array create/delete in the services layer)
       await photos.delete(item.photos[0].filename)
       item.photos[0].filename = filenameUploaded
+      item.photos[0].confirmed = false
     } else {
       // Else it's the first photo, so create the photos array
       item.photos = []
-      const photo = { filename: filenameUploaded, rank: item.photos.length }
+      const photo = { filename: filenameUploaded, rank: item.photos.length, confirmed: false }
       item.photos.push(photo)
     }
     await Item.set(request, item)
