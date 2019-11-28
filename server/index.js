@@ -47,23 +47,18 @@ async function registerPlugins (server) {
     require('./plugins/error-pages')
   ])
 
-  // Register the crumb plugin only if not running in test
-  if (!config.isTest) {
+  // Register the crumb plugin only if not running in unit test
+  if (!config.isUnitTest) {
     await server.register([
       require('./plugins/crumb'),
       require('./plugins/logging')
     ])
   }
+
   // Register the api-proxy plugin only if not running in prod
   if (!config.isProd) {
     await server.register([
-      require('./plugins/service-api-proxy')
-    ])
-  }
-
-  // Register the dev-only plugins
-  if (config.isDev) {
-    await server.register([
+      require('./plugins/service-api-proxy'),
       require('blipp')
     ])
   }

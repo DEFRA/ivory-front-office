@@ -14,6 +14,7 @@ process.env.PAYMENT_ENABLED = false
 process.env.AWS_S3_ENABLED = false
 process.env.NOTIFY_ENABLED = false
 process.env.LOG_LEVEL = 'error'
+process.env.NODE_ENV = 'unit-test'
 const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
