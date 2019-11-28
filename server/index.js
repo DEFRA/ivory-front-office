@@ -54,6 +54,12 @@ async function registerPlugins (server) {
       require('./plugins/logging')
     ])
   }
+  // Register the api-proxy plugin only if not running in prod
+  if (!config.isProd) {
+    await server.register([
+      require('./plugins/service-api-proxy')
+    ])
+  }
 
   // Register the dev-only plugins
   if (config.isDev) {
