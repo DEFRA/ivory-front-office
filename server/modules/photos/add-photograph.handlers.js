@@ -1,9 +1,9 @@
 const Joi = require('@hapi/joi')
 const { Item } = require('ivory-data-mapping').cache
 const config = require('../../config')
-const Photos = require('../../lib/photos/photos')
 const path = require('path')
 const { utils, joiUtilities } = require('defra-hapi-utils')
+const { awsPhotos } = require('defra-hapi-modules').plugins
 const { uuid, setNestedVal, getNestedVal } = utils
 const { createError } = joiUtilities
 
@@ -63,11 +63,7 @@ class AddPhotographsHandlers extends require('defra-hapi-modules').handlers {
     const filename = uuid() + fileExtension
 
     // Prepare upload config
-    const photos = new Photos({
-      region: config.s3Region,
-      apiVersion: config.s3ApiVersion,
-      bucket: config.s3Bucket
-    })
+    const photos = awsPhotos.getPhotos()
 
     let filenameUploaded
     try {

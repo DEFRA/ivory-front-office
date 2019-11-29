@@ -5,7 +5,7 @@ const TestHelper = require('../../../test-helper')
 const url = '/add-photograph'
 const pageHeading = 'Add a photo'
 const config = require('../../config')
-const Photos = require('../../lib/photos/photos')
+const { Photos } = require('defra-hapi-modules').plugins.awsPhotos
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {

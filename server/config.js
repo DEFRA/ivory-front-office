@@ -160,10 +160,10 @@ value.loggingLevels = { DEBUG, INFO, ERROR }
 // Add photo upload config
 value.photoSmallMaxWidth = 200
 value.photoSmallMaxHeight = 200
-value.photoSmallPrefix = '200x200.'
+value.photoSmallPrefix = 'small'
 value.photoMediumMaxWidth = 400
 value.photoMediumMaxHeight = 400
-value.photoMediumPrefix = '400x400.'
+value.photoMediumPrefix = 'medium'
 
 // Add some helper props to the validated config
 value.isDev = value.env === DEVELOPMENT

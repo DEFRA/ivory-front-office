@@ -121,12 +121,6 @@ check-photograph:
   view: photos/check-photograph
   next: item-description
 
-photo:
-  path: "/photos/{size}/{filename}"
-  handlers: photos/photos.handlers
-  tags:
-    - always
-
 
 # ======================
 # ===== Agent flow =====
