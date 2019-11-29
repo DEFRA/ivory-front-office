@@ -45,6 +45,10 @@ class AddPhotographsHandlers extends require('defra-hapi-modules').handlers {
     }
   }
 
+  get photos () {
+    return awsPhotos.getPhotos()
+  }
+
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const result = await super.handleGet(request, h, errors)
@@ -62,12 +66,9 @@ class AddPhotographsHandlers extends require('defra-hapi-modules').handlers {
     const contentType = photoPayload.hapi.headers['content-type']
     const filename = uuid() + fileExtension
 
-    // Prepare upload config
-    const photos = awsPhotos.getPhotos()
-
     let filenameUploaded
     try {
-      filenameUploaded = await photos.upload(filename, contentType, photoPayload)
+      filenameUploaded = await this.photos.upload(filename, contentType, photoPayload)
     } catch (err) {
       // The upload failed, so tell the user to try again
       // Rather than building from scratch, generate an example error structure and overwrite the type
@@ -81,7 +82,7 @@ class AddPhotographsHandlers extends require('defra-hapi-modules').handlers {
 
     if (getNestedVal(item, 'photos.length')) {
       // There's already a photo, so delete it from storage and overwrite it in the cache/database (reusing the photo id for now until we handle the array create/delete in the services layer)
-      await photos.delete(item.photos[0].filename)
+      await this.photos.delete(item.photos[0].filename)
       item.photos[0].filename = filenameUploaded
       item.photos[0].confirmed = false
     } else {
