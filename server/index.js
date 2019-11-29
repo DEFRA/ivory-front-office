@@ -40,6 +40,7 @@ async function registerPlugins (server) {
     require('./plugins/views'),
     require('./plugins/public'),
     require('./plugins/flow'),
+    require('./plugins/photos'),
     require('./plugins/robots'),
     require('./plugins/cache'),
     require('./plugins/navigation'),
