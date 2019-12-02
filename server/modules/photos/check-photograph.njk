@@ -1,12 +1,13 @@
 {% extends 'two-thirds-layout.njk' %}
 
+{% from "photos/check/macro.njk" import defraCheckPhoto %}
+
 {% block formContent %}
 
-  <div class="govuk-form-group">
-    <p>
-      <img id="photograph" class="check-photo-img" src="{{ viewData.photoUrl }}" />
-    </p>
-  </div>
+  {{ defraCheckPhoto({
+    viewData: viewData,
+    fieldname: fieldname
+  }) }}
 
 {% endblock %}
 

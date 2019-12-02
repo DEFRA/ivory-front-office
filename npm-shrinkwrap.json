@@ -1816,7 +1816,7 @@
       }
     },
     "defra-hapi-modules": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#0947cb0260811ee74eb3486b05b62ff5fcb7adb6",
+      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#e1b42a43cbe8654b7a8622bdeda290e3691fb1fd",
       "from": "git+https://github.com/DEFRA/defra-hapi-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
@@ -2451,13 +2451,13 @@
           }
         },
         "defra-hapi-utils": {
-          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#6a7f977fcbaa33b9d40aa2ff991188351ce41c0f",
+          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#900ae84f5d7a5d87453dc76bf5df683534e6dfc2",
           "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
             "@hapi/joi": "^16.1.8",
             "@hapi/wreck": "^16.0.1",
-            "aws-sdk": "^2.580.0",
+            "aws-sdk": "^2.581.0",
             "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
             "lodash": "^4.17.15",
             "sharp": "^0.23.3"
@@ -2876,9 +2876,9 @@
               "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
             },
             "aws-sdk": {
-              "version": "2.580.0",
-              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.580.0.tgz",
-              "integrity": "sha512-YUn/LgaSjWuFDCAIOiOvyXbuRpNEzTPLbwRs3GpEmrP1hJrOChXh0p7GH61sTZdeJZarCSETUOWU5ngjpCOjKA==",
+              "version": "2.581.0",
+              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.581.0.tgz",
+              "integrity": "sha512-Z2gulIgdVRdVVSuV27hVdrMdScU35+qkWZI6gKO7V+allk3LIfl/JbV6RGuEbCpzQg6Di/69fkN/jhbpZ+b3ig==",
               "requires": {
                 "buffer": "^4.9.1",
                 "events": "^1.1.1",
@@ -5924,9 +5924,9 @@
           "integrity": "sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ="
         },
         "eslint": {
-          "version": "6.7.1",
-          "resolved": "https://registry.npmjs.org/eslint/-/eslint-6.7.1.tgz",
-          "integrity": "sha512-UWzBS79pNcsDSxgxbdjkmzn/B6BhsXMfUaOHnNwyE8nD+Q6pyT96ow2MccVayUTV4yMid4qLhMiQaywctRkBLA==",
+          "version": "6.7.2",
+          "resolved": "https://registry.npmjs.org/eslint/-/eslint-6.7.2.tgz",
+          "integrity": "sha512-qMlSWJaCSxDFr8fBPvJM9kJwbazrhNcBU3+DszDW1OlEwKBBRWsJc7NJFelvwQpanHCR14cOLD41x8Eqvo3Nng==",
           "requires": {
             "@babel/code-frame": "^7.0.0",
             "ajv": "^6.10.0",
@@ -8228,13 +8228,13 @@
       }
     },
     "defra-hapi-utils": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#6a7f977fcbaa33b9d40aa2ff991188351ce41c0f",
+      "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#900ae84f5d7a5d87453dc76bf5df683534e6dfc2",
       "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
         "@hapi/joi": "^16.1.8",
         "@hapi/wreck": "^16.0.1",
-        "aws-sdk": "^2.580.0",
+        "aws-sdk": "^2.581.0",
         "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
         "lodash": "^4.17.15",
         "sharp": "^0.23.3"
@@ -8653,9 +8653,9 @@
           "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
         },
         "aws-sdk": {
-          "version": "2.580.0",
-          "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.580.0.tgz",
-          "integrity": "sha512-YUn/LgaSjWuFDCAIOiOvyXbuRpNEzTPLbwRs3GpEmrP1hJrOChXh0p7GH61sTZdeJZarCSETUOWU5ngjpCOjKA==",
+          "version": "2.581.0",
+          "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.581.0.tgz",
+          "integrity": "sha512-Z2gulIgdVRdVVSuV27hVdrMdScU35+qkWZI6gKO7V+allk3LIfl/JbV6RGuEbCpzQg6Di/69fkN/jhbpZ+b3ig==",
           "requires": {
             "buffer": "^4.9.1",
             "events": "^1.1.1",
@@ -13810,7 +13810,7 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-data-mapping": {
-      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#153a17cdd7b39244f4284f4b7b3295df561bb941",
+      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#16b9bb322a7f86ea268cbd4a41fe2d5480b24d6f",
       "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
       "requires": {
         "@hapi/joi": "^16.1.8",
@@ -14416,13 +14416,13 @@
           }
         },
         "defra-hapi-utils": {
-          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#6a7f977fcbaa33b9d40aa2ff991188351ce41c0f",
+          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#900ae84f5d7a5d87453dc76bf5df683534e6dfc2",
           "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
             "@hapi/joi": "^16.1.8",
             "@hapi/wreck": "^16.0.1",
-            "aws-sdk": "^2.580.0",
+            "aws-sdk": "^2.581.0",
             "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
             "lodash": "^4.17.15",
             "sharp": "^0.23.3"
@@ -14841,9 +14841,9 @@
               "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
             },
             "aws-sdk": {
-              "version": "2.580.0",
-              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.580.0.tgz",
-              "integrity": "sha512-YUn/LgaSjWuFDCAIOiOvyXbuRpNEzTPLbwRs3GpEmrP1hJrOChXh0p7GH61sTZdeJZarCSETUOWU5ngjpCOjKA==",
+              "version": "2.581.0",
+              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.581.0.tgz",
+              "integrity": "sha512-Z2gulIgdVRdVVSuV27hVdrMdScU35+qkWZI6gKO7V+allk3LIfl/JbV6RGuEbCpzQg6Di/69fkN/jhbpZ+b3ig==",
               "requires": {
                 "buffer": "^4.9.1",
                 "events": "^1.1.1",

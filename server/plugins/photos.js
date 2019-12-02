@@ -24,6 +24,9 @@ module.exports = {
     apiVersion: config.s3ApiVersion,
     bucket: config.s3Bucket,
     enabled: config.s3Enabled,
+    maxMb: config.photoUploadPhotoMaxMb,
+    minKb: config.photoUploadPhotoMinKb,
+    payloadMaxBytes: config.photoUploadPayloadMaxBytes,
     tags: ['always']
   }
 }
