@@ -4,7 +4,7 @@ const cache = require('ivory-data-mapping').cache
 const { Payment, Registration } = cache
 const config = require('../../config')
 
-class CheckPaymentHandlers extends require('defra-hapi-modules').handlers {
+class CheckPaymentHandlers extends require('defra-hapi-plugin-handlers') {
   get paymentApi () {
     const { paymentUrl, paymentKey } = config
     return new PaymentAPI({

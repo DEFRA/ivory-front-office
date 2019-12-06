@@ -1,0 +1,22 @@
+{% extends 'two-thirds-layout.njk' %}
+
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block formContent %}
+
+  {{ govukRadios({
+    idPrefix: fieldname,
+    name: fieldname,
+    hint: viewData.hint,
+    fieldset: {
+      legend: {
+        text: pageHeading,
+        isPageHeading: isQuestionPage,
+        classes: "govuk-fieldset__legend--xl"
+      }
+    },
+    errorMessage: errors[fieldname],
+    items: viewData.items
+  }) }}
+
+{% endblock %}

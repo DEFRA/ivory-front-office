@@ -1,6 +1,6 @@
 const { Item } = require('ivory-data-mapping').cache
 
-class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration-handlers') {
+class ItemAgeExemptionDeclarationHandlers extends require('../common/declaration/declaration-handlers') {
   get Model () {
     return Item
   }

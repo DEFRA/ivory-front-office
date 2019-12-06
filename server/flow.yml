@@ -13,7 +13,7 @@ who-owns-item:
   path: "/who-owns-item"
   handlers: who-owns/who-owns-item.handlers
   pageHeading: Who owns the item?
-  view: common/select-one-option
+  view: common/option/single/single-option
   isQuestionPage: true
   next:
     query: isOwner
@@ -25,7 +25,7 @@ dealing-intent:
   path: "/dealing-intent"
   handlers: dealing-intent/dealing-intent.handlers
   pageHeading: What do you plan to do with the item?
-  view: common/select-one-option
+  view: common/option/single/single-option
   isQuestionPage: true
   next: check-your-answers
 
@@ -67,7 +67,7 @@ item-type:
   path: "/item-type"
   handlers: item/item-type.handlers
   pageHeading: What type of item are you registering?
-  view: common/select-one-option
+  view: common/option/single/single-option
   isQuestionPage: true
   next:
     query: hasPhotos
@@ -90,14 +90,14 @@ item-description:
 item-age-exemption-declaration:
   path: "/item-age-exemption-declaration"
   handlers: item/item-age-exemption-declaration.handlers
-  view: common/declaration
+  view: common/declaration/declaration
   isQuestionPage: true
   next: item-volume-exemption-declaration
 
 item-volume-exemption-declaration:
   path: "/item-volume-exemption-declaration"
   handlers: item/item-volume-exemption-declaration.handlers
-  view: common/declaration
+  view: common/declaration/declaration
   isQuestionPage: true
   next: who-owns-item
 
@@ -130,7 +130,7 @@ agent:
   path: "/agent"
   handlers: agent/agent.handlers
   pageHeading: How are you acting on behalf of the owner?
-  view: common/select-one-option
+  view: common/option/single/single-option
   isQuestionPage: true
   next: 'agent-name'
 
@@ -138,7 +138,7 @@ agent-name:
   path: "/agent-name"
   handlers: agent/agent-name.handlers
   pageHeading: Contact name
-  view: common/person-name
+  view: common/person/name/person-name
   next:
     query: lookUpEnabled
     result:
@@ -149,28 +149,28 @@ agent-address-find:
   path: "/agent-address"
   handlers: agent/address/agent-address-find.handlers
   pageHeading: Your address
-  view: common/address-find
+  view: common/address/find/address-find
   next: agent-address-select
 
 agent-address-select:
   path: "/agent-address-select"
   handlers: agent/address/agent-address-select.handlers
   pageHeading: Your address
-  view: common/address-select
+  view: common/address/select/address-select
   next: agent-email
 
 agent-address-full:
   path: "/agent-address-full"
   handlers: agent/address/agent-address-manual.handlers
   pageHeading: Your address
-  view: common/address-manual
+  view: common/address/manual/address-manual
   next: agent-email
 
 agent-email:
   path: "/agent-email"
   handlers: agent/agent-email.handlers
   pageHeading: Your email address
-  view: common/person-email
+  view: common/person/email/person-email
   isQuestionPage: true
   next: owner-name
 
@@ -182,7 +182,7 @@ agent-email:
 owner-name:
   path: "/owner-name"
   handlers: owner/owner-name.handlers
-  view: common/person-name
+  view: common/person/name/person-name
   pageHeading:
     query: isOwner
     result:
@@ -197,7 +197,7 @@ owner-name:
 owner-address-find:
   path: "/owner-address"
   handlers: owner/address/owner-address-find.handlers
-  view: common/address-find
+  view: common/address/find/address-find
   pageHeading:
     query: isOwner
     result:
@@ -208,7 +208,7 @@ owner-address-find:
 owner-address-select:
   path: "/owner-address-select"
   handlers: owner/address/owner-address-select.handlers
-  view: common/address-select
+  view: common/address/select/address-select
   pageHeading:
     query: isOwner
     result:
@@ -223,7 +223,7 @@ owner-address-select:
 owner-address-full:
   path: "/owner-address-full"
   handlers: owner/address/owner-address-manual.handlers
-  view: common/address-manual
+  view: common/address/manual/address-manual
   pageHeading:
     query: isOwner
     result:
@@ -243,7 +243,7 @@ owner-email:
     result:
       'true': Your email address
       'false': Owner's email address
-  view: common/person-email
+  view: common/person/email/person-email
   isQuestionPage: true
   next: dealing-intent
 

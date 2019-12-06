@@ -1,6 +1,6 @@
 const { Registration } = require('ivory-data-mapping').cache
 
-class WhoOwnsHandlers extends require('../common/single-option-handlers') {
+class WhoOwnsHandlers extends require('../common/option/single/single-option.handlers') {
   get Model () {
     return Registration
   }

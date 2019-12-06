@@ -1,7 +1,7 @@
 const { Agent } = require('ivory-data-mapping').cache
 const config = require('../../config')
 
-class AgentNameHandlers extends require('defra-hapi-modules').person.name.handlers {
+class AgentNameHandlers extends require('../common/person/name/person-name.handlers') {
   get Person () {
     return Agent
   }

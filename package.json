@@ -43,6 +43,7 @@
     "@hapi/yar": "^9.2.1",
     "blipp": "^4.0.1",
     "defra-hapi-modules": "git+https://github.com/DEFRA/defra-hapi-modules.git#master",
+    "defra-hapi-plugin-handlers": "git+https://github.com/ajaxscape/defra-hapi-plugin-handlers.git#master",
     "defra-hapi-utils": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
     "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
     "dotenv": "^8.2.0",

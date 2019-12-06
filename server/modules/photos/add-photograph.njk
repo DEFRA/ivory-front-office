@@ -1,6 +1,6 @@
 {% extends 'two-thirds-layout.njk' %}
 
-{% from "photos/add/macro.njk" import defraAddPhoto %}
+{% from "file-upload/macro.njk" import govukFileUpload %}
 
 {# Override the form block to set multipart encoding #}
 {% block formDefinition %}
@@ -10,14 +10,20 @@
 
 {% block formContent %}
 
-    {{ defraAddPhoto({
-      pageHeading: pageHeading,
-      hint: {
-        text: "The ivory in the item must be clearly visible"
+    {{ govukFileUpload({
+      name: fieldname,
+      id: fieldname,
+      label: {
+        text: pageHeading,
+        isPageHeading: isQuestionPage,
+        classes: "govuk-label--xl"
       },
-      fieldname: fieldname,
-      errors: errors,
-      isQuestionPage: isQuestionPage
+      hint: hint,
+      errorMessage: errors[fieldname],
+      classes: "ivory-govuk-file-upload",
+      attributes: {
+        accept: "image/*"
+      }
     }) }}
 
 {% endblock %}

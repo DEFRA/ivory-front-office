@@ -1,5 +1,7 @@
 const Boom = require('@hapi/boom')
 const registrationNumberGenerator = require('../../lib/registration-number-generator')
+const { routeFlow } = require('defra-hapi-modules').plugins
+let flow
 const config = require('../../config')
 const cache = require('ivory-data-mapping').cache
 const {
@@ -11,7 +13,7 @@ const {
   Item
 } = cache
 
-class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
+class CheckYourAnswersHandlers extends require('defra-hapi-plugin-handlers') {
   static getReference (group, shortName) {
     return config.referenceData[group].choices.find((choice) => choice.shortName === shortName)
   }
@@ -109,6 +111,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
   }
 
   async handleGet (request, h, errors) {
+    flow = flow || routeFlow.flow()
     const registration = await this.restoreRegistration(request)
 
     const owner = await Owner.get(request) || {}
@@ -127,7 +130,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
       answers.push({
         key: 'Item type',
         value: itemTypeReference.label,
-        link: '/item-type'
+        link: flow['item-type'].path
       })
     }
 
@@ -138,7 +141,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
       answers.push({
         key: 'Photograph',
         html: `<img class="check-photo-img" src="/photos/medium/${lastphoto.filename}" border="0">`,
-        link: '/check-photograph'
+        link: flow['check-photograph'].path
       })
       // })
     }
@@ -147,7 +150,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
       answers.push({
         key: 'Description',
         html: item.description.replace(/[\r]/g, '<br>'),
-        link: '/item-description'
+        link: flow['item-description'].path
       })
     }
 
@@ -156,7 +159,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
         item.ageExemptionDeclaration,
         item.ageExemptionDescription,
         itemTypeReference.ageExemptionDeclaration,
-        '/item-age-exemption-declaration'))
+        flow['item-age-exemption-declaration'].path))
     }
 
     if (item.volumeExemptionDeclaration) {
@@ -164,7 +167,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
         item.volumeExemptionDeclaration,
         item.volumeExemptionDescription,
         itemTypeReference.volumeExemptionDeclaration,
-        '/item-volume-exemption-declaration'))
+        flow['item-volume-exemption-declaration'].path))
     }
 
     if (ownerType) {
@@ -172,20 +175,20 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
       answers.push({
         key: 'Who owns the item',
         value: label,
-        link: '/who-owns-item'
+        link: flow['who-owns-item'].path
       })
     }
 
     if (agent.fullName) {
       answers = answers.concat(this.getPerson(agent, agentAddress,
         { name: 'Contact', default: 'Your' },
-        '/agent-name', '/agent-full-address', 'agent-email'))
+        flow['agent-name'].path, flow['agent-address-find'].path, flow['agent-email'].path))
     }
 
     if (owner.fullName) {
       answers = answers.concat(this.getPerson(owner, ownerAddress,
         await this.isOwner(request) ? 'Your' : 'Owner\'s',
-        '/owner-name', '/owner-full-address', '/owner-email'))
+        flow['owner-name'].path, flow['owner-address-find'].path, flow['owner-email'].path))
     }
 
     if (dealingIntent) {
@@ -193,7 +196,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-modules').handlers {
       answers.push({
         key: 'Intention',
         value: display,
-        link: '/dealing-intent'
+        link: flow['dealing-intent'].path
       })
     }
 
