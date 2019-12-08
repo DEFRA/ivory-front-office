@@ -1816,7 +1816,7 @@
       }
     },
     "defra-hapi-modules": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#e1b42a43cbe8654b7a8622bdeda290e3691fb1fd",
+      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#209bbbf791f46c2ad2fea8a1d656d5b97cee0422",
       "from": "git+https://github.com/DEFRA/defra-hapi-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
@@ -2451,16 +2451,16 @@
           }
         },
         "defra-hapi-utils": {
-          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#900ae84f5d7a5d87453dc76bf5df683534e6dfc2",
+          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#9e3a446253c3dd169a40b811af3bc2a7234bc9c5",
           "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
             "@hapi/joi": "^16.1.8",
             "@hapi/wreck": "^16.0.1",
-            "aws-sdk": "^2.581.0",
+            "aws-sdk": "^2.585.0",
             "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
             "lodash": "^4.17.15",
-            "sharp": "^0.23.3"
+            "sharp": "^0.23.4"
           },
           "dependencies": {
             "@babel/code-frame": {
@@ -2876,19 +2876,26 @@
               "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
             },
             "aws-sdk": {
-              "version": "2.581.0",
-              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.581.0.tgz",
-              "integrity": "sha512-Z2gulIgdVRdVVSuV27hVdrMdScU35+qkWZI6gKO7V+allk3LIfl/JbV6RGuEbCpzQg6Di/69fkN/jhbpZ+b3ig==",
+              "version": "2.585.0",
+              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.585.0.tgz",
+              "integrity": "sha512-T3JG4JZUmELqxT4hwJa93xns/TWIllaeYoyhRPGwXUj78vhCYJUiigtU6WRYLu84AMoZAGT/pVkARH7vfxpq9Q==",
               "requires": {
-                "buffer": "^4.9.1",
-                "events": "^1.1.1",
-                "ieee754": "^1.1.13",
-                "jmespath": "^0.15.0",
-                "querystring": "^0.2.0",
-                "sax": "^1.2.1",
-                "url": "^0.10.3",
-                "uuid": "^3.3.2",
-                "xml2js": "^0.4.19"
+                "buffer": "4.9.1",
+                "events": "1.1.1",
+                "ieee754": "1.1.13",
+                "jmespath": "0.15.0",
+                "querystring": "0.2.0",
+                "sax": "1.2.1",
+                "url": "0.10.3",
+                "uuid": "3.3.2",
+                "xml2js": "0.4.19"
+              },
+              "dependencies": {
+                "uuid": {
+                  "version": "3.3.2",
+                  "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.3.2.tgz",
+                  "integrity": "sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA=="
+                }
               }
             },
             "aws-sign2": {
@@ -2945,9 +2952,9 @@
               }
             },
             "buffer": {
-              "version": "4.9.2",
-              "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.2.tgz",
-              "integrity": "sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==",
+              "version": "4.9.1",
+              "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.1.tgz",
+              "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",
               "requires": {
                 "base64-js": "^1.0.2",
                 "ieee754": "^1.1.4",
@@ -5044,9 +5051,9 @@
               "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
             },
             "sax": {
-              "version": "1.2.4",
-              "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz",
-              "integrity": "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw=="
+              "version": "1.2.1",
+              "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.1.tgz",
+              "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
             },
             "seedrandom": {
               "version": "3.0.5",
@@ -5064,9 +5071,9 @@
               "integrity": "sha1-BF+XgtARrppoA93TgrJDkrPYkPc="
             },
             "sharp": {
-              "version": "0.23.3",
-              "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.23.3.tgz",
-              "integrity": "sha512-pjT4zyviQteXMC1Z8USIiSwQFQbZTlU5J59/UoygE25hh+sSb7PSYI/MZ2MCB1COtxWQuoUAaG3TYIOLon26Mg==",
+              "version": "0.23.4",
+              "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.23.4.tgz",
+              "integrity": "sha512-fJMagt6cT0UDy9XCsgyLi0eiwWWhQRxbwGmqQT6sY8Av4s0SVsT/deg8fobBQCTDU5iXRgz0rAeXoE2LBZ8g+Q==",
               "requires": {
                 "color": "^3.1.2",
                 "detect-libc": "^1.0.3",
@@ -5756,19 +5763,18 @@
               }
             },
             "xml2js": {
-              "version": "0.4.22",
-              "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.22.tgz",
-              "integrity": "sha512-MWTbxAQqclRSTnehWWe5nMKzI3VmJ8ltiJEco8akcC6j3miOhjjfzKum5sId+CWhfxdOs/1xauYr8/ZDBtQiRw==",
+              "version": "0.4.19",
+              "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.19.tgz",
+              "integrity": "sha512-esZnJZJOiJR9wWKMyuvSE1y6Dq5LCuJanqhxslH2bxM6duahNZ+HMpCLhBQGZkbX6xRf8x1Y2eJlgt2q3qo49Q==",
               "requires": {
                 "sax": ">=0.6.0",
-                "util.promisify": "~1.0.0",
-                "xmlbuilder": "~11.0.0"
+                "xmlbuilder": "~9.0.1"
               }
             },
             "xmlbuilder": {
-              "version": "11.0.1",
-              "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-11.0.1.tgz",
-              "integrity": "sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA=="
+              "version": "9.0.7",
+              "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-9.0.7.tgz",
+              "integrity": "sha1-Ey7mPS7FVlxVfiD0wi35rKaGsQ0="
             },
             "xtend": {
               "version": "4.0.2",
@@ -8228,16 +8234,16 @@
       }
     },
     "defra-hapi-utils": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#900ae84f5d7a5d87453dc76bf5df683534e6dfc2",
+      "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#9e3a446253c3dd169a40b811af3bc2a7234bc9c5",
       "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
         "@hapi/joi": "^16.1.8",
         "@hapi/wreck": "^16.0.1",
-        "aws-sdk": "^2.581.0",
+        "aws-sdk": "^2.585.0",
         "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
         "lodash": "^4.17.15",
-        "sharp": "^0.23.3"
+        "sharp": "^0.23.4"
       },
       "dependencies": {
         "@babel/code-frame": {
@@ -8653,19 +8659,26 @@
           "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
         },
         "aws-sdk": {
-          "version": "2.581.0",
-          "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.581.0.tgz",
-          "integrity": "sha512-Z2gulIgdVRdVVSuV27hVdrMdScU35+qkWZI6gKO7V+allk3LIfl/JbV6RGuEbCpzQg6Di/69fkN/jhbpZ+b3ig==",
+          "version": "2.585.0",
+          "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.585.0.tgz",
+          "integrity": "sha512-T3JG4JZUmELqxT4hwJa93xns/TWIllaeYoyhRPGwXUj78vhCYJUiigtU6WRYLu84AMoZAGT/pVkARH7vfxpq9Q==",
           "requires": {
-            "buffer": "^4.9.1",
-            "events": "^1.1.1",
-            "ieee754": "^1.1.13",
-            "jmespath": "^0.15.0",
-            "querystring": "^0.2.0",
-            "sax": "^1.2.1",
-            "url": "^0.10.3",
-            "uuid": "^3.3.2",
-            "xml2js": "^0.4.19"
+            "buffer": "4.9.1",
+            "events": "1.1.1",
+            "ieee754": "1.1.13",
+            "jmespath": "0.15.0",
+            "querystring": "0.2.0",
+            "sax": "1.2.1",
+            "url": "0.10.3",
+            "uuid": "3.3.2",
+            "xml2js": "0.4.19"
+          },
+          "dependencies": {
+            "uuid": {
+              "version": "3.3.2",
+              "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.3.2.tgz",
+              "integrity": "sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA=="
+            }
           }
         },
         "aws-sign2": {
@@ -8722,9 +8735,9 @@
           }
         },
         "buffer": {
-          "version": "4.9.2",
-          "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.2.tgz",
-          "integrity": "sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==",
+          "version": "4.9.1",
+          "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.1.tgz",
+          "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",
           "requires": {
             "base64-js": "^1.0.2",
             "ieee754": "^1.1.4",
@@ -10312,15 +10325,6 @@
             "has": "^1.0.3"
           }
         },
-        "object.getownpropertydescriptors": {
-          "version": "2.0.3",
-          "resolved": "https://registry.npmjs.org/object.getownpropertydescriptors/-/object.getownpropertydescriptors-2.0.3.tgz",
-          "integrity": "sha1-h1jIRvW0B62rDyNuCYbxSwUcqhY=",
-          "requires": {
-            "define-properties": "^1.1.2",
-            "es-abstract": "^1.5.1"
-          }
-        },
         "object.values": {
           "version": "1.1.0",
           "resolved": "https://registry.npmjs.org/object.values/-/object.values-1.1.0.tgz",
@@ -10821,9 +10825,9 @@
           "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
         },
         "sax": {
-          "version": "1.2.4",
-          "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz",
-          "integrity": "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw=="
+          "version": "1.2.1",
+          "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.1.tgz",
+          "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
         },
         "seedrandom": {
           "version": "3.0.5",
@@ -10841,9 +10845,9 @@
           "integrity": "sha1-BF+XgtARrppoA93TgrJDkrPYkPc="
         },
         "sharp": {
-          "version": "0.23.3",
-          "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.23.3.tgz",
-          "integrity": "sha512-pjT4zyviQteXMC1Z8USIiSwQFQbZTlU5J59/UoygE25hh+sSb7PSYI/MZ2MCB1COtxWQuoUAaG3TYIOLon26Mg==",
+          "version": "0.23.4",
+          "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.23.4.tgz",
+          "integrity": "sha512-fJMagt6cT0UDy9XCsgyLi0eiwWWhQRxbwGmqQT6sY8Av4s0SVsT/deg8fobBQCTDU5iXRgz0rAeXoE2LBZ8g+Q==",
           "requires": {
             "color": "^3.1.2",
             "detect-libc": "^1.0.3",
@@ -11396,15 +11400,6 @@
           "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",
           "integrity": "sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8="
         },
-        "util.promisify": {
-          "version": "1.0.0",
-          "resolved": "https://registry.npmjs.org/util.promisify/-/util.promisify-1.0.0.tgz",
-          "integrity": "sha512-i+6qA2MPhvoKLuxnJNpXAGhg7HphQOSUq2LKMZD0m15EiskXUkMvKdF4Uui0WYeCUGea+o2cw/ZuwehtfsrNkA==",
-          "requires": {
-            "define-properties": "^1.1.2",
-            "object.getownpropertydescriptors": "^2.0.3"
-          }
-        },
         "uuid": {
           "version": "3.3.3",
           "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.3.3.tgz",
@@ -11533,19 +11528,18 @@
           }
         },
         "xml2js": {
-          "version": "0.4.22",
-          "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.22.tgz",
-          "integrity": "sha512-MWTbxAQqclRSTnehWWe5nMKzI3VmJ8ltiJEco8akcC6j3miOhjjfzKum5sId+CWhfxdOs/1xauYr8/ZDBtQiRw==",
+          "version": "0.4.19",
+          "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.19.tgz",
+          "integrity": "sha512-esZnJZJOiJR9wWKMyuvSE1y6Dq5LCuJanqhxslH2bxM6duahNZ+HMpCLhBQGZkbX6xRf8x1Y2eJlgt2q3qo49Q==",
           "requires": {
             "sax": ">=0.6.0",
-            "util.promisify": "~1.0.0",
-            "xmlbuilder": "~11.0.0"
+            "xmlbuilder": "~9.0.1"
           }
         },
         "xmlbuilder": {
-          "version": "11.0.1",
-          "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-11.0.1.tgz",
-          "integrity": "sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA=="
+          "version": "9.0.7",
+          "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-9.0.7.tgz",
+          "integrity": "sha1-Ey7mPS7FVlxVfiD0wi35rKaGsQ0="
         },
         "xtend": {
           "version": "4.0.2",
@@ -13810,7 +13804,7 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-data-mapping": {
-      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#16b9bb322a7f86ea268cbd4a41fe2d5480b24d6f",
+      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#d34a144c7344c59df3122567f88777e52770cb14",
       "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
       "requires": {
         "@hapi/joi": "^16.1.8",
@@ -14416,16 +14410,16 @@
           }
         },
         "defra-hapi-utils": {
-          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#900ae84f5d7a5d87453dc76bf5df683534e6dfc2",
+          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#9e3a446253c3dd169a40b811af3bc2a7234bc9c5",
           "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
             "@hapi/joi": "^16.1.8",
             "@hapi/wreck": "^16.0.1",
-            "aws-sdk": "^2.581.0",
+            "aws-sdk": "^2.585.0",
             "defra-logging-facade": "git+https://github.com/DEFRA/defra-logging-facade.git#master",
             "lodash": "^4.17.15",
-            "sharp": "^0.23.3"
+            "sharp": "^0.23.4"
           },
           "dependencies": {
             "@babel/code-frame": {
@@ -14841,19 +14835,26 @@
               "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
             },
             "aws-sdk": {
-              "version": "2.581.0",
-              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.581.0.tgz",
-              "integrity": "sha512-Z2gulIgdVRdVVSuV27hVdrMdScU35+qkWZI6gKO7V+allk3LIfl/JbV6RGuEbCpzQg6Di/69fkN/jhbpZ+b3ig==",
+              "version": "2.585.0",
+              "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.585.0.tgz",
+              "integrity": "sha512-T3JG4JZUmELqxT4hwJa93xns/TWIllaeYoyhRPGwXUj78vhCYJUiigtU6WRYLu84AMoZAGT/pVkARH7vfxpq9Q==",
               "requires": {
-                "buffer": "^4.9.1",
-                "events": "^1.1.1",
-                "ieee754": "^1.1.13",
-                "jmespath": "^0.15.0",
-                "querystring": "^0.2.0",
-                "sax": "^1.2.1",
-                "url": "^0.10.3",
-                "uuid": "^3.3.2",
-                "xml2js": "^0.4.19"
+                "buffer": "4.9.1",
+                "events": "1.1.1",
+                "ieee754": "1.1.13",
+                "jmespath": "0.15.0",
+                "querystring": "0.2.0",
+                "sax": "1.2.1",
+                "url": "0.10.3",
+                "uuid": "3.3.2",
+                "xml2js": "0.4.19"
+              },
+              "dependencies": {
+                "uuid": {
+                  "version": "3.3.2",
+                  "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.3.2.tgz",
+                  "integrity": "sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA=="
+                }
               }
             },
             "aws-sign2": {
@@ -14910,9 +14911,9 @@
               }
             },
             "buffer": {
-              "version": "4.9.2",
-              "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.2.tgz",
-              "integrity": "sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==",
+              "version": "4.9.1",
+              "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.1.tgz",
+              "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",
               "requires": {
                 "base64-js": "^1.0.2",
                 "ieee754": "^1.1.4",
@@ -17009,9 +17010,9 @@
               "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="
             },
             "sax": {
-              "version": "1.2.4",
-              "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz",
-              "integrity": "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw=="
+              "version": "1.2.1",
+              "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.1.tgz",
+              "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
             },
             "seedrandom": {
               "version": "3.0.5",
@@ -17029,9 +17030,9 @@
               "integrity": "sha1-BF+XgtARrppoA93TgrJDkrPYkPc="
             },
             "sharp": {
-              "version": "0.23.3",
-              "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.23.3.tgz",
-              "integrity": "sha512-pjT4zyviQteXMC1Z8USIiSwQFQbZTlU5J59/UoygE25hh+sSb7PSYI/MZ2MCB1COtxWQuoUAaG3TYIOLon26Mg==",
+              "version": "0.23.4",
+              "resolved": "https://registry.npmjs.org/sharp/-/sharp-0.23.4.tgz",
+              "integrity": "sha512-fJMagt6cT0UDy9XCsgyLi0eiwWWhQRxbwGmqQT6sY8Av4s0SVsT/deg8fobBQCTDU5iXRgz0rAeXoE2LBZ8g+Q==",
               "requires": {
                 "color": "^3.1.2",
                 "detect-libc": "^1.0.3",
@@ -17721,19 +17722,18 @@
               }
             },
             "xml2js": {
-              "version": "0.4.22",
-              "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.22.tgz",
-              "integrity": "sha512-MWTbxAQqclRSTnehWWe5nMKzI3VmJ8ltiJEco8akcC6j3miOhjjfzKum5sId+CWhfxdOs/1xauYr8/ZDBtQiRw==",
+              "version": "0.4.19",
+              "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.19.tgz",
+              "integrity": "sha512-esZnJZJOiJR9wWKMyuvSE1y6Dq5LCuJanqhxslH2bxM6duahNZ+HMpCLhBQGZkbX6xRf8x1Y2eJlgt2q3qo49Q==",
               "requires": {
                 "sax": ">=0.6.0",
-                "util.promisify": "~1.0.0",
-                "xmlbuilder": "~11.0.0"
+                "xmlbuilder": "~9.0.1"
               }
             },
             "xmlbuilder": {
-              "version": "11.0.1",
-              "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-11.0.1.tgz",
-              "integrity": "sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA=="
+              "version": "9.0.7",
+              "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-9.0.7.tgz",
+              "integrity": "sha1-Ey7mPS7FVlxVfiD0wi35rKaGsQ0="
             },
             "xtend": {
               "version": "4.0.2",
