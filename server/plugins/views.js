@@ -23,7 +23,7 @@ module.exports = {
             'node_modules/govuk-frontend/govuk',
             'node_modules/govuk-frontend/govuk/components/',
             'node_modules/defra-hapi-modules/source/modules/',
-            'node_modules/defra-hapi-plugin-handlers/source/'
+            'node_modules/defra-hapi-handlers/source/'
           ], {
             autoescape: true,
             watch: false

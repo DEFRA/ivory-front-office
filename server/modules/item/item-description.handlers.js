@@ -3,7 +3,7 @@ const { Item } = require('ivory-data-mapping').cache
 const { utils } = require('defra-hapi-utils')
 const config = require('../../config')
 
-class ItemDescriptionHandlers extends require('defra-hapi-plugin-handlers') {
+class ItemDescriptionHandlers extends require('defra-hapi-handlers') {
   get schema () {
     return Joi.object({
       'item-description': Joi.string().trim().max(this.maxFreeTextLength).required()

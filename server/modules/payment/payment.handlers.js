@@ -3,7 +3,7 @@ const { logger } = require('defra-logging-facade')
 const { Registration, Payment } = require('ivory-data-mapping').cache
 const config = require('../../config')
 
-class PaymentHandlers extends require('defra-hapi-plugin-handlers') {
+class PaymentHandlers extends require('defra-hapi-handlers') {
   async handleGet (request, h, errors) {
     const { serviceName, serviceUrl, paymentEnabled, paymentUrl, paymentAmount, paymentKey } = config
     const registration = await Registration.get(request) || {}
