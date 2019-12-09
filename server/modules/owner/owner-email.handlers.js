@@ -1,7 +1,7 @@
 const { Owner } = require('ivory-data-mapping').cache
 const { mixin } = require('defra-hapi-utils')
 
-class OwnerEmailHandlers extends mixin(require('defra-hapi-modules').person.email.handlers, require('./owner-mixin')) {
+class OwnerEmailHandlers extends mixin(require('../common/person/email/person-email.handlers'), require('./owner-mixin')) {
   get Person () {
     return Owner
   }

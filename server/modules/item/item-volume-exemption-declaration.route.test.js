@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const DeclarationHandlers = require('../common/declaration-handlers')
+const DeclarationHandlers = require('../common/declaration/declaration-handlers')
 const url = '/item-volume-exemption-declaration'
 const volumeExemptionDeclaration = 'this is true'
 const pageHeading = `Confirm ${volumeExemptionDeclaration}`

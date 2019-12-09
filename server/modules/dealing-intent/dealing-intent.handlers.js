@@ -1,6 +1,6 @@
 const { Registration } = require('ivory-data-mapping').cache
 
-class DealingIntentHandlers extends require('../common/single-option-handlers') {
+class DealingIntentHandlers extends require('../common/option/single/single-option.handlers') {
   get Model () {
     return Registration
   }

@@ -1,6 +1,6 @@
 const cache = require('ivory-data-mapping').cache
 
-class RestoreHandlers extends require('defra-hapi-modules').handlers {
+class RestoreHandlers extends require('defra-hapi-plugin-handlers') {
   async handleGet (request, h) {
     await cache.restore(request, request.params.id)
 

@@ -1,6 +1,6 @@
 const { Agent } = require('ivory-data-mapping').cache
 
-class AgentNameHandlers extends require('defra-hapi-modules').person.email.handlers {
+class AgentNameHandlers extends require('../common/person/email/person-email.handlers') {
   get Person () {
     return Agent
   }

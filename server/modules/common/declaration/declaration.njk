@@ -1,0 +1,41 @@
+{% extends 'two-thirds-layout.njk' %}
+
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "textarea/macro.njk" import govukTextarea %}
+
+{% block formContent %}
+
+  {{ govukCheckboxes({
+    idPrefix: "declaration",
+    name: "declaration",
+    fieldset: {
+      legend: {
+        text: pageHeading,
+        isPageHeading: isQuestionPage,
+        classes: "govuk-fieldset__legend--xl"
+      }
+    },
+    errorMessage: errors['declaration'],
+    items: [
+      {
+        value: viewData["declaration"],
+        text: viewData['declarationLabel'],
+        checked: viewData["declarationChecked"]
+      }
+    ]
+  }) }}
+
+  {{ govukTextarea({
+    name: "description",
+    id: "description",
+    value: viewData['description'],
+    errorMessage: errors['description'],
+    label: {
+      text: viewData['descriptionLabel']
+    },
+    attributes: {
+      spellcheck: "false"
+    }
+  }) }}
+
+{% endblock %}
