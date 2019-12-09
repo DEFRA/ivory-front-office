@@ -22,6 +22,7 @@ module.exports = {
             path.join(options.relativeTo || process.cwd(), options.path),
             'node_modules/govuk-frontend/govuk',
             'node_modules/govuk-frontend/govuk/components/',
+            'node_modules/defra-hapi-modules/source/modules/',
             'node_modules/defra-hapi-plugin-handlers/source/'
           ], {
             autoescape: true,
