@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
-const Handlers = require('defra-hapi-plugin-handlers')
+const Handlers = require('defra-hapi-handlers')
 const defraHapiUtils = require('defra-hapi-utils')
 const config = require('../../../../config')
 const AddressLookUp = defraHapiUtils.AddressLookUp

@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi')
 const chooseAddressHint = 'Choose an address'
 
-class AddressSelectHandlers extends require('defra-hapi-plugin-handlers') {
+class AddressSelectHandlers extends require('defra-hapi-handlers') {
   get schema () {
     return Joi.object({
       address: Joi.string().min(1).required()

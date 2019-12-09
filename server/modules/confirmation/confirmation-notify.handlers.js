@@ -4,7 +4,7 @@ const config = require('../../config')
 
 const NotifyClient = require('notifications-node-client').NotifyClient
 
-class ConfirmationHandlers extends require('defra-hapi-plugin-handlers') {
+class ConfirmationHandlers extends require('defra-hapi-handlers') {
   async notifyRegistration (contact, registrationNumber) {
     const { notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId } = config
     const { fullName, email: emailAddress } = contact || {}

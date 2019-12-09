@@ -1,6 +1,6 @@
 const { Item } = require('ivory-data-mapping').cache
 
-class ConfirmPhotographHandlers extends require('defra-hapi-plugin-handlers') {
+class ConfirmPhotographHandlers extends require('defra-hapi-handlers') {
   get Item () {
     return Item
   }

@@ -13,7 +13,7 @@ const {
   Item
 } = cache
 
-class CheckYourAnswersHandlers extends require('defra-hapi-plugin-handlers') {
+class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
   static getReference (group, shortName) {
     return config.referenceData[group].choices.find((choice) => choice.shortName === shortName)
   }

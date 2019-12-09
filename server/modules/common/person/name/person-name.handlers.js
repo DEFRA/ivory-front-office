@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-class PersonNameHandlers extends require('defra-hapi-plugin-handlers') {
+class PersonNameHandlers extends require('defra-hapi-handlers') {
   get maxNameLength () {
     return 100
   }

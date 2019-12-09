@@ -6,7 +6,7 @@ const { Item } = require('ivory-data-mapping').cache
 const { awsPhotos } = require('defra-hapi-modules').plugins
 const { createError } = joiUtilities
 
-class AddPhotographsHandlers extends require('defra-hapi-plugin-handlers') {
+class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   get Item () {
     return Item
   }

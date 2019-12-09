@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi')
 const { getNestedVal } = require('defra-hapi-utils/lib').utils
 
-class DeclarationHandlers extends require('defra-hapi-plugin-handlers') {
+class DeclarationHandlers extends require('defra-hapi-handlers') {
   async reference (request) {
     const model = await this.Model.get(request)
     return this.choices.find(({ shortName }) => shortName === model[this.fieldname])
