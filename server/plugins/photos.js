@@ -1,5 +1,5 @@
 
-const { awsPhotos } = require('defra-hapi-modules').plugins
+const { plugin } = require('defra-hapi-photos')
 const config = require('../config')
 
 const alternativeSizes = [
@@ -16,7 +16,7 @@ const alternativeSizes = [
 ]
 
 module.exports = {
-  plugin: awsPhotos,
+  plugin,
   options: {
     path: '/photos',
     alternativeSizes,
