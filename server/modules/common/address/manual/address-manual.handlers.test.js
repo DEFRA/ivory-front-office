@@ -18,10 +18,6 @@ class ManualAddressHandlers extends require('./address-manual.handlers') {
   get findAddressLink () {
     return '/find-address'
   }
-
-  async skipBusinessName () {
-    return false
-  }
 }
 
 const businessName = 'Business Ltd'
@@ -84,8 +80,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     await handlers.handleGet(request)
 
     const expectedViewData = Object.assign({
-      findAddressLink: handlers.findAddressLink,
-      includeBusinessName: true
+      findAddressLink: handlers.findAddressLink
     }, addressPayload)
 
     Code.expect(handlers.viewData).to.equal(expectedViewData)

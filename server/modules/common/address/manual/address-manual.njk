@@ -7,18 +7,15 @@
 
   {% call govukFieldset() %}
 
-    {# ToDo: To be removed when we always include the business name #}
-    {% if viewData.includeBusinessName %}
-      {{ govukInput({
-        id: "business-name",
-        name: "business-name",
-        value: viewData['business-name'],
-        errorMessage: errors['business-name'],
-        label: {
-          html: 'Business name (if applicable)'
-        }
-      }) }}
-    {% endif %}
+    {{ govukInput({
+      id: "business-name",
+      name: "business-name",
+      value: viewData['business-name'],
+      errorMessage: errors['business-name'],
+      label: {
+        html: 'Business name (if applicable)'
+      }
+    }) }}
 
     {{ govukInput({
       id: "address-line-1",

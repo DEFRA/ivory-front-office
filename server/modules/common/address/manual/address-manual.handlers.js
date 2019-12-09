@@ -51,8 +51,7 @@ class AddressManualHandlers extends require('defra-hapi-plugin-handlers') {
       'address-town': address.town,
       'address-county': address.county,
       'address-postcode': address.postcode,
-      findAddressLink: this.findAddressLink,
-      includeBusinessName: !(this.skipBusinessName && await this.skipBusinessName(request))
+      findAddressLink: this.findAddressLink
     }
     return super.handleGet(request, h, errors)
   }
