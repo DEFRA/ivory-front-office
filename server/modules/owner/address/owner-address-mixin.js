@@ -20,9 +20,5 @@ module.exports = {
 
   get manualAddressLink () {
     return this.flow['owner-address-full'].path
-  },
-
-  async skipBusinessName (request) {
-    return !(await this.isOwner(request))
   }
 }
