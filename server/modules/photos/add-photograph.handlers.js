@@ -3,7 +3,7 @@ const path = require('path')
 const { utils, joiUtilities } = require('defra-hapi-utils')
 const { uuid, setNestedVal, getNestedVal } = utils
 const { Item } = require('ivory-data-mapping').cache
-const { awsPhotos } = require('defra-hapi-modules').plugins
+const photos = require('defra-hapi-photos')
 const { createError } = joiUtilities
 
 class AddPhotographsHandlers extends require('defra-hapi-handlers') {
@@ -102,7 +102,7 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   }
 
   async getPayload () {
-    this.photos = await awsPhotos.getPhotos()
+    this.photos = await photos.getPhotos()
     return { // https://hapi.dev/api/?v=18.4.0#route.options.payload
       allow: 'multipart/form-data',
       output: 'stream',
