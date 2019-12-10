@@ -1816,7 +1816,7 @@
       }
     },
     "defra-hapi-handlers": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-handlers.git#20288212e9709cd0d1d81549aa9a86415a8d15af",
+      "version": "git+https://github.com/DEFRA/defra-hapi-handlers.git#41aef9e3ea285512a56a9f2924d46f3a70762f15",
       "from": "git+https://github.com/DEFRA/defra-hapi-handlers.git#master",
       "requires": {
         "@hapi/joi": "^16.1.8"

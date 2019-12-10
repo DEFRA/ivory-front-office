@@ -66,14 +66,28 @@ confirmation:
 item-type:
   path: "/item-type"
   handlers: item/item-type.handlers
-  pageHeading: What type of item are you registering?
+  pageHeading: What type of item is it?
   view: common/option/single/single-option
   isQuestionPage: true
   next:
-    query: hasPhotos
+    query: itemTypeSelected
     result:
-      'true': check-photograph
-      'false': add-photograph
+      apply-to-register-to-sell-an-item-to-a-museum: apply-to-register-to-sell-an-item-to-a-museum
+      apply-for-an-rmi-certificate: apply-for-an-rmi-certificate
+      other-has-photos: check-photograph
+      other-has-no-photos: add-photograph
+
+apply-to-register-to-sell-an-item-to-a-museum:
+  path: "/apply-to-register-to-sell-an-item-to-a-museum"
+  handlers: item/apply-to-register-to-sell-an-item-to-a-museum.handlers
+  pageHeading: Apply to register to sell an item to a museum
+  view: item/apply-to-register-to-sell-an-item-to-a-museum
+
+apply-for-an-rmi-certificate:
+  path: "/apply-for-an-rmi-certificate"
+  handlers: item/apply-for-an-rmi-certificate.handlers
+  pageHeading: Apply for a certificate for a rare and most important (RMI) item
+  view: item/apply-for-an-rmi-certificate
 
 item-description:
   path: "/item-description"
