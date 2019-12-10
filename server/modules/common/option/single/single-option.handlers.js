@@ -43,19 +43,27 @@ class SingleOptionHandlers extends require('defra-hapi-handlers') {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const data = await this.getData(request)
-    const { fieldname, hint } = this
+    const { fieldname, hint, divider } = this
 
-    // Use the payload in this special case to force the items to be displayed even when there is an error
+    const items = this.items.map(({ value, text, hint, storedValue = value }) => {
+      return {
+        value: value.toString(),
+        text,
+        hint: hint ? { text: hint } : undefined,
+        checked: storedValue !== undefined && storedValue === data[fieldname]
+      }
+    })
+
+    if (divider) {
+      // Insert the divider before the last item
+      items.splice(items.length - 1, 0, { divider })
+    }
+
     this.viewData = {
       hint: hint ? { text: hint } : undefined,
-      items: this.items.map(({ value, text, hint, storedValue = value }) => {
-        return {
-          value: value.toString(),
-          text,
-          hint: hint ? { text: hint } : undefined,
-          checked: storedValue !== undefined && storedValue === data[fieldname]
-        }
-      })
+      items,
+      description: this.description,
+      guidanceLink: this.guidanceLink
     }
     return super.handleGet(request, h, errors)
   }

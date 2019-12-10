@@ -4,7 +4,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const SingleOptionHandlers = require('../common/option/single/single-option.handlers')
 const url = '/item-type'
-const pageHeading = 'What type of item are you registering?'
+const pageHeading = 'What type of item is it?'
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {

@@ -20,3 +20,13 @@
   }) }}
 
 {% endblock %}
+
+{% block formFooter %}
+  {% if viewData.description %}
+    <p class="govuk-body">{{ viewData.description }}</p>
+  {% endif %}
+  {% if viewData.guidanceLink %}
+    <p class="govuk-body"><a class="govuk-link" href="{{ viewData.guidanceLink.href }}">Read the guide</a> for further
+      information.</p>
+  {% endif %}
+{% endblock %}
