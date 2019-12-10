@@ -8,6 +8,8 @@ module.exports = {
       'node_modules/govuk-frontend/govuk',
       'node_modules/govuk-frontend/govuk/assets'
     ],
-    tags: ['asset', 'always']
+    options: {
+      tags: ['asset', 'always']
+    }
   }
 }
