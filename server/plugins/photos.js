@@ -27,6 +27,8 @@ module.exports = {
     maxMb: config.photoUploadPhotoMaxMb,
     minKb: config.photoUploadPhotoMinKb,
     payloadMaxBytes: config.photoUploadPayloadMaxBytes,
-    tags: ['always']
+    options: { // route options
+      tags: ['always']
+    }
   }
 }

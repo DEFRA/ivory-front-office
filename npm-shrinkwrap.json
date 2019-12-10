@@ -10878,7 +10878,7 @@
       }
     },
     "defra-hapi-photos": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-photos.git#3d1a9c4528d956f205d312e8835da74c1dd76b28",
+      "version": "git+https://github.com/DEFRA/defra-hapi-photos.git#75a326d677af886a8a650ca6feaea7d9b8a159bd",
       "from": "git+https://github.com/DEFRA/defra-hapi-photos.git#master",
       "requires": {
         "@hapi/boom": "^8.0.1",
