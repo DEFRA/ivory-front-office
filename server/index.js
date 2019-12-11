@@ -39,6 +39,7 @@ async function registerPlugins (server) {
     require('@hapi/inert'),
     require('./plugins/views'),
     require('./plugins/public'),
+    require('./plugins/version'),
     require('./plugins/photos'),
     require('./plugins/flow'),
     require('./plugins/robots'),

@@ -282,16 +282,3 @@ check-payment:
   next: confirmation-notify
   tags:
     - always
-
-
-# ======================
-# ==== Support flow ====
-# ======================
-
-version:
-  path: "/version"
-  handlers: version/version.handlers
-  pageHeading: Version
-  view: version/version
-  tags:
-    - always
