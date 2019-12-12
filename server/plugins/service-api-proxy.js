@@ -1,12 +1,12 @@
-
-const { apiProxy } = require('defra-hapi-modules').plugins
 const { serviceApi } = require('../config')
 
 module.exports = {
-  plugin: apiProxy,
+  plugin: require('hapi-proxy-get'),
   options: {
-    serviceApi,
+    uri: serviceApi,
     path: '/api',
-    tags: ['api', 'always']
+    options: {
+      tags: ['api', 'always']
+    }
   }
 }
