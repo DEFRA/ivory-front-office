@@ -18346,9 +18346,9 @@
       }
     },
     "hapi-proxy-get": {
-      "version": "0.1.0",
-      "resolved": "https://registry.npmjs.org/hapi-proxy-get/-/hapi-proxy-get-0.1.0.tgz",
-      "integrity": "sha512-cV+81WZFctPGWIAvE5AaqmEWyjQApLh/S+kzSSBDHDgxGbtPS+0c34S1vwzq4dvDaw9C1ehwmFrY/d1DDQL4PA==",
+      "version": "0.1.1",
+      "resolved": "https://registry.npmjs.org/hapi-proxy-get/-/hapi-proxy-get-0.1.1.tgz",
+      "integrity": "sha512-FnyzKa7PVKzj65Z8mdt91P48VivC2pRXQGSiNeyJvn6qRV2OHCzzT5Y25OYzoTzZ63bTbVvBRgWhuWapK9CBMA==",
       "requires": {
         "@hapi/h2o2": "^8.3.2"
       },
