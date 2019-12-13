@@ -1,24 +1,26 @@
 const { AgentAddress } = require('ivory-data-mapping').cache
-const { routeFlow } = require('defra-hapi-modules').plugins
+const Handlers = require('defra-hapi-handlers')
+
+async function getPath (routeId) {
+  const flow = await Handlers.server.app.flow(routeId)
+  return flow.path
+}
 
 module.exports = {
+
   get Address () {
     return AgentAddress
   },
 
-  get flow () {
-    return routeFlow.flow()
+  async findAddressLink () {
+    return getPath('agent-address-find')
   },
 
-  get findAddressLink () {
-    return this.flow['agent-address-find'].path
+  async selectAddressLink () {
+    return getPath('agent-address-select')
   },
 
-  get selectAddressLink () {
-    return this.flow['agent-address-select'].path
-  },
-
-  get manualAddressLink () {
-    return this.flow['agent-address-full'].path
+  async manualAddressLink () {
+    return getPath('agent-address-full')
   }
 }

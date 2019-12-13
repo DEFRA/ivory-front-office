@@ -20,7 +20,7 @@ const config = require('./server/config')
 const { logger } = require('defra-logging-facade')
 const { utils } = require('defra-hapi-utils')
 const { SyncRegistration, cache } = require('ivory-data-mapping')
-const flowPlugin = require('./server/plugins/flow')
+const { Flow } = require('./server/plugins/flow').plugin.test
 
 // Suppress MaxListenersExceededWarning within tests
 require('events').EventEmitter.defaultMaxListeners = Infinity
@@ -49,18 +49,14 @@ module.exports = class TestHelper {
         TestHelper.setCache(context, 'Registration', {})
       }
 
-      // Stub addRoute to add only the tested handlers derived from the test filename
-      const { Flow } = utils.getNestedVal(flowPlugin, 'plugin.test')
+      // Stub createRoutes to add only the tested handlers derived from the test filename
       const handler = `${testFile.split('.')[0]}.handlers`
-      const originalAddRoute = Flow.prototype.addRoute
-      context.sandbox.stub(Flow.prototype, 'addRoute').value(async function (node, server) {
+      const originalCreateRoutes = Flow.createRoutes
+      context.sandbox.stub(Flow, 'createRoutes').value(async function (node, server, handlersDir) {
         if (handler.endsWith(node.handlers)) {
-          return originalAddRoute.call(this, node, server)
+          return originalCreateRoutes.call(this, node, server, handlersDir)
         }
       })
-
-      // const routes = TestHelper.getFile(testFile).replace('.test.js', '.js').substr(1)
-      // context.sandbox.stub(flowPlugin, 'options').value({ routes })
 
       context.server = await require('./server')()
     })

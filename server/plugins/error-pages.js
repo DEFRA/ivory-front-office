@@ -1,10 +1,10 @@
-const { errorPages, routeFlow } = require('defra-hapi-modules').plugins
-let flow
+const { errorPages } = require('defra-hapi-modules').plugins
 
 module.exports = {
   plugin: errorPages,
   options: {
-    handleFailedPrecondition: (request, h) => {
+    handleFailedPrecondition: async (request, h) => {
+      const { flow } = request.server.app
       // ToDo: Need to support already submitted when designed
 
       // const { Registration } = require('ivory-data-mapping').cache
@@ -13,8 +13,8 @@ module.exports = {
       // return h.view(`error-handling/${statusCode}`).code(statusCode)
 
       // Just redirect home for now
-      flow = flow || routeFlow.flow()
-      return h.redirect(flow.home.path)
+      const route = await flow('home')
+      return h.redirect(route.path)
     }
   }
 }

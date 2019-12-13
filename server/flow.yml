@@ -12,19 +12,19 @@ home:
 who-owns-item:
   path: "/who-owns-item"
   handlers: who-owns/who-owns-item.handlers
-  pageHeading: Who owns the item?
+  title: Who owns the item?
   view: common/option/single/single-option
   isQuestionPage: true
   next:
     query: isOwner
-    result:
+    when:
       'true': owner-name
       'false': agent-name
 
 dealing-intent:
   path: "/dealing-intent"
   handlers: dealing-intent/dealing-intent.handlers
-  pageHeading: What do you plan to do with the item?
+  title: What do you plan to do with the item?
   view: common/option/single/single-option
   isQuestionPage: true
   next: check-your-answers
@@ -32,7 +32,7 @@ dealing-intent:
 check-your-answers:
   path: "/check-your-answers"
   handlers: check-your-answers/check-your-answers.handlers
-  pageHeading: Check your answers
+  title: Check your answers
   view: check-your-answers/check-your-answers
   next: payment
 
@@ -53,7 +53,7 @@ confirmation-notify:
 confirmation:
   path: "/confirmation"
   handlers: confirmation/confirmation.handlers
-  pageHeading: Registration complete
+  title: Registration complete
   view: confirmation/confirmation
   tags:
     - submitted
@@ -66,12 +66,12 @@ confirmation:
 item-type:
   path: "/item-type"
   handlers: item/item-type.handlers
-  pageHeading: What type of item is it?
+  title: What type of item is it?
   view: common/option/single/single-option
   isQuestionPage: true
   next:
     query: itemTypeSelected
-    result:
+    when:
       apply-to-register-to-sell-an-item-to-a-museum: apply-to-register-to-sell-an-item-to-a-museum
       apply-for-an-rmi-certificate: apply-for-an-rmi-certificate
       other-has-photos: check-photograph
@@ -80,24 +80,24 @@ item-type:
 apply-to-register-to-sell-an-item-to-a-museum:
   path: "/apply-to-register-to-sell-an-item-to-a-museum"
   handlers: item/apply-to-register-to-sell-an-item-to-a-museum.handlers
-  pageHeading: Apply to register to sell an item to a museum
+  title: Apply to register to sell an item to a museum
   view: item/apply-to-register-to-sell-an-item-to-a-museum
 
 apply-for-an-rmi-certificate:
   path: "/apply-for-an-rmi-certificate"
   handlers: item/apply-for-an-rmi-certificate.handlers
-  pageHeading: Apply for a certificate for a rare and most important (RMI) item
+  title: Apply for a certificate for a rare and most important (RMI) item
   view: item/apply-for-an-rmi-certificate
 
 item-description:
   path: "/item-description"
   handlers: item/item-description.handlers
-  pageHeading: Describe the item
+  title: Describe the item
   view: item/item-description
   isQuestionPage: true
   next:
     query: requiresAgeExemptionDeclaration
-    result:
+    when:
       'true': item-age-exemption-declaration
       'false': who-owns-item
 
@@ -123,7 +123,7 @@ item-volume-exemption-declaration:
 add-photograph:
   path: "/add-photograph"
   handlers: photos/add-photograph.handlers
-  pageHeading: Add a photo
+  title: Add a photo
   view: photos/add-photograph
   isQuestionPage: true
   next: check-photograph
@@ -131,7 +131,7 @@ add-photograph:
 check-photograph:
   path: "/check-photograph"
   handlers: photos/check-photograph.handlers
-  pageHeading: This is your photo
+  title: This is your photo
   view: photos/check-photograph
   next: item-description
 
@@ -143,7 +143,7 @@ check-photograph:
 agent:
   path: "/agent"
   handlers: agent/agent.handlers
-  pageHeading: How are you acting on behalf of the owner?
+  title: How are you acting on behalf of the owner?
   view: common/option/single/single-option
   isQuestionPage: true
   next: 'agent-name'
@@ -151,39 +151,39 @@ agent:
 agent-name:
   path: "/agent-name"
   handlers: agent/agent-name.handlers
-  pageHeading: Contact name
+  title: Contact name
   view: common/person/name/person-name
   next:
     query: lookUpEnabled
-    result:
+    when:
       'true': agent-address-find
       'false': agent-address-full
 
 agent-address-find:
   path: "/agent-address"
   handlers: agent/address/agent-address-find.handlers
-  pageHeading: Your address
+  title: Your address
   view: common/address/find/address-find
   next: agent-address-select
 
 agent-address-select:
   path: "/agent-address-select"
   handlers: agent/address/agent-address-select.handlers
-  pageHeading: Your address
+  title: Your address
   view: common/address/select/address-select
   next: agent-email
 
 agent-address-full:
   path: "/agent-address-full"
   handlers: agent/address/agent-address-manual.handlers
-  pageHeading: Your address
+  title: Your address
   view: common/address/manual/address-manual
   next: agent-email
 
 agent-email:
   path: "/agent-email"
   handlers: agent/agent-email.handlers
-  pageHeading: Your email address
+  title: Your email address
   view: common/person/email/person-email
   isQuestionPage: true
   next: owner-name
@@ -197,14 +197,14 @@ owner-name:
   path: "/owner-name"
   handlers: owner/owner-name.handlers
   view: common/person/name/person-name
-  pageHeading:
+  title:
     query: isOwner
-    result:
+    when:
       'true': Your name
       'false': Owner's name
   next:
     query: lookUpEnabled
-    result:
+    when:
       'true': owner-address-find
       'false': owner-address-full
 
@@ -212,9 +212,9 @@ owner-address-find:
   path: "/owner-address"
   handlers: owner/address/owner-address-find.handlers
   view: common/address/find/address-find
-  pageHeading:
+  title:
     query: isOwner
-    result:
+    when:
       'true': Your address
       'false': Owner's address
   next: owner-address-select
@@ -223,14 +223,14 @@ owner-address-select:
   path: "/owner-address-select"
   handlers: owner/address/owner-address-select.handlers
   view: common/address/select/address-select
-  pageHeading:
+  title:
     query: isOwner
-    result:
+    when:
       'true': Your address
       'false': Owner's address
   next:
     query: isOwner
-    result:
+    when:
       'true': owner-email
       'false': dealing-intent
 
@@ -238,23 +238,23 @@ owner-address-full:
   path: "/owner-address-full"
   handlers: owner/address/owner-address-manual.handlers
   view: common/address/manual/address-manual
-  pageHeading:
+  title:
     query: isOwner
-    result:
+    when:
       'true': Your address
       'false': Owner's address
   next:
     query: isOwner
-    result:
+    when:
       'true': owner-email
       'false': dealing-intent
 
 owner-email:
   path: "/owner-email"
   handlers: owner/owner-email.handlers
-  pageHeading:
+  title:
     query: isOwner
-    result:
+    when:
       'true': Your email address
       'false': Owner's email address
   view: common/person/email/person-email
@@ -271,7 +271,7 @@ payment:
   handlers: payment/payment.handlers
   next:
     query: paymentEnabled
-    result:
+    when:
       'false': confirmation
   tags:
     - always

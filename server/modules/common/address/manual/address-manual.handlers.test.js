@@ -15,7 +15,7 @@ class ManualAddressHandlers extends require('./address-manual.handlers') {
     return Address
   }
 
-  get findAddressLink () {
+  async findAddressLink () {
     return '/find-address'
   }
 }
@@ -80,7 +80,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     await handlers.handleGet(request)
 
     const expectedViewData = Object.assign({
-      findAddressLink: handlers.findAddressLink
+      findAddressLink: await handlers.findAddressLink()
     }, addressPayload)
 
     Code.expect(handlers.viewData).to.equal(expectedViewData)
