@@ -61,6 +61,8 @@ async function registerPlugins (server) {
   if (!config.isProd) {
     await server.register([
       require('./plugins/service-api-proxy'),
+      // require('./plugins/service-swagger-proxy'),
+      // require('./plugins/service-swagger-json'),
       require('blipp')
     ])
   }
