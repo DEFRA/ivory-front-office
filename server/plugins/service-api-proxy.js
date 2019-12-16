@@ -1,4 +1,5 @@
 const { serviceApi } = require('../config')
+const wreck = require('@hapi/wreck')
 
 module.exports = {
   plugin: {
@@ -23,17 +24,41 @@ module.exports = {
               tags: ['always']
             }
           }
-        }, {
-          plugin: require('hapi-proxy-get'),
-          options: {
-            uri: `${serviceApi}`,
-            path: '',
-            options: {
-              tags: ['always']
-            }
-          }
         }
       ])
+
+      // Make sure swagger json base url is the host/api
+      server.route({
+        method: 'GET',
+        path: '/swagger.json',
+        handler: {
+          proxy: {
+            localStatePassThrough: true,
+            mapUri: () => {
+              return { uri: `${serviceApi}/swagger.json` }
+            },
+            onResponse: async (err, res, request, h, settings, ttl) => {
+              if (err) {
+                throw new Error(err.message)
+              }
+              const body = await wreck.read(res, { json: true }, (err, payload) => {
+                if (err) {
+                  throw new Error(err.message)
+                }
+                const response = h.response(payload)
+                response.headers = res.headers
+                return response
+              })
+              body.host = request.info.host
+              body.basePath = '/api'
+              return body
+            }
+          }
+        },
+        options: {
+          tags: ['always']
+        }
+      })
     }
   }
 }
