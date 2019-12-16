@@ -51,7 +51,7 @@ module.exports = {
               })
               body.host = request.info.host
               body.basePath = '/api'
-              body.schemes = [serviceApi.split(':')[0]]
+              body.schemes = [request.info.referrer.split(':')[0]]
               return body
             }
           }
