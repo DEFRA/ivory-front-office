@@ -3,6 +3,33 @@ const nunjucks = require('nunjucks')
 const config = require('../config')
 const pkg = require('../../package.json')
 const analyticsAccount = config.analyticsAccount
+const glob = require('glob')
+
+const moduleTemplates = glob.sync('./node_modules/**/*.njk')
+
+const macroFolders = [...new Set(moduleTemplates
+  .filter((file) => file.endsWith('/macro.njk'))
+  .map((file) => file
+    .split('/')
+    .slice(0, -2)
+    .join('/')
+  ))]
+
+const folders = moduleTemplates
+  .reduce((folders = [], file) => {
+    if (!macroFolders.filter((folder) => file.startsWith(folder)).length) {
+      const folder = file
+        .split('/')
+        .slice(0, -1)
+        .join('/')
+      if (!folders.includes(folder)) {
+        folders.push(folder)
+      }
+    }
+    return folders
+  }, macroFolders)
+  .map((folder) => folder.substring(2))
+  .sort()
 
 module.exports = {
   plugin: require('@hapi/vision'),
@@ -18,16 +45,12 @@ module.exports = {
         },
 
         prepare: (options, next) => {
-          options.compileOptions.environment = nunjucks.configure([
-            path.join(options.relativeTo || process.cwd(), options.path),
-            'node_modules/govuk-frontend/govuk',
-            'node_modules/govuk-frontend/govuk/components/',
-            'node_modules/defra-hapi-modules/source/modules/',
-            'node_modules/defra-hapi-handlers/source/'
-          ], {
-            autoescape: true,
-            watch: false
-          })
+          options.compileOptions.environment = nunjucks.configure(
+            [path.join(options.relativeTo || process.cwd(), options.path), ...folders],
+            {
+              autoescape: true,
+              watch: false
+            })
 
           return next()
         }
