@@ -23,6 +23,8 @@ class AddressSelectHandlers extends require('defra-hapi-handlers') {
     const address = await Address.get(request) || {}
     const { postcodeAddressList = [] } = address
 
+    const manualAddressLink = await this.manualAddressLink()
+
     // Use the payload in this special case to force the addresses to be displayed even when there is an error
     this.viewData = {
       chooseAddressHint,
@@ -34,7 +36,7 @@ class AddressSelectHandlers extends require('defra-hapi-handlers') {
             selected: uprn && uprn === address.uprn
           }
         })),
-      manualAddressLink: this.manualAddressLink
+      manualAddressLink
     }
 
     return super.handleGet(request, h, errors)

@@ -60,13 +60,14 @@ class AddressFindHandlers extends require('defra-hapi-handlers') {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { Address } = this
+    const manualAddressLink = await this.manualAddressLink()
     if (!this.lookUpEnabled) {
-      return h.redirect(this.manualAddressLink)
+      return h.redirect(manualAddressLink)
     }
     const address = await Address.get(request) || {}
     this.viewData = {
       postcode: address.postcode,
-      manualAddressLink: this.manualAddressLink
+      manualAddressLink
     }
     return super.handleGet(request, h, errors)
   }

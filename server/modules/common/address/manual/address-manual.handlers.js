@@ -44,6 +44,7 @@ class AddressManualHandlers extends require('defra-hapi-handlers') {
   async handleGet (request, h, errors) {
     const { Address } = this
     const address = await Address.get(request) || {}
+    const findAddressLink = await this.findAddressLink()
     this.viewData = {
       'business-name': address.businessName,
       'address-line-1': address.addressLine1,
@@ -51,7 +52,7 @@ class AddressManualHandlers extends require('defra-hapi-handlers') {
       'address-town': address.town,
       'address-county': address.county,
       'address-postcode': address.postcode,
-      findAddressLink: this.findAddressLink
+      findAddressLink
     }
     return super.handleGet(request, h, errors)
   }

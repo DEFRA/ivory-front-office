@@ -25,7 +25,7 @@ class SelectAddressHandlers extends require('./address-select.handlers') {
     return Address
   }
 
-  get manualAddressLink () {
+  async manualAddressLink () {
     return '/manual-address'
   }
 }
@@ -82,7 +82,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
           text: foundAddress.addressLine,
           selected: true
         }],
-      manualAddressLink: handlers.manualAddressLink
+      manualAddressLink: await handlers.manualAddressLink()
     })
   })
 

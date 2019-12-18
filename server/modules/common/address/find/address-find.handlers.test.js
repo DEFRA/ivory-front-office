@@ -18,7 +18,7 @@ class FindAddressHandlers extends require('./address-find.handlers') {
     return Address
   }
 
-  get manualAddressLink () {
+  async manualAddressLink () {
     return '/manualAddress'
   }
 }
@@ -75,7 +75,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     await handlers.handleGet(request, h)
 
-    Code.expect(handlers.viewData).to.equal({ postcode, manualAddressLink: handlers.manualAddressLink })
+    Code.expect(handlers.viewData).to.equal({ postcode, manualAddressLink: await handlers.manualAddressLink() })
   })
 
   lab.test('handlePost sets Address data correctly', async ({ context }) => {
