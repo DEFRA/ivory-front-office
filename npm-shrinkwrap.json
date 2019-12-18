@@ -4487,7 +4487,7 @@
       }
     },
     "defra-hapi-modules": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#e2921ed5f0b3fadd03a46d665c4b96bfad64f7ab",
+      "version": "git+https://github.com/DEFRA/defra-hapi-modules.git#f3d0bf108488e8c6ecc2a517a023daace8dff54e",
       "from": "git+https://github.com/DEFRA/defra-hapi-modules.git#master",
       "requires": {
         "@hapi/hoek": "^8.5.0",
@@ -10384,7 +10384,7 @@
       }
     },
     "defra-hapi-photos": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-photos.git#75a326d677af886a8a650ca6feaea7d9b8a159bd",
+      "version": "git+https://github.com/DEFRA/defra-hapi-photos.git#ceefed191a8e688662b09afd7af6085dcd1874e2",
       "from": "git+https://github.com/DEFRA/defra-hapi-photos.git#master",
       "requires": {
         "@hapi/boom": "^8.0.1",
