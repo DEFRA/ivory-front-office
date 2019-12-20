@@ -59,6 +59,7 @@
     "ivory-data-mapping": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
     "js-yaml": "^3.13.1",
     "lodash.merge": "^4.6.2",
+    "moment": "^2.24.0",
     "node-sass": "4.13.0",
     "notifications-node-client": "^4.7.0",
     "nunjucks": "3.2.0"

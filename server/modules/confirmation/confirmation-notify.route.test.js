@@ -1,6 +1,7 @@
 const Lab = require('@hapi/lab')
 const lab = exports.lab = Lab.script()
 const Code = require('@hapi/code')
+const moment = require('moment')
 const NotifyClient = require('notifications-node-client').NotifyClient
 const TestHelper = require('../../../test-helper')
 const config = require('../../config')
@@ -29,6 +30,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       sandbox.stub(config, 'notifyConfirmationTemplateId').value(expectedNotifyInput.notifyConfirmationTemplateId)
       sandbox.stub(config, 'notifyEmailReplyToId').value(expectedNotifyInput.data.emailReplyToId)
       sandbox.stub(Date, 'now').value(() => timestamp)
+      sandbox.stub(moment.prototype, 'format').value(() => 'Submitted Date')
       sandbox.stub(NotifyClient.prototype, 'sendEmail').value((notifyConfirmationTemplateId, emailAddress, data) => {
         notifyInput = { notifyConfirmationTemplateId, emailAddress, data }
         return {}
@@ -51,7 +53,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
       await routesHelper.expectRedirection(context, '/confirmation')
       Code.expect(notifyInput).to.equal(expectedNotifyInput)
-      Code.expect(TestHelper.getCache(context, 'Registration')).to.equal({ registrationNumber, status: 'submitted', confirmationSent: true })
+      Code.expect(TestHelper.getCache(context, 'Registration')).to.equal({ registrationNumber, status: 'submitted', confirmationSent: true, submittedDate: 'Submitted Date' })
     })
   })
 })

@@ -1,4 +1,5 @@
 const { logger } = require('defra-logging-facade')
+const moment = require('moment')
 const { Registration, Agent, Owner } = require('ivory-data-mapping').cache
 const config = require('../../config')
 
@@ -43,9 +44,12 @@ class ConfirmationHandlers extends require('defra-hapi-handlers') {
         logger.error('Failed to send confirmation email:', result.error)
       } else {
         registration.confirmationSent = true
-        await Registration.set(request, registration)
       }
     }
+
+    registration.submittedDate = moment().format('YYYY-MM-DDTHH:mm:ss.000Z')
+
+    await Registration.set(request, registration)
     const nextPath = await this.getNextPath(request)
 
     return h.redirect(nextPath)
