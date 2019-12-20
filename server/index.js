@@ -95,7 +95,7 @@ async function createServer () {
     if (!config.serviceApi.includes('://')) {
       config.serviceApi = `${server.info.protocol}://${config.serviceApi}`
     }
-    const persistence = new Persistence({ path: `${config.serviceApi}/reference-data` })
+    const persistence = Persistence.createDAO({ path: `${config.serviceApi}/reference-data` })
     config.referenceData = await persistence.restore()
 
     // Register the service api
