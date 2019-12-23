@@ -165,13 +165,17 @@ agent-address-find:
   title: Your address
   view: common/address/find/address-find
   next: agent-address-select
+  tags:
+    - ignore
 
 agent-address-select:
   path: "/agent-address-select"
   handlers: agent/address/agent-address-select.handlers
   title: Your address
   view: common/address/select/address-select
-  next: agent-email
+  next: agent-address-full
+  tags:
+    - ignore
 
 agent-address-full:
   path: "/agent-address-full"
@@ -218,6 +222,8 @@ owner-address-find:
       'true': Your address
       'false': Owner's address
   next: owner-address-select
+  tags:
+    - ignore
 
 owner-address-select:
   path: "/owner-address-select"
@@ -228,11 +234,9 @@ owner-address-select:
     when:
       'true': Your address
       'false': Owner's address
-  next:
-    query: isOwner
-    when:
-      'true': owner-email
-      'false': dealing-intent
+  next: owner-address-full
+  tags:
+    - ignore
 
 owner-address-full:
   path: "/owner-address-full"

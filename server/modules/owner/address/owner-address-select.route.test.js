@@ -83,19 +83,10 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       ])
     })
 
-    lab.test('redirects correctly when the address has been selected when there is no agent', async ({ context }) => {
+    lab.test('redirects correctly when the address has been selected', async ({ context }) => {
       const { request } = context
-      TestHelper.setCache(context, 'Registration', { ownerType: 'i-own-it' })
       request.payload.address = address.uprn
-      await routesHelper.expectRedirection(context, '/owner-email')
-      Code.expect(TestHelper.getCache(context, 'OwnerAddress').uprn).to.equal(address.uprn)
-    })
-
-    lab.test('redirects correctly when the address has been selected when there is an agent', async ({ context }) => {
-      const { request } = context
-      TestHelper.setCache(context, 'Registration', { ownerType: 'someone-else' })
-      request.payload.address = address.uprn
-      await routesHelper.expectRedirection(context, '/dealing-intent')
+      await routesHelper.expectRedirection(context, '/owner-address-full')
       Code.expect(TestHelper.getCache(context, 'OwnerAddress').uprn).to.equal(address.uprn)
     })
   })
