@@ -1,10 +1,9 @@
 const { Cache } = require('defra-hapi-utils')
 const { Registration } = require('ivory-data-mapping').cache
-const changeYourAnswers = require('defra-hapi-change-answers')
 let checkYourAnswersRoute
 
 module.exports = {
-  plugin: changeYourAnswers,
+  plugin: require('defra-hapi-change-answers'),
   options: {
     async init (server) {
       const { flow } = server.app
@@ -12,8 +11,9 @@ module.exports = {
     },
 
     async validData (request) {
+      const { tags = [] } = request.route.settings
       const { validForPayment } = await Registration.get(request) || {}
-      return validForPayment
+      return validForPayment && !tags.includes('ignore')
     },
 
     async ignoreRoute ({ route }) {

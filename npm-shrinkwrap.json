@@ -7404,7 +7404,7 @@
       }
     },
     "defra-hapi-handlers": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-handlers.git#5e849e481d276fe2364ab46f094da633c84cabfc",
+      "version": "git+https://github.com/DEFRA/defra-hapi-handlers.git#e3866844492b0da2584d1eab8f13b8f457720e19",
       "from": "git+https://github.com/DEFRA/defra-hapi-handlers.git#master",
       "requires": {
         "@hapi/joi": "^16.1.8"
@@ -13502,7 +13502,7 @@
       }
     },
     "defra-hapi-route-flow": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#d1ef235e25b79886b644e41f9d4f536ccbaaed96",
+      "version": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#d4099915235c3b2d164bea4fd219a523b043e685",
       "from": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#master",
       "requires": {
         "defra-hapi-handlers": "git+https://github.com/DEFRA/defra-hapi-handlers.git#master",
@@ -14046,7 +14046,7 @@
           }
         },
         "defra-hapi-handlers": {
-          "version": "git+https://github.com/DEFRA/defra-hapi-handlers.git#c3d23554d3dd47306b80aa6c7312415e189f9c15",
+          "version": "git+https://github.com/DEFRA/defra-hapi-handlers.git#e3866844492b0da2584d1eab8f13b8f457720e19",
           "from": "git+https://github.com/DEFRA/defra-hapi-handlers.git#master",
           "requires": {
             "@hapi/joi": "^16.1.8"
@@ -16809,9 +16809,9 @@
           "integrity": "sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ="
         },
         "eslint": {
-          "version": "6.7.2",
-          "resolved": "https://registry.npmjs.org/eslint/-/eslint-6.7.2.tgz",
-          "integrity": "sha512-qMlSWJaCSxDFr8fBPvJM9kJwbazrhNcBU3+DszDW1OlEwKBBRWsJc7NJFelvwQpanHCR14cOLD41x8Eqvo3Nng==",
+          "version": "6.8.0",
+          "resolved": "https://registry.npmjs.org/eslint/-/eslint-6.8.0.tgz",
+          "integrity": "sha512-K+Iayyo2LtyYhDSYwz5D5QdWw0hCacNzyq1Y821Xna2xSJj7cijoLLYmLxTQgcgZ9mC61nryMy9S7GRbYpI5Ig==",
           "requires": {
             "@babel/code-frame": "^7.0.0",
             "ajv": "^6.10.0",
