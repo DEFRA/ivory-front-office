@@ -102,7 +102,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       const { sandbox } = context
       sandbox.stub(cache, 'restore').value(async () => { return { validForPayment: true } })
       await routesHelper.expectRedirection(context, '/payment')
-      Code.expect(TestHelper.getCache(context, 'Registration').registrationNumber).to.exist()
+      Code.expect(TestHelper.getCache(context, 'Registration').status).to.equal('ready-for-payment')
     })
   })
 })

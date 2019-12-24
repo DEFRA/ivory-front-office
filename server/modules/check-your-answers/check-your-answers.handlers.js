@@ -1,5 +1,4 @@
 const Boom = require('@hapi/boom')
-const registrationNumberGenerator = require('../../lib/registration-number-generator')
 const config = require('../../config')
 const cache = require('ivory-data-mapping').cache
 const {
@@ -210,9 +209,8 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
       return Boom.badData('Registration not valid for payment', registration)
     }
 
-    if (!registration.registrationNumber) {
-      registration.registrationNumber = await registrationNumberGenerator.get()
-    }
+    registration.status = 'ready-for-payment'
+
     await Registration.set(request, registration)
     return super.handlePost(request, h)
   }
