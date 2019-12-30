@@ -1825,8 +1825,8 @@
       }
     },
     "defra-hapi-change-answers": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-change-answers.git#65008c107b38839cd7e9065994b47363a68be733",
-      "from": "git+https://github.com/DEFRA/defra-hapi-change-answers.git#master",
+      "version": "git+https://github.com/DEFRA/defra-hapi-change-answers.git#b026039f411cc6ed6a573b8dde5606b549147601",
+      "from": "git+https://github.com/DEFRA/defra-hapi-change-answers.git#b026039f411cc6ed6a573b8dde5606b549147601",
       "dependencies": {
         "@babel/code-frame": {
           "version": "7.5.5",
