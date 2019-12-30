@@ -43,7 +43,7 @@
     "@hapi/yar": "^9.2.1",
     "blipp": "^4.0.1",
     "defra-hapi-change-answers": "git+https://github.com/DEFRA/defra-hapi-change-answers.git#v0.1.0",
-    "defra-hapi-error-handling": "git+https://github.com/DEFRA/defra-hapi-error-handling.git#master",
+    "defra-hapi-error-handling": "git+https://github.com/DEFRA/defra-hapi-error-handling.git#v0.1.0",
     "defra-hapi-handlers": "git+https://github.com/DEFRA/defra-hapi-handlers.git#master",
     "defra-hapi-photos": "git+https://github.com/DEFRA/defra-hapi-photos.git#v0.1.0",
     "defra-hapi-route-flow": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#master",
