@@ -13502,8 +13502,8 @@
       }
     },
     "defra-hapi-route-flow": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#8bb2cf8ff389b33947185952cff7b331efff4f69",
-      "from": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#master",
+      "version": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#89d9d15bdeb3c85e52f3f5cb4f9a2eb760c17aa3",
+      "from": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#v0.1.0",
       "requires": {
         "defra-hapi-handlers": "git+https://github.com/DEFRA/defra-hapi-handlers.git#v0.1.0",
         "route-flow-engine": "^0.2.0"
