@@ -1,11 +1,10 @@
-const path = require('path')
 const nunjucks = require('nunjucks')
 const config = require('../config')
 const pkg = require('../../package.json')
 const analyticsAccount = config.analyticsAccount
 const glob = require('glob')
 
-const moduleTemplates = glob.sync('./node_modules/**/*.njk')
+const moduleTemplates = glob.sync('./*/*/!(node_modules)/**/*.njk')
 
 const macroFolders = [...new Set(moduleTemplates
   .filter((file) => file.endsWith('/macro.njk'))
@@ -46,7 +45,7 @@ module.exports = {
 
         prepare: (options, next) => {
           options.compileOptions.environment = nunjucks.configure(
-            [path.join(options.relativeTo || process.cwd(), options.path), ...folders],
+            folders,
             {
               autoescape: true,
               watch: false
