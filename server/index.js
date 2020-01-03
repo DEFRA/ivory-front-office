@@ -32,8 +32,7 @@ if (config.redisEnabled) {
 async function registerPlugins (server) {
   await server.register([
     require('@hapi/inert'),
-    require('./plugins/views'),
-    require('./plugins/public'),
+    require('./plugins/frontend'),
     require('./plugins/version'),
     require('./plugins/photos'),
     require('./plugins/flow'),
