@@ -28601,7 +28601,7 @@
       }
     },
     "hapi-govuk-frontend": {
-      "version": "git+https://github.com/DEFRA/hapi-govuk-frontend.git#038f9196149fa6e8bcacd3d67c2b595a0c52d4ad",
+      "version": "git+https://github.com/DEFRA/hapi-govuk-frontend.git#a79c1dc2ec01a353bc99d43a7d3a377805f9e307",
       "from": "git+https://github.com/DEFRA/hapi-govuk-frontend.git#master",
       "requires": {
         "@hapi/vision": "^5.5.4",
