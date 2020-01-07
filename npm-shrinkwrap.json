@@ -37453,8 +37453,8 @@
       "integrity": "sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo="
     },
     "ivory-data-mapping": {
-      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#3dd1255a887434f6e9d0fbd8f7bc1848532beb2b",
-      "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
+      "version": "git+https://github.com/DEFRA/ivory-data-mapping.git#39c8b34af76020e4875f8a2b0b612dc9a68ea346",
+      "from": "git+https://github.com/DEFRA/ivory-data-mapping.git#39c8b34af76020e4875f8a2b0b612dc9a68ea346",
       "requires": {
         "@hapi/joi": "^16.1.8",
         "defra-hapi-utils": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
@@ -38059,7 +38059,7 @@
           }
         },
         "defra-hapi-utils": {
-          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#7bd6a78767609e4de54098da69ec5501ec07a974",
+          "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#548050f1cdf97e9bb8036d895999266bd28a4b49",
           "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
           "requires": {
             "@hapi/hoek": "^8.5.0",
@@ -40494,9 +40494,9 @@
               }
             },
             "sinon": {
-              "version": "8.0.2",
-              "resolved": "https://registry.npmjs.org/sinon/-/sinon-8.0.2.tgz",
-              "integrity": "sha512-8W1S7BnCyvk7SK+Xi15B1QAVLuS81G/NGmWefPb31+ly6xI3fXaug/g5oUdfc8+7ruC4Ay51AxuLlYm8diq6kA==",
+              "version": "8.0.3",
+              "resolved": "https://registry.npmjs.org/sinon/-/sinon-8.0.3.tgz",
+              "integrity": "sha512-t8B8cerCx7IsYW8S2cYLueFlOWQ1JisBgEpE+8VRECV24JZJmuJQKNopSHsCCiGrw3yI2/5aCFxZNoebY0ZGHQ==",
               "requires": {
                 "@sinonjs/commons": "^1.7.0",
                 "@sinonjs/formatio": "^4.0.1",
