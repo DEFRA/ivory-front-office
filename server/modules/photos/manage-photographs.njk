@@ -1,0 +1,44 @@
+{% extends 'full-layout.njk' %}
+
+{% from "summary-list/macro.njk" import govukSummaryList %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block formContent %}
+
+  {{ govukSummaryList({
+    rows: viewData.photosSummaryList
+  }) }}
+
+  {% if viewData.photosSummaryList.length < viewData.maxPhotos %}
+
+    {{ govukRadios({
+      idPrefix: fieldname,
+      name: fieldname,
+      fieldset: {
+        legend: {
+          text: "What next?",
+          isPageHeading: false,
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      errorMessage: errors[fieldname],
+      items: [
+        {
+          value: "add-photos",
+          text: "Add another photo"
+        },
+        {
+          value: "continue",
+          text: "Continue to the next question"
+        }
+      ]
+    }) }}
+
+  {% else %}
+    {# hidden input forces continue to work#}
+    <input type="hidden" name="{{ fieldname }}" value="continue">
+
+  {%  endif %}
+
+{% endblock %}
+

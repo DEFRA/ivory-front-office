@@ -126,14 +126,18 @@ add-photograph:
   title: Add a photo
   view: photos/add-photograph
   isQuestionPage: true
-  next: check-photograph
+  next: manage-photographs
 
-check-photograph:
-  path: "/check-photograph"
-  handlers: photos/check-photograph.handlers
-  title: This is your photo
-  view: photos/check-photograph
-  next: item-description
+manage-photographs:
+  path: "/manage-photographs"
+  handlers: photos/manage-photographs.handlers
+  title: Your photos
+  view: photos/manage-photographs
+  next:
+    query: addPhotographs
+    when:
+      'true': add-photograph
+      'false': item-description
 
 
 # ======================

@@ -131,16 +131,15 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
       })
     }
 
-    // TODO: Handle multiple photos
     if (item.photos) {
-      // item.photos.forEach((photo) => {
-      const lastphoto = item.photos[item.photos.length - 1] // Until we handle multiple photos, take the last photo
+      const html = item.photos
+        .map((photo) => `<img class="check-photo-img" src="/photos/small/${photo.filename}">`)
+        .join('')
       answers.push({
-        key: 'Photograph',
-        html: `<img class="check-photo-img" src="/photos/medium/${lastphoto.filename}" border="0">`,
+        key: 'Photographs',
+        html,
         route: await flow('check-photograph')
       })
-      // })
     }
 
     if (item.description) {
