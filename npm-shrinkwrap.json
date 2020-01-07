@@ -23714,8 +23714,8 @@
       }
     },
     "defra-hapi-utils": {
-      "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#548050f1cdf97e9bb8036d895999266bd28a4b49",
-      "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#master",
+      "version": "git+https://github.com/DEFRA/defra-hapi-utils.git#955583fa78e4c71a611cf7e482df12c70d7c44df",
+      "from": "git+https://github.com/DEFRA/defra-hapi-utils.git#955583fa78e4c71a611cf7e482df12c70d7c44df",
       "requires": {
         "@hapi/hoek": "^8.5.0",
         "@hapi/joi": "^16.1.8",
@@ -26149,9 +26149,9 @@
           }
         },
         "sinon": {
-          "version": "8.0.3",
-          "resolved": "https://registry.npmjs.org/sinon/-/sinon-8.0.3.tgz",
-          "integrity": "sha512-t8B8cerCx7IsYW8S2cYLueFlOWQ1JisBgEpE+8VRECV24JZJmuJQKNopSHsCCiGrw3yI2/5aCFxZNoebY0ZGHQ==",
+          "version": "8.0.4",
+          "resolved": "https://registry.npmjs.org/sinon/-/sinon-8.0.4.tgz",
+          "integrity": "sha512-cFsmgmvsgFb87e7SV7IcekogITlHX2KmlplyI9Pda0FH1Z8Ms/kWbpLs25Idp0m6ZJ3HEEjhaYYXbcTtWWUn4w==",
           "requires": {
             "@sinonjs/commons": "^1.7.0",
             "@sinonjs/formatio": "^4.0.1",
