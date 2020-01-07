@@ -52,7 +52,6 @@
     "glob": "^7.1.6",
     "hapi-govuk-frontend": "git+https://github.com/DEFRA/hapi-govuk-frontend.git#master",
     "hapi-proxy-get": "^0.1.3",
-    "hapi-public-route": "^0.1.7",
     "hapi-robots": "^3.2.0",
     "hapi-version-status": "^2.0.1",
     "ivory-data-mapping": "git+https://github.com/DEFRA/ivory-data-mapping.git#master",
@@ -68,7 +67,7 @@
     "cheerio": "^1.0.0-rc.3",
     "codeclimate-test-reporter": "0.5.1",
     "htmlparser2": "^4.0.0",
-    "sinon": "^7.5.0",
+    "sinon": "^8.0.4",
     "standard": "14.3.1"
   }
 }
