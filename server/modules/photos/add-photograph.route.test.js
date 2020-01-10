@@ -54,7 +54,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
           '--WebAppBoundary--'
         ].join('\r\n')
 
-        await routesHelper.expectRedirection(context, '/check-photograph')
+        await routesHelper.expectRedirection(context, '/manage-photographs')
       })
     })
 

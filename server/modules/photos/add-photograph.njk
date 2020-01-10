@@ -22,7 +22,8 @@
       errorMessage: errors[fieldname],
       classes: "ivory-govuk-file-upload",
       attributes: {
-        accept: "image/*"
+        accept: viewData.mimeTypes,
+        multiple: true
       }
     }) }}
 
