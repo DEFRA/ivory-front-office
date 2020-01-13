@@ -79,7 +79,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
   }
 
   buildRows (answers) {
-    return answers.map(({ key, value, html, route }) => {
+    return answers.map(({ key, value, html, route = {} }) => {
       const classes = `ivory-${key.toLowerCase().split(' ').join('-')}`
       const row = {
         key: { text: key }
@@ -138,7 +138,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
       answers.push({
         key: 'Photographs',
         html,
-        route: await flow('check-photograph')
+        route: await flow('manage-photographs')
       })
     }
 
