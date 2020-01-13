@@ -82,7 +82,8 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   }
 
   async handleUpload (request, h, item, photoPayload) {
-    const fileExtension = path.extname(path.basename(photoPayload.hapi.filename))
+    const originalFilename = path.basename(photoPayload.hapi.filename)
+    const fileExtension = path.extname(originalFilename)
     const contentType = photoPayload.hapi.headers['content-type']
     const filename = uuid() + fileExtension
 
@@ -93,10 +94,10 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
       // The upload failed, so tell the user to try again
       // Rather than building from scratch, generate an example error structure and overwrite the type
       logger.error(`Caught error from upload in handler: ${err}`)
-      return this.failAction(request, h, createError(request, [this.fieldname], 'custom.uploadfailed'))
+      return err
     }
 
-    const photo = { filename: filenameUploaded, rank: item.photos.length, confirmed: false }
+    const photo = { filename: filenameUploaded, originalFilename, rank: item.photos.length, confirmed: false }
     item.photos.push(photo)
   }
 
@@ -107,18 +108,16 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
     // It's the first photo, so create the photos array
       item.photos = []
     }
+
     const payload = request.payload[this.fieldname]
 
-    if (Array.isArray(payload)) {
-      const failedUpload = await Promise.all(payload.map((photoPayload) => this.handleUpload(request, h, item, photoPayload)))
-      if (failedUpload) {
-        return failedUpload
-      }
-    } else {
-      const failedUpload = await this.handleUpload(request, h, item, payload)
-      if (failedUpload) {
-        return failedUpload
-      }
+    const data = Array.isArray(payload) ? payload : [payload]
+
+    const errors = await Promise.all(data.map(async (photoPayload) => this.handleUpload(request, h, item, photoPayload)))
+    const error = errors.find((error) => error)
+
+    if (error) {
+      return this.failAction(request, h, createError(request, [this.fieldname], 'custom.uploadfailed'))
     }
 
     await this.Item.set(request, item)
