@@ -1,0 +1,22 @@
+{% extends 'two-thirds-layout.njk' %}
+
+{% block formContent %}
+
+  <div class="govuk-form-group">
+    <p>
+      <img id="{{ fieldname }}" class="defra-check-photo-img" alt="{{ fieldname }}" src="{{ viewData.photoUrl }}" />
+    </p>
+  </div>
+
+{% endblock %}
+
+{# Overwrite this block to set the different button text #}
+{% block continueButton %}
+  {{ govukButton({
+    text: "Remove this photo?"
+  }) }}
+{% endblock %}
+
+{% block contentFooter %}
+  <p class="govuk-body"><a href="{{ viewData.cancelLink }}">Cancel</a></p>
+{% endblock %}

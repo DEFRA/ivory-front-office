@@ -22,9 +22,6 @@ lab.experiment(TestHelper.getFile(__filename), () => {
           promise: async () => {}
         }
       })
-
-      // Stub the photos.delete function
-      context.sandbox.stub(Photos.prototype, 'delete').value(() => { })
     }
   })
 

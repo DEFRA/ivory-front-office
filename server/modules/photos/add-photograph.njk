@@ -8,6 +8,18 @@
     <input id="defra-csrf-token" type="hidden" name="DefraCsrfToken" value="{{ DefraCsrfToken }}">
 {% endblock %}
 
+{% set hintHtml %}
+  <span id="hint" class="govuk-body">
+    <p class="govuk-body">You can add up to {{viewData.maxPhotos}} photos.</p>
+    <p class="govuk-body">You must show:</p>
+
+    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-7">
+      <li>the whole item</li>
+      <li>any unique features</li>
+    </ul>
+  </span>
+{% endset %}
+
 {% block formContent %}
 
     {{ govukFileUpload({
@@ -18,7 +30,7 @@
         isPageHeading: isQuestionPage,
         classes: "govuk-label--xl"
       },
-      hint: hint,
+      hint: { html: hintHtml },
       errorMessage: errors[fieldname],
       classes: "ivory-govuk-file-upload",
       attributes: {

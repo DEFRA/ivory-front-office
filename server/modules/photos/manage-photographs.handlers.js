@@ -1,4 +1,3 @@
-const Joi = require('@hapi/joi')
 const { Item } = require('ivory-data-mapping').cache
 
 class ManagePhotographHandlers extends require('defra-hapi-handlers') {
@@ -6,72 +5,55 @@ class ManagePhotographHandlers extends require('defra-hapi-handlers') {
     return Item
   }
 
-  get fieldname () {
-    return 'photos-what-next'
-  }
-
-  get schema () {
-    return Joi.object({
-      [this.fieldname]: Joi.required()
-    })
-  }
-
-  get errorMessages () {
-    return {
-      [this.fieldname]: {
-        'any.required': 'You must select what to do next'
-      }
-    }
-  }
-
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
+    const { flow } = request.server.app
+    const removeRoute = await flow('remove-photograph')
+    const addRoute = await flow('add-photograph')
+
     const { photos = [] } = await this.Item.get(request) || {}
 
-    const photosSummaryList = photos.map(({ filename, rank }) => {
+    const photosSummaryList = photos.map(({ filename, originalFilename, id }, index) => {
       return {
         key: {
           classes: 'your-photos-key',
-          text: `Photo ${rank + 1}`
+          text: `Photo ${index + 1}`
         },
         value: {
           classes: 'your-photos-value',
-          html: `<img class="your-photos-img" src="/photos/medium/${filename}" />`
+          html: `<img class="your-photos-img" src="/photos/medium/${filename}" alt="${originalFilename}"/>`
         },
         actions: {
           classes: 'your-photos-actions',
           items: [
-            // {
-            //   href: `/remove-photo/${filename}`,
-            //   text: 'Remove',
-            //   visuallyHiddenText: `Photo ${rank + 1}`
-            // }
+            {
+              attributes: {
+                id: `remove-photo-${index + 1}`
+              },
+              href: removeRoute.path.replace('{id}', id),
+              text: 'Remove',
+              visuallyHiddenText: `Photo ${index + 1}`
+            }
           ]
         }
       }
     })
 
-    this.viewData = { photosSummaryList, maxPhotos: 6 }
+    this.viewData = { photosSummaryList, maxPhotos: 6, addPhotoLink: addRoute.path }
     return super.handleGet(request, h, errors)
-  }
-
-  async addPhotographs (request) {
-    const option = request.payload[this.fieldname]
-    return (option === 'add-photos')
   }
 
   // Overrides parent class handlePost
   async handlePost (request, h) {
-    if (!this.addPhotographs(request)) {
-      const item = await this.Item.get(request) || {}
-      const { photos } = item
+    const item = await this.Item.get(request) || {}
+    const { photos = [] } = item
 
-      photos.forEach((photo) => {
-        photo.confirmed = true
-      })
+    item.photos = photos.map((photo) => {
+      photo.confirmed = true
+      return photo
+    })
 
-      await this.Item.set(request, item)
-    }
+    await this.Item.set(request, item)
 
     return super.handlePost(request, h)
   }
