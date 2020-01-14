@@ -70,7 +70,7 @@ const schema = Joi.object({
   // Photo upload
   photoUploadPhotoMaxMb: Joi.number().min(1).max(20).default(10),
   photoUploadPhotoMinKb: Joi.number().min(1).max(50).default(1),
-  photoUploadPayloadMaxBytes: Joi.number().min(50 * 1024).max(20 * 1024 * 1024).default(20 * 1024 * 1024),
+  photoUploadPayloadMaxBytes: Joi.number().min(50 * 1024).max(20 * 1024 * 1024).default(11 * 1024 * 1024),
 
   // Google Analytics
   googleAnalyticsId: Joi.string(),

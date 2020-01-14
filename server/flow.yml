@@ -123,7 +123,11 @@ item-volume-exemption-declaration:
 add-photograph:
   path: "/add-photograph"
   handlers: photos/add-photograph.handlers
-  title: Add a photo
+  title:
+    query: hasPhotos
+    when:
+      'true': Add another photo
+      'false': Add a photo
   view: photos/add-photograph
   isQuestionPage: true
   next: manage-photographs

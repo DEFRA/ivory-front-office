@@ -35,7 +35,7 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   get photoSchema () {
     const { minKb, maxMb } = this.photos
     return Joi.object({
-      _data: Joi.binary().min(minKb * 1024).max(maxMb * 1024 * 1024), // Check the file data buffer size (the important one)
+      _data: Joi.binary().min(minKb * 1024).max(maxMb * 1024 * 1024).optional(), // Check the file data buffer size (the important one)
       hapi: Joi.object({
         headers: Joi.object({
           'content-type': Joi.string().valid(...this.mimeTypes).required() // Check the content-type is set, so we can set it in S3
@@ -62,15 +62,30 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
         'any.only': `The selected file must be a ${fileTypes.replace(/,\s([^,]+)$/, ' or $1')}`,
         'binary.min': `The selected file must be bigger than ${minKb}KB`,
         'binary.max': `The selected file must be smaller than ${maxMb}MB`,
+        'custom.maxpayload': 'The total size of the files is too large, please upload separately',
         'custom.uploadfailed': 'The selected file could not be uploaded – try again'
         // 'array.base': 'You must add a photo'
       }
     }
   }
 
+  async hasPhotos (request) {
+    const { photos = [] } = await this.Item.get(request) || {}
+    return photos.length > 0
+  }
+
+  async failAction (request, h, errors) {
+    if (getNestedVal(request, 'response.output.statusCode') === 413) {
+      return super.failAction(request, h, createError(request, [this.fieldname], 'custom.maxpayload'))
+    }
+    return super.failAction(request, h, errors)
+  }
+
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
+    const { photos = [] } = await this.Item.get(request) || {}
     this.viewData = {
+      addedPhotos: photos.length,
       maxPhotos: this.maxPhotos,
       mimeTypes: this.mimeTypes.join(', ')
     }
