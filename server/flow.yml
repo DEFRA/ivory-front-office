@@ -138,6 +138,8 @@ remove-photograph:
     when:
       'true': add-photograph
       'false': manage-photographs
+  tags:
+    - ignore
 
 manage-photographs:
   path: "/manage-photographs"

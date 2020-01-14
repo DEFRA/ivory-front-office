@@ -1,3 +1,4 @@
+const Boom = require('@hapi/boom')
 const { Item } = require('ivory-data-mapping').cache
 const { getPhotos } = require('defra-hapi-photos')
 
@@ -22,6 +23,11 @@ class RemovePhotographHandlers extends require('defra-hapi-handlers') {
     const cancelLink = await this.getNextPath(request)
     const { photos = [] } = await this.Item.get(request) || {}
     const photo = photos.find((photo) => photo.id === id)
+
+    if (!photo) {
+      return Boom.notFound()
+    }
+
     const { filename } = photo
 
     this.viewData = {
