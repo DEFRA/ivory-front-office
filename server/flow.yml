@@ -74,7 +74,7 @@ item-type:
     when:
       apply-to-register-to-sell-an-item-to-a-museum: apply-to-register-to-sell-an-item-to-a-museum
       apply-for-an-rmi-certificate: apply-for-an-rmi-certificate
-      other-has-photos: check-photograph
+      other-has-photos: item-age-exemption-declaration
       other-has-no-photos: add-photograph
 
 apply-to-register-to-sell-an-item-to-a-museum:
