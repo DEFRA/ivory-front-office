@@ -120,7 +120,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
     const agentAddress = await AgentAddress.get(request) || {}
     const item = await Item.get(request) || {}
     const { dealingIntent, ownerType } = registration
-    const { itemType } = item
+    const { itemType, photos = [] } = item
 
     let answers = []
 
@@ -134,16 +134,20 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
       })
     }
 
-    if (item.photos) {
-      const html = item.photos
-        .map((photo) => `<img class="check-photo-img" src="/photos/small/${photo.filename}" alt="${photo.originalFilename}">`)
-        .join('')
-      answers.push({
-        key: 'Photographs',
-        html,
-        route: await flow('manage-photographs')
-      })
-    }
+    const html = `
+        <ol class="govuk-list govuk-list--number">
+            ${photos.map((photo, index) => `
+            <li class="check-photo">
+                <img id="check-photo-img-${index + 1}" class="check-photo-img" src="/photos/medium/${photo.filename}" alt="${photo.originalFilename}">
+            </li>
+            `).join('\n')}
+        </ol>
+`
+    answers.push({
+      key: 'Photographs',
+      html,
+      route: await flow('manage-photographs')
+    })
 
     if (item.description) {
       answers.push({
