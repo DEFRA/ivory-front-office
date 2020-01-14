@@ -52,7 +52,7 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
     )
   }
 
-  get errorMessages () {
+  async errorMessages () {
     const fileTypes = Object.keys((this.validFileTypes)).join(', ')
     const { minKb, maxMb } = this.photos
     return {
@@ -128,6 +128,10 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
     const payload = request.payload[this.fieldname]
 
     const data = Array.isArray(payload) ? payload : [payload]
+
+    if (payload.length + data.length > this.maxPhotos) {
+      return this.failAction(request, h, createError(request, [this.fieldname], 'array.max'))
+    }
 
     const errors = await Promise.all(data.map(async (photoPayload) => this.handleUpload(request, h, item, photoPayload)))
     const error = errors.find((error) => error)
