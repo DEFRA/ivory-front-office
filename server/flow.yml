@@ -128,16 +128,23 @@ add-photograph:
   isQuestionPage: true
   next: manage-photographs
 
+remove-photograph:
+  path: "/remove-photograph/{id}"
+  handlers: photos/remove-photograph.handlers
+  title: Remove a photo
+  view: photos/remove-photograph
+  next:
+    query: lastPhoto
+    when:
+      'true': add-photograph
+      'false': manage-photographs
+
 manage-photographs:
   path: "/manage-photographs"
   handlers: photos/manage-photographs.handlers
   title: Your photos
   view: photos/manage-photographs
-  next:
-    query: addPhotographs
-    when:
-      'true': add-photograph
-      'false': item-description
+  next: item-description
 
 
 # ======================

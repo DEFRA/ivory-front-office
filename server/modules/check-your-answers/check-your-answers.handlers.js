@@ -95,6 +95,9 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
         row.actions = {
           items: [
             {
+              attributes: {
+                id: `change-${route.id}`
+              },
               href: route.path,
               text: 'Change',
               visuallyHiddenText: key.toLowerCase()
@@ -133,7 +136,7 @@ class CheckYourAnswersHandlers extends require('defra-hapi-handlers') {
 
     if (item.photos) {
       const html = item.photos
-        .map((photo) => `<img class="check-photo-img" src="/photos/small/${photo.filename}">`)
+        .map((photo) => `<img class="check-photo-img" src="/photos/small/${photo.filename}" alt="${photo.originalFilename}">`)
         .join('')
       answers.push({
         key: 'Photographs',

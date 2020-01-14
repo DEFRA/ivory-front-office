@@ -10,34 +10,9 @@
   }) }}
 
   {% if viewData.photosSummaryList.length < viewData.maxPhotos %}
-
-    {{ govukRadios({
-      idPrefix: fieldname,
-      name: fieldname,
-      fieldset: {
-        legend: {
-          text: "What next?",
-          isPageHeading: false,
-          classes: "govuk-fieldset__legend--m"
-        }
-      },
-      errorMessage: errors[fieldname],
-      items: [
-        {
-          value: "add-photos",
-          text: "Add another photo"
-        },
-        {
-          value: "continue",
-          text: "Continue to the next question"
-        }
-      ]
-    }) }}
-
-  {% else %}
-    {# hidden input forces continue to work#}
-    <input type="hidden" name="{{ fieldname }}" value="continue">
-
+    <p class="govuk-body govuk-!-margin-bottom-7">
+      <a href="{{ viewData.addPhotoLink }}">Add another photo</a>
+    </p>
   {%  endif %}
 
 {% endblock %}

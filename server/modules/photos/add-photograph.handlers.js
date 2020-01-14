@@ -71,6 +71,7 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     this.viewData = {
+      maxPhotos: this.maxPhotos,
       mimeTypes: this.mimeTypes.join(', ')
     }
     const result = await super.handleGet(request, h, errors)

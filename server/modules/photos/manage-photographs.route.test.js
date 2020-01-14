@@ -21,24 +21,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
   })
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
-    lab.test('click continue and fail when next step not chosen', async ({ context }) => {
-      return routesHelper.expectValidationErrors(context, [
-        { field: 'photos-what-next', message: 'You must select what to do next' }
-      ])
-    })
-
     lab.test('click continue and redirect to next page', async ({ context }) => {
-      const { request } = context
-      request.payload['photos-what-next'] = 'continue'
-
       await routesHelper.expectRedirection(context, '/item-description')
-    })
-
-    lab.test('click continue and return to add another photo to next page', async ({ context }) => {
-      const { request } = context
-      request.payload['photos-what-next'] = 'add-photos'
-
-      await routesHelper.expectRedirection(context, '/add-photograph')
     })
   })
 })
