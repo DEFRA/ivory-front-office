@@ -1,11 +1,21 @@
 
 const Lab = require('@hapi/lab')
+const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const url = '/add-photograph'
 const pageHeading = 'Add a photo'
+const alternativePageHeading = 'Add another photo'
 const config = require('../../config')
 const { Photos } = require('defra-hapi-photos')
+
+const getPhotos = (count) => {
+  const photos = []
+  for (let index = 0; index < count; index++) {
+    photos.push({ filename: `elephant-${index + 1}` })
+  }
+  return photos
+}
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {
@@ -25,7 +35,18 @@ lab.experiment(TestHelper.getFile(__filename), () => {
     }
   })
 
-  routesHelper.getRequestTests({ lab, pageHeading, url })
+  routesHelper.getRequestTests({ lab, pageHeading, url }, () => {
+    lab.test('alternative page heading is correct', async ({ context }) => {
+      // Simulate that one less than the maximum photos have been updated already
+      TestHelper.setCache(context, 'Item', { photos: getPhotos(config.photoUploadMaxPhotos - 1) })
+
+      const { server } = context
+      const response = await server.inject(context.request)
+      const $ = routesHelper.getDomParser(response.payload)
+
+      Code.expect($('h1').text()).to.include(alternativePageHeading)
+    })
+  })
 
   routesHelper.postRequestTests({ lab, pageHeading, url }, () => {
     const files = [
@@ -37,7 +58,8 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       context.request.headers = {
         'Content-Type': 'multipart/form-data; boundary=WebAppBoundary'
       }
-      TestHelper.setCache(context, 'Item', { photos: [] })
+      // Simulate that one less than the maximum photos have been updated already
+      TestHelper.setCache(context, 'Item', { photos: getPhotos(config.photoUploadMaxPhotos - 1) })
     })
 
     files.forEach(({ filename, mimetype }) => {
@@ -74,11 +96,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
     lab.test('fails validation when the number of photos exceeds the maximum', async ({ context }) => {
       const { request } = context
-      const files = ['elephant-1.jpg', 'elephant-2.jpg', 'elephant-3.jpg', 'elephant-4.jpg', 'elephant-5.jpg', 'elephant-6.jpg']
-      const photos = files.map((filename) => {
-        return { filename }
-      })
-      TestHelper.setCache(context, 'Item', { photos })
+      TestHelper.setCache(context, 'Item', { photos: getPhotos(config.photoUploadMaxPhotos) })
       request.payload = [
         '--WebAppBoundary',
         'Content-Disposition: form-data; name="photograph"; filename="elephant.jpg"',
