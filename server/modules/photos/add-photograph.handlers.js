@@ -5,6 +5,7 @@ const { uuid, setNestedVal, getNestedVal } = utils
 const { Item } = require('ivory-data-mapping').cache
 const photos = require('defra-hapi-photos')
 const { logger } = require('defra-logging-facade')
+const config = require('../../config')
 const { createError } = joiUtilities
 
 class AddPhotographsHandlers extends require('defra-hapi-handlers') {
@@ -17,7 +18,7 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   }
 
   get maxPhotos () {
-    return 6
+    return config.photoUploadMaxPhotos
   }
 
   get validFileTypes () {

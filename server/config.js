@@ -71,6 +71,7 @@ const schema = Joi.object({
   photoUploadPhotoMaxMb: Joi.number().min(1).max(20).default(10),
   photoUploadPhotoMinKb: Joi.number().min(1).max(50).default(1),
   photoUploadPayloadMaxBytes: Joi.number().min(50 * 1024).max(20 * 1024 * 1024).default(11 * 1024 * 1024),
+  photoUploadMaxPhotos: Joi.number().min(1).default(6),
 
   // Google Analytics
   googleAnalyticsId: Joi.string(),
@@ -136,6 +137,7 @@ const config = {
   photoUploadPhotoMaxMb: process.env.PHOTO_UPLOAD_PHOTO_MAX_MB,
   photoUploadPhotoMinKb: process.env.PHOTO_UPLOAD_PHOTO_MIN_KB,
   photoUploadPayloadMaxBytes: process.env.PHOTO_UPLOAD_PAYLOAD_MAX_BYTES,
+  photoUploadMaxPhotos: process.env.PHOTO_UPLOAD_MAX_PHOTOS,
 
   // Google Analytics
   googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID,

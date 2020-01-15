@@ -1,4 +1,5 @@
 const { Item } = require('ivory-data-mapping').cache
+const config = require('../../config')
 
 class ManagePhotographHandlers extends require('defra-hapi-handlers') {
   get Item () {
@@ -39,7 +40,7 @@ class ManagePhotographHandlers extends require('defra-hapi-handlers') {
       }
     })
 
-    this.viewData = { photosSummaryList, maxPhotos: 6, addPhotoLink: addRoute.path }
+    this.viewData = { photosSummaryList, maxPhotos: config.photoUploadMaxPhotos, addPhotoLink: addRoute.path }
     return super.handleGet(request, h, errors)
   }
 

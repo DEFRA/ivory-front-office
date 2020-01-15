@@ -37,6 +37,7 @@ lab.experiment(TestHelper.getFile(__filename), () => {
       context.request.headers = {
         'Content-Type': 'multipart/form-data; boundary=WebAppBoundary'
       }
+      TestHelper.setCache(context, 'Item', { photos: [] })
     })
 
     files.forEach(({ filename, mimetype }) => {
@@ -68,6 +69,27 @@ lab.experiment(TestHelper.getFile(__filename), () => {
 
       return routesHelper.expectValidationErrors(context, [
         { field: 'photograph', message: `The selected file must be bigger than ${config.photoUploadPhotoMinKb}KB` }
+      ])
+    })
+
+    lab.test('fails validation when the number of photos exceeds the maximum', async ({ context }) => {
+      const { request } = context
+      const files = ['elephant-1.jpg', 'elephant-2.jpg', 'elephant-3.jpg', 'elephant-4.jpg', 'elephant-5.jpg', 'elephant-6.jpg']
+      const photos = files.map((filename) => {
+        return { filename }
+      })
+      TestHelper.setCache(context, 'Item', { photos })
+      request.payload = [
+        '--WebAppBoundary',
+        'Content-Disposition: form-data; name="photograph"; filename="elephant.jpg"',
+        'Content-Type: image/jpeg',
+        '',
+        'file-contents of the image'.repeat(1024 * 2),
+        '--WebAppBoundary--'
+      ].join('\r\n')
+
+      return routesHelper.expectValidationErrors(context, [
+        { field: 'photograph', message: `Only a maximum of ${config.photoUploadMaxPhotos} files can be uploaded – try again` }
       ])
     })
 
