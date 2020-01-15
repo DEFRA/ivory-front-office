@@ -129,7 +129,7 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
 
     const data = Array.isArray(payload) ? payload : [payload]
 
-    if (payload.length + data.length > this.maxPhotos) {
+    if (item.photos.length + data.length > this.maxPhotos) {
       return this.failAction(request, h, createError(request, [this.fieldname], 'array.max'))
     }
 
