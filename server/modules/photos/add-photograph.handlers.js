@@ -52,7 +52,7 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
     )
   }
 
-  async errorMessages () {
+  get errorMessages () {
     const fileTypes = Object.keys((this.validFileTypes)).join(', ')
     const { minKb, maxMb } = this.photos
     return {
