@@ -57,6 +57,7 @@ confirmation:
   view: confirmation/confirmation
   tags:
     - submitted
+    - hide-back-link
 
 
 # =====================
