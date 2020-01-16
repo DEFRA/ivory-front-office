@@ -84,11 +84,13 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
 
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
+    const cancelLink = await this.getNextPath(request)
     const { photos = [] } = await this.Item.get(request) || {}
     this.viewData = {
       addedPhotos: photos.length,
       maxPhotos: this.maxPhotos,
-      mimeTypes: this.mimeTypes.join(', ')
+      mimeTypes: this.mimeTypes.join(', '),
+      cancelLink
     }
     const result = await super.handleGet(request, h, errors)
     if (errors && !getNestedVal(result, 'source.context.DefraCsrfToken')) {

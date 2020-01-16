@@ -2,6 +2,15 @@
 
 {% from "textarea/macro.njk" import govukTextarea %}
 
+{% set hintHtml %}
+  <p id="descriptionText-hint" class="govuk-body">
+    Explain what the item is.
+    <br>
+    <br>
+    Include any features that help identify the item, like the maker's mark, engravings.
+  </p>
+{% endset %}
+
 {% block formContent %}
 
   {{ govukTextarea({
@@ -15,7 +24,7 @@
       classes: "govuk-label--xl"
     },
     hint: {
-      text: "Explain what the item is, including any features that make it stand out."
+      html: hintHtml
     }
   }) }}
 

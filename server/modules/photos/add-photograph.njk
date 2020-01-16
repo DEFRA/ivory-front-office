@@ -10,7 +10,7 @@
 
 {% set hintHtml %}
   <span id="hint" class="govuk-body">
-    {% if viewData.addedPhotos > 0 %}
+    {% if viewData.addedPhotos %}
       <p class="govuk-body">You can add up to {{viewData.maxPhotos - viewData.addedPhotos}} more photos.</p>
     {% else %}
       <p class="govuk-body">You can add up to {{viewData.maxPhotos}} photos.</p>
@@ -43,4 +43,10 @@
       }
     }) }}
 
+{% endblock %}
+
+{% block contentFooter %}
+  {% if viewData.addedPhotos %}
+    <p id="cancel-link" class="govuk-body"><a href="{{ viewData.cancelLink }}">Cancel</a></p>
+  {% endif %}
 {% endblock %}
