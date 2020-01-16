@@ -11,7 +11,7 @@
 {% set hintHtml %}
   <span id="hint" class="govuk-body">
     {% if viewData.addedPhotos %}
-      <p class="govuk-body">You can add up to {{viewData.maxPhotos - viewData.addedPhotos}} more photos.</p>
+      <p class="govuk-body">You can add up to {{viewData.maxPhotos - viewData.addedPhotos}} more photo{% if viewData.maxPhotos - viewData.addedPhotos > 1 %}s{% endif %}.</p>
     {% else %}
       <p class="govuk-body">You can add up to {{viewData.maxPhotos}} photos.</p>
     {% endif %}
