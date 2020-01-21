@@ -11,7 +11,7 @@
 
   {% if viewData.photosSummaryList.length < viewData.maxPhotos %}
     <p class="govuk-body govuk-!-margin-bottom-7">
-      <a href="{{ viewData.addPhotoLink }}">Add another photo</a>
+      <a id="add-another-photo-link" href="{{ viewData.addPhotoLink }}">Add another photo</a>
     </p>
   {%  endif %}
 
