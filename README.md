@@ -5,67 +5,65 @@ Digital service to support the Ivory Act.
 [![Code Climate](https://codeclimate.com/github/DEFRA/ivory-front-office/badges/gpa.svg)](https://codeclimate.com/github/DEFRA/ivory-front-office)
 [![Test Coverage](https://codeclimate.com/github/DEFRA/ivory-front-office/badges/coverage.svg)](https://codeclimate.com/github/DEFRA/ivory-front-office/coverage)
 
-# Prerequisites
+## Development Team
 
-Node v10+
+This module was developed by the Ivory team as part of a digital transformation project at [DEFRA](https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs), a department of the UK government
 
-# TODO 
-- [ ] Logging
-- [ ] Error handling
-- [ ] Model setup
-- [ ] Lots more no doubt...
+## Prerequisites
 
-# Running the application
+Please make sure the following are installed:
 
-First build the application using:
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Node.js v10/Dubnuim](https://nodejs.org/en/) recommend
+  installing nvm and using `nvm install 10`
+- [StandardJS](https://standardjs.com/) using `npm install -g standard`
 
-`$ npm run build`
+Check that your environment is running the correct versions of `node` and `npm`:
+```bash
+$ npm --version
+6.13.4
+$ node --version
+v10.18.1
+```
 
-This builds the `govuk-frontend` sass.  Going forwards this may be extended to include other build tasks as needed (e.g. client-side js using browserify or webpack etc.)
+## Installation
 
-Now the application is ready to run:
+Clone the repository and install its package
+dependencies:
 
-`$ node index`
+```bash
+git clone https://github.com/DEFRA/ivory-front-office.git && cd ivory-front-office
+npm install
+```
+
+# Setting up .env
+
+Copy the `.env.example` file to `.env` and set it up for your
+environment
+
+```bash
+cp .env.example .env
+```
+
+## Running the app
+
+Run the app using  **npm**
+
+```bash
+npm start
+```
+
+## Unit testing the app
+
+Use the following **npm** task. This runs the **StandardJS**
+linting as well as the unit tests to produce a `coverage.html`
+report
+
+```bash
+npm test
+```
 
 Check the server is running by pointing your browser to `http://localhost:3000`
-
-## Project structure
-
-Here's the default structure for your project files.
-
-* **bin** (build tasks)
-* **client** (client js/sass code)
-* **server**
-  * **models**
-  * **modules** (Feature based modules that include routes and views)
-  * **plugins** (Hapi and custom plugins)
-  * **public**  (This folder is publicly served)
-    * **static** (Put all static assets in here)
-    * **build** (This contains the build output files (js/css etc.) and is not checked-in)
-  * config.js
-  * index.js (Exports a function that creates a server)
-* **test**
-* LICENCE
-* README.md
-* index.js (startup server)
-
-## Config
-
-The configuration file for the server is found at `server/config.js`.
-This is where to put any config.  All environment-specific config should be read from the environment (or a `.env` file)
-
-# Environment variables
-
-| name                      | description      | required | default      |            valid            | notes |
-|---------------------------|------------------|:--------:|---------     |:---------------------------:|-------|
-| NODE_ENV                  | Node environment |    no    | development  | development,test,production |       |
-| PORT                      | Port number      |    no    | 3000         |                             |       |
-
-TODO: Add the address lookup variables; ADDRESS_LOOKUP_URI 
-ADDRESS_LOOKUP_USERNAME, 
-ADDRESS_LOOKUP_PASSWORD, 
-ADDRESS_LOOKUP_KEY, 
-ADDRESS_LOOKUP_STUB
 
 ## Plugins
 
