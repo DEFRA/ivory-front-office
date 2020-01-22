@@ -6,13 +6,14 @@ const config = require('../../config')
 const NotifyClient = require('notifications-node-client').NotifyClient
 
 class ConfirmationHandlers extends require('defra-hapi-handlers') {
-  async notifyRegistration (contact, registrationNumber) {
-    const { notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId } = config
+  async notifyRegistration (contact, registrationNumber, registrationId) {
+    const { notifyApiKey, notifyConfirmationTemplateId, notifyEmailReplyToId, serviceUrl } = config
     const { fullName, email: emailAddress } = contact || {}
     const reference = registrationNumber + Date.now()
     const personalisation = {
       registrationNumber,
-      fullName
+      fullName,
+      link_to_document: `${serviceUrl}/restore/${registrationId}`
     }
     const emailReplyToId = notifyEmailReplyToId
     const notifyClient = new NotifyClient(notifyApiKey)
@@ -37,9 +38,9 @@ class ConfirmationHandlers extends require('defra-hapi-handlers') {
       Owner.get(request)
     ])
     const contact = agent || owner
-    const { registrationNumber } = registration || {}
+    const { registrationNumber, id: registrationId } = registration || {}
     if (config.notifyEnabled) {
-      const result = await this.notifyRegistration(contact, registrationNumber)
+      const result = await this.notifyRegistration(contact, registrationNumber, registrationId)
       if (result.error) {
         logger.error('Failed to send confirmation email:', result.error)
       } else {
