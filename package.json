@@ -42,7 +42,7 @@
     "@hapi/yar": "^9.2.1",
     "blipp": "^4.0.1",
     "defra-hapi-change-answers": "git+https://github.com/DEFRA/defra-hapi-change-answers.git#v0.1.1",
-    "defra-hapi-error-handling": "git+https://github.com/DEFRA/defra-hapi-error-handling.git#v0.1.1",
+    "defra-hapi-error-handling": "git+https://github.com/DEFRA/defra-hapi-error-handling.git#v0.1.2",
     "defra-hapi-handlers": "git+https://github.com/DEFRA/defra-hapi-handlers.git#v0.1.6",
     "defra-hapi-photos": "git+https://github.com/DEFRA/defra-hapi-photos.git#v0.1.1",
     "defra-hapi-route-flow": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#v0.1.6",
@@ -67,7 +67,7 @@
     "cheerio": "^1.0.0-rc.3",
     "codeclimate-test-reporter": "0.5.1",
     "htmlparser2": "^4.0.0",
-    "sinon": "^8.1.0",
+    "sinon": "^8.1.1",
     "standard": "14.3.1"
   }
 }

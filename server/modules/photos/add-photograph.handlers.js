@@ -74,10 +74,13 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   }
 
   async failAction (request, h, errors) {
-    if (getNestedVal(request, 'response.output.statusCode') === 413) {
-      return super.failAction(request, h, createError(request, [this.fieldname], 'binary.max'))
+    switch (getNestedVal(request, 'response.output.statusCode')) {
+      case 408: // Request timeout
+      case 413: // Payload exceeds maximum
+        return super.failAction(request, h, createError(request, [this.fieldname], 'binary.max'))
+      default:
+        return super.failAction(request, h, errors)
     }
-    return super.failAction(request, h, errors)
   }
 
   // Overrides parent class handleGet
