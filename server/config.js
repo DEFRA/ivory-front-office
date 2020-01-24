@@ -153,7 +153,7 @@ const { value, error } = schema.validate(config, {
 
 // Throw if config is invalid
 if (error) {
-  throw new Error(`The server config is invalid. ${error.message}`)
+  throw new Error(`The server config is invalid. ${error.message}\n\n **** Please check your environment variables are correct in your .env file ****\n`)
 }
 
 // Add reference data within config

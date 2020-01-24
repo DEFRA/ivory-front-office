@@ -1,5 +1,8 @@
 # Ivory front office
-Digital service to support the Ivory Act. 
+Digital service to support the Ivory Act.
+
+(Please note that this service is best installed through [ivory](https://github.com/DEFRA/ivory))
+
 [![Build Status](https://travis-ci.com/DEFRA/ivory-front-office.svg?branch=master)](https://travis-ci.com/DEFRA/ivory-front-office)
 [![Known Vulnerabilities](https://snyk.io/test/github/defra/ivory-front-office/badge.svg)](https://snyk.io/test/github/defra/ivory-front-office)
 [![Code Climate](https://codeclimate.com/github/DEFRA/ivory-front-office/badges/gpa.svg)](https://codeclimate.com/github/DEFRA/ivory-front-office)
@@ -25,10 +28,13 @@ $ npm --version
 $ node --version
 v10.18.1
 ```
+Please note that this project needs to be configured to access an instance of the [ivory-services](https://github.com/DEFRA/ivory-services) REST service
 
 ## Installation
 
-Clone the repository and install its package
+The best way to work on this project is by installing the multi-project [ivory](https://github.com/DEFRA/ivory) with all three of the ivory services installed locally.
+
+If you still want to work on this project individually then clone the repository and install its package
 dependencies:
 
 ```bash
@@ -46,6 +52,8 @@ cp .env.example .env
 ```
 
 ## Running the app
+
+Make sure the [ivory-services](https://github.com/DEFRA/ivory-services) service is running prior to starting the app
 
 Run the app using  **npm**
 
@@ -67,7 +75,7 @@ Check the server is running by pointing your browser to `http://localhost:3000`
 
 ## Plugins
 
-hapi has a powerful plugin system and all server code should be loaded in a plugin.
+hapi has a powerful plugin system and as much server code as possible should be loaded in a plugin.
 
 Plugins live in the `server/plugins` directory.
 
@@ -81,9 +89,9 @@ Error logging for production should use errbit.
 
 ## Views
 
-The [vison](https://github.com/hapijs/vision) plugin is used for template rendering support.
+The [hapi-govuk-frontend](https://github.com/DEFRA/hapi-govuk-frontend) plugin is used for GDS Design system nunjucks template rendering support.
 
-The template engine used in nunjucks inline with the GDS Design System with support for view caching, layouts, partials and helpers.
+The template engine used is nunjucks inline with the GDS Design System with support for view caching, layouts, partials and helpers.
 
 ## Static files
 
@@ -92,12 +100,17 @@ Put all static assets in `server/public/static`.
 
 Any build output should write to `server/public/build`. This path is in the `.gitignore` and is therefore not checked into source control.
 
-## Routes
+## Routes and flow
 
 Incoming requests are handled by the server via routes. 
 Each route describes an HTTP endpoint with a path, method, and other properties.
+The configuration for these routes can be found in `server/flow.yml`
 
-Routes are found within their relevant feature/module in the `server/modules` directory and loaded using the `server/plugins/router.js` plugin.
+The handlers for these routes are found within their relevant feature/module in the `server/modules` directory and loaded using the `server/plugins/flow.js` plugin.
+
+See the [defra-hapi-route-flow](https://github.com/DEFRA/defra-hapi-route-flow) module/plugin, for more information
+
+### Resources
 
 There are lots of [route options](http://hapijs.com/api#route-options), here's the documentation on [hapi routes](http://hapijs.com/tutorials/routing)
 
@@ -131,7 +144,7 @@ For more information around using `npm-scripts` as a build tool:
 
 [lab](https://github.com/hapijs/lab) and [code](https://github.com/hapijs/code) are used for unit testing.
 
-See the `/test` folder for more information.
+Note that the `.labrc.js` file is configured to allow the test scripts to sit within the same directories as the js file they are testing.
 
 ## Linting
 
