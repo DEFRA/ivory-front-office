@@ -62,10 +62,8 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
         'array.max': `Only a maximum of ${this.maxPhotos} files can be uploaded – try again`,
         'any.only': `The selected file must be a ${fileTypes.replace(/,\s([^,]+)$/, ' or $1')}`,
         'binary.min': `The selected file must be bigger than ${minKb}KB`,
-        'binary.max': `The selected file must be smaller than ${maxMb}MB`,
-        'custom.maxpayload': 'The total size of the files is too large, please upload separately',
+        'binary.max': `You can only upload ${maxMb}MB at a time. If you selected more than one photo - try adding them separately`,
         'custom.uploadfailed': 'The selected file could not be uploaded – try again'
-        // 'array.base': 'You must add a photo'
       }
     }
   }
@@ -76,10 +74,13 @@ class AddPhotographsHandlers extends require('defra-hapi-handlers') {
   }
 
   async failAction (request, h, errors) {
-    if (getNestedVal(request, 'response.output.statusCode') === 413) {
-      return super.failAction(request, h, createError(request, [this.fieldname], 'custom.maxpayload'))
+    switch (getNestedVal(request, 'response.output.statusCode')) {
+      case 408: // Request timeout
+      case 413: // Payload exceeds maximum
+        return super.failAction(request, h, createError(request, [this.fieldname], 'binary.max'))
+      default:
+        return super.failAction(request, h, errors)
     }
-    return super.failAction(request, h, errors)
   }
 
   // Overrides parent class handleGet

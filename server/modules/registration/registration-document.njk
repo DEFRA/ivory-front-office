@@ -1,0 +1,15 @@
+{% extends 'layout.njk' %}
+
+{% from "panel/macro.njk" import govukPanel %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: pageHeading,
+        html: "Registration number<br><strong>" + viewData.registrationNumber + "</strong>"
+      }) }}
+    </div>
+  </div>
+{% endblock %}

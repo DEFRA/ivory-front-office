@@ -1,75 +1,81 @@
 # Ivory front office
-Digital service to support the Ivory Act. 
+Digital service to support the Ivory Act.
+
+(Please note that this service is best installed through [ivory](https://github.com/DEFRA/ivory))
+
 [![Build Status](https://travis-ci.com/DEFRA/ivory-front-office.svg?branch=master)](https://travis-ci.com/DEFRA/ivory-front-office)
 [![Known Vulnerabilities](https://snyk.io/test/github/defra/ivory-front-office/badge.svg)](https://snyk.io/test/github/defra/ivory-front-office)
 [![Code Climate](https://codeclimate.com/github/DEFRA/ivory-front-office/badges/gpa.svg)](https://codeclimate.com/github/DEFRA/ivory-front-office)
 [![Test Coverage](https://codeclimate.com/github/DEFRA/ivory-front-office/badges/coverage.svg)](https://codeclimate.com/github/DEFRA/ivory-front-office/coverage)
 
-# Prerequisites
+## Development Team
 
-Node v10+
+This module was developed by the Ivory team as part of a digital transformation project at [DEFRA](https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs), a department of the UK government
 
-# TODO 
-- [ ] Logging
-- [ ] Error handling
-- [ ] Model setup
-- [ ] Lots more no doubt...
+## Prerequisites
 
-# Running the application
+Please make sure the following are installed:
 
-First build the application using:
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Node.js v10/Dubnuim](https://nodejs.org/en/) recommend
+  installing nvm and using `nvm install 10`
+- [StandardJS](https://standardjs.com/) using `npm install -g standard`
 
-`$ npm run build`
+Check that your environment is running the correct versions of `node` and `npm`:
+```bash
+$ npm --version
+6.13.4
+$ node --version
+v10.18.1
+```
+Please note that this project needs to be configured to access an instance of the [ivory-services](https://github.com/DEFRA/ivory-services) REST service
 
-This builds the `govuk-frontend` sass.  Going forwards this may be extended to include other build tasks as needed (e.g. client-side js using browserify or webpack etc.)
+## Installation
 
-Now the application is ready to run:
+The best way to work on this project is by installing the multi-project [ivory](https://github.com/DEFRA/ivory) with all three of the ivory services installed locally.
 
-`$ node index`
+If you still want to work on this project individually then clone the repository and install its package
+dependencies:
+
+```bash
+git clone https://github.com/DEFRA/ivory-front-office.git && cd ivory-front-office
+npm install
+```
+
+# Setting up .env
+
+Copy the `.env.example` file to `.env` and set it up for your
+environment
+
+```bash
+cp .env.example .env
+```
+
+## Running the app
+
+Make sure the [ivory-services](https://github.com/DEFRA/ivory-services) service is running prior to starting the app
+
+Run the app using  **npm**
+
+```bash
+npm start
+```
+
+## Unit testing the app
+
+Use the following **npm** task. This runs the **StandardJS**
+linting as well as the unit tests to produce a `coverage.html`
+report
+
+```bash
+npm test
+```
 
 Check the server is running by pointing your browser to `http://localhost:3000`
 
-## Project structure
-
-Here's the default structure for your project files.
-
-* **bin** (build tasks)
-* **client** (client js/sass code)
-* **server**
-  * **models**
-  * **modules** (Feature based modules that include routes and views)
-  * **plugins** (Hapi and custom plugins)
-  * **public**  (This folder is publicly served)
-    * **static** (Put all static assets in here)
-    * **build** (This contains the build output files (js/css etc.) and is not checked-in)
-  * config.js
-  * index.js (Exports a function that creates a server)
-* **test**
-* LICENCE
-* README.md
-* index.js (startup server)
-
-## Config
-
-The configuration file for the server is found at `server/config.js`.
-This is where to put any config.  All environment-specific config should be read from the environment (or a `.env` file)
-
-# Environment variables
-
-| name                      | description      | required | default      |            valid            | notes |
-|---------------------------|------------------|:--------:|---------     |:---------------------------:|-------|
-| NODE_ENV                  | Node environment |    no    | development  | development,test,production |       |
-| PORT                      | Port number      |    no    | 3000         |                             |       |
-
-TODO: Add the address lookup variables; ADDRESS_LOOKUP_URI 
-ADDRESS_LOOKUP_USERNAME, 
-ADDRESS_LOOKUP_PASSWORD, 
-ADDRESS_LOOKUP_KEY, 
-ADDRESS_LOOKUP_STUB
-
 ## Plugins
 
-hapi has a powerful plugin system and all server code should be loaded in a plugin.
+hapi has a powerful plugin system and as much server code as possible should be loaded in a plugin.
 
 Plugins live in the `server/plugins` directory.
 
@@ -83,9 +89,9 @@ Error logging for production should use errbit.
 
 ## Views
 
-The [vison](https://github.com/hapijs/vision) plugin is used for template rendering support.
+The [hapi-govuk-frontend](https://github.com/DEFRA/hapi-govuk-frontend) plugin is used for GDS Design system nunjucks template rendering support.
 
-The template engine used in nunjucks inline with the GDS Design System with support for view caching, layouts, partials and helpers.
+The template engine used is nunjucks inline with the GDS Design System with support for view caching, layouts, partials and helpers.
 
 ## Static files
 
@@ -94,12 +100,17 @@ Put all static assets in `server/public/static`.
 
 Any build output should write to `server/public/build`. This path is in the `.gitignore` and is therefore not checked into source control.
 
-## Routes
+## Routes and flow
 
 Incoming requests are handled by the server via routes. 
 Each route describes an HTTP endpoint with a path, method, and other properties.
+The configuration for these routes can be found in `server/flow.yml`
 
-Routes are found within their relevant feature/module in the `server/modules` directory and loaded using the `server/plugins/router.js` plugin.
+The handlers for these routes are found within their relevant feature/module in the `server/modules` directory and loaded using the `server/plugins/flow.js` plugin.
+
+See the [defra-hapi-route-flow](https://github.com/DEFRA/defra-hapi-route-flow) module/plugin, for more information
+
+### Resources
 
 There are lots of [route options](http://hapijs.com/api#route-options), here's the documentation on [hapi routes](http://hapijs.com/tutorials/routing)
 
@@ -133,7 +144,7 @@ For more information around using `npm-scripts` as a build tool:
 
 [lab](https://github.com/hapijs/lab) and [code](https://github.com/hapijs/code) are used for unit testing.
 
-See the `/test` folder for more information.
+Note that the `.labrc.js` file is configured to allow the test scripts to sit within the same directories as the js file they are testing.
 
 ## Linting
 

@@ -39,7 +39,11 @@ check-your-answers:
 restore:
   path: "/restore/{id}"
   handlers: restore/restore.handlers
-  next: check-your-answers
+  next:
+    query: isSubmitted
+    when:
+      'true': registration-document
+      'false': check-your-answers
   tags:
     - always
 
@@ -59,6 +63,14 @@ confirmation:
     - submitted
     - hide-back-link
 
+registration-document:
+  path: "/registration-document"
+  handlers: registration/registration-document.handlers
+  title: Registration
+  view: registration/registration-document
+  tags:
+    - submitted
+    - hide-back-link
 
 # =====================
 # ===== Item flow =====
