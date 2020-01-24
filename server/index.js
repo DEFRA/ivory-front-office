@@ -30,6 +30,14 @@ if (config.redisEnabled) {
 }
 
 async function registerPlugins (server) {
+  // Register the crumb plugin only if not running in unit test
+  if (!config.isUnitTest) {
+    await server.register([
+      require('./plugins/crumb'),
+      require('./plugins/logging')
+    ])
+  }
+
   await server.register([
     require('@hapi/inert'),
     require('./plugins/frontend'),
@@ -42,14 +50,6 @@ async function registerPlugins (server) {
     require('./plugins/change-your-answers'),
     require('./plugins/error-pages')
   ])
-
-  // Register the crumb plugin only if not running in unit test
-  if (!config.isUnitTest) {
-    await server.register([
-      require('./plugins/crumb'),
-      require('./plugins/logging')
-    ])
-  }
 
   // Register the api-proxy plugin only if not running in prod
   if (!config.isProd) {
