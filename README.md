@@ -1,7 +1,7 @@
 # Ivory front office
 Digital service to support the Ivory Act.
 
-(Please note that this service is best installed through [ivory](https://github.com/DEFRA/ivory))
+(Please note that this service is best installed as part of the [Ivory root project](https://github.com/DEFRA/ivory))
 
 [![Build Status](https://travis-ci.com/DEFRA/ivory-front-office.svg?branch=master)](https://travis-ci.com/DEFRA/ivory-front-office)
 [![Known Vulnerabilities](https://snyk.io/test/github/defra/ivory-front-office/badge.svg)](https://snyk.io/test/github/defra/ivory-front-office)
