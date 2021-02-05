@@ -1,5 +1,5 @@
 module.exports = {
-  plugin: require('defra-hapi-error-handling'),
+  plugin: require('./error-pages/index'),
   options: {
     handleFailedPrecondition: async (request, h) => {
       const { flow } = request.server.app

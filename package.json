@@ -41,7 +41,6 @@
     "@hapi/wreck": "^17.0.0",
     "@hapi/yar": "^9.2.1",
     "blipp": "^4.0.1",
-    "defra-hapi-error-handling": "git+https://github.com/DEFRA/defra-hapi-error-handling.git#v0.1.2",
     "defra-hapi-handlers": "git+https://github.com/DEFRA/defra-hapi-handlers.git#v0.1.6",
     "defra-hapi-photos": "git+https://github.com/DEFRA/defra-hapi-photos.git#v0.1.2",
     "defra-hapi-route-flow": "git+https://github.com/DEFRA/defra-hapi-route-flow.git#v0.1.6",
