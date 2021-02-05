@@ -44,7 +44,6 @@ async function registerPlugins (server) {
     require('./plugins/version'),
     require('./plugins/photos'),
     require('./plugins/flow'),
-    require('./plugins/robots'),
     require('./plugins/cache'),
     require('./plugins/navigation'),
     require('./plugins/change-your-answers'),

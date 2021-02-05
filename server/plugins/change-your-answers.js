@@ -3,7 +3,7 @@ const { Registration } = require('ivory-data-mapping').cache
 let checkYourAnswersRoute
 
 module.exports = {
-  plugin: require('defra-hapi-change-answers'),
+  plugin: require('./change-your-answers/index'),
   options: {
     async init (server) {
       const { flow } = server.app
