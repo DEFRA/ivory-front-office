@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const defraHapiUtils = require('defra-hapi-utils')
+const defraHapiUtils = require('../../../../lib/hapi-utils/index')
 const config = require('../../../../config')
 const AddressLookUp = defraHapiUtils.AddressLookUp
 

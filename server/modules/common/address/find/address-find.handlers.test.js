@@ -3,7 +3,7 @@ const Code = require('@hapi/code')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
 const Handlers = require('../../../../lib/handlers/handlers')
-const defraHapiUtils = require('defra-hapi-utils')
+const defraHapiUtils = require('../../../../lib/hapi-utils/index')
 const config = require('../../../../config')
 const AddressLookUp = defraHapiUtils.AddressLookUp
 const TestHelper = require('../../../../../test-helper')

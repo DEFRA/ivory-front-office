@@ -1,5 +1,5 @@
 const { Owner } = require('ivory-data-mapping').cache
-const { mixin } = require('defra-hapi-utils')
+const { mixin } = require('../../lib/hapi-utils/index')
 const config = require('../../config')
 
 class OwnerNameHandlers extends mixin(require('../common/person/name/person-name.handlers'), require('./owner-mixin')) {

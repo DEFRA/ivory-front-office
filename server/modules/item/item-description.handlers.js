@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 const { Item } = require('ivory-data-mapping').cache
-const { utils } = require('defra-hapi-utils')
+const { utils } = require('../../lib/hapi-utils/index')
 const config = require('../../config')
 
 class ItemDescriptionHandlers extends require('../../lib/handlers/handlers') {

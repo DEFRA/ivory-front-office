@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { getNestedVal } = require('defra-hapi-utils/lib').utils
+const { getNestedVal } = require('../../../lib/hapi-utils/source/utils/utils')
 
 class DeclarationHandlers extends require('../../../lib/handlers/handlers') {
   async reference (request) {

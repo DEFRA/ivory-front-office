@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 const path = require('path')
-const { utils, joiUtilities } = require('defra-hapi-utils')
+const { utils, joiUtilities } = require('../../lib/hapi-utils/index')
 const { uuid, setNestedVal, getNestedVal } = utils
 const { Item } = require('ivory-data-mapping').cache
 const photos = require('../../plugins/photos/index')

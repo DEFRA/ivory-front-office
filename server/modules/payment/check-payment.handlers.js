@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const { utils, Payment: PaymentAPI } = require('defra-hapi-utils')
+const { utils, Payment: PaymentAPI } = require('../../lib/hapi-utils/index')
 const cache = require('ivory-data-mapping').cache
 const { Payment, Registration } = cache
 const config = require('../../config')

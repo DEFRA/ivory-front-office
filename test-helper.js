@@ -18,7 +18,7 @@ process.env.NODE_ENV = 'unit-test'
 const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
-const { utils } = require('defra-hapi-utils')
+const { utils } = require('./server/lib/hapi-utils/index')
 const { SyncRegistration, cache } = require('ivory-data-mapping')
 const { Flow } = require('./server/plugins/flow').plugin.test
 

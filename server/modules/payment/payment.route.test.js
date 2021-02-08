@@ -1,9 +1,9 @@
 const Lab = require('@hapi/lab')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
-const { Payment } = require('defra-hapi-utils')
+const { Payment } = require('../../lib/hapi-utils/index')
 const config = require('../../config')
-const { uuid } = require('defra-hapi-utils').utils
+const { uuid } = require('../../lib/hapi-utils/source/utils/utils')
 const url = '/payment'
 const testdomain = 'http://fake-ivory.com'
 

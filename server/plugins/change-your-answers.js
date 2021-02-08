@@ -1,4 +1,4 @@
-const { Cache } = require('defra-hapi-utils')
+const { Cache } = require('../lib/hapi-utils/index')
 const { Registration } = require('ivory-data-mapping').cache
 let checkYourAnswersRoute
 

@@ -1,4 +1,4 @@
-const { utils, Payment: PaymentAPI } = require('defra-hapi-utils')
+const { utils, Payment: PaymentAPI } = require('../../lib/hapi-utils/index')
 const { logger } = require('defra-logging-facade')
 const { Registration, Payment } = require('ivory-data-mapping').cache
 const config = require('../../config')
