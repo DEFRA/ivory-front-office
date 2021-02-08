@@ -7,7 +7,7 @@ module.exports = {
     register: (server) => {
       server.register([
         {
-          plugin: require('./hapi-proxy-get/index'),
+          plugin: require('./proxy-get/index'),
           options: {
             uri: serviceApi,
             path: '/api',
@@ -16,7 +16,7 @@ module.exports = {
             }
           }
         }, {
-          plugin: require('./hapi-proxy-get/index'),
+          plugin: require('./proxy-get/index'),
           options: {
             uri: `${serviceApi}/swaggerui`,
             path: '/swaggerui',

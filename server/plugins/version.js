@@ -2,7 +2,7 @@
 const { serviceApi } = require('../config')
 
 module.exports = {
-  plugin: require('hapi-version-status'),
+  plugin: require('./version-status/index'),
   options: {
     path: '/version',
     view: 'version/version', // Note the view is in server/modules
