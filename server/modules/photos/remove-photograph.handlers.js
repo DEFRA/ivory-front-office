@@ -1,6 +1,6 @@
 const Boom = require('@hapi/boom')
 const { Item } = require('ivory-data-mapping').cache
-const { getPhotos } = require('defra-hapi-photos')
+const { getPhotos } = require('../../plugins/photos/index')
 
 class RemovePhotographHandlers extends require('defra-hapi-handlers') {
   get Item () {

@@ -1,5 +1,5 @@
 
-const { plugin } = require('defra-hapi-photos')
+const { plugin } = require('./photos/index')
 const config = require('../config')
 
 const alternativeSizes = [

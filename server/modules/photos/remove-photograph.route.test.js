@@ -6,7 +6,7 @@ const id = 'eda64615-c9c4-4047-9190-41ece7d34df3'
 const url = `/remove-photograph/${id}`
 const pageHeading = 'Remove a photo'
 const config = require('../../config')
-const hapiPhotos = require('defra-hapi-photos')
+const hapiPhotos = require('../../plugins/photos/index')
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {

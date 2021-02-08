@@ -7,7 +7,7 @@ const url = '/add-photograph'
 const pageHeading = 'Add a photo'
 const alternativePageHeading = 'Add another photo'
 const config = require('../../config')
-const { Photos } = require('defra-hapi-photos')
+const { Photos } = require('../../plugins/photos/index')
 
 const getPhotos = (count) => {
   const photos = []
