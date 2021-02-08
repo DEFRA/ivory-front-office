@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-class PersonEmailHandlers extends require('defra-hapi-handlers') {
+class PersonEmailHandlers extends require('../../../../lib/handlers/handlers') {
   get maxEmailAddressLength () {
     return 320
   }

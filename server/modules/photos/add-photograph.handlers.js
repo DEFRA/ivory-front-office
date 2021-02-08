@@ -8,7 +8,7 @@ const { logger } = require('defra-logging-facade')
 const config = require('../../config')
 const { createError } = joiUtilities
 
-class AddPhotographsHandlers extends require('defra-hapi-handlers') {
+class AddPhotographsHandlers extends require('../../lib/handlers/handlers') {
   get Item () {
     return Item
   }

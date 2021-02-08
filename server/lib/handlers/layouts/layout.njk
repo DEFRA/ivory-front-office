@@ -1,0 +1,90 @@
+{% extends "template.njk" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+
+{% block head %}
+  <!--[if !IE 8]><!-->
+  <link href="{{ assetPath }}/stylesheets/application.css" rel="stylesheet"/>
+  <!--<![endif]-->
+
+  {# For Internet Explorer 8, you need to compile specific stylesheet #}
+  {# see https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/supporting-internet-explorer-8.md #}
+  <!--[if IE 8]>
+  <link href="{{ assetPath }}/govuk-frontend/all-ie8.css" rel="stylesheet"/>
+  <![endif]-->
+
+  {# For older browsers to allow them to recognise HTML5 elements such as `<header>` #}
+  <!--[if lt IE 9]>
+  <script src="/html5-shiv/html5shiv.js"></script>
+  <![endif]-->
+
+  {%  if googleAnalyticsId %}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ googleAnalyticsId }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ googleAnalyticsId }}');
+  </script>
+  {% endif %}
+
+  <!-- Hide the back link with css if no-script -->
+  <noscript>
+    <style>#defra-back-link {display: none} </style>
+  </noscript>
+
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "#",
+    containerClasses: "govuk-width-container",
+    serviceName: serviceName,
+    serviceUrl: "/"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  {% if breadcrumbs.length %}
+    {% from "breadcrumbs/macro.njk" import govukBreadcrumbs %}
+    {{ govukBreadcrumbs({
+      items: breadcrumbs
+    }) }}
+  {% elseif includeBacklink %}
+    {% from "back-link/macro.njk" import govukBackLink %}
+    {{ govukBackLink({
+      text: "Back",
+      href: "#",
+      attributes: {
+        id: "defra-back-link",
+        onclick: "window.history.go(-1); return false;"
+      }
+    }) }}
+  {% endif %}
+{% endblock %}
+
+{% block pageTitle %}
+  {% if errors %}Error: {% endif %}{{ pageHeading }} - {{ pageTitle }}
+{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Default page template</h1>
+  {% block errorSummary %}
+    {{ govukHeader({}) }}
+  {% endblock %}
+{% endblock %}
+
+{% block bodyEnd %}
+  {# Run JavaScript at end of the <body>, to avoid blocking the initial render. #}
+  <script src="{{ assetPath }}/all.js"></script>
+  <script>window.GOVUKFrontend.initAll()</script>
+{% endblock %}

@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-class SingleOptionHandlers extends require('defra-hapi-handlers') {
+class SingleOptionHandlers extends require('../../../../lib/handlers/handlers') {
   get schema () {
     const validValues = this.items.map(({ value }) => value)
     return Joi.object({

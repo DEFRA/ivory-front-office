@@ -3,7 +3,7 @@ const defraHapiUtils = require('defra-hapi-utils')
 const config = require('../../../../config')
 const AddressLookUp = defraHapiUtils.AddressLookUp
 
-class AddressFindHandlers extends require('defra-hapi-handlers') {
+class AddressFindHandlers extends require('../../../../lib/handlers/handlers') {
   get lookUpOptions () {
     const {
       addressLookUpUri: uri,

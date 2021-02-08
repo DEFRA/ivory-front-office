@@ -1,7 +1,7 @@
 const { Item } = require('ivory-data-mapping').cache
 const config = require('../../config')
 
-class ManagePhotographHandlers extends require('defra-hapi-handlers') {
+class ManagePhotographHandlers extends require('../../lib/handlers/handlers') {
   get Item () {
     return Item
   }

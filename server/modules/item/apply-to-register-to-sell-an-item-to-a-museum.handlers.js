@@ -1,4 +1,4 @@
 
-class ItemAcquiredByMuseum extends require('defra-hapi-handlers') {}
+class ItemAcquiredByMuseum extends require('../../lib/handlers/handlers') {}
 
 module.exports = ItemAcquiredByMuseum

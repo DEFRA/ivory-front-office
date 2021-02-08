@@ -1,6 +1,6 @@
 const { Registration } = require('ivory-data-mapping').cache
 
-class RegistrationDocumentHandlers extends require('defra-hapi-handlers') {
+class RegistrationDocumentHandlers extends require('../../lib/handlers/handlers') {
   // Overrides parent class handleGet
   async handleGet (request, h, errors) {
     const { registrationNumber } = await Registration.get(request) || {}

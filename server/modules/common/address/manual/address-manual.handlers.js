@@ -1,6 +1,6 @@
 const Joi = require('@hapi/joi')
 
-class AddressManualHandlers extends require('defra-hapi-handlers') {
+class AddressManualHandlers extends require('../../../../lib/handlers/handlers') {
   get maxAddressLineLength () {
     return 100
   }

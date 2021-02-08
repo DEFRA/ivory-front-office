@@ -1,4 +1,4 @@
 
-class ItemIsRmi extends require('defra-hapi-handlers') {}
+class ItemIsRmi extends require('../../lib/handlers/handlers') {}
 
 module.exports = ItemIsRmi
