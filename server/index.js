@@ -1,7 +1,7 @@
 const hapi = require('@hapi/hapi')
 const { name, version } = require('../package')
 const { Persistence } = require('./lib/hapi-utils/index')
-const { SyncRegistration } = require('ivory-data-mapping')
+const { SyncRegistration } = require('./lib/data-mapping/index')
 const { logger } = require('defra-logging-facade')
 const config = require('./config')
 

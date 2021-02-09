@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const cache = require('ivory-data-mapping').cache
+const cache = require('../../lib/data-mapping/index').cache
 const { Registration } = cache
 
 class RestoreHandlers extends require('../../lib/handlers/handlers') {

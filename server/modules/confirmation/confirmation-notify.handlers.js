@@ -1,6 +1,6 @@
 const { logger } = require('defra-logging-facade')
 const moment = require('moment')
-const { Registration, Agent, Owner } = require('ivory-data-mapping').cache
+const { Registration, Agent, Owner } = require('../../lib/data-mapping/index').cache
 const config = require('../../config')
 
 const NotifyClient = require('notifications-node-client').NotifyClient

@@ -1,4 +1,4 @@
-const { Owner } = require('ivory-data-mapping').cache
+const { Owner } = require('../../lib/data-mapping/index').cache
 const { mixin } = require('../../lib/hapi-utils/index')
 const config = require('../../config')
 

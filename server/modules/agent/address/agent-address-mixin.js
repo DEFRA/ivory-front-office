@@ -1,4 +1,4 @@
-const { AgentAddress } = require('ivory-data-mapping').cache
+const { AgentAddress } = require('../../../lib/data-mapping/index').cache
 
 module.exports = {
   async getLink (routeId) {

@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { Item } = require('ivory-data-mapping').cache
+const { Item } = require('../../lib/data-mapping/index').cache
 const { utils } = require('../../lib/hapi-utils/index')
 const config = require('../../config')
 

@@ -1,5 +1,5 @@
 const { Cache } = require('../lib/hapi-utils/index')
-const { Registration } = require('ivory-data-mapping').cache
+const { Registration } = require('../lib/data-mapping/index').cache
 let checkYourAnswersRoute
 
 module.exports = {

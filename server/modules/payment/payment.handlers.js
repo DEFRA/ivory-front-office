@@ -1,6 +1,6 @@
 const { utils, Payment: PaymentAPI } = require('../../lib/hapi-utils/index')
 const { logger } = require('defra-logging-facade')
-const { Registration, Payment } = require('ivory-data-mapping').cache
+const { Registration, Payment } = require('../../lib/data-mapping/index').cache
 const config = require('../../config')
 
 class PaymentHandlers extends require('../../lib/handlers/handlers') {

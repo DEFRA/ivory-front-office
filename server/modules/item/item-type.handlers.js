@@ -1,4 +1,4 @@
-const { Item } = require('ivory-data-mapping').cache
+const { Item } = require('../../lib/data-mapping/index').cache
 
 class ItemTypeHandlers extends require('../common/option/single/single-option.handlers') {
   get Model () {

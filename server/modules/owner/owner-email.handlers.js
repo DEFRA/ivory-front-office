@@ -1,4 +1,4 @@
-const { Owner } = require('ivory-data-mapping').cache
+const { Owner } = require('../../lib/data-mapping/index').cache
 const { mixin } = require('../../lib/hapi-utils/index')
 
 class OwnerEmailHandlers extends mixin(require('../common/person/email/person-email.handlers'), require('./owner-mixin')) {

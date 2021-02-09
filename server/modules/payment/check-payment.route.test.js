@@ -2,7 +2,7 @@ const Lab = require('@hapi/lab')
 const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const { Payment: PaymentAPI } = require('../../lib/hapi-utils/index')
-const { Payment, Registration } = require('ivory-data-mapping').cache
+const { Payment, Registration } = require('../../lib/data-mapping/index').cache
 const config = require('../../config')
 const { uuid } = require('../../lib/hapi-utils/source/utils/utils')
 const id = 'eda64615-c9c4-4047-9190-41ece7d34df3'

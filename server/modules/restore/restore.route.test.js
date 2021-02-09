@@ -3,7 +3,7 @@ const lab = exports.lab = Lab.script()
 const TestHelper = require('../../../test-helper')
 const id = 'eda64615-c9c4-4047-9190-41ece7d34df3'
 const url = `/restore/${id}`
-const { Registration } = require('ivory-data-mapping').cache
+const { Registration } = require('../../lib/data-mapping/index').cache
 
 lab.experiment(TestHelper.getFile(__filename), () => {
   const routesHelper = TestHelper.createRoutesHelper(lab, __filename, {

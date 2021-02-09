@@ -19,7 +19,7 @@ const config = require('./server/config')
 
 const { logger } = require('defra-logging-facade')
 const { utils } = require('./server/lib/hapi-utils/index')
-const { SyncRegistration, cache } = require('ivory-data-mapping')
+const { SyncRegistration, cache } = require('./server/lib/data-mapping/index')
 const { Flow } = require('./server/plugins/flow').plugin.test
 
 // Suppress MaxListenersExceededWarning within tests

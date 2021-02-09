@@ -1,4 +1,4 @@
-const { Item } = require('ivory-data-mapping').cache
+const { Item } = require('../../lib/data-mapping/index').cache
 const config = require('../../config')
 
 class ManagePhotographHandlers extends require('../../lib/handlers/handlers') {

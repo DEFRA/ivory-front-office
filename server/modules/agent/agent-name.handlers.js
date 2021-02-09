@@ -1,4 +1,4 @@
-const { Agent } = require('ivory-data-mapping').cache
+const { Agent } = require('../../lib/data-mapping/index').cache
 const config = require('../../config')
 
 class AgentNameHandlers extends require('../common/person/name/person-name.handlers') {

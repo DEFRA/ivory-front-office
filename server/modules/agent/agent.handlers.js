@@ -1,4 +1,4 @@
-const { Registration } = require('ivory-data-mapping').cache
+const { Registration } = require('../../lib/data-mapping/index').cache
 
 class AgentHandlers extends require('../common/option/single/single-option.handlers') {
   get Model () {

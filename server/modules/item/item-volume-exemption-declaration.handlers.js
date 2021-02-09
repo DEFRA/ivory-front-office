@@ -1,4 +1,4 @@
-const { Item } = require('ivory-data-mapping').cache
+const { Item } = require('../../lib/data-mapping/index').cache
 
 class ItemVolumeExemptionDeclarationHandlers extends require('../common/declaration/declaration-handlers') {
   get Model () {

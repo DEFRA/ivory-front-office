@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const { Registration } = require('ivory-data-mapping').cache
+const { Registration } = require('../lib/data-mapping/index').cache
 
 module.exports = {
   plugin: {

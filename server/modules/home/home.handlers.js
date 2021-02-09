@@ -1,4 +1,4 @@
-const { Registration, Cache } = require('ivory-data-mapping').cache
+const { Registration, Cache } = require('../../lib/data-mapping/index').cache
 
 class HomeHandlers extends require('../../lib/handlers/handlers') {
   async handleGet (request, h, errors) {

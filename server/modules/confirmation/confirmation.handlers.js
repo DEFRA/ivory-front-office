@@ -1,4 +1,4 @@
-const { Registration } = require('ivory-data-mapping').cache
+const { Registration } = require('../../lib/data-mapping/index').cache
 
 class ConfirmationHandlers extends require('../../lib/handlers/handlers') {
   // Overrides parent class handleGet
