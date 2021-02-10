@@ -3,7 +3,7 @@ const { analyticsAccount, serviceName } = require('../config')
 const pkg = require('../../package.json')
 
 module.exports = {
-  plugin: require('hapi-govuk-frontend'),
+  plugin: require('./frontend/index'),
   options: {
     analyticsAccount,
     assetPath: '/assets',

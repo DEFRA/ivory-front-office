@@ -40,6 +40,7 @@
     "@hapi/hoek": "^9.1.1",
     "@hapi/inert": "^5.2.2",
     "@hapi/joi": "^17.1.0",
+    "@hapi/vision": "^5.5.4",
     "@hapi/wreck": "^17.0.0",
     "@hapi/yar": "^9.2.1",
     "array-flat-polyfill": "^1.0.1",
@@ -50,12 +51,13 @@
     "dotenv": "^8.2.0",
     "git-last-commit": "^1.0.0",
     "glob": "^7.1.6",
-    "hapi-govuk-frontend": "git+https://github.com/DEFRA/hapi-govuk-frontend.git#v0.1.0",
+    "govuk-frontend": "^3.11.0",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.20",
     "moment": "^2.24.0",
     "node-sass": "4.13.1",
     "notifications-node-client": "^4.7.0",
+    "nunjucks": "^3.2.2",
     "sharp": "^0.27.1"
   },
   "devDependencies": {
