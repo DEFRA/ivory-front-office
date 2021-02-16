@@ -1,12 +1,8 @@
 const { version } = require(`${process.cwd()}/package`)
 const viewOptions = require('./view-options')
-const path = require('path')
-
-// find localModule path
-const localModule = path.resolve(__dirname, '../').replace(process.cwd(), '').substring(1)
 
 module.exports = (server, opts = {}) => {
-  const { analyticsAccount, assetPath = '/assets', assetDirectories = [], serviceName = 'unknown', viewPath = '/', options = {}, context: additionalContext = {} } = opts
+  const { analyticsAccount, assetPath = '/assets', assetDirectories = [], serviceName = 'unknown', viewPath = '/', includePaths, options = {}, context: additionalContext = {} } = opts
 
   // Fool this partial into thinking it's hapi realm is it's parent realm so that the @hapi/vision plugin can be embedded here
   // see https://github.com/hapijs/hapi/issues/3066
@@ -21,8 +17,8 @@ module.exports = (server, opts = {}) => {
   }
 
   const directories = [
-    `${localModule}/node_modules/govuk-frontend/govuk`,
-    `${localModule}/node_modules/govuk-frontend/govuk/assets`
+    'node_modules/govuk-frontend/govuk',
+    'node_modules/govuk-frontend/govuk/assets'
   ]
 
   Object.assign(context, additionalContext)
@@ -40,7 +36,8 @@ module.exports = (server, opts = {}) => {
       plugin: require('@hapi/vision'),
       options: viewOptions({
         viewPath,
-        context
+        context,
+        includePaths: ['node_modules/govuk-frontend', ...includePaths]
       })
     }
   ])
