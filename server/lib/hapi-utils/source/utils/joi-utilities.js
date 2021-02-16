@@ -1,5 +1,5 @@
 
-const joi = require('@hapi/joi')
+const joi = require('joi')
 const { getNestedVal } = require('./utils')
 
 const joiUtils = {

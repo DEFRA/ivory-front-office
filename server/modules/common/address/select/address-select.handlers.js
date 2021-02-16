@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi')
+const Joi = require('joi')
 const chooseAddressHint = 'Choose an address'
 
 class AddressSelectHandlers extends require('../../../../lib/handlers/handlers') {

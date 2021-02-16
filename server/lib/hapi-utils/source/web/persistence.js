@@ -1,5 +1,5 @@
 const Wreck = require('@hapi/wreck')
-const joi = require('@hapi/joi')
+const joi = require('joi')
 const { logger } = require('defra-logging-facade')
 const { getNestedVal, cloneAndMerge } = require('../utils/utils')
 

@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi')
+const Joi = require('joi')
 const path = require('path')
 const { utils, joiUtilities } = require('../../lib/hapi-utils/index')
 const { uuid, setNestedVal, getNestedVal } = utils

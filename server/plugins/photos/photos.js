@@ -1,5 +1,5 @@
 const { logger } = require('defra-logging-facade')
-const joi = require('@hapi/joi')
+const joi = require('joi')
 const S3 = require('aws-sdk/clients/s3')
 const stream = require('stream')
 const fs = require('fs')

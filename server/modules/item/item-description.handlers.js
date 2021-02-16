@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi')
+const Joi = require('joi')
 const { Item } = require('../../lib/data-mapping/index').cache
 const { utils } = require('../../lib/hapi-utils/index')
 const config = require('../../config')

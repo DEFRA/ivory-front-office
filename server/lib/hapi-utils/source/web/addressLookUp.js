@@ -1,6 +1,6 @@
 const { logger } = require('defra-logging-facade')
 const wreck = require('@hapi/wreck')
-const joi = require('@hapi/joi')
+const joi = require('joi')
 
 module.exports = class AddressLookUp {
   constructor (config) {

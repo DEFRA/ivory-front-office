@@ -1,4 +1,4 @@
-const Joi = require('@hapi/joi')
+const Joi = require('joi')
 const { getNestedVal } = require('../../../lib/hapi-utils/source/utils/utils')
 
 class DeclarationHandlers extends require('../../../lib/handlers/handlers') {

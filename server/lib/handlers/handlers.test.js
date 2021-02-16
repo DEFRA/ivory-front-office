@@ -1,9 +1,9 @@
 const Lab = require('@hapi/lab')
 const Code = require('@hapi/code')
-const Joi = require('@hapi/joi')
+const Joi = require('joi')
 const lab = exports.lab = Lab.script()
 const sinon = require('sinon')
-const joi = require('@hapi/joi')
+const joi = require('joi')
 
 function createError (request = {}, field, type) {
   // Generate an example error structure

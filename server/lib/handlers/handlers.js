@@ -1,5 +1,5 @@
 require('array-flat-polyfill')
-const Joi = require('@hapi/joi')
+const Joi = require('joi')
 const { logger } = require('defra-logging-facade')
 
 // Base Handlers
