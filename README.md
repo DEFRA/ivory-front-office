@@ -17,8 +17,8 @@ This module was developed by the Ivory team as part of a digital transformation 
 Please make sure the following are installed:
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-- [Node.js v10/Dubnuim](https://nodejs.org/en/) recommend
-  installing nvm and using `nvm install 10`
+- [Node.js v14](https://nodejs.org/en/) recommend
+  installing nvm and using `nvm install 14`
 - [StandardJS](https://standardjs.com/) using `npm install -g standard`
 
 Check that your environment is running the correct versions of `node` and `npm`:
