@@ -55,7 +55,7 @@
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.20",
     "moment": "^2.24.0",
-    "node-sass": "4.13.1",
+    "node-sass": "^5.0.0",
     "notifications-node-client": "^4.7.0",
     "nunjucks": "^3.2.2",
     "sharp": "^0.27.1"

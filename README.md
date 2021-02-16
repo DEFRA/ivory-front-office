@@ -24,9 +24,9 @@ Please make sure the following are installed:
 Check that your environment is running the correct versions of `node` and `npm`:
 ```bash
 $ npm --version
-6.13.4
+6.14.10
 $ node --version
-v10.18.1
+v14.15.4
 ```
 Please note that this project needs to be configured to access an instance of the [ivory-services](https://github.com/DEFRA/ivory-services) REST service
 
