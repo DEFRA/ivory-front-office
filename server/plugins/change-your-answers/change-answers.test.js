@@ -51,7 +51,7 @@ lab.experiment('defra-hapi-change-answers', () => {
     sandbox.restore()
   })
 
-  lab.experiment('plugin is installed', async () => {
+  lab.experiment('plugin is installed', () => {
     lab.beforeEach(async ({ context }) => {
       const { server, request } = context
       request.changing = true

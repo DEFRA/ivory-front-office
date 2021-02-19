@@ -1,7 +1,7 @@
 
 const yaml = require('js-yaml')
 const fs = require('fs')
-const flowConfig = yaml.safeLoad(fs.readFileSync(`${__dirname}/../flow.yml`, 'utf8'))
+const flowConfig = yaml.load(fs.readFileSync(`${__dirname}/../flow.yml`, 'utf8'))
 const path = require('path')
 const plugin = require('./route-flow/index')
 

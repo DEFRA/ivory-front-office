@@ -68,7 +68,7 @@ lab.experiment('defra-error-handling', () => {
     sandbox.restore()
   })
 
-  lab.experiment('plugin is installed', async () => {
+  lab.experiment('plugin is installed', () => {
     lab.beforeEach(async ({ context }) => {
       const { server } = context
       await errorHandling(server, {
