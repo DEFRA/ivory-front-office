@@ -35938,9 +35938,9 @@
       }
     },
     "hapi-robots": {
-      "version": "3.2.0",
-      "resolved": "https://registry.npmjs.org/hapi-robots/-/hapi-robots-3.2.0.tgz",
-      "integrity": "sha512-9N4znXU2GNY21QXXuHmPzG/DyKCvT7il1b5vzpeSeeouFW07VWB50FwmUzmMYXnJG6hiCwZ7a7VOE6IHLwEN/A==",
+      "version": "3.2.2",
+      "resolved": "https://registry.npmjs.org/hapi-robots/-/hapi-robots-3.2.2.tgz",
+      "integrity": "sha512-oLwsvG9wCYKh6oYvPd6o+Va4xYyKKOOudoamYA3/5aR0ZXx+p/Ke0xEFON267eQxDDG4GX1H31WHHO7ZlZdcOg==",
       "requires": {
         "lodash": "^4.15.0"
       }
