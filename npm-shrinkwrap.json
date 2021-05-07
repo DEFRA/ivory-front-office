@@ -3120,11 +3120,6 @@
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.1.tgz",
           "integrity": "sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg=="
         },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
-        },
         "http-signature": {
           "version": "1.2.0",
           "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
@@ -6014,11 +6009,6 @@
           "version": "1.0.1",
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.1.tgz",
           "integrity": "sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg=="
-        },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
         },
         "http-signature": {
           "version": "1.2.0",
@@ -9078,11 +9068,6 @@
           "version": "1.0.1",
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.1.tgz",
           "integrity": "sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg=="
-        },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
         },
         "http-signature": {
           "version": "1.2.0",
@@ -12350,11 +12335,6 @@
           "version": "2.0.1",
           "resolved": "https://registry.npmjs.org/has-unicode/-/has-unicode-2.0.1.tgz",
           "integrity": "sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk="
-        },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
         },
         "http-signature": {
           "version": "1.2.0",
@@ -16431,11 +16411,6 @@
               "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.1.tgz",
               "integrity": "sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg=="
             },
-            "hosted-git-info": {
-              "version": "2.8.5",
-              "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-              "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
-            },
             "http-signature": {
               "version": "1.2.0",
               "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
@@ -18725,11 +18700,6 @@
           "version": "1.0.1",
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.1.tgz",
           "integrity": "sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg=="
-        },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
         },
         "http-signature": {
           "version": "1.2.0",
@@ -22094,11 +22064,6 @@
                   }
                 }
               }
-            },
-            "hosted-git-info": {
-              "version": "2.8.5",
-              "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-              "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
             },
             "html-encoding-sniffer": {
               "version": "1.0.2",
@@ -27039,11 +27004,6 @@
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.0.tgz",
           "integrity": "sha1-uhqPGvKg/DllD1yFA2dwQSIGO0Q="
         },
-        "hosted-git-info": {
-          "version": "2.8.4",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.4.tgz",
-          "integrity": "sha512-pzXIvANXEFrc5oFFXRMkbLPQ2rXRoDERwDLyrcUxGhaZhgP54BBSl9Oheh7Vv0T090cszWBxPjkQQ5Sq1PbBRQ=="
-        },
         "http-signature": {
           "version": "1.2.0",
           "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
@@ -31910,11 +31870,6 @@
             }
           }
         },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
-        },
         "http-signature": {
           "version": "1.2.0",
           "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
@@ -34951,11 +34906,6 @@
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.1.tgz",
           "integrity": "sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg=="
         },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
-        },
         "iconv-lite": {
           "version": "0.4.24",
           "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",
@@ -37171,11 +37121,6 @@
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.1.tgz",
           "integrity": "sha512-PLcsoqu++dmEIZB+6totNFKq/7Do+Z0u4oT0zKOJNl3lYK6vGwwu2hjHs+68OEZbTjiUE9bgOABXbP/GvrS0Kg=="
         },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
-        },
         "http-signature": {
           "version": "1.2.0",
           "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
@@ -38700,9 +38645,9 @@
       "integrity": "sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk="
     },
     "hosted-git-info": {
-      "version": "2.8.5",
-      "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-      "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
+      "version": "2.8.9",
+      "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.9.tgz",
+      "integrity": "sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw=="
     },
     "htmlparser2": {
       "version": "4.0.0",
@@ -41370,11 +41315,6 @@
               "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.0.tgz",
               "integrity": "sha1-uhqPGvKg/DllD1yFA2dwQSIGO0Q="
             },
-            "hosted-git-info": {
-              "version": "2.8.4",
-              "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.4.tgz",
-              "integrity": "sha512-pzXIvANXEFrc5oFFXRMkbLPQ2rXRoDERwDLyrcUxGhaZhgP54BBSl9Oheh7Vv0T090cszWBxPjkQQ5Sq1PbBRQ=="
-            },
             "http-signature": {
               "version": "1.2.0",
               "resolved": "https://registry.npmjs.org/http-signature/-/http-signature-1.2.0.tgz",
@@ -43728,11 +43668,6 @@
           "version": "1.0.0",
           "resolved": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.0.0.tgz",
           "integrity": "sha1-uhqPGvKg/DllD1yFA2dwQSIGO0Q="
-        },
-        "hosted-git-info": {
-          "version": "2.8.5",
-          "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.5.tgz",
-          "integrity": "sha512-kssjab8CvdXfcXMXVcvsXum4Hwdq9XGtRD3TteMEvEbq0LXyiNQr6AprqKqfeaDXze7SxWvRxdpwE6ku7ikLkg=="
         },
         "http-signature": {
           "version": "1.2.0",
