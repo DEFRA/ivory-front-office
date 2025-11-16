@@ -55,7 +55,7 @@
     "hapi-robots": "^3.2.0",
     "hapi-version-status": "^2.0.1",
     "ivory-data-mapping": "git+https://github.com/DEFRA/ivory-data-mapping.git#v0.1.0",
-    "js-yaml": "^3.13.1",
+    "js-yaml": "^4.1.1",
     "lodash.merge": "^4.6.2",
     "moment": "^2.24.0",
     "node-sass": "4.13.1",
@@ -63,11 +63,11 @@
   },
   "devDependencies": {
     "@hapi/code": "^8.0.1",
-    "@hapi/lab": "^22.0.3",
+    "@hapi/lab": "^26.0.0",
     "cheerio": "^1.0.0-rc.3",
     "codeclimate-test-reporter": "0.5.1",
     "htmlparser2": "^4.0.0",
     "sinon": "^8.1.1",
-    "standard": "14.3.1"
+    "standard": "17.1.2"
   }
 }
